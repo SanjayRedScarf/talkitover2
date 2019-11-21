@@ -1,14 +1,14 @@
   <!DOCTYPE html>
 <html>
-  <title>Daniel</title>
+  <title>Eliza</title>
 <body>
     <center>
       <h1>
         <img
           src="https://user-images.githubusercontent.com/20112458/49326597-773b7280-f57a-11e8-853d-20ed61d18b0d.png"
-          alt="CANDICE"
+          alt="Eliza"
           style="width:40px;height:40px;"
-        />Your Personal ChatBot
+        />Eliza Your Personal ChatBot
       </h1>
     </center>
 <div class="box"></div>
@@ -17,11 +17,11 @@
         <div id="chatbox">
           <img
             src="https://user-images.githubusercontent.com/20112458/49326597-773b7280-f57a-11e8-853d-20ed61d18b0d.png"
-            alt="Daniel"
+            alt="Eliza"
             style="width:40px;height:40px;"
           />
           <p class="botText">
-            <span>Hi! I'm Daniel your personal ChatBot</span>
+            <span>Hello. My name is Eliza and I am here for you to talk about whatever is on your mind</span>
           </p>
         </div>
         <div id="userInput">
@@ -119,21 +119,29 @@
 </head>
 
 <script>
+        var sectionNumber = 1;
+        var output = 1;
+        var sentiment = 1;
         function getBotResponse() {
           var rawText = $("#textInput").val();
-          var userHtml = '<p class="userText"><span>' + rawText + "</span></p>";
-          $("#textInput").val("");
-          $("#chatbox").append(userHtml);
-          document
-            .getElementById("userInput")
-            .scrollIntoView({ block: "start", behavior: "smooth" });
-          $.get("/get", { msg: rawText }).done(function(data) {
-            var botHtml = '<p class="botText"><span>' + data + "</span></p>";
-            $("#chatbox").append(botHtml);
+          if (rawText!=""){
+            var userHtml = '<p class="userText"><span>' + rawText + "</span></p>";
+            $("#textInput").val("");
+            $("#chatbox").append(userHtml);
             document
               .getElementById("userInput")
               .scrollIntoView({ block: "start", behavior: "smooth" });
-          });
+            $.get("/get", { msg: JSON.stringify([rawText, sectionNumber, output, sentiment]) }).done(function(data) {
+            var botHtml = '<p class="botText"><span>' + JSON.parse(data)[0] + "</span></p>";
+            $("#chatbox").append(botHtml);
+            sectionNumber = JSON.parse(data)[1];
+            output = JSON.parse(data)[2];
+            sentiment = JSON.parse(data)[3];
+            document
+              .getElementById("userInput")
+              .scrollIntoView({ block: "start", behavior: "smooth" });
+            });
+          }
         }
         $("#textInput").keypress(function(e) {
           if (e.which == 13) {
