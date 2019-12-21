@@ -59,8 +59,20 @@ def get_bot_response():
     start_again = False
     nextUserInput = ""
     nextUserInputFree = "<input id='textInput' type='text' name='msg' placeholder='Message' />" # this is a standard choice of thing to have at the bottom of the chatbox which will allow the user to enter free text
-    nextUserInputYesNo = "<button class='textInput' id='userInputButton' type='button' onclick='getBotResponse()' value='yes'>Yes</button> \
-          <button class='textInput' id='userInputButton' type='button' onclick='getBotResponse()' value='no'>No</button>"
+    ####This version of the nextUserInputYesNo html, which starts with "<button class='textInput'", is the initial version. It has the problem that the browser interprets both the buttons as having the id of "userInputButton", so if you press "no", it just uses the value from the first instance of userInputButton. which is yes.
+    #nextUserInputYesNo = "<button class='textInput' id='userInputButton' type='button' onclick='getBotResponse()' value='yesyes'>Yes</button> \
+    #      <button class='textInput' id='userInputButton' type='button' onclick='getBotResponse()' value='no'>No</button>"
+    #### I tried this version of the nextUserInputYesNo html, but for some reason it made the whole page reload, losing everything that happened beforehand
+    #nextUserInputYesNo = "<form id='userInputButton' onchange='getBotResponse()'> \
+    #    <button type='submit' form='userInputButton' value='yes'>Yes yes yes</button> \
+    #    <button type='submit' form='userInputButton' value='no'>No, no</button> \
+    #    </form> "
+    nextUserInputYesNo = "<select type='text' id='userInputButton' onchange='getBotResponse()'> \
+    <option>Select</option>  \
+    <option value='yes'>Yes</option> \
+    <option value='no'>No</option> \
+    </select>"
+
     nextUserInputIsFreeText = False # the javascript code needs to pull in the data entered by the user in the userInput div and then spit the same data back out again. The way to retrieve this depends on whether the userinput mechanism was a button or a free text field, so this boolean helps to track that. It feeds through to a variable called currentUserInputIsFreeText in the javascript code
     print("this si the get_bot_response function")
     if section==0:
@@ -117,6 +129,61 @@ def get_bot_response():
             response = responses[bisect_left(scores, score)]
             #next_section = 4
             """
+
+
+    # the bot gives an answer based on textblob. they carry on talking...
+#    elif section == 4:
+#        words = [i.lower() for i in message.split()]
+#        if (words[0]=="no") or (" ".join(words[:2])=="not really"):
+#            response = "That's ok. Would you like to talk about something else?"
+#            next_section = 6
+#        else:
+#            responses = ["Sounds like things are really rough at the moment. Can I ask what is making you feel this way?", \
+#            "Sounds like things are not too easy at the moment. Can I ask what is making you feel this way?", \
+#            "Sounds like things could be a bit better. Can I ask what is making you feel this way?", \
+#            "To me it sounds like things are going ok for you, but I may be mistaken! Would you like to tell me more about it?"]
+#            response = responses[bisect_left(scores, score)]
+#            next_section = 5
+#
+#    # this is the section of encouraging noises
+#    elif section == 5:
+#        words = [i.lower() for i in message.split()]
+#        if (words[0]=="no") or (" ".join(words[:2])=="not really"):
+#            response = "Ok, Is there anything else you would like to talk about?"
+#            next_section = 6
+#        else:
+#            responses = ["Go on, I'm still listening", "Can you say more about that?"]
+#            response_num = 1 if random.uniform(0, 1)>0.5 else 0
+#            response = responses[response_num]
+#            next_section = 5
+#
+#    # this is the section to gauge how they're feeling on a scale from 1 to 10
+#    elif section == 6:
+#        words = [i.lower() for i in message.split()]
+#        if (words[0]=="no") or (" ".join(words[:2])=="not really"):
+#            response = "Ok thanks for speaking to me. Have you found talking useful?"
+#            next_section = 7
+#        else:
+#            responses = ["Go on, I'm still listening", "Can you say more about that?"]
+#            response_num = 1 if random.uniform(0, 1)>0.5 else 0
+#            response = responses[response_num]
+#            next_section = 5
+#    elif section == 7:
+#        get_response = get_yes_no(message, ("That's great! I'm glad to hear it. \
+#        Do you have any suggestions about how I could improve?",1),
+#        ("Sorry to hear that. Do you have any suggestions about how I can improve?",1), \
+#        ("Sorry I didn't understand that",0), section)
+#        response = get_response[0]
+#        next_section = get_response[1]
+#    elif section == 8:
+#        words = [i.lower() for i in message.split()]
+#        if words[0]=="no" or " ".join(words[:2])=="not really" or " ".join(words[:3])=="i'd rather not":
+#            response = "Ok thanks anyway. Do chat again if you'd like to"
+#        else:
+#            response = "Thanks for the feedback. Do chat again if you'd like to"
+#        next_section=0
+
+
             response = "Sorry to hear that. I'm still here, feel free to keep talking"
             next_section = section + 1
             nextUserInputIsFreeText = "true"
