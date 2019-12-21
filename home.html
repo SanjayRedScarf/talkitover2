@@ -5,7 +5,7 @@
     <center>
       <h1>
         <img
-          src="https://user-images.githubusercontent.com/20112458/49326597-773b7280-f57a-11e8-853d-20ed61d18b0d.png"
+          src="https://user-images.githubusercontent.``com/20112458/49326597-773b7280-f57a-11e8-853d-20ed61d18b0d.png"
           alt="Eliza"
           style="width:40px;height:40px;"
         />Eliza Your Personal ChatBot
@@ -24,8 +24,11 @@
             <span>Hello. My name is Eliza and I am here for you to talk about whatever is on your mind</span>
           </p>
         </div>
-        <div id="userInput">
-          <input id="textInput" type="text" name="msg" placeholder="Message" />
+        <div id="userInputDiv">
+          <input id='textInput' type='text' name='msg' placeholder='Message' /> 
+          <!--<button class="textInput" id="userInputButton" type="button" onclick="getBotResponse()" value="yes">Yes</button> -->
+          <!--<button class="textInput" id="userInputButton" type="button" onclick="getBotResponse()" value="no">No</button> -->
+          
         </div>
       </div>
     </div>
@@ -62,7 +65,7 @@
         width: 40%;
         margin-top: 60px;
       }
-      #userInput {
+      #userInputDiv {
         margin-left: auto;
         margin-right: auto;
         width: 40%;
@@ -122,14 +125,20 @@
         var sectionNumber = 1;
         var output = 1;
         var sentiment = 1;
+        var nextUserInput = ""
+        var currentUserInputIsFreeText = "true" //need to initialise this based on whether the second implementation of the userinput div is actually free text or not
         function getBotResponse() {
-          var rawText = $("#textInput").val();
+          var rawText = "";
+          console.log("currentuserinputisfreetext = "+currentUserInputIsFreeText);
+          if (currentUserInputIsFreeText=="true") {console.log("this is in the then statement"); rawText = $("#textInput").val();}
+          else {console.log("this is in the else statement"); rawText = document.getElementById("userInputButton").value;}
+          //rawText = document.getElementById("userInputButton").value;
+          console.log("rawText has just been set as "+rawText);
           if (rawText!=""){
             var userHtml = '<p class="userText"><span>' + rawText + "</span></p>";
-            $("#textInput").val("");
             $("#chatbox").append(userHtml);
             document
-              .getElementById("userInput")
+              .getElementById("userInputDiv")
               .scrollIntoView({ block: "start", behavior: "smooth" });
             $.get("/get", { msg: JSON.stringify([rawText, sectionNumber, output, sentiment]) }).done(function(data) {
             var botHtml = '<p class="botText"><span>' + JSON.parse(data)[0] + "</span></p>";
@@ -137,13 +146,19 @@
             sectionNumber = JSON.parse(data)[1];
             output = JSON.parse(data)[2];
             sentiment = JSON.parse(data)[3];
+            console.log("this is the line just before we set the value of nextUserInput, and its value is currently "+nextUserInput);
+            nextUserInput = JSON.parse(data)[4];
+            console.log("this is the line just after we set the value of nextUserInput, and its value is currently "+nextUserInput);
+            currentUserInputIsFreeText = JSON.parse(data)[5];
+            document.getElementById("userInputDiv").innerHTML = nextUserInput; // should I move this to outside of "done(function(data) {}"?
             document
-              .getElementById("userInput")
+              .getElementById("userInputDiv")
               .scrollIntoView({ block: "start", behavior: "smooth" });
             });
           }
         }
         $("#textInput").keypress(function(e) {
+            console.log("this is inside the keypress thingy");
           if (e.which == 13) {
             getBotResponse();
           }
