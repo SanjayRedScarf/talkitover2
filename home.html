@@ -21,14 +21,27 @@
             style="width:40px;height:40px;"
           />
           <p class="botText">
-            <span>Hello. My name is Eliza and I am here for you to talk about whatever is on your mind</span>
+            <span>Hi! I'm the Talk It Over chatbot and I am here for you to talk about whatever is on your mind. Thanks for trying this early prototype! I'm not a very clever piece of software and I might not understand everything you say, but if you think that talking things through in a safe confidential space might help, let's chat! Please rate how you feel on a scale from 1 to 10, where 1 is terrible and 10 is great</span>
           </p>
         </div>
         <div id="userInputDiv">
-          <input id='textInput' type='text' name='msg' placeholder='Message' /> 
+          <!--<input id='textInput' type='text' name='msg' placeholder='Message' />  -->
           <!--<button class="textInput" id="userInputButton" type="button" onclick="getBotResponse()" value="yes">Yes</button> -->
           <!--<button class="textInput" id="userInputButton" type="button" onclick="getBotResponse()" value="no">No</button> -->
-          
+          <select type='number' id='initialHappinessSurvey' onchange='getBotResponse()'>
+            <option>Select</option>
+            <option name="initialHappinessValue" value=1>1</option>
+            <option name="initialHappinessValue" value=2>2</option>
+            <option name="initialHappinessValue" value=3>3</option>
+            <option name="initialHappinessValue" value=4>4</option>
+            <option name="initialHappinessValue" value=5>5</option>
+            <option name="initialHappinessValue" value=6>6</option>
+            <option name="initialHappinessValue" value=7>7</option>
+            <option name="initialHappinessValue" value=8>8</option>
+            <option name="initialHappinessValue" value=9>9</option>
+            <option name="initialHappinessValue" value=10>10</option>
+            </select>
+
         </div>
       </div>
     </div>
@@ -125,22 +138,36 @@
         var sectionNumber = 1;
         var output = 1;
         var sentiment = 1;
-        var nextUserInput = ""
-        var currentUserInputIsFreeText = "true" //need to initialise this based on whether the second implementation of the userinput div is actually free text or not
+        var initialHappinessValue = 0;
+        var nextUserInput = "";
+        var currentUserInputIsFreeText = "false"; //need to initialise this based on whether the second implementation of the userinput div is actually free text or not
+        var currentUserInputIsOneToTen = "true";
+        var currentUserInputIsYesNo = "false";
+
+
         function getBotResponse() {
           var rawText = "";
           console.log("currentuserinputisfreetext = "+currentUserInputIsFreeText);
-          if (currentUserInputIsFreeText=="true") {console.log("this is in the then statement"); rawText = $("#textInput").val();}
-          else {console.log("this is in the else statement"); rawText = document.getElementById("userInputButton").value;}
+          if (currentUserInputIsFreeText=="true") {
+            console.log("this is in the then (ie free text) statement");
+            rawText = $("#textInput").val();}
+          else if (currentUserInputIsOneToTen == "true"){
+            console.log("this is in the else (1 to 10) statement");
+            initialHappinessValue = $("#initialHappinessSurvey").val();
+            rawText = String(initialHappinessValue);}
+          else if (currentUserInputIsYesNo == "true"){
+            console.log("this is in the else (yes-no) statement");
+            rawText = document.getElementById("userInputButton").value;}
           //rawText = document.getElementById("userInputButton").value;
-          console.log("rawText has just been set as "+rawText);
+
+          console.log("RawText has just been set as "+rawText);
           if (rawText!=""){
             var userHtml = '<p class="userText"><span>' + rawText + "</span></p>";
             $("#chatbox").append(userHtml);
             document
               .getElementById("userInputDiv")
               .scrollIntoView({ block: "start", behavior: "smooth" });
-            $.get("/get", { msg: JSON.stringify([rawText, sectionNumber, output, sentiment]) }).done(function(data) {
+            $.get("/get", { msg: JSON.stringify([rawText, sectionNumber, output, sentiment, initialHappinessValue]) }).done(function(data) {
             var botHtml = '<p class="botText"><span>' + JSON.parse(data)[0] + "</span></p>";
             $("#chatbox").append(botHtml);
             sectionNumber = JSON.parse(data)[1];
@@ -150,6 +177,7 @@
             nextUserInput = JSON.parse(data)[4];
             console.log("this is the line just after we set the value of nextUserInput, and its value is currently "+nextUserInput);
             currentUserInputIsFreeText = JSON.parse(data)[5];
+            //TODO: NEXT TASK IS TO PASS THE INITALHAPINESSSCORE TO THE PYTHON FILE SO IT CAN USE IT TO DETERMINE THE NEXT CHATBOT RESPONSE
             document.getElementById("userInputDiv").innerHTML = nextUserInput; // should I move this to outside of "done(function(data) {}"?
             document
               .getElementById("userInputDiv")
