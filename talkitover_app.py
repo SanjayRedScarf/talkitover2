@@ -56,25 +56,32 @@ def get_bot_response():
     section = _input[1]
     output = _input[2]
     score = _input[3]
+    initialHappinessScore = int(_input[4])
     start_again = False
     nextUserInput = ""
     nextUserInputFree = "<input id='textInput' type='text' name='msg' placeholder='Message' />" # this is a standard choice of thing to have at the bottom of the chatbox which will allow the user to enter free text
-    ####This version of the nextUserInputYesNo html, which starts with "<button class='textInput'", is the initial version. It has the problem that the browser interprets both the buttons as having the id of "userInputButton", so if you press "no", it just uses the value from the first instance of userInputButton. which is yes.
-    #nextUserInputYesNo = "<button class='textInput' id='userInputButton' type='button' onclick='getBotResponse()' value='yesyes'>Yes</button> \
-    #      <button class='textInput' id='userInputButton' type='button' onclick='getBotResponse()' value='no'>No</button>"
-    #### I tried this version of the nextUserInputYesNo html, but for some reason it made the whole page reload, losing everything that happened beforehand
-    #nextUserInputYesNo = "<form id='userInputButton' onchange='getBotResponse()'> \
-    #    <button type='submit' form='userInputButton' value='yes'>Yes yes yes</button> \
-    #    <button type='submit' form='userInputButton' value='no'>No, no</button> \
-    #    </form> "
     nextUserInputYesNo = "<select type='text' id='userInputButton' onchange='getBotResponse()'> \
     <option>Select</option>  \
     <option value='yes'>Yes</option> \
     <option value='no'>No</option> \
     </select>"
+    # DELETE THIS!!!!!!!!!!!!!!!!! I think the initial survey just sits in the javascript file and doesn't need to be referenced here, so I think we can delete out the below.
+    nextUserInitialSurvey = "<select type='number' id='initialHappinessSurvey' onchange='getBotResponse()'> \
+    <option>Select</option>  \
+    <option value=1>1</option> \
+    <option value=2>2</option> \
+    <option value=3>3</option> \
+    <option value=4>4</option> \
+    <option value=5>5</option> \
+    <option value=6>6</option> \
+    <option value=7>7</option> \
+    <option value=8>8</option> \
+    <option value=9>9</option> \
+    <option value=10>10</option> \
+    </select>"
 
     nextUserInputIsFreeText = False # the javascript code needs to pull in the data entered by the user in the userInput div and then spit the same data back out again. The way to retrieve this depends on whether the userinput mechanism was a button or a free text field, so this boolean helps to track that. It feeds through to a variable called currentUserInputIsFreeText in the javascript code
-    print("this si the get_bot_response function")
+    print("This si the get_bot_response function")
     if section==0:
         if message.lower()=="start":
             section=2
@@ -83,9 +90,21 @@ def get_bot_response():
             response = "Please type start to start the chat again"
             next_section = 0
     if section==1:
-        response = "Hi. So, I am a very simple piece of software and an early prototype. \
-        Thank you for trying me :-)! Whilst we are talking I'd like to store your responses to \
-        analyse them later to help improve the bot. Are you happy for me to do this? (Please reply yes or no)"
+
+        if initialHappinessScore > 7:
+            response = "Sounds like you're feeling OK! I'm designed for people who are feeling low \
+            and have something on their mind. But that's cool, let's talk anyway! :-) \
+            Can I tell you first how this bot works?"
+        elif initialHappinessScore > 3:
+            response = "Thanks for sharing. I'm going to ask you to talk about whatever is on your \
+            mind, but first I'm going to explain how this bot works, is that OK?"
+        else:
+            response = "Oh dear, sounds like you're feeling really low, I'm sorry to hear that. \
+            I want to ask you more about that, but first can I tell you how this bot works?"
+
+        #response = "Hi. So, I am a very simple piece of software and an early prototype. \
+        #Thank you for trying me :-)! Whilst we are talking I'd like to store your responses to \
+        #analyse them later to help improve the bot. Are you happy for me to do this? (Please reply yes or no)"
 
         nextUserInput = nextUserInputYesNo
         nextUserInputIsFreeText = "false"
