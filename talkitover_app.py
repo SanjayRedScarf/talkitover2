@@ -54,7 +54,7 @@ def get_bot_response():
     _input = json.loads(request.args.get('msg'))
     message = _input[0]
     section = _input[1]
-    output = _input[2]
+    output = _input[2] # I don't know what this is for!
     score = _input[3]
     initialHappinessScore = int(_input[4])
     start_again = False
@@ -65,23 +65,26 @@ def get_bot_response():
     <option value='yes'>Yes</option> \
     <option value='no'>No</option> \
     </select>"
-    # DELETE THIS!!!!!!!!!!!!!!!!! I think the initial survey just sits in the javascript file and doesn't need to be referenced here, so I think we can delete out the below.
-    nextUserInitialSurvey = "<select type='number' id='initialHappinessSurvey' onchange='getBotResponse()'> \
+    nextUserInputOneOption = "<select type='text' id='userInputButton' onchange='getBotResponse()'> \
     <option>Select</option>  \
-    <option value=1>1</option> \
-    <option value=2>2</option> \
-    <option value=3>3</option> \
-    <option value=4>4</option> \
-    <option value=5>5</option> \
-    <option value=6>6</option> \
-    <option value=7>7</option> \
-    <option value=8>8</option> \
-    <option value=9>9</option> \
-    <option value=10>10</option> \
+    <option value='yes'>Yes</option> \
+    </select>"
+    nextUserInputTwoOptions = "<select type='text' id='userInputButton' onchange='getBotResponse()'> \
+    <option>Select</option>  \
+    <option value='yes'>Yes</option> \
+    <option value='no'>No</option> \
     </select>"
 
-    nextUserInputIsFreeText = False # the javascript code needs to pull in the data entered by the user in the userInput div and then spit the same data back out again. The way to retrieve this depends on whether the userinput mechanism was a button or a free text field, so this boolean helps to track that. It feeds through to a variable called currentUserInputIsFreeText in the javascript code
+    nextUserInputType = "initialHappinessSurvey" # the javascript code needs to pull in the data entered by the user in the userInput div and then spit the same data back out again. The way to retrieve this depends on whether the userinput mechanism was a button or a free text field, so this boolean helps to track that. It feeds through to a variable called currentUserInputType in the javascript code
     print("This si the get_bot_response function")
+
+    def nextUserInputOneOption(buttonText):
+        nextUserInputOneOption = "<select type='text' id='userInputButton' onchange='getBotResponse()'> \
+        <option>Select</option>  \
+        <option value='"+buttonText+"'>"+buttonText+"</option> \
+        </select>"
+        return nextUserInputOneOption
+
     if section==0:
         if message.lower()=="start":
             section=2
@@ -106,24 +109,26 @@ def get_bot_response():
         #Thank you for trying me :-)! Whilst we are talking I'd like to store your responses to \
         #analyse them later to help improve the bot. Are you happy for me to do this? (Please reply yes or no)"
 
-        nextUserInput = nextUserInputYesNo
-        nextUserInputIsFreeText = "false"
+        nextUserInput = nextUserInputOneOption("Yes, happy to listen to the explanation of how this bot works")
+        nextUserInputType = "userInputButton"
         next_section = 2
     elif section==2:
+        # MAYBE DELETE OUT THE "start_again" THING?
         if start_again:
             response = "Hi there! Can I ask how you're feeling today?"
             next_section = 3
         else:
-            yes_message = "Thanks a lot! So firstly can I ask how you are feeling today?"
-            no_message = "That's ok. I won't be storing any of your responses. \
-                So to begin, can I ask how you're feeling today?"
-            not_understand_message = "Sorry, I didn't understand that"
-            get_response = get_yes_no(message, (yes_message,1), (no_message,1), (not_understand_message,0), section)
-            response = get_response[0]
-            next_section = get_response[1]
-            nextUserInput = nextUserInputFree
-            nextUserInputIsFreeText = "true"
 
+            response = "I'm actually a very simple little bot. So please feel free to talk to me, \
+            and sorry in advance if I don't always do a good job of understanding you. Instead \
+            think of this as being more like writing a journal, but as you keep writing, \
+            I'll be here to encourage you to keep talking."
+            next_section = 3
+            nextUserInput = nextUserInputFree
+            nextUserInputType = "freeText"
+
+        # REMINDER these are the outputs required at the end:
+        # response, next_section, output, score, nextUserInput, nextUserInputType
 
     elif section > 2:
         words = [i.lower() for i in message.split()]
@@ -205,12 +210,12 @@ def get_bot_response():
 
             response = "Sorry to hear that. I'm still here, feel free to keep talking"
             next_section = section + 1
-            nextUserInputIsFreeText = "true"
+            nextUserInputType = "freeText"
 
 
-    time.sleep(min(sleep_per_word*len(response.split()), 2))
-    print([response, next_section, output, score, nextUserInput, nextUserInputIsFreeText])
-    return make_response(dumps([response, next_section, output, score, nextUserInput, nextUserInputIsFreeText]))
+    #time.sleep(min(sleep_per_word*len(response.split()), 2))  # this delay is meant to represent the bot's thinking time. I'm just finding it annoying, but perhaps if there's a better dancing ellipsis to represent typing, it might be more worthwhile having the delay in.
+    print([response, next_section, output, score, nextUserInput, nextUserInputType])
+    return make_response(dumps([response, next_section, output, score, nextUserInput, nextUserInputType]))
 
 
 
