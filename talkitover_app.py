@@ -10,6 +10,22 @@ app = Flask(__name__)
 my_dict = {} # shoudl this be tidied up and deleted out?
 sleep_per_word = 0.04 # I don't think this is being used yet, but could use it in the future
 scores = [-0.5, 0, 0.3]
+encouragingNoises = ["I'm still listening, so feel free to say more.", "Go on, I'm still here.", \
+"Keep talking, I'll be here for as long as you need me.", \
+"I hear you. Keep going, I'm really happy for you to continue talking for as long as you need.", \
+"Thanks for sharing this. Keep talking, I'm still here, and I'm still listening.", \
+"I'm still here, so keep talking for as long as you need", "I'm still here, keep talking.", \
+"Hmmm, thanks for sharing that. Keep talking, I'm still here", \
+"Please keep on talking, I'm still here.", "Keep going, I'm still here", \
+"Thanks for sharing. I'm still listening, so if you have more to say, please go on", \
+"I hear you. Remember, this is like a sort of online journal, just use this as a space to write \
+about what's on your mind and explore your thoughts. I'm just here to listen. Keep talking...", \
+"Keep talking, I'm listening to you.", "Thanks for sharing, keep talking...", \
+"I'm still listening, go on...", "I hear you, thank you for sharing, please keep talking" ]
+
+noOfEncouragingNoises = len(encouragingNoises)
+
+#print("Length of the encouragingNoises array is "+str(len(encouragingNoises)))
 
 # returns the first index where an element occurs.
 def bisect_left(a, x):
@@ -308,7 +324,9 @@ def get_bot_response():
 #        next_section=0
 
 
-            response = "Sorry to hear that. I'm still here, feel free to keep talking"
+            #response = "Sorry to hear that. I'm still here, feel free to keep talking"
+            randomlyChosenIndex = random.randint(0,noOfEncouragingNoises-1)
+            response = encouragingNoises[randomlyChosenIndex]
             next_section = section + 1
             nextUserInput = nextUserInputFreeText
             nextUserInputType = "freeText"
