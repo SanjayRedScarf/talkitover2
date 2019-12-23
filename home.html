@@ -189,7 +189,7 @@
           }
         }
 
-        $("#textInput").keypress(function(e) {
+        $('body').on("keypress", '#textInput', function(e) {
             console.log("this is inside the keypress thingy");
           if (e.which == 13) {
             getBotResponse();
