@@ -59,7 +59,7 @@ def get_bot_response():
     initialHappinessScore = int(_input[4])
     start_again = False
     nextUserInput = ""
-    nextUserInputFree = "<input id='textInput' type='text' name='msg' placeholder='Message' />" # this is a standard choice of thing to have at the bottom of the chatbox which will allow the user to enter free text
+    nextUserInputFreeText = "<input id='textInput' type='text' name='msg' placeholder='Message' />" # this is a standard choice of thing to have at the bottom of the chatbox which will allow the user to enter free text
     nextUserInputYesNo = "<select type='text' id='userInputButton' onchange='getBotResponse()'> \
     <option>Select</option>  \
     <option value='yes'>Yes</option> \
@@ -85,6 +85,16 @@ def get_bot_response():
         </select>"
         return nextUserInputOneOption
 
+    def nextUserInputTwoOptions(buttonText1,buttonText2):
+        nextUserInputTwoOptions = "<select type='text' id='userInputButton' onchange='getBotResponse()'> \
+        <option>Select</option>  \
+        <option value='"+buttonText1+"'>"+buttonText1+"</option> \
+        <option value='"+buttonText2+"'>"+buttonText2+"</option> \
+        </select>"
+        return nextUserInputTwoOptions
+
+
+    # not sure if we need this if section = 0 bit???????????????????? DELETE THIS?
     if section==0:
         if message.lower()=="start":
             section=2
@@ -111,26 +121,116 @@ def get_bot_response():
 
         nextUserInput = nextUserInputOneOption("Yes, happy to listen to the explanation of how this bot works")
         nextUserInputType = "userInputButton"
-        next_section = 2
+        next_section = section + 1
     elif section==2:
-        # MAYBE DELETE OUT THE "start_again" THING?
-        if start_again:
-            response = "Hi there! Can I ask how you're feeling today?"
-            next_section = 3
-        else:
 
-            response = "I'm actually a very simple little bot. So please feel free to talk to me, \
-            and sorry in advance if I don't always do a good job of understanding you. Instead \
-            think of this as being more like writing a journal, but as you keep writing, \
-            I'll be here to encourage you to keep talking."
-            next_section = 3
-            nextUserInput = nextUserInputFree
-            nextUserInputType = "freeText"
+        response = "I'm actually a very simple little bot. So please feel free to talk to me, \
+        and sorry in advance if I don't always do a good job of understanding you. Instead \
+        think of this as being more like writing a journal, but as you keep writing, \
+        I'll be here to encourage you to keep talking."
+        next_section = section + 1
+        nextUserInput = nextUserInputOneOption("OK, I will talk with you even though you are a simple bot.")
+        nextUserInputType = "userInputButton"
 
         # REMINDER these are the outputs required at the end:
         # response, next_section, output, score, nextUserInput, nextUserInputType
 
-    elif section > 2:
+        # We offer an anonymised service. We don't have any way \
+        #of tracking you down, knowing who you are, or linking what you write to you.
+
+
+    elif section==3:
+
+        response = "Now let's talk about confidentiality and anonymity. \
+        We offer an anonymised service. We don't have any way \
+        of tracking you down, knowing who you are, or linking what you write to you."
+        next_section = section + 1
+        nextUserInput = nextUserInputOneOption("OK, I understand that you do not know who I am.")
+        nextUserInputType = "userInputButton"
+
+
+    elif section==4:
+
+        response = "So given that I can't track you down, and also because I'm a very simple bot, \
+        if you told me about an emergency/crisis situation, I wouldn't \
+        be able to help."
+        next_section = section + 1
+        nextUserInput = nextUserInputOneOption("OK, I know you cannot provide emergency services.")
+        nextUserInputType = "userInputButton"
+
+
+    elif section==5:
+
+        response = "Next I'm going to give you the choice whether you want to use this on a confidential \
+        or anonymous basis. When I say anonymous, I mean that our boffins may see your text to help \
+        us improve the way this software works, but we still won't know who you are."
+        next_section = section + 1
+        nextUserInput = nextUserInputOneOption("OK, I know what you mean by anonymous.")
+        nextUserInputType = "userInputButton"
+
+
+    elif section==6:
+
+        response = "And when I say confidential, I mean that your text won't be \
+        stored at all, and no human will see what you write."
+        next_section = section + 1
+        nextUserInput = nextUserInputOneOption("OK, I know what you mean by confidential.")
+        nextUserInputType = "userInputButton"
+
+
+    elif section==7:
+
+        response = "Would you like this service to be anonymous or confidential?"
+        next_section = section + 1
+        nextUserInput = nextUserInputTwoOptions("Anonymous (my words can help improve the bot)", "Confidential (no human ever sees my words)")
+        nextUserInputType = "userInputButton"
+
+
+    elif section==8:
+
+        response = "Thanks! One last thing: You remember saying how you felt on scale from 1 to 10 \
+        at the start? I'd like to ask you the same thing at the end so I know if we're helping."
+        next_section = section + 1
+        nextUserInput = nextUserInputOneOption("Yes, I am happy to let you see how I feel at the end too")
+        nextUserInputType = "userInputButton"
+
+
+    elif section==9:
+
+        response = "When you're finished using the bot, please type 'stop' in the text field \
+        where the responses go, this will take you to the super-quick final survey. I'll do \
+        this instead of closing/exiting this window."
+        next_section = section + 1
+        nextUserInput = nextUserInputOneOption("Yes, I will type stop as my response when I am done")
+        nextUserInputType = "userInputButton"
+
+
+
+    elif section==10:
+
+        responseFragmentBasedOnScore =""
+
+        if initialHappinessScore > 7:
+            responseFragmentBasedOnScore = "Seems like you're feeling OK, but I'm still available for you \
+            to chat with if you want. Maybe just start by talking about something that's on your mind?"
+        elif initialHappinessScore > 3:
+            responseFragmentBasedOnScore = "Would you like to start by talking about something that's on your mind?"
+        else:
+            responseFragmentBasedOnScore = "Sounds like things are tough for you just now. Would you like to \
+            start talking about something that's on your mind?"
+
+        response = "OK, now we've got the intro stuff out the way... you were saying before that \
+        you were feeling "+str(initialHappinessScore)+" out of 10. "+responseFragmentBasedOnScore
+
+        next_section = section + 1
+        nextUserInput = nextUserInputFreeText
+        nextUserInputType = "freeText"
+
+
+
+
+
+    elif section > 9:
         words = [i.lower() for i in message.split()]
         if (words[0]=="no") or (" ".join(words[:2])=="not really"):
             # I DON'T THINK this is making sense, so need to rework this if statement
@@ -210,10 +310,12 @@ def get_bot_response():
 
             response = "Sorry to hear that. I'm still here, feel free to keep talking"
             next_section = section + 1
+            nextUserInput = nextUserInputFreeText
             nextUserInputType = "freeText"
 
 
     #time.sleep(min(sleep_per_word*len(response.split()), 2))  # this delay is meant to represent the bot's thinking time. I'm just finding it annoying, but perhaps if there's a better dancing ellipsis to represent typing, it might be more worthwhile having the delay in.
+    print("This is the data which gets sent to the client side")
     print([response, next_section, output, score, nextUserInput, nextUserInputType])
     return make_response(dumps([response, next_section, output, score, nextUserInput, nextUserInputType]))
 
