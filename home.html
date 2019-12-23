@@ -140,44 +140,47 @@
         var sentiment = 1;
         var initialHappinessValue = 0;
         var nextUserInput = "";
-        var currentUserInputIsFreeText = "false"; //need to initialise this based on whether the second implementation of the userinput div is actually free text or not
-        var currentUserInputIsOneToTen = "true";
-        var currentUserInputIsYesNo = "false";
+        //var currentUserInputIsFreeText = "false"; //need to initialise this based on whether the second implementation of the userinput div is actually free text or not
+        //var currentUserInputIsOneToTen = "true";
+        //var currentUserInputIsYesNo = "false";
+        var initialHappinessValueSent = 0;
+        var currentUserInputType = "initialHappinessSurvey"; // alternative values include: freeText and userInputButton
 
 
         function getBotResponse() {
           var rawText = "";
-          console.log("currentuserinputisfreetext = "+currentUserInputIsFreeText);
-          if (currentUserInputIsFreeText=="true") {
-            console.log("this is in the then (ie free text) statement");
+
+          // This block of if statements sets the value of rawText
+          console.log("currentUserInputType = "+currentUserInputType);
+          if (currentUserInputType=="freeText") {
             rawText = $("#textInput").val();}
-          else if (currentUserInputIsOneToTen == "true"){
-            console.log("this is in the else (1 to 10) statement");
+          else if (currentUserInputType == "initialHappinessSurvey"){
             initialHappinessValue = $("#initialHappinessSurvey").val();
             rawText = String(initialHappinessValue);}
-          else if (currentUserInputIsYesNo == "true"){
-            console.log("this is in the else (yes-no) statement");
+          else if (currentUserInputType == "userInputButton"){
             rawText = document.getElementById("userInputButton").value;}
-          //rawText = document.getElementById("userInputButton").value;
-
           console.log("RawText has just been set as "+rawText);
+
           if (rawText!=""){
             var userHtml = '<p class="userText"><span>' + rawText + "</span></p>";
             $("#chatbox").append(userHtml);
             document
               .getElementById("userInputDiv")
               .scrollIntoView({ block: "start", behavior: "smooth" });
-            $.get("/get", { msg: JSON.stringify([rawText, sectionNumber, output, sentiment, initialHappinessValue]) }).done(function(data) {
+
+            if (initialHappinessValue>0){                         // if the initialHappinessValue has a value (i.e. if it's the first section)
+              initialHappinessValueSent = initialHappinessValue;} // then the variable which sends the initialHappinessValue to the server (which we're calling initialHappinessValueSent) is set equal to that value
+            else {initialHappinessValueSent = -1;}                // otherwise just give it a random value -- in this case -1 -- (otherwise it throws up an error about the int() function in python not accepting a nonetype)
+
+            $.get("/get", { msg: JSON.stringify([rawText, sectionNumber, output, sentiment, initialHappinessValueSent]) }).done(function(data) {
             var botHtml = '<p class="botText"><span>' + JSON.parse(data)[0] + "</span></p>";
             $("#chatbox").append(botHtml);
             sectionNumber = JSON.parse(data)[1];
-            output = JSON.parse(data)[2];
+            output = JSON.parse(data)[2]; // I don't know what this is for!!!
             sentiment = JSON.parse(data)[3];
-            console.log("this is the line just before we set the value of nextUserInput, and its value is currently "+nextUserInput);
             nextUserInput = JSON.parse(data)[4];
-            console.log("this is the line just after we set the value of nextUserInput, and its value is currently "+nextUserInput);
-            currentUserInputIsFreeText = JSON.parse(data)[5];
-            //TODO: NEXT TASK IS TO PASS THE INITALHAPINESSSCORE TO THE PYTHON FILE SO IT CAN USE IT TO DETERMINE THE NEXT CHATBOT RESPONSE
+            currentUserInputType = JSON.parse(data)[5];
+            // Putting the bot's latest response onto the browser happens in the next line
             document.getElementById("userInputDiv").innerHTML = nextUserInput; // should I move this to outside of "done(function(data) {}"?
             document
               .getElementById("userInputDiv")
