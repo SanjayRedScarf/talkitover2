@@ -1,6 +1,7 @@
 #import files
 from flask import Flask, render_template, request, make_response
 from json import dumps
+from datetime import datetime
 import json
 import time
 #from textblob import TextBlob # was using this, but it doesn't seem to be working on Sanjay's machine
@@ -24,8 +25,13 @@ about what's on your mind and explore your thoughts. I'm just here to listen. Ke
 "I'm still listening, go on...", "I hear you, thank you for sharing, please keep talking" ]
 
 noOfEncouragingNoises = len(encouragingNoises)
+dataToStore = []
 
-#print("Length of the encouragingNoises array is "+str(len(encouragingNoises)))
+####### TODO TODO TODO ###################################
+## Data storage: Improve the way data is stored (curerntly it seems to work for just one user, but adding a new row to the file (for a new user) is an unsolved problem)
+## Stopping/final survey: Imrpove the front end so that it better encourages the user to type stop (eg with somme sort of ongoing tip)
+## OR (better) put in a button to implement the stopping
+##########################################################
 
 # returns the first index where an element occurs.
 def bisect_left(a, x):
@@ -73,6 +79,7 @@ def get_bot_response():
     output = _input[2] # I don't know what this is for!
     score = _input[3]
     initialHappinessScore = int(_input[4])
+    finalHappinessScore = int(_input[5])
     start_again = False
     nextUserInput = ""
     nextUserInputFreeText = "<input id='textInput' type='text' name='msg' placeholder='Message' />" # this is a standard choice of thing to have at the bottom of the chatbox which will allow the user to enter free text
@@ -90,6 +97,19 @@ def get_bot_response():
     <option value='yes'>Yes</option> \
     <option value='no'>No</option> \
     </select>"
+    nextUserInputFinalHappinessSurvey = "<select type='number' id='finalHappinessSurvey' onchange='getBotResponse()'>\
+<option>Select</option>\
+<option name='finalHappinessValue' value=1>1</option>\
+<option name='finalHappinessValue' value=2>2</option>\
+<option name='finalHappinessValue' value=3>3</option>\
+<option name='finalHappinessValue' value=4>4</option>\
+<option name='finalHappinessValue' value=5>5</option>\
+<option name='finalHappinessValue' value=6>6</option>\
+<option name='finalHappinessValue' value=7>7</option>\
+<option name='finalHappinessValue' value=8>8</option>\
+<option name='finalHappinessValue' value=9>9</option>\
+<option name='finalHappinessValue' value=10>10</option>\
+</select>"
 
     nextUserInputType = "initialHappinessSurvey" # the javascript code needs to pull in the data entered by the user in the userInput div and then spit the same data back out again. The way to retrieve this depends on whether the userinput mechanism was a button or a free text field, so this boolean helps to track that. It feeds through to a variable called currentUserInputType in the javascript code
     print("This si the get_bot_response function")
@@ -138,6 +158,16 @@ def get_bot_response():
         nextUserInput = nextUserInputOneOption("Yes, happy to listen to the explanation of how this bot works")
         nextUserInputType = "userInputButton"
         next_section = section + 1
+
+
+        dateTimeObj = datetime.now()
+        dataToStore.append(str(dateTimeObj))
+        dataToStore.append(message)
+        f = open("storedData.csv","w")
+        for i in range(0,len(dataToStore)):
+            f.write(dataToStore[i])
+        f.close()
+
     elif section==2:
 
         response = "I'm actually a very simple little bot. So please feel free to talk to me, \
@@ -214,8 +244,8 @@ def get_bot_response():
     elif section==9:
 
         response = "When you're finished using the bot, please type 'stop' in the text field \
-        where the responses go, this will take you to the super-quick final survey. I'll do \
-        this instead of closing/exiting this window."
+        where the responses go, this will take you to the super-quick final survey. Can you do \
+        this instead of closing/exiting this window?"
         next_section = section + 1
         nextUserInput = nextUserInputOneOption("Yes, I will type stop as my response when I am done")
         nextUserInputType = "userInputButton"
@@ -246,32 +276,26 @@ def get_bot_response():
 
 
 
-    elif section > 9:
-        words = [i.lower() for i in message.split()]
-        if (words[0]=="no") or (" ".join(words[:2])=="not really"):
-            # I DON'T THINK this is making sense, so need to rework this if statement
-            response = "That's ok. Is there anything else you would like to talk about?"
-            next_section = 6
-        else:
+    elif section > 10:
 
-            """
+        """
 # This section was here and used textblob nlp. However it seem to be causing errors when using this locally on my laptop so I took it out
-            try:
-                sentence = TextBlob(message)
-                score = sentence.sentiment.polarity
-            except:
-                score = 0
+        try:
+            sentence = TextBlob(message)
+            score = sentence.sentiment.polarity
+        except:
+            score = 0
 
-            responses = ["Sounds like things are really rough at the moment. Can I ask what is making you feel this way?", \
-            "Sounds like things are not too easy at the moment. Can I ask what is making you feel this way?", \
-            "Sounds like things could be a bit better. Can I ask what is making you feel this way?", \
-            "To me it sounds like things are going ok for you, but I may be mistaken! Would you like to tell me more about it?"]
-            response = responses[bisect_left(scores, score)]
-            #next_section = 4
-            """
+        responses = ["Sounds like things are really rough at the moment. Can I ask what is making you feel this way?", \
+        "Sounds like things are not too easy at the moment. Can I ask what is making you feel this way?", \
+        "Sounds like things could be a bit better. Can I ask what is making you feel this way?", \
+        "To me it sounds like things are going ok for you, but I may be mistaken! Would you like to tell me more about it?"]
+        response = responses[bisect_left(scores, score)]
+        #next_section = 4
+        """
 
 
-    # the bot gives an answer based on textblob. they carry on talking...
+# the bot gives an answer based on textblob. they carry on talking...
 #    elif section == 4:
 #        words = [i.lower() for i in message.split()]
 #        if (words[0]=="no") or (" ".join(words[:2])=="not really"):
@@ -323,13 +347,59 @@ def get_bot_response():
 #            response = "Thanks for the feedback. Do chat again if you'd like to"
 #        next_section=0
 
-
-            #response = "Sorry to hear that. I'm still here, feel free to keep talking"
+        if(message.lower()=="stop"):
+            response = "Thank you for using this bot. Please rate how you feel on a scale \
+            from 1 to 10, where 1 is terrible and 10 is great. As a reminder, the score you \
+            gave at the start was "+str(initialHappinessScore)
+            next_section = -1
+            nextUserInput = nextUserInputFinalHappinessSurvey
+            nextUserInputType = "finalHappinessSurvey"
+        else:
             randomlyChosenIndex = random.randint(0,noOfEncouragingNoises-1)
             response = encouragingNoises[randomlyChosenIndex]
             next_section = section + 1
             nextUserInput = nextUserInputFreeText
             nextUserInputType = "freeText"
+
+        # This isn't doing it right -- it just overwrites the previous message with the current one, and doesn't store any other useful metabdata, let alone accommodate mutliple users
+        dataToStore.append(message)
+        dataToStore.append(response)
+        f = open("storedData.csv","w")
+        for i in range(0,len(dataToStore)):
+            f.write(dataToStore[i])
+        f.close()
+
+
+    elif section == -1: # this is the "end" (i.e. user has entered "stop") section
+
+        # at the moment when the bot sensed that the user had entered "stop", it already immediately asked the final survey question
+
+        happinessChange = finalHappinessScore - initialHappinessScore
+
+        if happinessChange < 0:
+            response = "Oh no! I'm so sorry you're feeling worse than you were at the start! :-(. \
+            Please tell us why we made things worse, and what we could do better in future"
+        elif happinessChange == 0:
+            response = "We wanted to make things better for you, sorry you're feeling no better than \
+            you did at the start. Optional final question - Please tell us whether we met your \
+            expectations, and any suggestions for improvement."
+        elif happinessChange > 0:
+            response = "I'm glad you're feeling better than you did at the start. Optional final question: \
+            if you have any comments to help us improve this bot, please make them here"
+
+        next_section = -2
+        nextUserInput = nextUserInputFreeText
+        nextUserInputType = "freeText"
+
+
+    elif section == -2: # this is the "end" (i.e. user has entered "stop") section
+
+        response="This is the end. Thank you for using the Talk It Over chatbot."
+        #print("The response variable has just been set equal to "+response)
+
+        next_section = -3
+        nextUserInput = ""
+        nextUserInputType = ""
 
 
     #time.sleep(min(sleep_per_word*len(response.split()), 2))  # this delay is meant to represent the bot's thinking time. I'm just finding it annoying, but perhaps if there's a better dancing ellipsis to represent typing, it might be more worthwhile having the delay in.
