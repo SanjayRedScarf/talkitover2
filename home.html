@@ -144,24 +144,31 @@
         //var currentUserInputIsOneToTen = "true";
         //var currentUserInputIsYesNo = "false";
         var initialHappinessValueSent = 0;
+        var finalHappinessValue = 0;
+        var finalHappinessValueSent = 0;
         var currentUserInputType = "initialHappinessSurvey"; // alternative values include: freeText and userInputButton
 
 
         function getBotResponse() {
           var rawText = "";
 
-          // This block of if statements sets the value of rawText
+          // This block of if statements sets the value of rawText, which stores the text produced by the user
           console.log("currentUserInputType = "+currentUserInputType);
           if (currentUserInputType=="freeText") {
             rawText = $("#textInput").val();}
           else if (currentUserInputType == "initialHappinessSurvey"){
             initialHappinessValue = $("#initialHappinessSurvey").val();
             rawText = String(initialHappinessValue);}
+          else if (currentUserInputType == "finalHappinessSurvey"){
+            finalHappinessValue = $("#finalHappinessSurvey").val();
+            rawText = String(finalHappinessValue);}
           else if (currentUserInputType == "userInputButton"){
             rawText = document.getElementById("userInputButton").value;}
           console.log("RawText has just been set as "+rawText);
 
+
           if (rawText!=""){
+            // The next few lines put the "rawText" (i.e. user text) into the grey text blob and scroll down so that it's visible.
             var userHtml = '<p class="userText"><span>' + rawText + "</span></p>";
             $("#chatbox").append(userHtml);
             document
@@ -172,19 +179,30 @@
               initialHappinessValueSent = initialHappinessValue;} // then the variable which sends the initialHappinessValue to the server (which we're calling initialHappinessValueSent) is set equal to that value
             else {initialHappinessValueSent = -1;}                // otherwise just give it a random value -- in this case -1 -- (otherwise it throws up an error about the int() function in python not accepting a nonetype)
 
-            $.get("/get", { msg: JSON.stringify([rawText, sectionNumber, output, sentiment, initialHappinessValueSent]) }).done(function(data) {
-            var botHtml = '<p class="botText"><span>' + JSON.parse(data)[0] + "</span></p>";
+            if (finalHappinessValue>0){                         // if the finalHappinessValue has a value (i.e. if it's the first section)
+              finalHappinessValueSent = finalHappinessValue;}   // then the variable which sends the finalHappinessValue to the server (which we're calling finalHappinessValueSent) is set equal to that value
+            else {finalHappinessValueSent = -1;}                // otherwise just give it a random value -- in this case -1 -- (otherwise it throws up an error about the int() function in python not accepting a nonetype)
+
+            $.get("/get", { msg: JSON.stringify([rawText, sectionNumber, output, sentiment, initialHappinessValueSent, finalHappinessValueSent]) }).done(function(data) {
+            var botHtml = '<p class="botText"><span>' + JSON.parse(data)[0] + "</span></p>"; // This puts the bot's latest response onto the browser
             $("#chatbox").append(botHtml);
             sectionNumber = JSON.parse(data)[1];
             output = JSON.parse(data)[2]; // I don't know what this is for!!!
             sentiment = JSON.parse(data)[3];
             nextUserInput = JSON.parse(data)[4];
             currentUserInputType = JSON.parse(data)[5];
-            // Putting the bot's latest response onto the browser happens in the next line
+            // Putting the next user input field onto the browser happens in the next line
             document.getElementById("userInputDiv").innerHTML = nextUserInput; // should I move this to outside of "done(function(data) {}"?
             document
               .getElementById("userInputDiv")
-              .scrollIntoView({ block: "start", behavior: "smooth" });
+              .scrollIntoView({ block: "start", behavior: "smooth" })
+            // the following if statement ensures that when the free text field appears (for the user to enter data into) it already has the cursor in it (rather than making the user select the field manually)
+            if (currentUserInputType == "freeText"){
+              document.getElementById("textInput").focus();
+              //document.getElementById("textInput").select();
+              //document.getElementById("textInput").click();
+              }
+
             });
           }
         }
