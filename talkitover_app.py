@@ -7,6 +7,7 @@ import time
 #from textblob import TextBlob # was using this, but it doesn't seem to be working on Sanjay's machine
 #import nltk
 import random
+import csv
 app = Flask(__name__)
 my_dict = {} # shoudl this be tidied up and deleted out?
 sleep_per_word = 0.04 # I don't think this is being used yet, but could use it in the future
@@ -67,6 +68,28 @@ def get_yes_no(message, yes_message, no_message, not_understand_message, section
         response="Error"
     return [response, next_section]
 
+def write_data(anonymous, userId, response, message):
+    if anonymous=="true":
+        with open('storedData.csv', 'a') as f:
+            dataToStore = [str(userId), "Chatbot says:,"+str(response), "User says:,"+str(message)]
+            f.write(str(dataToStore))
+    return None
+
+def next_user_input_one(buttonText):
+    html_text = "<select type='text' id='userInputButton' onchange='getBotResponse()'> \
+    <option>Select</option>  \
+    <option value='"+buttonText+"'>"+buttonText+"</option> \
+    </select>"
+    return html_text
+
+def next_user_input_two(buttonText1,buttonText2):
+    html_text = "<select type='text' id='userInputButton' onchange='getBotResponse()'> \
+    <option>Select</option>  \
+    <option value='"+buttonText1+"'>"+buttonText1+"</option> \
+    <option value='"+buttonText2+"'>"+buttonText2+"</option> \
+    </select>"
+    return html_text
+
 @app.route("/")
 def home():
     return render_template("home.html")
@@ -78,6 +101,8 @@ def get_bot_response():
     section = _input[1]
     output = _input[2] # I don't know what this is for!
     score = _input[3]
+    anonymous = _input[6]
+    userId = _input[7]
     initialHappinessScore = int(_input[4])
     finalHappinessScore = int(_input[5])
     start_again = False
@@ -114,30 +139,6 @@ def get_bot_response():
     nextUserInputType = "initialHappinessSurvey" # the javascript code needs to pull in the data entered by the user in the userInput div and then spit the same data back out again. The way to retrieve this depends on whether the userinput mechanism was a button or a free text field, so this boolean helps to track that. It feeds through to a variable called currentUserInputType in the javascript code
     print("This si the get_bot_response function")
 
-    def nextUserInputOneOption(buttonText):
-        nextUserInputOneOption = "<select type='text' id='userInputButton' onchange='getBotResponse()'> \
-        <option>Select</option>  \
-        <option value='"+buttonText+"'>"+buttonText+"</option> \
-        </select>"
-        return nextUserInputOneOption
-
-    def nextUserInputTwoOptions(buttonText1,buttonText2):
-        nextUserInputTwoOptions = "<select type='text' id='userInputButton' onchange='getBotResponse()'> \
-        <option>Select</option>  \
-        <option value='"+buttonText1+"'>"+buttonText1+"</option> \
-        <option value='"+buttonText2+"'>"+buttonText2+"</option> \
-        </select>"
-        return nextUserInputTwoOptions
-
-
-    # not sure if we need this if section = 0 bit???????????????????? DELETE THIS?
-    if section==0:
-        if message.lower()=="start":
-            section=2
-            start_again = True
-        else:
-            response = "Please type start to start the chat again"
-            next_section = 0
     if section==1:
 
         if initialHappinessScore > 7:
@@ -155,18 +156,18 @@ def get_bot_response():
         #Thank you for trying me :-)! Whilst we are talking I'd like to store your responses to \
         #analyse them later to help improve the bot. Are you happy for me to do this? (Please reply yes or no)"
 
-        nextUserInput = nextUserInputOneOption("Yes, happy to listen to the explanation of how this bot works")
+        nextUserInput = next_user_input_one("Yes, happy to listen to the explanation of how this bot works")
         nextUserInputType = "userInputButton"
         next_section = section + 1
 
 
-        dateTimeObj = datetime.now()
-        dataToStore.append(str(dateTimeObj))
-        dataToStore.append(message)
-        f = open("storedData.csv","w")
-        for i in range(0,len(dataToStore)):
-            f.write(dataToStore[i])
-        f.close()
+        userId = str(datetime.now())
+        write_data(anonymous, userId, response, "initialHappinessScore (!!) = ,"+message)
+        #dataToStore.append(message)
+        #f = open("storedData.csv","w")
+        #for i in range(0,len(dataToStore)):
+        #    f.write(dataToStore[i])
+        #f.close()
 
     elif section==2:
 
@@ -175,7 +176,7 @@ def get_bot_response():
         think of this as being more like writing a journal, but as you keep writing, \
         I'll be here to encourage you to keep talking."
         next_section = section + 1
-        nextUserInput = nextUserInputOneOption("OK, I will talk with you even though you are a simple bot.")
+        nextUserInput = next_user_input_one("OK, I will talk with you even though you are a simple bot.")
         nextUserInputType = "userInputButton"
 
         # REMINDER these are the outputs required at the end:
@@ -191,7 +192,7 @@ def get_bot_response():
         We offer an anonymised service. We don't have any way \
         of tracking you down, knowing who you are, or linking what you write to you."
         next_section = section + 1
-        nextUserInput = nextUserInputOneOption("OK, I understand that you do not know who I am.")
+        nextUserInput = next_user_input_one("OK, I understand that you do not know who I am.")
         nextUserInputType = "userInputButton"
 
 
@@ -201,7 +202,7 @@ def get_bot_response():
         if you told me about an emergency/crisis situation, I wouldn't \
         be able to help."
         next_section = section + 1
-        nextUserInput = nextUserInputOneOption("OK, I know you cannot provide emergency services.")
+        nextUserInput = next_user_input_one("OK, I know you cannot provide emergency services.")
         nextUserInputType = "userInputButton"
 
 
@@ -211,7 +212,7 @@ def get_bot_response():
         or anonymous basis. When I say anonymous, I mean that our boffins may see your text to help \
         us improve the way this software works, but we still won't know who you are."
         next_section = section + 1
-        nextUserInput = nextUserInputOneOption("OK, I know what you mean by anonymous.")
+        nextUserInput = next_user_input_one("OK, I know what you mean by anonymous.")
         nextUserInputType = "userInputButton"
 
 
@@ -220,7 +221,7 @@ def get_bot_response():
         response = "And when I say confidential, I mean that your text won't be \
         stored at all, and no human will see what you write."
         next_section = section + 1
-        nextUserInput = nextUserInputOneOption("OK, I know what you mean by confidential.")
+        nextUserInput = next_user_input_one("OK, I know what you mean by confidential.")
         nextUserInputType = "userInputButton"
 
 
@@ -228,18 +229,20 @@ def get_bot_response():
 
         response = "Would you like this service to be anonymous or confidential?"
         next_section = section + 1
-        nextUserInput = nextUserInputTwoOptions("Anonymous (my words can help improve the bot)", "Confidential (no human ever sees my words)")
+        nextUserInput = next_user_input_two("Anonymous (my words can help improve the bot)", "Confidential (no human ever sees my words)")
         nextUserInputType = "userInputButton"
 
 
     elif section==8:
 
+        anonymous = "true" if message.split()[0].lower()=="anonymous" else "false"
         response = "Thanks! One last thing: You remember saying how you felt on scale from 1 to 10 \
         at the start? I'd like to ask you the same thing at the end so I know if we're helping."
         next_section = section + 1
-        nextUserInput = nextUserInputOneOption("Yes, I am happy to let you see how I feel at the end too")
+        nextUserInput = next_user_input_one("Yes, I am happy to let you see how I feel at the end too")
         nextUserInputType = "userInputButton"
 
+        write_data(anonymous, userId, response, message)
 
     elif section==9:
 
@@ -247,7 +250,7 @@ def get_bot_response():
         where the responses go, this will take you to the super-quick final survey. Can you do \
         this instead of closing/exiting this window?"
         next_section = section + 1
-        nextUserInput = nextUserInputOneOption("Yes, I will type stop as my response when I am done")
+        nextUserInput = next_user_input_one("Yes, I will type stop as my response when I am done")
         nextUserInputType = "userInputButton"
 
 
@@ -362,12 +365,12 @@ def get_bot_response():
             nextUserInputType = "freeText"
 
         # This isn't doing it right -- it just overwrites the previous message with the current one, and doesn't store any other useful metabdata, let alone accommodate mutliple users
-        dataToStore.append(message)
-        dataToStore.append(response)
-        f = open("storedData.csv","w")
-        for i in range(0,len(dataToStore)):
-            f.write(dataToStore[i])
-        f.close()
+        #dataToStore.append(response)
+        #f = open("storedData.csv","w")
+        #for i in range(0,len(dataToStore)):
+        #    f.write(dataToStore[i])
+        #f.close()
+        write_data(anonymous, userId, response, message)
 
 
     elif section == -1: # this is the "end" (i.e. user has entered "stop") section
@@ -391,6 +394,8 @@ def get_bot_response():
         nextUserInput = nextUserInputFreeText
         nextUserInputType = "freeText"
 
+        write_data(anonymous, userId, response, "finalHappinessScore (!!) = ,"+message)
+
 
     elif section == -2: # this is the "end" (i.e. user has entered "stop") section
 
@@ -401,11 +406,24 @@ def get_bot_response():
         nextUserInput = ""
         nextUserInputType = ""
 
+        # output data
+        #if anonymous=="true"
+        dataToStore.append([message,response])
+
+            #writer = csv.writer(f)
+            #writer.writerow(dataToStore)
+
+        #f = open("storedData.csv","w")
+        #for i in range(0,len(dataToStore)):
+        #f.write("\n" + str(dataToStore))
+        #f.close()
+
+        write_data(anonymous, userId, response, message)
 
     #time.sleep(min(sleep_per_word*len(response.split()), 2))  # this delay is meant to represent the bot's thinking time. I'm just finding it annoying, but perhaps if there's a better dancing ellipsis to represent typing, it might be more worthwhile having the delay in.
     print("This is the data which gets sent to the client side")
     print([response, next_section, output, score, nextUserInput, nextUserInputType])
-    return make_response(dumps([response, next_section, output, score, nextUserInput, nextUserInputType]))
+    return make_response(dumps([response, next_section, output, score, nextUserInput, nextUserInputType, anonymous, userId]))
 
 
 
