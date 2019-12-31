@@ -147,7 +147,9 @@
         var finalHappinessValue = 0;
         var finalHappinessValueSent = 0;
         var currentUserInputType = "initialHappinessSurvey"; // alternative values include: freeText and userInputButton
-
+        var dataToStore = [];
+        var anonymous = "true"
+        var userId = "null"
 
         function getBotResponse() {
           var rawText = "";
@@ -183,7 +185,7 @@
               finalHappinessValueSent = finalHappinessValue;}   // then the variable which sends the finalHappinessValue to the server (which we're calling finalHappinessValueSent) is set equal to that value
             else {finalHappinessValueSent = -1;}                // otherwise just give it a random value -- in this case -1 -- (otherwise it throws up an error about the int() function in python not accepting a nonetype)
 
-            $.get("/get", { msg: JSON.stringify([rawText, sectionNumber, output, sentiment, initialHappinessValueSent, finalHappinessValueSent]) }).done(function(data) {
+            $.get("/get", { msg: JSON.stringify([rawText, sectionNumber, output, sentiment, initialHappinessValueSent, finalHappinessValueSent, anonymous, userId]) }).done(function(data) {
             var botHtml = '<p class="botText"><span>' + JSON.parse(data)[0] + "</span></p>"; // This puts the bot's latest response onto the browser
             $("#chatbox").append(botHtml);
             sectionNumber = JSON.parse(data)[1];
@@ -191,6 +193,8 @@
             sentiment = JSON.parse(data)[3];
             nextUserInput = JSON.parse(data)[4];
             currentUserInputType = JSON.parse(data)[5];
+            anonymous = JSON.parse(data)[6]
+            userId = JSON.parse(data)[7]
             // Putting the next user input field onto the browser happens in the next line
             document.getElementById("userInputDiv").innerHTML = nextUserInput; // should I move this to outside of "done(function(data) {}"?
             document
