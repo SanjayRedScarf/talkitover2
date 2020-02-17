@@ -29,9 +29,12 @@ noOfEncouragingNoises = len(encouragingNoises)
 dataToStore = []
 
 ####### TODO TODO TODO ###################################
-## Data storage: Improve the way data is stored (curerntly it seems to work for just one user, but adding a new row to the file (for a new user) is an unsolved problem)
 ## Stopping/final survey: Imrpove the front end so that it better encourages the user to type stop (eg with somme sort of ongoing tip)
 ## OR (better) put in a button to implement the stopping
+## Implement a separate css class for confidential text
+## Maybe consider having a button which the user can press to say "you didn't understand me"
+## Show a dancing ellipsis when the bot is thinking
+## Enable splitting of chatbot responses into separate chunks
 ##########################################################
 
 # returns the first index where an element occurs.
@@ -68,11 +71,14 @@ def get_yes_no(message, yes_message, no_message, not_understand_message, section
         response="Error"
     return [response, next_section]
 
-def write_data(anonymous, userId, response, message):
+def write_data(anonymous, userId, message, response):
     if anonymous=="true":
+        message = message.replace(",", "¬")
+        response = response.replace(",", "¬")
+
         with open('storedData.csv', 'a') as f:
-            dataToStore = [str(userId), "Chatbot says:,"+str(response), "User says:,"+str(message)]
-            f.write(str(dataToStore))
+            dataToStore = [str(userId), "User says:",str(message), "Chatbot says:",str(response)]
+            f.write("\n" + str(dataToStore))
     return None
 
 def next_user_input_one(buttonText):
@@ -102,6 +108,7 @@ def get_bot_response():
     output = _input[2] # I don't know what this is for!
     score = _input[3]
     anonymous = _input[6]
+    print("anonymous = "+anonymous) # debug, delete this
     userId = _input[7]
     initialHappinessScore = int(_input[4])
     finalHappinessScore = int(_input[5])
@@ -162,7 +169,7 @@ def get_bot_response():
 
 
         userId = str(datetime.now())
-        write_data(anonymous, userId, response, "initialHappinessScore (!!) = ,"+message)
+        write_data(anonymous, userId, "initialHappinessScore (!!) = "+message, response)
         #dataToStore.append(message)
         #f = open("storedData.csv","w")
         #for i in range(0,len(dataToStore)):
@@ -178,6 +185,8 @@ def get_bot_response():
         next_section = section + 1
         nextUserInput = next_user_input_one("OK, I will talk with you even though you are a simple bot.")
         nextUserInputType = "userInputButton"
+
+        write_data(anonymous, userId, message, response)
 
         # REMINDER these are the outputs required at the end:
         # response, next_section, output, score, nextUserInput, nextUserInputType
@@ -195,6 +204,7 @@ def get_bot_response():
         nextUserInput = next_user_input_one("OK, I understand that you do not know who I am.")
         nextUserInputType = "userInputButton"
 
+        write_data(anonymous, userId, message, response)
 
     elif section==4:
 
@@ -205,6 +215,7 @@ def get_bot_response():
         nextUserInput = next_user_input_one("OK, I know you cannot provide emergency services.")
         nextUserInputType = "userInputButton"
 
+        write_data(anonymous, userId, message, response)
 
     elif section==5:
 
@@ -215,6 +226,7 @@ def get_bot_response():
         nextUserInput = next_user_input_one("OK, I know what you mean by anonymous.")
         nextUserInputType = "userInputButton"
 
+        write_data(anonymous, userId, message, response)
 
     elif section==6:
 
@@ -224,6 +236,7 @@ def get_bot_response():
         nextUserInput = next_user_input_one("OK, I know what you mean by confidential.")
         nextUserInputType = "userInputButton"
 
+        write_data(anonymous, userId, message, response)
 
     elif section==7:
 
@@ -232,6 +245,7 @@ def get_bot_response():
         nextUserInput = next_user_input_two("Anonymous (my words can help improve the bot)", "Confidential (no human ever sees my words)")
         nextUserInputType = "userInputButton"
 
+        write_data(anonymous, userId, message, response)
 
     elif section==8:
 
@@ -242,7 +256,7 @@ def get_bot_response():
         nextUserInput = next_user_input_one("Yes, I am happy to let you see how I feel at the end too")
         nextUserInputType = "userInputButton"
 
-        write_data(anonymous, userId, response, message)
+        write_data(anonymous, userId, message, response)
 
     elif section==9:
 
@@ -253,6 +267,7 @@ def get_bot_response():
         nextUserInput = next_user_input_one("Yes, I will type stop as my response when I am done")
         nextUserInputType = "userInputButton"
 
+        write_data(anonymous, userId, message, response)
 
 
     elif section==10:
@@ -275,6 +290,7 @@ def get_bot_response():
         nextUserInput = nextUserInputFreeText
         nextUserInputType = "freeText"
 
+        write_data(anonymous, userId, message, response)
 
 
 
@@ -370,7 +386,7 @@ def get_bot_response():
         #for i in range(0,len(dataToStore)):
         #    f.write(dataToStore[i])
         #f.close()
-        write_data(anonymous, userId, response, message)
+        write_data(anonymous, userId, message, response)
 
 
     elif section == -1: # this is the "end" (i.e. user has entered "stop") section
@@ -394,7 +410,8 @@ def get_bot_response():
         nextUserInput = nextUserInputFreeText
         nextUserInputType = "freeText"
 
-        write_data(anonymous, userId, response, "finalHappinessScore (!!) = ,"+message)
+
+        write_data(anonymous, userId, "finalHappinessScore (!!) = "+message, response)
 
 
     elif section == -2: # this is the "end" (i.e. user has entered "stop") section
@@ -418,7 +435,7 @@ def get_bot_response():
         #f.write("\n" + str(dataToStore))
         #f.close()
 
-        write_data(anonymous, userId, response, message)
+        write_data(anonymous, userId, message, response)
 
     #time.sleep(min(sleep_per_word*len(response.split()), 2))  # this delay is meant to represent the bot's thinking time. I'm just finding it annoying, but perhaps if there's a better dancing ellipsis to represent typing, it might be more worthwhile having the delay in.
     print("This is the data which gets sent to the client side")
