@@ -1,220 +1,228 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
-  <title>Eliza</title>
+<title>Talk It Over</title>
 <body>
-    <center>
-      <h1>
-        <img
-          src="https://user-images.githubusercontent.``com/20112458/49326597-773b7280-f57a-11e8-853d-20ed61d18b0d.png"
-          alt="Eliza"
-          style="width:40px;height:40px;"
-        />Eliza Your Personal ChatBot
-      </h1>
-    </center>
+  <center>
+    <h1>
+      <img
+        src="https://user-images.githubusercontent.com/20112458/49326597-773b7280-f57a-11e8-853d-20ed61d18b0d.png"
+        alt="TIO"
+        style="width:40px;height:40px;"
+      />TIO Your Personal ChatBot
+    </h1>
+  </center>
 <div class="box"></div>
-    <div class="boxed">
-      <div>
-        <div id="chatbox">
-          <img
-            src="https://user-images.githubusercontent.com/20112458/49326597-773b7280-f57a-11e8-853d-20ed61d18b0d.png"
-            alt="Eliza"
-            style="width:40px;height:40px;"
-          />
-          <p class="botText">
-            <span>Hi! I'm the Talk It Over chatbot and I am here for you to talk about whatever is on your mind. Thanks for trying this early prototype! I'm not a very clever piece of software and I might not understand everything you say, but if you think that talking things through in a safe confidential space might help, let's chat! Please rate how you feel on a scale from 1 to 10, where 1 is terrible and 10 is great</span>
-          </p>
-        </div>
-        <div id="userInputDiv">
-          <!--<input id='textInput' type='text' name='msg' placeholder='Message' />  -->
-          <!--<button class="textInput" id="userInputButton" type="button" onclick="getBotResponse()" value="yes">Yes</button> -->
-          <!--<button class="textInput" id="userInputButton" type="button" onclick="getBotResponse()" value="no">No</button> -->
-          <select type='number' id='initialHappinessSurvey' onchange='getBotResponse()'>
-            <option>Select</option>
-            <option name="initialHappinessValue" value=1>1</option>
-            <option name="initialHappinessValue" value=2>2</option>
-            <option name="initialHappinessValue" value=3>3</option>
-            <option name="initialHappinessValue" value=4>4</option>
-            <option name="initialHappinessValue" value=5>5</option>
-            <option name="initialHappinessValue" value=6>6</option>
-            <option name="initialHappinessValue" value=7>7</option>
-            <option name="initialHappinessValue" value=8>8</option>
-            <option name="initialHappinessValue" value=9>9</option>
-            <option name="initialHappinessValue" value=10>10</option>
-          </select>
+  <div class="boxed">
+    <div>
+      <div id="chatbox">
+        <img
+          src="https://user-images.githubusercontent.com/20112458/49326597-773b7280-f57a-11e8-853d-20ed61d18b0d.png"
+          alt="TIO"
+          style="width:40px;height:40px;"
+        />
+        <p class="botText">
+          <span>Hi! I'm the Talk It Over chatbot and I am here for you to talk about whatever is on your mind. Thanks for trying this early prototype! I'm not a very clever piece of software and I might not understand everything you say, but if you think that talking things through in a safe confidential space might help, let's chat! Please rate how you feel on a scale from 1 to 10, where 1 is terrible and 10 is great</span>
+        </p>
+      </div>
+      <div id="userInputDiv">
+        <!--<input id='textInput' type='text' name='msg' placeholder='Message' />  -->
+        <!--<button class="textInput" id="userInputButton" type="button" onclick="getBotResponse()" value="yes">Yes</button> -->
+        <!--<button class="textInput" id="userInputButton" type="button" onclick="getBotResponse()" value="no">No</button> -->
+        <select type='number' class="userInputDropdown" id='initialHappinessSurvey' onchange='getBotResponse()'>
+          <option>Select</option>
+          <option name="initialHappinessValue" value=1>1</option>
+          <option name="initialHappinessValue" value=2>2</option>
+          <option name="initialHappinessValue" value=3>3</option>
+          <option name="initialHappinessValue" value=4>4</option>
+          <option name="initialHappinessValue" value=5>5</option>
+          <option name="initialHappinessValue" value=6>6</option>
+          <option name="initialHappinessValue" value=7>7</option>
+          <option name="initialHappinessValue" value=8>8</option>
+          <option name="initialHappinessValue" value=9>9</option>
+          <option name="initialHappinessValue" value=10>10</option>
+        </select>
 
-        </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
 </html>
 
 <head>
-    <link
-      rel="shortcut icon"
-      type="image/x-icon"
-      href="https://user-images.githubusercontent.com/20112458/49326597-773b7280-f57a-11e8-853d-20ed61d18b0d.png"
-    />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <style>
-      body {
-        font-family: monospace;
-      }
-      h1 {
-        background-color: yellow;
-        display: inline-block;
-        font-size: 3em;
-        margin: 0;
-        padding: 14px;
-      }
-      h3 {
-        color: black;
-        font-size: 20px;
-        margin-top: 3px;
-        text-align: center;
-      }
-      #chatbox {
-        margin-left: auto;
-        margin-right: auto;
-        width: 40%;
-        margin-top: 60px;
-      }
-      #userInputDiv {
-        margin-left: auto;
-        margin-right: auto;
-        width: 40%;
-        margin-top: 60px;
-      }
-      #textInput {
-        width: 90%;
-        border: none;
-        border-bottom: 3px solid black;
-        font-family: monospace;
-        font-size: 17px;
-      }
-      .userText {
-        color: white;
-        font-family: monospace;
-        font-size: 17px;
-        text-align: right;
-        line-height: 30px;
-      }
-      .userText span {
-        background-color: #808080;
-        padding: 10px;
-        border-radius: 2px;
-      }
-      .botText {
-        color: white;
-        font-family: monospace;
-        font-size: 17px;
-        text-align: left;
-        line-height: 30px;
-      }
-      .botText span {
-        background-color: #4169e1;
-        padding: 10px;
-        border-radius: 2px;
-      }
-      #tidbit {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        width: 300px;
-      }
-      .boxed {
-        margin-left: auto;
-        margin-right: auto;
-        width: 78%;
-        margin-top: 60px;
-        border: 1px solid green;
-      }
-      .box {
-        border: 2px solid black;
-      }
-    </style>
+  <link
+    rel="shortcut icon"
+    type="image/x-icon"
+    href="https://user-images.githubusercontent.com/20112458/49326597-773b7280-f57a-11e8-853d-20ed61d18b0d.png"
+  />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <style>
+    body {
+      font-family: monospace;
+    }
+    h1 {
+      background-color: yellow;
+      display: inline-block;
+      font-size: 3em;
+      margin: 0;
+      padding: 14px;
+    }
+    h3 {
+      color: black;
+      font-size: 20px;
+      margin-top: 3px;
+      text-align: center;
+    }
+    #chatbox {
+      margin-left: auto;
+      margin-right: auto;
+      width: 85%;
+      margin-top: 60px;
+    }
+    #userInputDiv {
+      margin-left: auto;
+      margin-right: auto;
+      width: 85%;
+      height: 20px;
+      margin-top: 60px;
+    }
+    #textInput {
+      width: 85%;
+      border: none;
+      border-bottom: 3px solid black;
+      font-family: monospace;
+      font-size: 35px;
+    }
+    .userText {
+      color: white;
+      font-family: monospace;
+      font-size: 35px;
+      text-align: right;
+      line-height: 60px;
+    }
+    .userText span {
+      background-color: #808080;
+      padding: 10px;
+      border-radius: 2px;
+    }
+
+    .userInputDropdown {
+      font-size: 15px;
+      width: 85%;
+      height: 20px;
+    }
+
+    .botText {
+      color: white;
+      font-family: monospace;
+      font-size: 35px;
+      text-align: left;
+      line-height: 60px;
+    }
+    .botText span {
+      background-color: #4169e1;
+      padding: 10px;
+      border-radius: 2px;
+    }
+    #tidbit {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 300px;
+    }
+    .boxed {
+      margin-left: auto;
+      margin-right: auto;
+      width: 78%;
+      margin-top: 60px;
+      border: 1px solid green;
+    }
+    .box {
+      border: 2px solid black;
+    }
+  </style>
 </head>
 
 <script>
-        var sectionNumber = 1;
-        var output = 1;
-        var sentiment = 1;
-        var initialHappinessValue = 0;
-        var nextUserInput = "";
-        //var currentUserInputIsFreeText = "false"; //need to initialise this based on whether the second implementation of the userinput div is actually free text or not
-        //var currentUserInputIsOneToTen = "true";
-        //var currentUserInputIsYesNo = "false";
-        var initialHappinessValueSent = 0;
-        var finalHappinessValue = 0;
-        var finalHappinessValueSent = 0;
-        var currentUserInputType = "initialHappinessSurvey"; // alternative values include: freeText and userInputButton
-        var dataToStore = [];
-        var anonymous = "true"
-        var userId = "null"
+      var sectionNumber = 1;
+      var output = 1;
+      var sentiment = 1;
+      var initialHappinessValue = 0;
+      var nextUserInput = "";
+      //var currentUserInputIsFreeText = "false"; //need to initialise this based on whether the second implementation of the userinput div is actually free text or not
+      //var currentUserInputIsOneToTen = "true";
+      //var currentUserInputIsYesNo = "false";
+      var initialHappinessValueSent = 0;
+      var finalHappinessValue = 0;
+      var finalHappinessValueSent = 0;
+      var currentUserInputType = "initialHappinessSurvey"; // alternative values include: freeText and userInputButton
+      var dataToStore = [];
+      var anonymous = "true"
+      var userId = "null"
 
-        function getBotResponse() {
-          var rawText = "";
+      function getBotResponse() {
+        var rawText = "";
 
-          // This block of if statements sets the value of rawText, which stores the text produced by the user
-          console.log("currentUserInputType = "+currentUserInputType);
-          if (currentUserInputType=="freeText") {
-            rawText = $("#textInput").val();}
-          else if (currentUserInputType == "initialHappinessSurvey"){
-            initialHappinessValue = $("#initialHappinessSurvey").val();
-            rawText = String(initialHappinessValue);}
-          else if (currentUserInputType == "finalHappinessSurvey"){
-            finalHappinessValue = $("#finalHappinessSurvey").val();
-            rawText = String(finalHappinessValue);}
-          else if (currentUserInputType == "userInputButton"){
-            rawText = document.getElementById("userInputButton").value;}
-          console.log("RawText has just been set as "+rawText);
+        // This block of if statements sets the value of rawText, which stores the text produced by the user
+        console.log("currentUserInputType = "+currentUserInputType);
+        if (currentUserInputType=="freeText") {
+          rawText = $("#textInput").val();}
+        else if (currentUserInputType == "initialHappinessSurvey"){
+          initialHappinessValue = $("#initialHappinessSurvey").val();
+          rawText = String(initialHappinessValue);}
+        else if (currentUserInputType == "finalHappinessSurvey"){
+          finalHappinessValue = $("#finalHappinessSurvey").val();
+          rawText = String(finalHappinessValue);}
+        else if (currentUserInputType == "userInputButton"){
+          rawText = document.getElementById("userInputButton").value;}
+        console.log("RawText has just been set as "+rawText);
 
 
-          if (rawText!=""){
-            // The next few lines put the "rawText" (i.e. user text) into the grey text blob and scroll down so that it's visible.
-            var userHtml = '<p class="userText"><span>' + rawText + "</span></p>";
-            $("#chatbox").append(userHtml);
-            document
-              .getElementById("userInputDiv")
-              .scrollIntoView({ block: "start", behavior: "smooth" });
+        if (rawText!=""){
+          // The next few lines put the "rawText" (i.e. user text) into the grey text blob and scroll down so that it's visible.
+          var userHtml = '<p class="userText"><span>' + rawText + "</span></p>";
+          $("#chatbox").append(userHtml);
+          document
+            .getElementById("userInputDiv")
+            .scrollIntoView({ block: "start", behavior: "smooth" });
 
-            if (initialHappinessValue>0){                         // if the initialHappinessValue has a value (i.e. if it's the first section)
-              initialHappinessValueSent = initialHappinessValue;} // then the variable which sends the initialHappinessValue to the server (which we're calling initialHappinessValueSent) is set equal to that value
-            else {initialHappinessValueSent = -1;}                // otherwise just give it a random value -- in this case -1 -- (otherwise it throws up an error about the int() function in python not accepting a nonetype)
+          if (initialHappinessValue>0){                         // if the initialHappinessValue has a value (i.e. if it's the first section)
+            initialHappinessValueSent = initialHappinessValue;} // then the variable which sends the initialHappinessValue to the server (which we're calling initialHappinessValueSent) is set equal to that value
+          else {initialHappinessValueSent = -1;}                // otherwise just give it a random value -- in this case -1 -- (otherwise it throws up an error about the int() function in python not accepting a nonetype)
 
-            if (finalHappinessValue>0){                         // if the finalHappinessValue has a value (i.e. if it's the first section)
-              finalHappinessValueSent = finalHappinessValue;}   // then the variable which sends the finalHappinessValue to the server (which we're calling finalHappinessValueSent) is set equal to that value
-            else {finalHappinessValueSent = -1;}                // otherwise just give it a random value -- in this case -1 -- (otherwise it throws up an error about the int() function in python not accepting a nonetype)
+          if (finalHappinessValue>0){                         // if the finalHappinessValue has a value (i.e. if it's the first section)
+            finalHappinessValueSent = finalHappinessValue;}   // then the variable which sends the finalHappinessValue to the server (which we're calling finalHappinessValueSent) is set equal to that value
+          else {finalHappinessValueSent = -1;}                // otherwise just give it a random value -- in this case -1 -- (otherwise it throws up an error about the int() function in python not accepting a nonetype)
 
-            $.get("/get", { msg: JSON.stringify([rawText, sectionNumber, output, sentiment, initialHappinessValueSent, finalHappinessValueSent, anonymous, userId]) }).done(function(data) {
-            var botHtml = '<p class="botText"><span>' + JSON.parse(data)[0] + "</span></p>"; // This puts the bot's latest response onto the browser
-            $("#chatbox").append(botHtml);
-            sectionNumber = JSON.parse(data)[1];
-            output = JSON.parse(data)[2]; // I don't know what this is for!!!
-            sentiment = JSON.parse(data)[3];
-            nextUserInput = JSON.parse(data)[4];
-            currentUserInputType = JSON.parse(data)[5];
-            anonymous = JSON.parse(data)[6]
-            userId = JSON.parse(data)[7]
-            // Putting the next user input field onto the browser happens in the next line
-            document.getElementById("userInputDiv").innerHTML = nextUserInput; // should I move this to outside of "done(function(data) {}"?
-            document
-              .getElementById("userInputDiv")
-              .scrollIntoView({ block: "start", behavior: "smooth" })
-            // the following if statement ensures that when the free text field appears (for the user to enter data into) it already has the cursor in it (rather than making the user select the field manually)
-            if (currentUserInputType == "freeText"){
-              document.getElementById("textInput").focus();
-              //document.getElementById("textInput").select();
-              //document.getElementById("textInput").click();
-              }
+          $.get("/get", { msg: JSON.stringify([rawText, sectionNumber, output, sentiment, initialHappinessValueSent, finalHappinessValueSent, anonymous, userId]) }).done(function(data) {
+          var botHtml = '<p class="botText"><span>' + JSON.parse(data)[0] + "</span></p>"; // This puts the bot's latest response onto the browser
+          $("#chatbox").append(botHtml);
+          sectionNumber = JSON.parse(data)[1];
+          output = JSON.parse(data)[2]; // I don't know what this is for!!!
+          sentiment = JSON.parse(data)[3];
+          nextUserInput = JSON.parse(data)[4];
+          currentUserInputType = JSON.parse(data)[5];
+          anonymous = JSON.parse(data)[6]
+          userId = JSON.parse(data)[7]
+          // Putting the next user input field onto the browser happens in the next line
+          document.getElementById("userInputDiv").innerHTML = nextUserInput; // should I move this to outside of "done(function(data) {}"?
+          document
+            .getElementById("userInputDiv")
+            .scrollIntoView({ block: "start", behavior: "smooth" })
+          // the following if statement ensures that when the free text field appears (for the user to enter data into) it already has the cursor in it (rather than making the user select the field manually)
+          if (currentUserInputType == "freeText"){
+            document.getElementById("textInput").focus();
+            //document.getElementById("textInput").select();
+            //document.getElementById("textInput").click();
+            }
 
-            });
-          }
+          });
         }
+      }
 
-        $('body').on("keypress", '#textInput', function(e) {
-            console.log("this is inside the keypress thingy");
-          if (e.which == 13) {
-            getBotResponse();
-          }
-        });
+      $('body').on("keypress", '#textInput', function(e) {
+          console.log("this is inside the keypress thingy");
+        if (e.which == 13) {
+          getBotResponse();
+        }
+      });
 </script>
