@@ -35,6 +35,7 @@ dataToStore = []
 ## Maybe consider having a button which the user can press to say "you didn't understand me"
 ## Show a dancing ellipsis when the bot is thinking
 ## Enable splitting of chatbot responses into separate chunks
+## Instead of the user's response being a dropdown, change it to a button so that it can be sized appropriately (i.e. not be tiny on a mobile screen)
 ##########################################################
 
 # returns the first index where an element occurs.
@@ -156,20 +157,25 @@ def get_bot_response():
             response = "Thanks for sharing. I'm going to ask you to talk about whatever is on your \
             mind, but first I'm going to explain how this bot works, is that OK?"
         else:
-            response = "Oh dear, sounds like you're feeling really low, I'm sorry to hear that. \
-            I want to ask you more about that, but first can I tell you how this bot works?"
+            #response = "Oh dear, sounds like you're feeling really low, I'm sorry to hear that. \
+            #I want to ask you more about that, but first can I tell you how this bot works?"
+            response = ["Oh dear, sounds like you're feeling really low, I'm sorry to hear that",
+            "I want to ask you more about that, but first can I tell you how this bot works?"]
 
-        #response = "Hi. So, I am a very simple piece of software and an early prototype. \
-        #Thank you for trying me :-)! Whilst we are talking I'd like to store your responses to \
-        #analyse them later to help improve the bot. Are you happy for me to do this? (Please reply yes or no)"
-
+        noOfResponseFragments = len(response)
         nextUserInput = next_user_input_one("Yes, happy to listen to the explanation of how this bot works")
         nextUserInputType = "userInputButton"
         next_section = section + 1
 
-
+        # The next few lines prepares some inputs for the write_data function
         userId = str(datetime.now())
-        write_data(anonymous, userId, "initialHappinessScore (!!) = "+message, response)
+        responseIndex = 0
+        responseForWriteData = ""
+        for responseIndex in range(0,noOfResponseFragments):
+            responseForWriteData = responseForWriteData + response[responseIndex]
+        write_data(anonymous, userId, "initialHappinessScore (!!) = "+message, responseForWriteData)
+
+
         #dataToStore.append(message)
         #f = open("storedData.csv","w")
         #for i in range(0,len(dataToStore)):
@@ -178,21 +184,20 @@ def get_bot_response():
 
     elif section==2:
 
-        response = "I'm actually a very simple little bot. So please feel free to talk to me, \
-        and sorry in advance if I don't always do a good job of understanding you. Instead \
-        think of this as being more like writing a journal, but as you keep writing, \
-        I'll be here to encourage you to keep talking."
+        response = ["I'm actually a very simple little bot. So please feel free to talk to me, \
+        and sorry in advance if I don't always do a good job of understanding you.",
+        "Instead think of this as being more like writing a journal, but as you keep writing, \
+        I'll be here to encourage you to keep talking."]
+
         next_section = section + 1
+        noOfResponseFragments = len(response)
         nextUserInput = next_user_input_one("OK, I will talk with you even though you are a simple bot.")
         nextUserInputType = "userInputButton"
 
-        write_data(anonymous, userId, message, response)
-
-        # REMINDER these are the outputs required at the end:
-        # response, next_section, output, score, nextUserInput, nextUserInputType
-
-        # We offer an anonymised service. We don't have any way \
-        #of tracking you down, knowing who you are, or linking what you write to you.
+        responseForWriteData = ""
+        for responseIndex in range(0,noOfResponseFragments):
+            responseForWriteData = responseForWriteData + response[responseIndex]
+        write_data(anonymous, userId, message, responseForWriteData)
 
 
     elif section==3:
@@ -201,6 +206,7 @@ def get_bot_response():
         We offer an anonymised service. We don't have any way \
         of tracking you down, knowing who you are, or linking what you write to you."
         next_section = section + 1
+        noOfResponseFragments = 1
         nextUserInput = next_user_input_one("OK, I understand that you do not know who I am.")
         nextUserInputType = "userInputButton"
 
@@ -212,6 +218,7 @@ def get_bot_response():
         if you told me about an emergency/crisis situation, I wouldn't \
         be able to help."
         next_section = section + 1
+        noOfResponseFragments = 1
         nextUserInput = next_user_input_one("OK, I know you cannot provide emergency services.")
         nextUserInputType = "userInputButton"
 
@@ -223,6 +230,7 @@ def get_bot_response():
         or anonymous basis. When I say anonymous, I mean that our boffins may see your text to help \
         us improve the way this software works, but we still won't know who you are."
         next_section = section + 1
+        noOfResponseFragments = 1
         nextUserInput = next_user_input_one("OK, I know what you mean by anonymous.")
         nextUserInputType = "userInputButton"
 
@@ -233,6 +241,7 @@ def get_bot_response():
         response = "And when I say confidential, I mean that your text won't be \
         stored at all, and no human will see what you write."
         next_section = section + 1
+        noOfResponseFragments = 1
         nextUserInput = next_user_input_one("OK, I know what you mean by confidential.")
         nextUserInputType = "userInputButton"
 
@@ -242,6 +251,7 @@ def get_bot_response():
 
         response = "Would you like this service to be anonymous or confidential?"
         next_section = section + 1
+        noOfResponseFragments = 1
         nextUserInput = next_user_input_two("Anonymous (my words can help improve the bot)", "Confidential (no human ever sees my words)")
         nextUserInputType = "userInputButton"
 
@@ -253,6 +263,7 @@ def get_bot_response():
         response = "Thanks! One last thing: You remember saying how you felt on scale from 1 to 10 \
         at the start? I'd like to ask you the same thing at the end so I know if we're helping."
         next_section = section + 1
+        noOfResponseFragments = 1
         nextUserInput = next_user_input_one("Yes, I am happy to let you see how I feel at the end too")
         nextUserInputType = "userInputButton"
 
@@ -260,14 +271,18 @@ def get_bot_response():
 
     elif section==9:
 
-        response = "When you're finished using the bot, please type 'stop' in the text field \
-        where the responses go, this will take you to the super-quick final survey. Can you do \
-        this instead of closing/exiting this window?"
+        response = ["When you're finished using the bot, please type 'stop' in the text field \
+        where the responses go, this will take you to the super-quick final survey.", "Can you do \
+        this instead of closing/exiting this window?"]
         next_section = section + 1
+        noOfResponseFragments = len(response)
         nextUserInput = next_user_input_one("Yes, I will type stop as my response when I am done")
         nextUserInputType = "userInputButton"
 
-        write_data(anonymous, userId, message, response)
+        responseForWriteData = ""
+        for responseIndex in range(0,noOfResponseFragments):
+            responseForWriteData = responseForWriteData + response[responseIndex]
+        write_data(anonymous, userId, message, responseForWriteData)
 
 
     elif section==10:
@@ -287,6 +302,7 @@ def get_bot_response():
         you were feeling "+str(initialHappinessScore)+" out of 10. "+responseFragmentBasedOnScore
 
         next_section = section + 1
+        noOfResponseFragments = 1
         nextUserInput = nextUserInputFreeText
         nextUserInputType = "freeText"
 
@@ -371,12 +387,14 @@ def get_bot_response():
             from 1 to 10, where 1 is terrible and 10 is great. As a reminder, the score you \
             gave at the start was "+str(initialHappinessScore)
             next_section = -1
+            noOfResponseFragments = 1
             nextUserInput = nextUserInputFinalHappinessSurvey
             nextUserInputType = "finalHappinessSurvey"
         else:
             randomlyChosenIndex = random.randint(0,noOfEncouragingNoises-1)
             response = encouragingNoises[randomlyChosenIndex]
             next_section = section + 1
+            noOfResponseFragments = 1
             nextUserInput = nextUserInputFreeText
             nextUserInputType = "freeText"
 
@@ -407,6 +425,7 @@ def get_bot_response():
             if you have any comments to help us improve this bot, please make them here"
 
         next_section = -2
+        noOfResponseFragments = 1
         nextUserInput = nextUserInputFreeText
         nextUserInputType = "freeText"
 
@@ -420,6 +439,7 @@ def get_bot_response():
         #print("The response variable has just been set equal to "+response)
 
         next_section = -3
+        noOfResponseFragments = 1
         nextUserInput = ""
         nextUserInputType = ""
 
@@ -439,8 +459,8 @@ def get_bot_response():
 
     #time.sleep(min(sleep_per_word*len(response.split()), 2))  # this delay is meant to represent the bot's thinking time. I'm just finding it annoying, but perhaps if there's a better dancing ellipsis to represent typing, it might be more worthwhile having the delay in.
     print("This is the data which gets sent to the client side")
-    print([response, next_section, output, score, nextUserInput, nextUserInputType])
-    return make_response(dumps([response, next_section, output, score, nextUserInput, nextUserInputType, anonymous, userId]))
+    print([response, noOfResponseFragments, next_section, score, nextUserInput, nextUserInputType, anonymous, userId])
+    return make_response(dumps([response, noOfResponseFragments, next_section, score, nextUserInput, nextUserInputType, anonymous, userId]))
 
 
 
