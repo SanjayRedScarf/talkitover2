@@ -271,12 +271,13 @@ def get_bot_response():
 
     elif section==9:
 
-        response = ["When you're finished using the bot, please type 'stop' in the text field \
-        where the responses go, this will take you to the super-quick final survey.", "Can you do \
+        response = ["When you're finished using the bot, please click the stop button \
+        on the right hand side, or alternatively just type 'stop' in the text field \
+        where the responses go; this will take you to the super-quick final survey.", "Can you do \
         this instead of closing/exiting this window?"]
         next_section = section + 1
         noOfResponseFragments = len(response)
-        nextUserInput = next_user_input_one("Yes, I will type stop as my response when I am done")
+        nextUserInput = next_user_input_one("Yes, when I am finished I will click the stop button")
         nextUserInputType = "userInputButton"
 
         responseForWriteData = ""
