@@ -12,7 +12,7 @@
     </h1>
   </center>
 <div class="box"></div>
-  <div class="boxed">
+  <div id="mainBox" class="boxed">
     <div>
       <div id="chatbox">
         <img
@@ -45,9 +45,10 @@
       </div>
     </div>
   </div>
-  <div style="float: right;">
+  <div id="stopButtonMarker"></div>
+  <!--<div style="float: right;">
     <button id="stopButton" type="button" onclick="initiateStopSection();">Stop</button>
-  </div>
+  </div>-->
 </body>
 </html>
 
@@ -222,6 +223,7 @@
           var ellipsisElement = document.getElementsByClassName('botText')[indexOfLastBotTextElement];
           // DRY!!! Maybe the previous two lines should be a function?
 
+          //ASSIGNING VARIABLE NAMES TO THE VARIABLES THAT HAVE COME FROM THE SERVER
           // The next few lines pick up the data received from the server and assign them with variable names so they can be used here in the javascript
           var noOfResponseFragments = JSON.parse(data)[1];
           if (noOfResponseFragments == 1) {botResponseText = JSON.parse(data)[0];}
@@ -233,6 +235,7 @@
           anonymous = JSON.parse(data)[6]
           userId = JSON.parse(data)[7]
 
+          // This section generates the html for the things the bot says (this mostly is just for the initial section)
           if (noOfResponseFragments == 1){
           var botHtml = '<p class="botText"><span>' + botResponseText + "</span></p>"; // This creates a string which consists of the bot's response together with the required html tags
           }
@@ -250,6 +253,7 @@
             botThinkingTime = Math.min(botThinkingTime, 3000); // make sure the user doesn't have to wait more than 3 seconds for a response
           }
 
+          // THE BELOW SECTIONS PLACE THE BOT RESPONSE ON THE SCREEN
           // The setTimeout function is used below because we want the ellipsis to be on the screen briefly...
           // ... and then after some time we remove the ellipsis and replace it with whatever is coming next
 
@@ -298,10 +302,16 @@
 
           else if (noOfResponseFragments>2){console.log("Error: this is set up for 1 or 2 response fragments only");}
 
+          if (sectionNumber == 9){appendStopButton();}
+
           });
         }
       }
 
+      function appendStopButton(){
+        var stopButtonDiv = '<div style="float: right;"> <button id="stopButton" type="button" onclick="initiateStopSection();">Stop</button></div>'
+        $.("#stopButtonMarker").append(stopButtonDiv);
+      }
 
       function initiateStopSection() {
         console.log("initiateStopSection() has been called");
