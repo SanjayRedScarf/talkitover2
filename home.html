@@ -24,7 +24,7 @@
           <span>Hi! I'm the Talk It Over chatbot and I am here for you to talk about whatever is on your mind. Thanks for trying this early prototype! I'm not a very clever piece of software and I might not understand everything you say, but if you think that talking things through in a safe confidential space might help, let's chat! Please rate how you feel on a scale from 1 to 10, where 1 is terrible and 10 is great</span>
         </p>
       </div>
-      <div id="userInputDiv">
+      <div id="userInputDiv" style="float: left;">
         <!--<input id='textInput' type='text' name='msg' placeholder='Message' />  -->
         <!--<button class="textInput" id="userInputButton" type="button" onclick="getBotResponse()" value="yes">Yes</button> -->
         <!--<button class="textInput" id="userInputButton" type="button" onclick="getBotResponse()" value="no">No</button> -->
@@ -44,6 +44,9 @@
 
       </div>
     </div>
+  </div>
+  <div style="float: right;">
+    <button id="stopButton" type="button" onclick="initiateStopSection();">Stop</button>
   </div>
 </body>
 </html>
@@ -72,6 +75,15 @@
       margin-top: 3px;
       text-align: center;
     }
+
+
+    #stopButton {
+      float: right;
+      height: 50px;
+      margin-top: 60px;
+      font-size: 35px;
+    }
+
     #chatbox {
       margin-left: auto;
       margin-right: auto;
@@ -82,7 +94,7 @@
       margin-left: auto;
       margin-right: auto;
       width: 85%;
-      height: 20px;
+      height: 100px;
       margin-top: 60px;
     }
     #textInput {
@@ -160,9 +172,11 @@
       var anonymous = "true"
       var userId = "null"
       var botThinkingTime = 450;
+      var userText = "";
+
 
       function getBotResponse() {
-        var userText = "";
+
 
         // This block of if statements sets the value of userText, which stores the text produced by the user
         console.log("currentUserInputType = "+currentUserInputType);
@@ -176,6 +190,8 @@
           userText = String(finalHappinessValue);}
         else if (currentUserInputType == "userInputButton"){
           userText = document.getElementById("userInputButton").value;}
+        else if (currentUserInputType == "stopButton"){
+          userText = "stop";}
         console.log("userText has just been set as "+userText);
 
 
@@ -285,6 +301,16 @@
           });
         }
       }
+
+
+      function initiateStopSection() {
+        console.log("initiateStopSection() has been called");
+        //userText = "stop";
+        currentUserInputType = "stopButton";
+        console.log("currentUserInputType is"+currentUserInputType);
+        getBotResponse();
+      }
+
 
       $('body').on("keypress", '#textInput', function(e) {
           console.log("this is inside the keypress thingy");
