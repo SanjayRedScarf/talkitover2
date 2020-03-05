@@ -192,17 +192,23 @@
         else if (currentUserInputType == "userInputButton"){
           userText = document.getElementById("userInputButton").value;}
         else if (currentUserInputType == "stopButton"){
-          userText = "stop";}
+          sectionNumber = 100; // the server will do the right thing if the section number is > 10, 100 is a randomly chosen number > 10
+          userText = "stop";} // the server will do the right thing if the user text is 'stop'
         console.log("userText has just been set as "+userText);
+
 
 
         if (userText!=""){
           // The next few lines put the "userText" (i.e. user text) into the grey text blob and scroll down so that it's visible.
+          // If the stop button has been triggered, should the word "stop" still appear? I think this is OK.
           var userHtml = '<p class="userText"><span>' + userText + "</span></p>";
           $("#chatbox").append(userHtml);
           document
             .getElementById("userInputDiv")
             .scrollIntoView({ block: "start", behavior: "smooth" });
+
+          //if the stop button has been pressed, we want to take the stop button away
+          if(currentUserInputType=="stopButton"){$("#stopButton").remove();}
 
           if (initialHappinessValue>0){                         // if the initialHappinessValue has a value (i.e. if it's the first section)
             initialHappinessValueSent = initialHappinessValue;} // then the variable which sends the initialHappinessValue to the server (which we're calling initialHappinessValueSent) is set equal to that value
@@ -235,7 +241,7 @@
           anonymous = JSON.parse(data)[6]
           userId = JSON.parse(data)[7]
 
-          // This section generates the html for the things the bot says (this mostly is just for the initial section)
+          // This section generates the html for the things the bot says
           if (noOfResponseFragments == 1){
           var botHtml = '<p class="botText"><span>' + botResponseText + "</span></p>"; // This creates a string which consists of the bot's response together with the required html tags
           }
@@ -302,7 +308,7 @@
 
           else if (noOfResponseFragments>2){console.log("Error: this is set up for 1 or 2 response fragments only");}
 
-          if (sectionNumber == 9){appendStopButton();}
+          if (sectionNumber == 10){appendStopButton();}
 
           });
         }
@@ -310,14 +316,18 @@
 
       function appendStopButton(){
         var stopButtonDiv = '<div style="float: right;"> <button id="stopButton" type="button" onclick="initiateStopSection();">Stop</button></div>'
-        $.("#stopButtonMarker").append(stopButtonDiv);
+        $("#stopButtonMarker").append(stopButtonDiv);
       }
+
+      //function removeStopButton(){
+        //$("#stopButton").remove();
+      //}
 
       function initiateStopSection() {
         console.log("initiateStopSection() has been called");
         //userText = "stop";
         currentUserInputType = "stopButton";
-        console.log("currentUserInputType is"+currentUserInputType);
+        console.log("currentUserInputType is "+currentUserInputType);
         getBotResponse();
       }
 
