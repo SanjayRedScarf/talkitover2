@@ -171,7 +171,7 @@
       var currentUserInputType = "initialHappinessSurvey"; // alternative values include: freeText and userInputButton
       var dataToStore = [];
       var anonymous = "true"
-      var userId = "null"
+      var conversationId = "null"
       var botThinkingTime = 450;
       var userText = "";
 
@@ -218,7 +218,7 @@
             finalHappinessValueSent = finalHappinessValue;}   // then the variable which sends the finalHappinessValue to the server (which we're calling finalHappinessValueSent) is set equal to that value
           else {finalHappinessValueSent = -1;}                // otherwise just give it a random value -- in this case -1 -- (otherwise it throws up an error about the int() function in python not accepting a nonetype)
 
-          $.get("/get", { msg: JSON.stringify([userText, sectionNumber, output, sentiment, initialHappinessValueSent, finalHappinessValueSent, anonymous, userId]) }).done(function(data) {
+          $.get("/get", { msg: JSON.stringify([userText, sectionNumber, output, sentiment, initialHappinessValueSent, finalHappinessValueSent, anonymous, conversationId]) }).done(function(data) {
 
           // The next two lines pick up a thinking/typing ellipsis (three dots) and place them in the chatbox
           var botThinkingHtml = '<img class="botText" src="https://raw.githubusercontent.com/SanjayRedScarf/talkitover2/SanjayRedScarf-new/typing_dots_cropped.gif" style="width:90px;height:40px;"/>'; //
@@ -239,11 +239,13 @@
           nextUserInput = JSON.parse(data)[4];
           currentUserInputType = JSON.parse(data)[5];
           anonymous = JSON.parse(data)[6]
-          userId = JSON.parse(data)[7]
+          conversationId = JSON.parse(data)[7]
 
           // This section generates the html for the things the bot says
           if (noOfResponseFragments == 1){
           var botHtml = '<p class="botText"><span>' + botResponseText + "</span></p>"; // This creates a string which consists of the bot's response together with the required html tags
+          var botHtmlArray = [];
+          botHtmlArray[0] = botResponseText; // this is needed for the section which sets the botThinkingTime
           }
           else {
             var botHtmlArray = [];
@@ -253,11 +255,14 @@
             }
           }
 
-
+          // Determining the botThinkingTime
           if (currentUserInputType=="freeText") {       // if the user has just entered free text (as opposed to, e.g., some sort of dropdown or form)
-            botThinkingTime = Math.max(userText.length*6,500); // set the thinking time to at least 500 milliseconds, and longer if the user text is long
+            botThinkingTime = Math.max(userText.length*10,500); // set the thinking time to at least 500 milliseconds, and longer if the user text is long
             botThinkingTime = Math.min(botThinkingTime, 3000); // make sure the user doesn't have to wait more than 3 seconds for a response
           }
+
+          botThinkingTimeBeforeSecondFragment = Math.min(1000+botHtmlArray[0].length*60,5000) // This website suggested that the formula should be timeToRead=1300+(chars∗65); (I made it a bit shorter than that)  https://psychology.stackexchange.com/questions/1147/how-long-does-it-take-to-read-a-sentence-with-x-number-of-characters
+
 
           // THE BELOW SECTIONS PLACE THE BOT RESPONSE ON THE SCREEN
           // The setTimeout function is used below because we want the ellipsis to be on the screen briefly...
@@ -302,7 +307,7 @@
               if (currentUserInputType == "freeText"){        // if the field is a free text field
                 document.getElementById("textInput").focus(); // make sure it already has the cursor in it so the user can just start typing straight away (rather than making the user select the field manually)
                 }
-            },botThinkingTime+Math.min(botHtmlArray[0].length*6,5000))
+            },botThinkingTime+botThinkingTimeBeforeSecondFragment)
 
           }
 
