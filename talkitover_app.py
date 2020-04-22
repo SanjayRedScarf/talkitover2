@@ -36,10 +36,13 @@ dataToStore = []
 USER_CHARACTER_COUNT = 0
 conversationId = str(datetime.now())
 iWantToKillMyselfResponseAlreadyUsed = [conversationId,False]
+imGoingToKillMyselfResponseAlreadyUsed = [conversationId,False]
 iWantToDieResponseAlreadyUsed = [conversationId,False]
-feelingSuicidalResponseAlreadyUsed = [conversationId,False]
+imFeelingSuicidalResponseAlreadyUsed = [conversationId,False]
 #feelingQuiteSuicidalResponseAlreadyUsed : this varirable isn't being used
 suicidalThoughtsResponseAlreadyUsed = [conversationId,False]
+iDontWantToLiveResponseAlreadyUsed = [conversationId,False]
+shouldIKillMyselfResponseAlreadyUsed = [conversationId,False]
 cryingResponseAlreadyUsed = [conversationId,False]
 nothingToLiveForResponseAlreadyUsed = [conversationId,False]
 singleWordDepressionResponseAlreadyUsed = [conversationId,False]
@@ -54,16 +57,23 @@ dontHaveAnyoneICanTalkToResponseAlreadyUsed = [conversationId,False]
 iHateHowILookResponseAlreadyUsed = [conversationId,False]
 feelOverwhelmedResponseAlreadyUsed = [conversationId,False]
 feelingAwfulResponseAlreadyUsed = [conversationId,False]
+imAFailureResponseAlreadyUsed = [conversationId,False]
+imALetdownResponseAlreadyUsed = [conversationId,False]
 letMyselfDownResponseAlreadyUsed = [conversationId,False]
 feelOutOfControlResponseAlreadyUsed = [conversationId,False]
 feelLostResponseAlreadyUsed = [conversationId,False]
 inABadPlaceResponseAlreadyUsed = [conversationId,False]
 deserveResponseAlreadyUsed = [conversationId,False]
+iHateHowIFeelResponseAlreadyUsed = [conversationId,False]
 imSadResponseAlreadyUsed = [conversationId,False]
 feelingLowDownTerribleResponseAlreadyUsed = [conversationId,False]
 imUpsetResponseAlreadyUsed = [conversationId,False]
 imAddictedResponseAlreadyUsed = [conversationId,False]
 feelingRubbishResponseAlreadyUsed = [conversationId,False]
+iHaveAnxietyResponseAlreadyUsed = [conversationId,False]
+imAnxiousResponseAlreadyUsed = [conversationId,False]
+imWorriedResponseAlreadyUsed = [conversationId,False]
+iDontKnowWhatToDoResponseAlreadyUsed = [conversationId,False]
 initial_iDontKnowWhatToSayResponseAlreadyUsed = [conversationId, False]
 second_iDontKnowWhatToSayResponseAlreadyUsed = [conversationId, False]
 imNotHappyResponseAlreadyUsed = [conversationId,False]
@@ -84,9 +94,6 @@ doYouGiveAdviceResponseAlreadyUsed = [conversationId,False]
 ## Currently have hardcoded "if section == 11" statements. replace these by having a variable for "numberOfInitialSections" = 10. Make sure it's global. If the user's first message is "hello", then increment the number of initial sections variable
 ## Stop button sometimes gets hit the moment it appears. Current fix is to add some wording; could consider something better?
 ## ADD IN WILDCARD BETWEEN "ITS NOT THAT" AND "STRING" WHERE APPLICABLE
-## ADJUST "ITS NOT THAT" THING SO THAT IT CONSIDERS WHITESPACE. ACCORDING TO  https://www.journaldev.com/23763/python-remove-spaces-from-string, I WANT TO COMPARE STRING.replace(" ", "") WITH OTHERSTRING.replace(" ", "")
-## ADD IN SOMETHING FOR "I DON'T KNOW WHAT TO SAY"
-## ADD IN SOMETHING FOR "DO YOU GIVE ADVICE"?
 ## ADD IN SOMETHING FOR "YOU ARE NOT HELPING" OR "THIS IS NOT HELPING" OR "YOU ARE USELESS"
 ## Rules around selfharm / DSH / cutting -- this is still a gap
 ## Rules for relationships -- this comes up a lot, and I currently can't think of something good to say
@@ -103,10 +110,13 @@ def initialiseResponseAlreadyUsedVariables():
     global conversationId
     print("This statement is in initialiseResponseAlreadyUsedVariables. conversationId = "+conversationId)
     iWantToKillMyselfResponseAlreadyUsed = [conversationId,False]
+    imGoingToKillMyselfResponseAlreadyUsed = [conversationId,False]
     iWantToDieResponseAlreadyUsed = [conversationId,False]
-    feelingSuicidalResponseAlreadyUsed = [conversationId,False]
+    imFeelingSuicidalResponseAlreadyUsed = [conversationId,False]
     #feelingQuiteSuicidalResponseAlreadyUsed : this varirable isn't being used
     suicidalThoughtsResponseAlreadyUsed = [conversationId,False]
+    iDontWantToLiveResponseAlreadyUsed = [conversationId,False]
+    shouldIKillMyselfResponseAlreadyUsed = [conversationId,False]
     cryingResponseAlreadyUsed = [conversationId,False]
     nothingToLiveForResponseAlreadyUsed = [conversationId,False]
     singleWordDepressionResponseAlreadyUsed = [conversationId,False]
@@ -121,16 +131,23 @@ def initialiseResponseAlreadyUsedVariables():
     iHateHowILookResponseAlreadyUsed = [conversationId,False]
     feelOverwhelmedResponseAlreadyUsed = [conversationId,False]
     feelingAwfulResponseAlreadyUsed = [conversationId,False]
+    imAFailureResponseAlreadyUsed = [conversationId,False]
+    imALetdownResponseAlreadyUsed = [conversationId,False]
     letMyselfDownResponseAlreadyUsed = [conversationId,False]
     feelOutOfControlResponseAlreadyUsed = [conversationId,False]
     feelLostResponseAlreadyUsed = [conversationId,False]
     inABadPlaceResponseAlreadyUsed = [conversationId,False]
     deserveResponseAlreadyUsed = [conversationId,False]
+    iHateHowIFeelResponseAlreadyUsed = [conversationId,False]
     imSadResponseAlreadyUsed = [conversationId,False]
     feelingLowDownTerribleResponseAlreadyUsed = [conversationId,False]
     imUpsetResponseAlreadyUsed = [conversationId,False]
     imAddictedResponseAlreadyUsed = [conversationId,False]
     feelingRubbishResponseAlreadyUsed = [conversationId,False]
+    iHaveAnxietyResponseAlreadyUsed = [conversationId,False]
+    imAnxiousResponseAlreadyUsed = [conversationId,False]
+    imWorriedResponseAlreadyUsed = [conversationId,False]
+    iDontKnowWhatToDoResponseAlreadyUsed = [conversationId,False]
     initial_iDontKnowWhatToSayResponseAlreadyUsed = [conversationId, False]
     second_iDontKnowWhatToSayResponseAlreadyUsed = [conversationId, False]
     imNotHappyResponseAlreadyUsed = [conversationId,False]
@@ -292,33 +309,50 @@ def choose_bot_wordy_response(message):
                             "i really want to kill myself", "i really want to kill my self", "i really want to kill mysefl", "i really want to kill my sefl", "i really wanna kill myself", "i really wanna kill my self", "i really wanna kill mysefl", "i really wanna kill my sefl",\
                             "i just really want to kill myself", "i just really want to kill my self", "i just really want to kill mysefl", "i just really want to kill my sefl", "i just really wanna kill myself", "i just really wanna kill my self", "i just really wanna kill mysefl", "i just really wanna kill my sefl",\
                             "i still just really want to kill myself", "i still just really want to kill my self", "i still just really want to kill mysefl", "i still just really want to kill my sefl", "i still just really wanna kill myself", "i still just really wanna kill my self", "i still just really wanna kill mysefl", "i still just really wanna kill my sefl",\
-                            "i still really want to kill myself", "i still really want to kill my self", "i still really want to kill mysefl", "i still really want to kill my sefl", "i still really wanna kill myself", "i still really wanna kill my self", "i still really wanna kill mysefl", "i still really wanna kill my sefl"]
-    iWantToDieArray = ["i want to die", "i wanna die", "i just want to die", "i just wanna die",\
-                        "i still want to die", "i still wanna die", "i still just want to die", "i still just wanna die",\
-                        "i really want to die", "i really wanna die", "i just really want to die", "i just really wanna die",\
-                        "i still really want to die", "i still really wanna die", "i still just really want to die", "i still just really wanna die"]
-    imFeelingSuicidalArray = ["i feel suic", "i'm feeling suic", "im feeling suic", "i just feel suic", "i'm just feeling suic", "im just feeling suic", "i'm suic", "im suic",\
-                            "i feel sucid", "i'm feeling sucid", "im feeling sucid", "i just feel sucid", "i'm just feeling sucid", "im just feeling sucid", "i'm sucid", "im sucid",\
+                            "i still really want to kill myself", "i still really want to kill my self", "i still really want to kill mysefl", "i still really want to kill my sefl", "i still really wanna kill myself", "i still really wanna kill my self", "i still really wanna kill mysefl", "i still really wanna kill my sefl",
+                            "i want to take my life", "i wanna take my life", "i want to take my own life", "i wanna take my own life"]
+    imGoingToKillMyselfArray = ["i am going to kill myself", "im going to kill myself", "i am going to kill my self", "im going to kill my self",
+                                "i am oging to kill myself", "im oging to kill myself", "i am oging to kill my self", "im oging to kill my self",
+                                "i will kill myself", "i will kill my self","ill kill myself", "ill kill my self"]
+    #imPlanningToKillMyselfArray = ["im planning to kill myself", "i am planning to kill myself"]
+    # have not built in anything for imPlanningToKillMyselfArray apart from the array itself. Maybe come back to this?
+    iWantToDieArray = ["i want to die", "i wanna die", "i would like to die"]
+    imFeelingSuicidalArray = ["i feel suic", "i'm feeling suic", "im feeling suic", "i just feel suic", "i'm just feeling suic", "im just feeling suic", "i'm suic", "im suic", "i am suic",\
+                            "i feel sucid", "i'm feeling sucid", "im feeling sucid", "i just feel sucid", "i'm just feeling sucid", "im just feeling sucid", "i'm sucid", "im sucid", "i am sucid",\
                             "i still feel suic", "i'm still feeling suic", "im still feeling suic", "i still just feel suic", "i'm still just feeling suic", "im still just feeling suic", "i'm still suic", "im still suic",\
-                            "i still feel sucid", "i'm still feeling sucid", "im still feeling sucid", "i still just feel sucid", "i'm still just feeling sucid", "im still just feeling sucid", "i'm still sucid", "im still sucid"]
+                            "i still feel sucid", "i'm still feeling sucid", "im still feeling sucid", "i still just feel sucid", "i'm still just feeling sucid", "im still just feeling sucid", "i'm still sucid", "im still sucid",
+                            "im starting to feel suic", "i am starting to feel suic", "i have started to feel suic",
+                            "im starting to feel sucid", "i am starting to feel sucid", "i have started to feel sucid",
+                            "i am feeling suic", "i am feeling sucid"]
     imFeelingQuiteSuicidalArray = ["i feel quite suic", "i'm feeling quite suic", "im feeling quite suic", "i just feel quite suic", "i'm just feeling quite suic", "im just feeling quite suic",\
                                    "i feel quite sucid", "i'm feeling quite sucid", "im feeling quite sucid", "i just feel quite sucid", "i'm just feeling quite sucid", "im just feeling quite sucid",\
                                    "i still feel quite suic", "i'm still feeling quite suic", "im still feeling quite suic", "i still just feel quite suic", "i'm still just feeling quite suic", "im still just feeling quite suic",\
                                     "i still feel quite sucid", "i'm still feeling quite sucid", "im still feeling quite sucid", "i still just feel quite sucid", "i'm still just feeling quite sucid", "im still just feeling quite sucid"]
+    #imThinkingAboutKillingMyselfArray = ["im thinking about killing myself", "i am thinking about killing myself"]
+    # have not built in anything for imThinkingAboutKillingMyselfArray apart from the array itself. Maybe come back to this?
     iveBeenFeelingSuicidalArray = ["i've been feeling suic", "ive been feeling suic", "i've just been feeling suic", "ive just been feeling suic",\
                             "i've been feeling sucid", "ive been feeling sucid", "i've just been feeling sucid", "ive just been feeling sucid",]
-    suicidalThoughtsArray = ["i have suicidal thoughts", "i still have suicidal thoughts"]
-    imCryingArray = ["i can't stop crying","i cant stop crying", "makes me want to cry", "makes me wanna cry", "i'm crying", "im crying", "i've been crying", "ive been crying"]
-    nothingToLiveForArray = ["i have nothing to live for", "i've nothing to live for", "i have nothing left to live for", "i've nothing left to live for",\
-                            "i have literally nothing to live for", "i've literally nothing to live for", "i have literally nothing left to live for", "i've literally nothing left to live for",\
-                            "i literally have nothing to live for", "i literally have nothing left to live for"]
+    suicidalThoughtsArray = ["i have suicidal thoughts", "i still have suicidal thoughts", "i have been having suicidal thoughts"]
+    iDontWantToLiveArray = ["i dont want to live", "i no longer want to live", "i dont wanna live", "i have no desire to live", "i no longer desire to live",
+                            "i dont want to be alive", "i no longer want to be alive", "i dont wanna be alive", "i have no desire to be alive", "i no longer desire to be alive",
+                            "i dont want to remain alive", "i no longer want to remain alive", "i dont wanna remain alive", "i have no desire to remain alive", "i no longer desire to remain alive",
+                            "i dont want to stay alive", "i no longer want to stay alive", "i dont wanna stay alive", "i have no desire to stay alive", "i no longer desire to stay alive",
+                            "i hate my life", "i hate being alive", "i hate the fact that im alive", "i hate living", "i hate the fact that i'm living"]
+    shouldIKillMyselfArray = ["should i kill myself", "should i commit suicide", "should i end my life", "should i end it all"]
+    imCryingArray = ["i can't stop crying","i cant stop crying", "makes me want to cry", "makes me wanna cry", "i'm crying", "im crying", "i've been crying", "ive been crying", "making me want to cry", "making me wanna cry", "i cry myself"]
+    ## Note: imCryingArray doesn't contain the string "i cry" because the test involves removing the space characters,
+    ## so a message containing something like "mimicry" would trigger the "i cry" response
+    nothingToLiveForArray = ["i have nothing to live for", "i've nothing to live for", "i have nothing left to live for", "i've nothing left to live for", "i have no reason to live", "theres no point in me living",\
+                            "i have nothing to be alive for", "i've nothing to be alive for", "i have nothing left to be alive for", "i've nothing left to be alive for", "i have no reason to be alive", "theres no point in me being alive",  "theres no point in my being alive",
+                            "i have nothing to stay alive for", "i've nothing to stay alive for", "i have nothing left to stay alive for", "i've nothing left to stay alive for", "i have no reason to stay alive", "theres no point in me staying alive", "theres no point in my staying alive",
+                            "i have nothing to remain alive for", "i've nothing to remain alive for", "i have nothing left to remain alive for", "i've nothing left to remain alive for", "i have no reason to remain alive", "theres no point in me remaining alive", "theres no point in my remaining alive"]
     iHateMyselfArray = [" hate myself", " hate my self", " hate my sefl", " hate mysefl",]
     singleWordDepressionMessageArray = ["depression", "depressed", "depresssion", "depresssed", "dperessed", "dperession"  ]
     feelingDepressedArray = ["i feel depressed", "i just feel depressed", "i feeel depressed", "i just feeel depressed", "im feeling depressed", "i'm feeling depressed", "im just feeling depressed", "i'm just feeling depressed", "i feel very depressed", "i feel so depressed", "i am feeling depressed", "i'm feeling really depressed", "i'm feeling so depressed", "im feeling really depressed", "im feeling so depressed",\
                             "i'm depressed", "im depressed", "i am depressed", "i'm so depressed", "im so depressed", "i am so depressed", "i'm really depressed", "im really depressed", "i am really depressed",\
                             "im more depressed than ever", "i'm more depressed than ever" ]
-    iHaveNoWayOutArray = ["i have no way out", "i don't feel i have any way out", "i dont feel i have any way out", "i don't have any way out", "i dont have any way out"]
-    hadEnoughOfLifeArray = ["i've had enough of life", "ive had enough of life"]
+    iHaveNoWayOutArray = ["i have no way out", "i haven't got any way out", "ive got no way out", "ive no got any way out", "i don't feel i have any way out", "i dont feel i have any way out", "i don't feel i have got any way out", "i dont feel i have got any way out", "i don't have any way out", "i dont have any way out"]
+    hadEnoughOfLifeArray = ["i've had enough of life", "ive had enough of life", "i have had enough of life"]
     nothingToLookForwardToArray = ["i have nothing to look forward to", "i don't have anything to look forward to", "i've got nothing to look forward to", \
                                 "i literally have nothing to look forward to", "i literally don't have anything to look forward to", "i have literally nothing to look forward to", "i've literally got nothing to look forward to"\
                                 "i just have nothing to look forward to", "i just don't have anything to look forward to", "i've just got nothing to look forward to",\
@@ -343,27 +377,27 @@ def choose_bot_wordy_response(message):
                     "im just really worthless", "i'm just really worthless", "im just really worthlses", "i'm just really worthlses",\
                     "im just totally worthless", "i'm just totally worthless", "im just totally worthlses", "i'm just totally worthlses",\
                     "im just utterly worthless", "i'm just utterly worthless", "im just utterly worthlses", "i'm just utterly worthlses"]
-    feelingLonelyArray = ["i feel lonely", "i feel sad and lonely", "i feel utterly alone", "i feel totally alone", "i feel alone",                         "i feel so alone", "i feel really alone", "i feel really lonely",  "i'm lonely", "im lonely", "i feel isolated", "i feel so isolated", "i feel totally isolated", "i feel utterly isolated",\
-                         "im feeling lonely", "im feeling sad and lonely", "im feeling utterly alone", "im feeling totally alone", "im feeling alone",      "im feeling so alone", "im feeling really alone", "im feeling really lonely", "im feeling isolated", "im feeling so isolated", "im feeling totally isolated", "im feeling utterly isolated",\
-                         "i'm feeling lonely", "i'm feeling sad and lonely", "i'm feeling utterly alone", "i'm feeling totally alone", "i'm feeling alone", "i'm feeling so alone", "i'm feeling really alone", "i'm feeling really lonely", "i'm feeling isolated", "i'm feeling so isolated", "i'm feeling totally isolated", "i'm feeling utterly isolated",\
-                         "i am feeling lonely", "i am feeling sad and lonely", "i am feeling utterly alone", "i am feeling totally alone", "i am feeling alone", "i am feeling so alone", "i am feeling really alone", "i am feeling really lonely", "i am feeling isolated", "i am feeling so isolated", "i am feeling totally isolated", "i am feeling utterly isolated",\
-                         "i just feel lonely", "i just feel sad and lonely", "i just feel utterly alone", "i just feel totally alone", "i just feel alone",                         "i just feel so alone", "i just feel really alone", "i just feel really lonely",  "i'm lonely", "im lonely", "i just feel isolated", "i just feel so isolated", "i just feel totally isolated", "i just feel utterly isolated",\
-                         "im just feeling lonely", "im just feeling sad and lonely", "im just feeling utterly alone", "im just feeling totally alone", "im just feeling alone",      "im just feeling so alone", "im just feeling really alone", "im just feeling really lonely", "im just feeling isolated", "im just feeling so isolated", "im just feeling totally isolated", "im just feeling utterly isolated",\
-                        "i'm just feeling lonely", "i'm just feeling sad and lonely", "i'm just feeling utterly alone", "i'm just feeling totally alone", "i'm just feeling alone", "i'm just feeling so alone", "i'm just feeling really alone", "i'm just feeling really lonely", "i'm just feeling isolated", "i'm just feeling so isolated", "i'm just feeling totally isolated", "i'm just feeling utterly isolated",\
-                        "i am just feeling lonely", "i am just feeling sad and lonely", "i am just feeling utterly alone", "i am just feeling totally alone", "i am just feeling alone", "i am just feeling so alone", "i am just feeling really alone", "i am just feeling really lonely", "i am just feeling isolated", "i am just feeling so isolated", "i am just feeling totally isolated", "i am just feeling utterly isolated",\
-                        "i still feel lonely", "i still feel sad and lonely", "i still feel utterly alone", "i still feel totally alone", "i still feel alone",                         "i still feel so alone", "i still feel really alone", "i still feel really lonely",  "i'm lonely", "im lonely", "i still feel isolated", "i still feel so isolated", "i still feel totally isolated", "i still feel utterly isolated",\
-                        "im still feeling lonely", "im still feeling sad and lonely", "im still feeling utterly alone", "im still feeling totally alone", "im still feeling alone",      "im still feeling so alone", "im still feeling really alone", "im still feeling really lonely", "im still feeling isolated", "im still feeling so isolated", "im still feeling totally isolated", "im still feeling utterly isolated",\
-                        "i'm still feeling lonely", "i'm still feeling sad and lonely", "i'm still feeling utterly alone", "i'm still feeling totally alone", "i'm still feeling alone", "i'm still feeling so alone", "i'm still feeling really alone", "i'm still feeling really lonely", "i'm still feeling isolated", "i'm still feeling so isolated", "i'm still feeling totally isolated", "i'm still feeling utterly isolated",\
-                        "i am still feeling lonely", "i am still feeling sad and lonely", "i am still feeling utterly alone", "i am still feeling totally alone", "i am still feeling alone", "i am still feeling so alone", "i am still feeling really alone", "i am still feeling really lonely", "i am still feeling isolated", "i am still feeling so isolated", "i am still feeling totally isolated", "i am still feeling utterly isolated",\
-                        "i still just feel lonely", "i still just feel sad and lonely", "i still just feel utterly alone", "i still just feel totally alone", "i still just feel alone",                         "i still just feel so alone", "i still just feel really alone", "i still just feel really lonely",  "i'm lonely", "im lonely", "i still just feel isolated", "i still just feel so isolated", "i still just feel totally isolated", "i still just feel utterly isolated",\
-                        "im still just feeling lonely", "im still just feeling sad and lonely", "im still just feeling utterly alone", "im still just feeling totally alone", "im still just feeling alone",      "im still just feeling so alone", "im still just feeling really alone", "im still just feeling really lonely", "im still just feeling isolated", "im still just feeling so isolated", "im still just feeling totally isolated", "im still just feeling utterly isolated",\
-                        "i'm still just feeling lonely", "i'm still just feeling sad and lonely", "i'm still just feeling utterly alone", "i'm still just feeling totally alone", "i'm still just feeling alone", "i'm still just feeling so alone", "i'm still just feeling really alone", "i'm still just feeling really lonely", "i'm still just feeling isolated", "i'm still just feeling so isolated", "i'm still just feeling totally isolated", "i'm still just feeling utterly isolated",\
-                        "i am still just feeling lonely", "i am still just feeling sad and lonely", "i am still just feeling utterly alone", "i am still just feeling totally alone", "i am still just feeling alone", "i am still just feeling so alone", "i am still just feeling really alone", "i am still just feeling really lonely", "i am still just feeling isolated", "i am still just feeling so isolated", "i am still just feeling totally isolated", "i am still just feeling utterly isolated",\
-                            "im a lonely person", "i'm a lonely person", "i'm just a lonely person", "im just a lonely person",\
-                            "im a very lonely person", "i'm a very lonely person", "i'm just a very lonely person", "im just a very lonely person",\
-                            "i am a lonely person", "i am just a lonely person",
-                            "i am a very lonely person", "i am just a very lonely person"]
-    dontHaveAnyoneICanTalkToArray = ["don't have anyone i can talk to", "dont have anyone i can talk to","don't have anyone i can talk with", "dont have anyone i can talk with"]
+    feelingLonelyArray = ["i feel lonely", "im feeling lonely", "i am feeling lonely","making me feel lonely", "making me lonely","makes me feel lonely", "makes me lonely",
+                        "i feel alone", "im feeling alone", "i am feeling alone", "making me feel alone", "making me alone","makes me feel alone", "makes me alone",
+                        "i feel sad and lonely", "im feeling sad and lonely", "i am feeling sad and lonely","making me feel sad and lonely", "making me sad and lonely", "makes me feel sad and lonely", "makes me sad and lonely",
+                        "i feel low and lonely", "im feeling low and lonely", "i am feeling low and lonely", "making me feel low and lonely", "making me low and lonely", "makes me feel low and lonely", "makes me low and lonely",
+                        "i feel sad and alone", "im feeling sad and alone", "i am feeling sad and alone", "making me feel sad and alone", "making me sad and alone", "makes me feel sad and alone", "makes me sad and alone",
+                        "i feel low and alone", "im feeling low and alone", "i am feeling low and alone", "making me feel low and alone", "making me low and alone", "makes me feel low and alone", "makes me low and alone",
+                        "i feel isolated", "im feeling isolated", "i am feeling isolated", "making me feel isolated", "making me isolated", "makes me feel isolated", "makes me isolated",
+                        "i feel sad and isolated", "im feeling sad and isolated", "i am feeling sad and isolated", "making me feel sad and isolated", "making me sad and isolated", "makes me feel sad and isolated", "makes me sad and isolated",
+                            "im a lonely person", "i am a lonely person", "im a sad lonely person", "i am a sad lonely person",
+                        "i am lonely", "im lonely", "i am lonely","making me lonely", "making me lonely","makes me lonely", "makes me lonely",
+                        "im alone", "i am alone", "making me alone", "making me alone","makes me alone", "makes me alone",
+                        "im sad and lonely", "i am sad and lonely","making me sad and lonely", "making me sad and lonely", "makes me sad and lonely", "makes me sad and lonely",
+                        "im low and lonely", "i am low and lonely", "making me low and lonely", "making me low and lonely", "makes me low and lonely", "makes me low and lonely",
+                        "im sad and alone", "i am sad and alone", "making me sad and alone", "making me sad and alone", "makes me sad and alone", "makes me sad and alone",
+                        "im low and alone", "i am low and alone", "making me low and alone", "making me low and alone", "makes me low and alone", "makes me low and alone",
+                        "im isolated", "i am isolated", "making me isolated", "making me isolated", "makes me isolated", "makes me isolated",
+                        "im sad and isolated", "i am sad and isolated", "making me sad and isolated", "making me sad and isolated", "makes me sad and isolated", "makes me sad and isolated"]
+    dontHaveAnyoneICanTalkToArray = ["don't have anyone i can talk to", "dont have anyone i can talk to","don't have anyone i can talk with", "dont have anyone i can talk with",
+                                    "i have no one to talk to", "i have nobody to talk to", "i have no one to talk with", "i have nobody to talk with",
+                                    "i've no one to talk to", "i've nobody to talk to", "i've no one to talk with", "i've nobody to talk with",
+                                    "ive no one to talk to", "ive nobody to talk to", "ive no one to talk with", "ive nobody to talk with", ]
     iHateHowILookArray = ["i hate how i look", "i hate my looks", "i hate my appearance", "i hate the way i look",\
                         "i just hate how i look", "i just hate my looks", "i just hate my appearance", "i just hate the way i look",\
                         "i really hate how i look", "i really hate my looks", "i really hate my appearance", "i really hate the way i look",\
@@ -377,13 +411,32 @@ def choose_bot_wordy_response(message):
                             "i just feel so overwhelmed", "im just feeling so overwhelmed", "i'm just feeling so overwhelmed",\
                             "i just feel really overwhelmed", "im just feeling really overwhelmed", "i'm just feeling really overwhelmed", \
                             "i just feel totally overwhelmed", "im just feeling totally overwhelmed", "i'm just feeling totally overwhelmed",\
-                            "i just feel utterly overwhelmed", "im just feeling utterly overwhelmed", "i'm just feeling utterly overwhelmed"]
+                            "i just feel utterly overwhelmed", "im just feeling utterly overwhelmed", "i'm just feeling utterly overwhelmed",
+                            "i am overwhelmed", "im overwhelmed"]
     feelingAwfulArray = ["i feel awful", "i'm feeling awful", "im feeling awful",\
                         "i feel so awful", "i'm feeling so awful", "im feeling so awful",\
                         "i feel really awful", "i'm feeling really awful", "im feeling really awful",\
                         "i just feel awful", "i'm just feeling awful", "im just feeling awful",\
                         "i just feel so awful", "i'm just feeling so awful", "im just feeling so awful",\
                         "i just feel really awful", "i'm just feeling really awful", "im just feeling really awful"]
+    imAFailureArray = ["im a failure", "i am a failure", "im a total failure", "i am a total failure", "im a total utter failure", "i am a total utter failure", "im an utter failure", "i am an utter failure",
+                        "im just a failure", "i am just a failure", "im just a total failure", "i am just a total failure", "im just a total utter failure", "i am just a total utter failure", "im an utter failure", "i am an utter failure",
+                        "im just a failure", "i really am just a failure", "im just a total failure", "i really am just a total failure", "im just a total utter failure", "i really am just a total utter failure", "im an utter failure", "i really am an utter failure",
+                        "im a failure", "i really am a failure", "im a total failure", "i really am a total failure", "im a total utter failure", "i really am a total utter failure", "im an utter failure", "i really am an utter failure",
+                        "im such a failure", "i am such a failure", "im such a total failure", "i am such a total failure", "im such a total utter failure", "i am such a total utter failure", "im such an utter failure", "i am such an utter failure",
+                        "i feel like a failure", "i feel a failure", "i feel myself to be a failure",
+                        "i feel like such a failure", "i feel such a failure", "i feel myself to be such a failure"]
+    imALetdownArray = ["im a letdown", "i am a letdown", "im a total letdown", "i am a total letdown", "im a total utter letdown", "i am a total utter letdown", "im an utter letdown", "i am an utter letdown",
+                        "im just a letdown", "i am just a letdown", "im just a total letdown", "i am just a total letdown", "im just a total utter letdown", "i am just a total utter letdown", "im an utter letdown", "i am an utter letdown",
+                        "im just a letdown", "i really am just a letdown", "im just a total letdown", "i really am just a total letdown", "im just a total utter letdown", "i really am just a total utter letdown", "im an utter letdown", "i really am an utter letdown",
+                        "im a letdown", "i really am a letdown", "im a total letdown", "i really am a total letdown", "im a total utter letdown", "i really am a total utter letdown", "im an utter letdown", "i really am an utter letdown",
+                      "im a let down", "i am a let down", "im a total let down", "i am a total let down", "im a total utter let down", "i am a total utter let down", "im an utter let down", "i am an utter let down",
+                        "im just a let down", "i am just a let down", "im just a total let down", "i am just a total let down", "im just a total utter let down", "i am just a total utter let down", "im an utter let down", "i am an utter let down",
+                        "im just a let down", "i really am just a let down", "im just a total let down", "i really am just a total let down", "im just a total utter let down", "i really am just a total utter let down", "im an utter let down", "i really am an utter let down",
+                        "im a let down", "i really am a let down", "im a total let down", "i really am a total let down", "im a total utter let down", "i really am a total utter let down", "im an utter let down", "i really am an utter let down",
+                        "im such a letdown", "i am such a letdown", "im such a total letdown", "i am such a total letdown", "im such a total utter letdown", "i am such a total utter letdown", "im such an utter letdown", "i am such an utter letdown",
+                        "i feel like a letdown", "i feel a letdown", "i feel myself to be a letdown",
+                        "i feel like such a letdown", "i feel such a letdown", "i feel myself to be such a letdown"]
     letMyselfDownArray = ["let myself down", "let my self down", "let mysefl down", "let my sefl down"]
     feelOutOfControlArray = ["i feel out of control", "i'm feeling out of control", "im feeling out of control",\
                             "i feel so out of control", "i'm feeling so out of control", "im feeling so out of control",\
@@ -406,9 +459,9 @@ def choose_bot_wordy_response(message):
                     "i just feel really lost", "i'm just feeling really lost", "im just feeling really lost",\
                     "i just feel very lost", "i'm just feeling very lost", "im just feeling very lost"]
     inABadPlaceArray = ["i am in a bad place", "i'm in a bad place", "im in a bad place",\
-                        "i am in a really bad place", "i'm in a really bad place", "im in a really bad place",\
+                        "i am in such a bad place", "i'm in such a bad place", "im in such a bad place",\
                         "i am at a bad place", "i'm at a bad place", "im at a bad place",\
-                        "i am at a really bad place", "i'm at a really bad place", "im at a really bad place"]
+                        "i am at such a bad place", "i'm at such a bad place", "im at such a bad place"]
     feelingLowDownTerribleArray = ["i feel low", "i'm feeling low", "im feeling low", " i feel down", "i'm feeling down", "im feeling down", "i feel terrible", "i'm feeling terrible", "im feeling terrible", "i feel horrible", "i'm feeling horrible", "im feeling horrible",\
                                 "i feel so low", "i'm feeling so low", "im feeling so low", "i feel so down", "i'm feeling so down", "im feeling so down", "i feel so terrible", "i'm feeling so terrible","im feeling so terrible", "i feel so horrible", "i'm feeling so horrible", "im feeling so horrible",\
                                 "i feel really low", "i'm feeling really low", "im feeling really low", "i feel really down", "i'm feeling really down", "im feeling really down", "i feel really terrible", "i'm feeling really terrible", "im feeling really terrible", "i feel really horrible", "i'm feeling really horrible",\
@@ -419,16 +472,9 @@ def choose_bot_wordy_response(message):
                                 "i just feel really low", "i'm just feeling really low", "im just feeling really low", "i just feel really down", "i'm just feeling really down", "im just feeling really down", "i just feel really terrible", "i'm just feeling really terrible", "im just feeling really terrible", "i just feel really horrible", "i'm just feeling really horrible",\
                                 "i just feel totally low", "i'm just feeling totally low", "im just feeling totally low", "i just feel totally down", "i'm just feeling totally down", "im just feeling totally down", "i just feel totally terrible", "i'm just feeling totally terrible", "im just feeling totally terrible", "i just feel totally horrible", "i'm just feeling totally horrible", "im just feeling totally horrible",\
                                 "i just feel utterly low", "i'm just feeling utterly low", "im just feeling utterly low", "i just feel utterly down", "i'm just feeling utterly down", "im just feeling utterly down", "i just feel utterly terrible", "i'm just feeling utterly terrible", "im just feeling utterly terrible", "i just feel utterly horrible", "i'm just feeling utterly horrible", "im just feeling utterly horrible"]
-    imSadArray = ["i am sad", "i'm sad", "im sad", \
-                "i am so sad", "i'm so sad", "im so sad",\
-                "i am utterly sad", "i'm utterly sad", "im utterly sad",\
-                "i am really sad", "i'm really sad", "im really sad",\
-                "i am very sad", "i'm very sad", "im very sad",\
-                "i am feeling sad", "i'm feeling sad", "im feeling sad", \
-                "i am feeling so sad", "i'm feeling so sad", "im feeling so sad",\
-                "i am feeling utterly sad", "i'm feeling utterly sad", "im feeling utterly sad",\
-                "i am feeling really sad", "i'm feeling really sad", "im feeling really sad",\
-                "i am feeling very sad", "i'm feeling very sad", "im feeling very sad"]
+    iHateHowIFeelArray = ["i hate how i feel","i hate how im feeling", "i hate my feelings"]
+    imSadArray = ["i am sad", "i'm sad", "im sad",
+                "i am feeling sad", "i'm feeling sad", "im feeling sad"]
     imUpsetArray = ["im upset", "i'm upset", "im feeling upset", "i'm feeling upset", "i feel upset", "i feel upset",\
                     "im so upset", "i'm so upset", "im feeling so upset", "i'm feeling so upset", "i feel so upset", "i feel so upset",\
                     "im really upset", "i'm really upset", "im feeling really upset", "i'm feeling really upset", "i feel really upset", "i feel really upset"]
@@ -439,17 +485,26 @@ def choose_bot_wordy_response(message):
                     "im just feeling rubbish", "i'm just feeling rubbish", "i just feel rubbish", "i just feel rubbish",\
                     "im just feeling so rubbish", "i'm just feeling so rubbish", "i just feel so rubbish", "i just feel so rubbish",\
                     "im just feeling really rubbish", "i'm just feeling really rubbish", "i just feel really rubbish", "i just feel really rubbish"]
+    imAnxiousArray = ["im anxious", "i am anxious", "im feeling anxious", "i am feeling anxious", "i feel anxious"]
+    iHaveAnxietyArray = ["i have anxiety", "i suffer from anxiety"]
+    imWorriedArray = ["im worried", "i am worried", "i have worries", "making me worried", "makes me worried", "leaves me feeling worried", " i have so much to worry "]
     imNotHappyArray = ["im not happy", "i'm not happy", "im just not happy", "i'm just not happy", "im really not happy", "i'm really not happy"]
     difficultDayArray = ["its been a tough day", "it's been a tough day", "i've had a tough day", "ive had a tough day", \
                         "its been a difficult day", "it's been a difficult day", "i've had a difficult day", "ive had a difficult day"]
-    familyProblemsArray = ["i have family problems", "i'm having family problems", "im having family problems",\
-                            "i have problems with my family", "i'm having problems with my family", "im having problems with my family",
-                            "i have family troubles", "i'm having family troubles", "im having family troubles",\
-                            "i have troubles with my family", "i'm having troubles with my family", "im having troubles with my family",
-                            "i have family difficulties", "i'm having family difficulties", "im having family difficulties",\
-                            "i have difficulties with my family", "i'm having difficulties with my family", "im having difficulties with my family",\
-                            "i have family worries", "i'm having family worries", "im having family worries",\
-                            "i have worries with my family", "i'm having worries with my family", "im having worries with my family"]
+    familyProblemsArray = ["i have family problems", "i'm having family problems", "im having family problems", "ive got family problems", \
+                            "i have problems with my family", "i'm having problems with my family", "im having problems with my family", "ive got problems with my family",
+                            "i have family troubles", "i'm having family troubles", "im having family troubles", "ive got family troubles", \
+                            "i have troubles with my family", "i'm having troubles with my family", "im having troubles with my family", "ive got troubles with my family",
+                            "i have family difficulties", "i'm having family difficulties", "im having family difficulties", "ive got family difficulties", "ive got difficulties with my family", \
+                            "i have difficulties with my family", "i'm having difficulties with my family", "im having difficulties with my family", "ive got difficulties with my family", \
+                            "i have family worries", "i'm having family worries", "im having family worries", "ive got family worries", "ive got worries with my family", \
+                            "i have worries with my family", "i'm having worries with my family", "im having worries with my family", "ive got worries with my family"]
+    iDontKnowWhatToDoArray = ["i dont know what to do", "i dunno what to do", "i have no idea what to do",
+                            "ive no idea what to do", "i hvaent a clue what to do", "i havent a clue what to do",
+                            "i havent any idea what to do", "i dont have any idea what to do",
+                            "im not sure what to do", "im not all that sure what to do", "i am not sure what to do", "im not at all sure what to do",
+                            "what do you think i should do", "what do you think i shuld do", "what do u think i should do", "wat do you think i should do",
+                            "what should i do", "what can i do", "what do i do"]
     iDontKnowWhatToSayArray = ["i dont know what to say", "i don't know what to say", "i dont know what else to say", "i don't know what else to say", "i dont know what more to say", "i don't know what more to say",
                                 "i dont know what to tell you", "i don't know what to tell you", "i dont know what else to tell you", "i don't know what else to tell you", "i dont know what more to tell you", "i don't know what more to tell you",
                                 "dont know what to say", "don't know what to say", "dont know what else to say", "don't know what else to say", "dont know what more to say", "don't know what more to say",
@@ -464,26 +519,35 @@ def choose_bot_wordy_response(message):
                                 "i dont really know what to say now", "i don't really know what to say now", "i dont really know what else to say now", "i don't really know what else to say now", "i dont really know what more to say now", "i don't really know what more to say now",
                                 "dont really know what to say now", "don't really know what to say now", "dont really know what else to say now", "don't really know what else to say now", "dont really know what more to say now", "don't really know what more to say now"]
     helloArray = ["hello", "hi", "hey","hello!", "hi!", "hey!", "hello?", "hi?", "hey?"]
-    doYouGiveAdviceArray = ["do you give advice", "do you provide advice",
-                            "do you give any advice", "do you provide any advice",
-                            "do you even give advice", "do you even provide advice",
-                            "do you even give any advice", "do you even provide any advice",
-                            "can you give me advice", "can you give me advice",
-                            "can you give me any advice", "can you give me any advice",
-                            "can you give me some advice", "can you give me some advice",
-                            "have you any advice", "have you some advice"]
-    stopSynonymsArray = ["that's it", "thats it", "finish", "end", "nothing more to say", "bot stop", "bye",\
-                        "done", "i'm done", "im done", "im done speaking", "i have nothing else to say", "i have nothing else to say"]
+    doYouGiveAdviceArray = ["do you give advice", "do you provide advice","do you offer advice"
+                            "do you give any advice", "do you provide any advice","do you offer any advice",
+                            "do you even give advice", "do you even provide advice", "do you even offer advice",
+                            "do you even give any advice", "do you even provide any advice",  "do you even offer any advice",
+                            "can you give me advice", "can you provide me advice", "can you offer me advice",
+                            "can you give me any advice", "can you provide me any advice", "can you offer me any advice",
+                            "can you give me some advice", "can you provide me some advice", "can you offer me some advice",
+                            "have you any advice", "have you some advice", "have you advice"
+                            "give me advice", "i need advice",
+                            "dont you give advice", "you dont give advice",
+                            "will you give me advice", "will you give advice"]
+    stopSynonymsArray = ["that's it", "thats it", "finish", "end", "nothing more to say", "no more to say", "bot stop", "bye","goodbye",\
+                        "done", "i'm done", "im done", "i think im done", "im done speaking", "i think im done speaking",
+                        "i have nothing more to say", "i have nothing else to say", "ive got nothing more to say", "ive got nothing else to say",
+                        "i think i have nothing more to say", "i think i have nothing else to say", "i think ive got nothing more to say", "i think ive got nothing else to say",
+                        "i dont want to talk any more" ]
 
 
 
     # these variables are to keep track of whether a response has already been given (to avoid repeating it).
     # Just asserting here that they are global
     global iWantToKillMyselfResponseAlreadyUsed
+    global imGoingToKillMyselfResponseAlreadyUsed
     global iWantToDieResponseAlreadyUsed
-    global feelingSuicidalResponseAlreadyUsed
+    global imFeelingSuicidalResponseAlreadyUsed
     #global feelingQuiteSuicidalResponseAlreadyUsed : this varirable isn't being used
     global suicidalThoughtsResponseAlreadyUsed
+    global iDontWantToLiveResponseAlreadyUsed
+    global shouldIKillMyselfResponseAlreadyUsed
     global cryingResponseAlreadyUsed
     global nothingToLiveForResponseAlreadyUsed
     global singleWordDepressionResponseAlreadyUsed
@@ -498,16 +562,23 @@ def choose_bot_wordy_response(message):
     global iHateHowILookResponseAlreadyUsed
     global feelOverwhelmedResponseAlreadyUsed
     global feelingAwfulResponseAlreadyUsed
+    global imAFailureResponseAlreadyUsed
+    global imALetdownResponseAlreadyUsed
     global letMyselfDownResponseAlreadyUsed
     global feelOutOfControlResponseAlreadyUsed
     global feelLostResponseAlreadyUsed
     global inABadPlaceResponseAlreadyUsed
     global deserveResponseAlreadyUsed
+    global iHateHowIFeelResponseAlreadyUsed
     global imSadResponseAlreadyUsed
     global feelingLowDownTerribleResponseAlreadyUsed
     global imUpsetResponseAlreadyUsed
     global imAddictedResponseAlreadyUsed
     global feelingRubbishResponseAlreadyUsed
+    global iHaveAnxietyResponseAlreadyUsed
+    global imAnxiousResponseAlreadyUsed
+    global imWorriedResponseAlreadyUsed
+    global iDontKnowWhatToDoResponseAlreadyUsed
     global initial_iDontKnowWhatToSayResponseAlreadyUsed
     global second_iDontKnowWhatToSayResponseAlreadyUsed
     global imNotHappyResponseAlreadyUsed
@@ -520,11 +591,14 @@ def choose_bot_wordy_response(message):
 
 # declaring some variables which track whether a message says certain things
     msgSaysIWantToKillMyself = False
+    msgSaysImGoingToKillMyself = False
     msgSaysIWantToDie = False
     msgSaysImFeelingSuicidal = False
     msgSaysImFeelingQuiteSuicidal = False
     msgSaysIveBeenFeelingSuicidal = False
     msgSaysSuicidalThoughts = False
+    msgSaysIDontWantToLive = False
+    msgSaysShouldIKillMyself = False
     msgSaysImCrying = False
     msgSaysNothingToLiveFor = False
     msgSaysSingleWordDepression = False
@@ -539,16 +613,26 @@ def choose_bot_wordy_response(message):
     msgSaysIHateHowILook = False
     msgSaysFeelOverwhelmed = False
     msgSaysFeelingAwful = False
+    msgSaysImAFailure = False
+    msgSaysImALetdown = False
     msgSaysLetMyselfDown = False
     msgSaysFeelOutOfControl = False
     msgSaysFeelLost = False
     msgSaysInABadPlace = False
     msgSaysDeserve = False
+    msgSaysIHateHowIFeel = False
     msgSaysImSad = False
     msgSaysFeelingLowDownTerrible = False
     msgSaysImUpset = False
     msgSaysImAddicted = False
     msgSaysFeelingRubbish = False
+    msgSaysIHaveAnxiety = False # code using this is commented out currently
+    msgSaysImAnxious = False # code using this is commented out currently
+    msgSaysImWorried = False
+    msgSaysIHaveAnxietyResponseAlreadyUsed = False
+    msgSaysImAnxiousResponseAlreadyUsed = False
+    msgSaysImWorriedResponseAlreadyUsed = False
+    msgSaysIDontKnowWhatToDo = False
     msgSaysImNotHappy = False
     msgSaysIHateMyself = False
     msgSaysDifficultDay = False
@@ -558,252 +642,427 @@ def choose_bot_wordy_response(message):
 
     negatedString = ""
 
+
+    def cleanText(message):
+        """
+        This function takes a string (e.g. the user's message) and cleans it to make it suitable for analysing.
+        It does this by
+        1. clean the string so that it only contains alphabetic characters and spaces (everything else is deleted)
+        2. remove extraneous words (this results in a list)
+        3. turn list back into string
+        Cleaning the message makes the system more robust, because we've seen instances of triggers not getting recognised...
+        ... we speculate that different treatments of the apostrophe character might be the reason.
+        Note: Daniel has suggested that we do this more neatly with the below (ocmmented out) code. Have not implemented this yet.
+        """
+
+        ## NOTE Daniel suggested that this function could be implemented more neatly with the below code.
+        ## NOTE I haven't gone through this yet, so it's in here (commented out) but could be implemented later
+        #cleanedMessage = ["".join(list(filter(str.isalpha, i))) for i in message.split() if i not in extraneousWordsArray]
+        #cleanedMessage = ' '.join(cleanedMessage)
+
+
+        extraneousWordsArray = ["still", "just", "so", "very", "totally", "utterly", "really", "completely", "literally", "actually", \
+        "even", "some", "always"]
+        # I wanted to include "such a" in the extraneousWordsArray, but the current method does'nt work for that...
+        #... because the current method "splits" the string into a list of separate words
+
+        print("DEBUG: at start of clean text function, message = "+ message)
+
+        # Step 1: clean the string so that it only contains alphabetic characters and spaces (everything else is deleted)
+        messageCleanedOfCharacters = ""
+        for char in message:
+            if char.isalpha() or char == " ":
+                messageCleanedOfCharacters = messageCleanedOfCharacters+char
+
+        print("DEBUG: in clean text function, messageCleanedOfCharacters = "+ messageCleanedOfCharacters)
+
+        # Step 2: remove extraneous words
+        message_list = messageCleanedOfCharacters.split()
+        # for word in message_list:
+        #     if word in extraneousWordsArray:
+        #         del word
+        # for i in range(0,len(message_list)):
+        #     print("DEWBUG: i = "+str(i)+" and message_list[i] = "+ message_list[i])
+        #     if message_list[i] in extraneousWordsArray:
+        #         del message_list[i]
+
+        loopEnd = len(message_list)
+        i = 0
+        while i < loopEnd:
+            print("DEWBUG: i = "+str(i)+" and message_list[i] = "+ message_list[i])
+            if message_list[i] in extraneousWordsArray:
+                del message_list[i]
+                loopEnd = loopEnd - 1
+                i = i - 1
+            i = i + 1
+
+        # Step 3: reconstruct string
+        cleanedMessage = ""
+        for word in message_list:
+            cleanedMessage = cleanedMessage + word + " "
+
+        print("DEBUG: at end of clean text function, cleanedMessage = "+ cleanedMessage)
+
+
+        return cleanedMessage
+
+
+    print("Prior to cleaning, the message is "+message)
+    cleanedMessage = ""
+    cleanedMessage = cleanText(message)
+    print("After cleaning, we have claenedmessage = "+cleanedMessage)
+
+
+    # The below cleaning method isn't be used any more
+    # for char in message:
+    #     if char.isalpha():
+    #         cleanedMessage = cleanedMessage+char
+
+
+
     for string in iWantToKillMyselfArray:             # work out if anything from the iWantToKillMyselfArray is in the user's message
-        if string in message.lower():                          # if message contains "i Want To KillMyself" or similar
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "i Want To KillMyself" or similar
             msgSaysIWantToKillMyself = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
-                if negatedString.replace(" ","") in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysIWantToKillMyself = False                                     # ... then set this flag to false
-                    print("negated string has been found and msgSaysIWantToKillMyself has been set to false!!!!!!!!!!!!!!!!!!!")
-    for string in iWantToDieArray:             # work out if anything from the iWantToDieArray is in the user's message
-        if string in message.lower():                          # if message contains "i Want To KillMyself" or similar
+    for string in imGoingToKillMyselfArray:             # work out if anything from the imGoingToKillMyselfArray is in the user's message
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "i Want To KillMyself" or similar
+            msgSaysImGoingToKillMyself = True
+            for negatingString in itsNotThatArray:
+                negatedString = negatingString+string
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                    msgSaysImGoingToKillMyself = False                                     # ... then set this flag to false
+    for string in iWantToDieArray:             # work out if anything from the iWantToDieArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "i Want To KillMyself" or similar
             msgSaysIWantToDie = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
-                if negatedString.replace(" ","") in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysIWantToDie = False                                     # ... then set this flag to false
-    for string in imFeelingSuicidalArray:             # work out if anything from the imFeelingSuicidalArray is in the user's message
-        if string in message.lower():                          # if message contains "imfeelingsuicidal" or similar
+    for string in imFeelingSuicidalArray:             # work out if anything from the imFeelingSuicidalArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "imfeelingsuicidal" or similar
             msgSaysImFeelingSuicidal = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
-                if negatedString.replace(" ","") in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysImFeelingSuicidal = False                                     # ... then set this flag to false
                     print("negated string has been found and msgSaysImFeelingSuicidal has been set to false!!!!!!!!!!!!!!!!!!!")
-    for string in iveBeenFeelingSuicidalArray:             # work out if anything from the iveBeenFeelingSuicidalArray is in the user's message
-        if string in message.lower():                          # if message contains "iveBeenFeelingSuicidal" or similar
+    for string in iveBeenFeelingSuicidalArray:             # work out if anything from the iveBeenFeelingSuicidalArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "iveBeenFeelingSuicidal" or similar
             msgSaysIveBeenFeelingSuicidal = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
-                if negatedString.replace(" ","") in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysIveBeenFeelingSuicidal = False                                     # ... then set this flag to false
-    for string in imFeelingQuiteSuicidalArray:             # work out if anything from the imFeelingQuiteSuicidalArray is in the user's message
-        if string in message.lower():                          # if message contains "imFeelingQuiteSuicidal" or similar
+    for string in imFeelingQuiteSuicidalArray:             # work out if anything from the imFeelingQuiteSuicidalArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "imFeelingQuiteSuicidal" or similar
             msgSaysImFeelingQuiteSuicidal = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
-                if negatedString.replace(" ","") in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysImFeelingQuiteSuicidal = False                                     # ... then set this flag to false
-    for string in suicidalThoughtsArray:             # work out if anything from the suicidalThoughtsArray is in the user's message
-        if string in message.lower():                          # if message contains "suicidalThoughts" or similar
+    for string in suicidalThoughtsArray:             # work out if anything from the suicidalThoughtsArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "suicidalThoughts" or similar
             msgSaysSuicidalThoughts = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
-                if negatedString.replace(" ","") in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysSuicidalThoughts = False                                     # ... then set this flag to false
-    for string in nothingToLiveForArray:             # work out if anything from the nothingToLiveForArray is in the user's message
-        if string in message.lower():                          # if message contains "nothingToLiveFor" or similar
+    for string in iDontWantToLiveArray:             # work out if anything from the  IDontWantToLiveArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains " IDontWantToLive" or similar
+            msgSaysIDontWantToLive = True
+            for negatingString in itsNotThatArray:
+                negatedString = negatingString+string
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                    msgSaysIDontWantToLive = False                                     # ... then set this flag to false
+    for string in shouldIKillMyselfArray:             # work out if anything from the ShouldIKillMyselfArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "ShouldIKillMyself" or similar
+            msgSaysShouldIKillMyself = True
+            for negatingString in itsNotThatArray:
+                negatedString = negatingString+string
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                    msgSaysShouldIKillMyself = False                                     # ... then set this flag to false
+    for string in nothingToLiveForArray:             # work out if anything from the nothingToLiveForArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "nothingToLiveFor" or similar
             msgSaysNothingToLiveFor = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
-                if negatedString.replace(" ","") in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysNothingToLiveFor = False                                     # ... then set this flag to false
-    for string in imCryingArray:             # work out if anything from the imCryingArray is in the user's message
-        if string in message.lower():                          # if message contains "imCrying" or similar
+    for string in imCryingArray:             # work out if anything from the imCryingArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "imCrying" or similar
             msgSaysImCrying = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
-                if negatedString.replace(" ","") in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysImCrying = False                                     # ... then set this flag to false
-    for string in nothingToLiveForArray:             # work out if anything from the nothingToLiveForArray is in the user's message
-        if string in message.lower():                          # if message contains "nothingToLiveFor" or similar
+    for string in nothingToLiveForArray:             # work out if anything from the nothingToLiveForArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "nothingToLiveFor" or similar
             msgSaysNothingToLiveFor = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
-                if negatedString.replace(" ","") in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysNothingToLiveFor = False                                     # ... then set this flag to false
-    for string in feelingDepressedArray:             # work out if anything from the feelingDepressedArray is in the user's message
-        if string in message.lower():                          # if message contains "feelingDepressed" or similar
+    for string in feelingDepressedArray:             # work out if anything from the feelingDepressedArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "feelingDepressed" or similar
             msgSaysFeelingDepressed = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
-                if negatedString.replace(" ","") in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysFeelingDepressed = False                                     # ... then set this flag to false
-    for string in feelingLonelyArray:             # work out if anything from the FeelingLonelyArray is in the user's message
-        if string in message.lower():                          # if message contains "FeelingLonely" or similar
+    for string in feelingLonelyArray:             # work out if anything from the FeelingLonelyArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "FeelingLonely" or similar
             msgSaysFeelingLonely = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
-                if negatedString.replace(" ","") in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysFeelingLonely = False                                     # ... then set this flag to false
-    for string in iHateMyselfArray:             # work out if anything from the iHateMyselfArray is in the user's message
-        if string in message.lower():                          # if message contains "iHateMyself" or similar
+    for string in iHateMyselfArray:             # work out if anything from the iHateMyselfArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "iHateMyself" or similar
             msgSaysIHateMyself = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
-                if negatedString.replace(" ","") in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysIHateMyself = False                                     # ... then set this flag to false
-    for string in iHaveNoWayOutArray:             # work out if anything from the iHaveNoWayOutArray is in the user's message
-        if string in message.lower():                          # if message contains "iHaveNoWayOut" or similar
+    for string in iHaveNoWayOutArray:             # work out if anything from the iHaveNoWayOutArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "iHaveNoWayOut" or similar
             msgSaysIHaveNoWayOut = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
-                if negatedString.replace(" ","") in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysIHaveNoWayOut = False                                     # ... then set this flag to false
-    for string in hadEnoughOfLifeArray:             # work out if anything from the hadEnoughOfLifeArray is in the user's message
-        if string in message.lower():                          # if message contains "hadEnoughOfLife" or similar
+    for string in hadEnoughOfLifeArray:             # work out if anything from the hadEnoughOfLifeArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "hadEnoughOfLife" or similar
             msgSaysHadEnoughOfLife = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
-                if negatedString.replace(" ","") in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysHadEnoughOfLife = False                                     # ... then set this flag to false
-    for string in nothingToLookForwardToArray:             # work out if anything from the nothingToLookForwardToArray is in the user's message
-        if string in message.lower():                          # if message contains "nothingToLookForwardTo" or similar
+    for string in nothingToLookForwardToArray:             # work out if anything from the nothingToLookForwardToArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "nothingToLookForwardTo" or similar
             msgSaysNothingToLookForwardTo = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
-                if negatedString.replace(" ","") in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysNothingToLookForwardTo = False                                     # ... then set this flag to false
-    for string in imUselessArray:             # work out if anything from the imUselessArray is in the user's message
-        if string in message.lower():                          # if message contains "imUseless" or similar
+    for string in imUselessArray:             # work out if anything from the imUselessArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "imUseless" or similar
             msgSaysImUseless = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
-                if negatedString.replace(" ","") in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysImUseless = False                                     # ... then set this flag to false
-    for string in imWorthlessArray:             # work out if anything from the imWorthlessArray is in the user's message
-        if string in message.lower():                          # if message contains "imWorthless" or similar
+    for string in imWorthlessArray:             # work out if anything from the imWorthlessArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "imWorthless" or similar
             msgSaysImWorthless = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
-                if negatedString.replace(" ","") in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysImWorthless = False                                     # ... then set this flag to false
-    for string in dontHaveAnyoneICanTalkToArray:             # work out if anything from the dontHaveAnyoneICanTalkToArray is in the user's message
-        if string in message.lower():                          # if message contains "dontHaveAnyoneICanTalkTo" or similar
+    for string in dontHaveAnyoneICanTalkToArray:             # work out if anything from the dontHaveAnyoneICanTalkToArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "dontHaveAnyoneICanTalkTo" or similar
             msgSaysDontHaveAnyoneICanTalkTo = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
-                if negatedString.replace(" ","") in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysDontHaveAnyoneICanTalkTo = False                                     # ... then set this flag to false
-    for string in iHateHowILookArray:             # work out if anything from the iHateHowILookArray is in the user's message
-        if string in message.lower():                          # if message contains "iHateHowILook" or similar
+    for string in iHateHowILookArray:             # work out if anything from the iHateHowILookArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "iHateHowILook" or similar
             msgSaysIHateHowILook = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
-                if negatedString.replace(" ","") in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysIHateHowILook = False                                     # ... then set this flag to false
-    for string in feelOverwhelmedArray:             # work out if anything from the feelOverwhelmedArray is in the user's message
-        if string in message.lower():                          # if message contains "feelOverwhelmed" or similar
+    for string in feelOverwhelmedArray:             # work out if anything from the feelOverwhelmedArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "feelOverwhelmed" or similar
             msgSaysFeelOverwhelmed = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
-                if negatedString.replace(" ","") in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysFeelOverwhelmed = False                                     # ... then set this flag to false
-    for string in feelingAwfulArray:             # work out if anything from the feelingAwfulArray is in the user's message
-        if string in message.lower():                          # if message contains "feelingAwful" or similar
+    for string in feelingAwfulArray:             # work out if anything from the feelingAwfulArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "feelingAwful" or similar
             msgSaysFeelingAwful = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
-                if negatedString.replace(" ","") in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysFeelingAwful = False                                     # ... then set this flag to false
+    for string in imAFailureArray:             # work out if anything from the ImAFailureArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "ImAFailure" or similar
+            msgSaysImAFailure = True
+            for negatingString in itsNotThatArray:
+                negatedString = negatingString+string
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                    msgSaysImAFailure = False                                     # ... then set this flag to false
+    for string in imALetdownArray:             # work out if anything from the ImALetdownArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "ImALetdown" or similar
+            msgSaysImALetdown = True
+            for negatingString in itsNotThatArray:
+                negatedString = negatingString+string
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                    msgSaysImALetdown = False                                     # ... then set this flag to false
     ## NOTE:  letMyselfDown is treated slightly differently. All the other strings start with I (i.e. the first person pronoun)
     ## "Let myself down" doesn't need to because it already contains a reflexive first person pronoun
     ## But this means that the preceding "it's not that" check needs to be more sophisticated.
     ## This is done further down.
-    for string in feelOutOfControlArray:             # work out if anything from the feelOutOfControlArray is in the user's message
-        if string in message.lower():                          # if message contains "feelOutOfControl" or similar
+    for string in feelOutOfControlArray:             # work out if anything from the feelOutOfControlArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "feelOutOfControl" or similar
             msgSaysFeelOutOfControl = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
-                if negatedString.replace(" ","") in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysFeelOutOfControl = False                                     # ... then set this flag to false
-    for string in feelLostArray:             # work out if anything from the feelLostArray is in the user's message
-        if string in message.lower():                          # if message contains "feelLost" or similar
+    for string in feelLostArray:             # work out if anything from the feelLostArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "feelLost" or similar
             msgSaysFeelLost = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
-                if negatedString.replace(" ","") in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysFeelLost = False                                     # ... then set this flag to false
-    for string in inABadPlaceArray:             # work out if anything from the inABadPlaceArray is in the user's message
-        if string in message.lower():                          # if message contains "inABadPlace" or similar
+    for string in inABadPlaceArray:             # work out if anything from the inABadPlaceArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "inABadPlace" or similar
             msgSaysInABadPlace = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
-                if negatedString.replace(" ","") in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysInABadPlace = False                                     # ... then set this flag to false
-    for string in imSadArray:             # work out if anything from the imSadArray is in the user's message
-        if string in message.lower():                          # if message contains "imSad" or similar
+    for string in iHateHowIFeelArray:             # work out if anything from the IHateHowIFeelArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "IHateHowIFeel" or similar
+            msgSaysIHateHowIFeel = True
+            for negatingString in itsNotThatArray:
+                negatedString = negatingString+string
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                    msgSaysIHateHowIFeel = False                                     # ... then set this flag to false
+    for string in imSadArray:             # work out if anything from the imSadArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "imSad" or similar
             msgSaysImSad = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
-                if negatedString.replace(" ","") in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysImSad = False                                     # ... then set this flag to false
-    for string in feelingLowDownTerribleArray:             # work out if anything from the feelingLowDownTerribleArray is in the user's message
-        if string in message.lower():                          # if message contains "feelingLowDownTerrible" or similar
+    for string in feelingLowDownTerribleArray:             # work out if anything from the feelingLowDownTerribleArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "feelingLowDownTerrible" or similar
             msgSaysFeelingLowDownTerrible = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
-                if negatedString.replace(" ","") in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysFeelingLowDownTerrible = False                                     # ... then set this flag to false
-    for string in imUpsetArray:             # work out if anything from the imUpsetArray is in the user's message
-        if string in message.lower():                          # if message contains "imUpset" or similar
+    for string in imUpsetArray:             # work out if anything from the imUpsetArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "imUpset" or similar
             msgSaysImUpset = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
-                if negatedString.replace(" ","") in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysImUpset = False                                     # ... then set this flag to false
-    for string in imAddictedArray:             # work out if anything from the imAddictedArray is in the user's message
-        if string in message.lower():                          # if message contains "imAddicted" or similar
+    for string in imAddictedArray:             # work out if anything from the imAddictedArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "imAddicted" or similar
             msgSaysImAddicted = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
-                if negatedString.replace(" ","") in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysImAddicted = False                                     # ... then set this flag to false
-    for string in feelingRubbishArray:             # work out if anything from the feelingRubbishArray is in the user's message
-        if string in message.lower():                          # if message contains "feelingRubbish" or similar
+    for string in feelingRubbishArray:             # work out if anything from the feelingRubbishArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "feelingRubbish" or similar
             msgSaysFeelingRubbish = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
-                if negatedString.replace(" ","") in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysFeelingRubbish = False                                     # ... then set this flag to false
-    for string in imNotHappyArray:             # work out if anything from the imNotHappyArray is in the user's message
-        if string in message.lower():                          # if message contains "imNotHappy" or similar
+    for string in imAnxiousArray:             # work out if anything from the imAnxiousArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "imAnxious" or similar
+            msgSaysImAnxious = True
+            for negatingString in itsNotThatArray:
+                negatedString = negatingString+string
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                    msgSaysImAnxious = False                                     # ... then set this flag to false
+    for string in iHaveAnxietyArray:             # work out if anything from the iHaveAnxietyArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "iHaveAnxiety" or similar
+            msgSaysIHaveAnxiety = True
+            for negatingString in itsNotThatArray:
+                negatedString = negatingString+string
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                    msgSaysIHaveAnxiety = False                                     # ... then set this flag to false
+    for string in imWorriedArray:             # work out if anything from the imWorriedArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "imWorried" or similar
+            msgSaysImWorried = True
+            for negatingString in itsNotThatArray:
+                negatedString = negatingString+string
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                    msgSaysImWorried = False                                     # ... then set this flag to false
+    for string in iDontKnowWhatToDoArray:             # work out if anything from the IDontKnowWhatToDoArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "IDontKnowWhatToDo" or similar
+            msgSaysIDontKnowWhatToDo = True
+            for negatingString in itsNotThatArray:
+                negatedString = negatingString+string
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                    msgSaysIDontKnowWhatToDo = False                                     # ... then set this flag to false
+    for string in imNotHappyArray:             # work out if anything from the imNotHappyArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "imNotHappy" or similar
             msgSaysImNotHappy = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
-                if negatedString.replace(" ","") in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysImNotHappy = False                                     # ... then set this flag to false
-    for string in familyProblemsArray:             # work out if anything from the familyProblemsArray is in the user's message
-        if string in message.lower():                          # if message contains "familyProblems" or similar
+    for string in familyProblemsArray:             # work out if anything from the familyProblemsArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "familyProblems" or similar
             msgSaysFamilyProblems = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
-                if negatedString.replace(" ","") in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysFamilyProblems = False                                     # ... then set this flag to false
 
     ## "Let myself down" is treated slightly different because it doesn't have a first person pronoun at the start, so the negating string is done differently
-    for string in letMyselfDownArray:             # work out if anything from the letMyselfDownArray is in the user's message
-        if string in message.lower():                          # if message contains "letMyselfDown" or similar
+    for string in letMyselfDownArray:             # work out if anything from the letMyselfDownArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "letMyselfDown" or similar
             msgSaysLetMyselfDown = True
             for negatingString in itsNotThatArray:
-                negatedStringArray = [negatingString+string, negatingString+"i"+string, negatingString+"ive"+string, negatingString+"i've"+string]
+                negatedStringArray = [negatingString+string, negatingString+"i"+string, negatingString+"ive"+string, negatingString+"i've"+string] # including "i've" doesn't make sense any more now that we're using cleanedMessage, which takes the punctuation out anyway
                 for negatedString in negatedStringArray:
-                    if negatedString in message.lower().replace(" ",""):  # and if the string does have "it's not that" before it, or "it's not that i" before it, or ...
+                    if negatedString in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it, or "it's not that i" before it, or ...
                         msgSaysLetMyselfDown = False                                     # ... then set this flag to false
 
     ## "Do you give advice" is trated differently ebcause there's no need to include the negatig string check
     for string in doYouGiveAdviceArray:             # work out if anything from the doYouGiveAdviceArray is in the user's message
-        if string in message.lower():                          # if message contains "do you give advice" or similar
+        if string.replace(" ","") in cleanedMessage.lower().replace(" ",""):                          # if message contains "do you give advice" or similar
             msgSaysDoYouGiveAdvice = True
 
+    ## This section is another way of checking if msgSaysNothingToLiveFor shuld be true.
+    ## It works by going through each of hte words "have anything to live for" and checking
+    ## (a) is each of those words in the user's message?
+    ## (b) do they appear in the right order? (this is a slightly hacky way of checking that)
+    ## if both (a) and (b) apply, then this also sets msgSaysNothingToLiveFor to True
+    haveAnythingToLiveFor = "have anything to live for"
+    wordInMessage = []
+    for word in haveAnythingToLiveFor.lower().split():
+        if word in cleanedMessage.lower():
+            wordInMessage.append(True)
+        else:
+            wordInMessage.append(False)
+    allWordsInMessage = all(wordInMessage)
+    wordsInRightOrderBool = False # initialising
+    if allWordsInMessage:
+        wordsInRightOrderArray = []
+        for i in len(haveAnythingToLiveFor.lower().split()):
+            if i == 0: # if it's the first word in the array
+                wordsInRightOrderArray[i] = True
+            else:
+                if message.index(haveAnythingToLiveFor.lower().split()[i]) > message.index(haveAnythingToLiveFor.lower().split()[i-1]):
+                #if the lowest index where the ith word is found is after the lowest index where the (i-1)th index is found
+                #I actually don't think this is quite the logic I want, but I do'nt want to let the perfect be the enemy of the good
+                    wordsInRightOrderArray[i] = True
+                else:
+                    wordsInRightOrderArray[i] = False
+        wordsInRightOrderBool = all(wordsInRightOrderArray)
+
+    if allWordsInMessage and wordsInRightOrderBool:
+        msgSaysNothingToLiveFor = True
+    ## This is the end of the section that is another way of checking if msgSaysNothingToLiveFor shuld be true.
 
 
     # debug
     print("message ="+str(message))
-    print("msgSaysFeelingLonely = "+str(msgSaysFeelingLonely))
-    print("feelingLonelyResponseAlreadyUsed = "+feelingLonelyResponseAlreadyUsed[0] + " ; " +str(feelingLonelyResponseAlreadyUsed[1]) )
-
 
 
     def selectRandomResponse():
@@ -813,31 +1072,52 @@ def choose_bot_wordy_response(message):
         response = encouragingNoises[randomlyChosenIndex]
         return response
 
+
+
     if msgSaysIWantToKillMyself == True and iWantToKillMyselfResponseAlreadyUsed != [conversationId,True]:
         # if the user's message contains some variant of "I want to kill myself"
+        print("This is inside the if msgSaysIWantToKillMyself == True and... statement")
         response = "Things must be pretty grim if you've got to the stage where you're talking about ending your life like this."
         iWantToKillMyselfResponseAlreadyUsed = [conversationId,True]
+
+    elif msgSaysImGoingToKillMyself == True and imGoingToKillMyselfResponseAlreadyUsed != [conversationId,True]:
+        # if the user's message contains some variant of "I'm going to kill myself", then if the user has indicated that they are feeling suicidal
+        # then treat the users statement that they will kill themself as a statement of serious suicidal intent.
+        # However if it's not accompanied by suicidal language, then it's not so clear, e.g. some users have said things like
+        # "i'm going to kill myself with all the alcohol i'm consuming"
+
+        #if CALLER IS SUICIDAL
+        userIsSuicidal = False
+        userIsSuicidal = msgSaysIWantToKillMyself or msgSaysIWantToDie or msgSaysImFeelingSuicidal or msgSaysImFeelingQuiteSuicidal or msgSaysSuicidalThoughts \
+        or iWantToKillMyselfResponseAlreadyUsed == [conversationId,True] or iWantToDieResponseAlreadyUsed == [conversationId,True] or imFeelingSuicidalResponseAlreadyUsed == [conversationId,True] or suicidalThoughtsResponseAlreadyUsed == [conversationId,True]
+        if userIsSuicidal:
+            response = "You say that you're going to kill yourself. I'm saddened to hear that. Could you say more about death and what it means for you?"
+        else:
+            response = "It sounds pretty stark to hear you say that you will kill yourself."
+
+        imGoingToKillMyselfResponseAlreadyUsed = [conversationId,True]
+
     elif msgSaysIWantToDie == True and iWantToDieResponseAlreadyUsed != [conversationId,True]:
         # if the user's message contains some variant of "I want to kill myself"
         response = "I'm sorry to hear you say that you want to die."
         iWantToDieResponseAlreadyUsed = [conversationId,True]
-    elif msgSaysImFeelingSuicidal == True or msgSaysIveBeenFeelingSuicidal == True and feelingSuicidalResponseAlreadyUsed != [conversationId,True]:
+    elif (msgSaysImFeelingSuicidal == True or msgSaysIveBeenFeelingSuicidal == True) and imFeelingSuicidalResponseAlreadyUsed != [conversationId,True]:
         # if the user's message contains some variant of "I'm feeling suicidal"
-        # note that the response is very similar to the "feeling quite suicidal" response, so these two use the same feelingSuicidalResponseAlreadyUsed variable
+        # note that the response is very similar to the "feeling quite suicidal" response, so these two use the same imFeelingSuicidalResponseAlreadyUsed variable
         if USER_CHARACTER_COUNT < 1000:
             response = "I'm sorry to hear you mention that you're feeling suicidal. Could we perhaps explore that a bit more?"
         else:
             response = "I'm sensing you have a lot on your plate at the moment. I just want to pick up on the fact that you just mentioned that you were feeling suicidal. I'm sorry to hear that. Could you tell me more about those feelings?"
-        feelingSuicidalResponseAlreadyUsed = [conversationId,True]
+        imFeelingSuicidalResponseAlreadyUsed = [conversationId,True]
 
-    elif msgSaysImFeelingQuiteSuicidal == True and feelingSuicidalResponseAlreadyUsed != [conversationId,True]:
+    elif msgSaysImFeelingQuiteSuicidal == True and imFeelingSuicidalResponseAlreadyUsed != [conversationId,True]:
         # if the user's message contains some variant of "I'm feeling quite suicidal"
-        # note that the response is very similar to the "feeling suicidal" response, so these two use the same feelingSuicidalResponseAlreadyUsed variable
+        # note that the response is very similar to the "feeling suicidal" response, so these two use the same imFeelingSuicidalResponseAlreadyUsed variable
         if USER_CHARACTER_COUNT < 1000:
             response = "I'm sorry to hear you mention that you're feeling suicidal. Do you feel this way often?"
         else:
             response = "I'm sensing you have a lot on your plate at the moment. I just want to pick up on the fact that you just mentioned that you were feeling quite suicidal. I'm sorry to hear that. Could you tell me more about those feelings?"
-        feelingSuicidalResponseAlreadyUsed = [conversationId,True]
+        imFeelingSuicidalResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysSuicidalThoughts == True and suicidalThoughtsResponseAlreadyUsed != [conversationId,True]:
         # if the user's message contains some variant of "i have suicidal thoughts"
@@ -847,6 +1127,43 @@ def choose_bot_wordy_response(message):
             response = "You just mentioned suicidal thoughts. If you have anything more to say about that, I'd be happy to hear?"
         suicidalThoughtsResponseAlreadyUsed = [conversationId,True]
 
+
+    elif msgSaysIDontWantToLive == True and iDontWantToLiveResponseAlreadyUsed != [conversationId,True]:
+        # if the user's message contains some variant of "i have suicidal thoughts"
+        userIsSuicidal = False
+        userIsSuicidal = msgSaysIWantToKillMyself or msgSaysIWantToDie or msgSaysImFeelingSuicidal or msgSaysImFeelingQuiteSuicidal or msgSaysSuicidalThoughts or msgSaysShouldIKillMyself \
+        or iWantToKillMyselfResponseAlreadyUsed == [conversationId,True] or iWantToDieResponseAlreadyUsed == [conversationId,True] or imFeelingSuicidalResponseAlreadyUsed == [conversationId,True] or suicidalThoughtsResponseAlreadyUsed == [conversationId,True] or shouldIKillMyselfResponseAlreadyUsed == [conversationId,True]
+        if userIsSuicidal:
+            if USER_CHARACTER_COUNT < 300:
+                response = "I'm hearing loud and clear that you don't want to be alive, and it's really sad that it's got to this. Could you say any more about what's making you feel this way?"
+            else:
+                response = "It's sad that you're feeling that you don't want to be alive any more, and that you want to die."
+        else: # i.e. if we haven't picked up any other clear indications of suicidality
+            if USER_CHARACTER_COUNT < 300:
+                response = "I'm sorry to hear you say that you don't want to live. If you want to explore your thoughts about this, including thinking through any suicidal thoughts you have, feel free to use me as a sounding board"
+            else:
+                response = "It's so sad that it's got to the stage where you feel that way about your life."
+        iDontWantToLiveResponseAlreadyUsed = [conversationId,True]
+
+
+    elif msgSaysShouldIKillMyself == True and shouldIKillMyselfResponseAlreadyUsed != [conversationId,True]:
+        # if the user's message contains some variant of "hsould i kill myseld"
+        if message.lower() in shouldIKillMyselfArray or message.lower()[:len(message)-1] in shouldIKillMyselfArray: # if the user's message is exactly equal to one of the things in the array (or perhaps just has a question mark or somtehing at the end), then we have more confidence that they are actually asking this question
+            if USER_CHARACTER_COUNT < 300:
+                response = "The fact that you are asking this question means that things must be really bad for you. I'm sorry that you're feeling this way. Can you say more about how you're feeling?"
+            else:
+                response = "The fact that you are asking this question means that things must be really bad for you. I'm sorry that you're feeling this way."
+        else: # if the string isn't equal to "should i kill myself" or similar, then we have to phrase the response a bit more cautiously
+            if USER_CHARACTER_COUNT < 300:
+                response = "If anyone even thinks about ending their life, then things must be really bad. I'm sorry for your suffering. Can you tell me more about what's making you feel this way?"
+            else:
+                response = "If anyone even thinks about ending their life, then things must be really bad. I'm sorry for your suffering. Can you say more about what you think you should do?"
+
+        shouldIKillMyselfResponseAlreadyUsed = [conversationId,True]
+
+
+
+
     elif msgSaysImCrying == True and cryingResponseAlreadyUsed != [conversationId,True]:
         # if the users message contains some variant of "i'm crying"
         response = "I'm sorry to hear that you're feeling this way, and that it's making you cry. That sounds so sad."
@@ -854,8 +1171,16 @@ def choose_bot_wordy_response(message):
 
     elif msgSaysNothingToLiveFor == True and nothingToLiveForResponseAlreadyUsed != [conversationId,True]:
         # if the users message contains some variant of "i have nothing to live for"
-        response = "I'm sorry to hear you say that you have nothing to live for. You saying that makes me worry about \
-        whether you want to continue to live, or if you're having suicidal thoughts. Could you say more about what's on your mind?"
+
+        userIsSuicidal = False
+        userIsSuicidal = msgSaysIWantToKillMyself or msgSaysIWantToDie or msgSaysImFeelingSuicidal or msgSaysImFeelingQuiteSuicidal or msgSaysSuicidalThoughts \
+        or iWantToKillMyselfResponseAlreadyUsed == [conversationId,True] or iWantToDieResponseAlreadyUsed == [conversationId,True] or imFeelingSuicidalResponseAlreadyUsed == [conversationId,True] or suicidalThoughtsResponseAlreadyUsed == [conversationId,True]
+
+        if userIsSuicidal:
+            response = "It sounds bleak to hear you say you have nothing to live for, and I find it sad that you've been expressing suicidal thoughts."
+        else:
+            response = "I'm sorry to hear you say that you have nothing to live for. You saying that makes me worry about \
+            whether you want to continue to live, or if you're having suicidal thoughts. Could you say more about what's on your mind?"
         nothingToLiveForResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysIHateMyself == True and iHateMyselfResponseAlreadyUsed != [conversationId,True]:
@@ -880,17 +1205,25 @@ def choose_bot_wordy_response(message):
         feelingDepressedResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysIHaveNoWayOut == True and iHaveNoWayOutResponseAlreadyUsed != [conversationId,True]:
-        ### If the message includes a string roughly equivalent to saying "I'm feeling depressed", then reply with
+        ### If the message includes a string roughly equivalent to saying "IHaveNoWayOut", then reply with
         response = "I heard you mentioned that you feel you have no way out. Do you feel trapped?"
         iHaveNoWayOutResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysHadEnoughOfLife == True and hadEnoughOfLifeResponseAlreadyUsed != [conversationId,True]:
-        ### If the message includes a string roughly equivalent to saying "I'm feeling depressed", then reply with
-        response = "I'm sorry to hear you say that you've had enough of life. Sometimes when people say that they are also having suicidal thoughts..."
+        ### If the message includes a string roughly equivalent to saying "HadEnoughOfLife", then reply with
+        userIsSuicidal = False
+        userIsSuicidal = msgSaysIWantToKillMyself or msgSaysIWantToDie or msgSaysImFeelingSuicidal or msgSaysImFeelingQuiteSuicidal or msgSaysSuicidalThoughts \
+        or iWantToKillMyselfResponseAlreadyUsed == [conversationId,True] or iWantToDieResponseAlreadyUsed == [conversationId,True] or imFeelingSuicidalResponseAlreadyUsed == [conversationId,True] or suicidalThoughtsResponseAlreadyUsed == [conversationId,True]
+
+        if userIsSuicidal:
+            response = "So I've heard you say that you're feeling suicidal, and you're saying that you've had enough of life. I'm sorry it's got to the stage where you're feeling this way."
+        else:
+            response = "I'm sorry to hear you say that you've had enough of life. Sometimes when people say that they are also having suicidal thoughts..."
+
         hadEnoughOfLifeResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysNothingToLookForwardTo == True and nothingToLookForwardToResponseAlreadyUsed != [conversationId,True]:
-        ### If the message includes a string roughly equivalent to saying "I'm feeling depressed", then reply with
+        ### If the message includes a string roughly equivalent to saying "NothingToLookForwardTo", then reply with
         response = "It sounds quite bleak to hear you say that you have nothing to look forward to"
         nothingToLookForwardToResponseAlreadyUsed = [conversationId,True]
 
@@ -903,7 +1236,7 @@ def choose_bot_wordy_response(message):
         imUselessResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysImWorthless == True and imWorthlessResponseAlreadyUsed != [conversationId,True]:
-        ### If the message includes a string roughly equivalent to saying "I'm feeling depressed", then reply with
+        ### If the message includes a string roughly equivalent to saying "I'm worthless", then reply with
         if USER_CHARACTER_COUNT < 1000:
             response = "I'm sorry to hear you say that you're worthless. Could you say more about what's on your mind?"
         else:
@@ -923,18 +1256,18 @@ def choose_bot_wordy_response(message):
 
 
     elif msgSaysDontHaveAnyoneICanTalkTo == True and dontHaveAnyoneICanTalkToResponseAlreadyUsed != [conversationId,True]:
-        ### If the message includes a string roughly equivalent to saying "I'm feeling depressed", then reply with
+        ### If the message includes a string roughly equivalent to saying "DontHaveAnyoneICanTalkTo", then reply with
         response = "It's a shame that you feel you don't have anyone you can talk to. It sounds really isolating."
         dontHaveAnyoneICanTalkToResponseAlreadyUsed = [conversationId,True]
 
 
     elif msgSaysIHateHowILook == True and iHateHowILookResponseAlreadyUsed != [conversationId,True]:
-        ### If the message includes a string roughly equivalent to saying "I'm feeling depressed", then reply with
+        ### If the message includes a string roughly equivalent to saying "IHateHowILook", then reply with
         response = "That sounds really tough. Could you say more about your thoughts on your looks?"
         iHateHowILookResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysFeelOverwhelmed == True and feelOverwhelmedResponseAlreadyUsed != [conversationId,True]:
-        ### If the message includes a string roughly equivalent to saying "I'm feeling depressed", then reply with
+        ### If the message includes a string roughly equivalent to saying "FeelOverwhelmed", then reply with
         if USER_CHARACTER_COUNT < 100:  # if it's early in hte conversation
             response = "There must be a lot going on for you to be feeling overwhelmed like that. Would you like to tell me more?"
         elif USER_CHARACTER_COUNT < 500:
@@ -944,27 +1277,40 @@ def choose_bot_wordy_response(message):
         feelOverwhelmedResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysFeelingAwful == True and feelingAwfulResponseAlreadyUsed != [conversationId,True]:
-        ### If the message includes a string roughly equivalent to saying "I'm feeling depressed", then reply with
+        ### If the message includes a string roughly equivalent to saying "FeelAwful", then reply with
         response = "I'm sorry to hear you're feeling so awful. If you think sharing more about that with me might help you feel less awful, I'm here to be a space for you to talk."
         feelingAwfulResponseAlreadyUsed = [conversationId,True]
 
+    elif msgSaysImAFailure == True and imAFailureResponseAlreadyUsed != [conversationId,True]:
+        ### If the message includes a string roughly equivalent to saying "I@m a failrure", then reply with
+        response = "It's sad to hear you call yourself a failure. I'd love to tell you all the reasons why you're actually really awesome, but I don't know you (and I'm only a very simple bot) so I can't do that. But I do think everyone is valuable in their own way."
+        imAFailureResponseAlreadyUsed = [conversationId,True]
+
+    elif msgSaysImALetdown == True and imALetdownResponseAlreadyUsed != [conversationId,True]:
+        ### If the message includes a string roughly equivalent to saying "I@m a letdown", then reply with
+        response = "Now I'm hearing you call yourself a letdown, and I think that's sad. I'm here to listen to you about that, without judging."
+        imALetdownResponseAlreadyUsed = [conversationId,True]
+
     elif msgSaysLetMyselfDown == True and letMyselfDownResponseAlreadyUsed != [conversationId,True]:
-        ### If the message includes a string roughly equivalent to saying "I'm feeling depressed", then reply with
+        ### If the message includes a string roughly equivalent to saying "I let myself down", then reply with
         response = "You mentioned feeling that you had let yourself down. I hope you feel able to share with me some more thoughts about that, knowing that this is a place where you can talk without being judged."
         letMyselfDownResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysFeelOutOfControl == True and feelOutOfControlResponseAlreadyUsed != [conversationId,True]:
-        ### If the message includes a string roughly equivalent to saying "I'm feeling depressed", then reply with
+        ### If the message includes a string roughly equivalent to saying "FeelOutOfControl", then reply with
         response = "Can you say a bit more about these out of control feelings?"
         feelOutOfControlResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysFeelLost == True and feelLostResponseAlreadyUsed != [conversationId,True]:
-        ### If the message includes a string roughly equivalent to saying "I'm feeling depressed", then reply with
-        response = "That sounds like a very lost, forlorn feeling."
+        ### If the message includes a string roughly equivalent to saying "Feel lost", then reply with
+        if len(message) < 28: # if the message is about long enough to say "I'm feeling really lost", and not much longer than that:
+            response = "You're saying that you're feeling lost, can you say more about that?"
+        else:
+            response = "That sounds like a very lost, forlorn feeling."
         feelLostResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysInABadPlace == True and inABadPlaceResponseAlreadyUsed != [conversationId,True]:
-        ### If the message includes a string roughly equivalent to saying "I'm feeling depressed", then reply with
+        ### If the message includes a string roughly equivalent to saying "In a bad place", then reply with
         if USER_CHARACTER_COUNT < 500:
             response = "You said you're in a bad place. Would you like to say more about that?"
         else:
@@ -972,41 +1318,98 @@ def choose_bot_wordy_response(message):
         inABadPlaceResponseAlreadyUsed = [conversationId,True]
 
 
-    elif "i deserve" in message.lower() and deserveResponseAlreadyUsed != [conversationId,True]:
+    elif (" i deserve" in message.lower() or message.lower()[:9] == "i deserve") and deserveResponseAlreadyUsed != [conversationId,True]:
         ### This is a bit of a risky one. However at time of writing, whenever I've seen a user write "i deserve",
         ### it's always been in a negative sense (e.g. "I deserve this suffering") and never (e.g.) "i deserve better"
         ### However if someone did write "i deserve better", I still think this response is ok
+        ### Note the logic in hte if statement: if the message contains " i deserve" (starting with a space character)
+        ### or if it starts with "i deserve". This means that a string like "naomi deserves" wouldn't trigger this reply
         response = "I just want to take a moment to assert that you are a valuable human being in your right, \
         no matter what"
         deserveResponseAlreadyUsed = [conversationId,True]
 
 
+    elif msgSaysIHateHowIFeel == True and iHateHowIFeelResponseAlreadyUsed != [conversationId,True]:
+        ### If the message includes a string roughly equivalent to saying "I hate how i feel", then reply with
+        if USER_CHARACTER_COUNT < 300:             # if it's early in the conversation
+            response = "I'm sorry to hear you say that you hate how you feel. Could you say more about these feelings?"
+        else:
+            response = "I'm sorry to hear you say that you hate how you feel."
+        iHateHowIFeelResponseAlreadyUsed = [conversationId,True]
+
     elif msgSaysImSad == True and imSadResponseAlreadyUsed != [conversationId,True]:
-        ### If the message includes a string roughly equivalent to saying "I'm feeling depressed", then reply with
+        ### If the message includes a string roughly equivalent to saying "I'm sad", then reply with
         response = "Thank you for sharing with me the sadness you're experiencing."
         imSadResponseAlreadyUsed = [conversationId,True]
 
 
     elif msgSaysFeelingLowDownTerrible == True and feelingLowDownTerribleResponseAlreadyUsed != [conversationId,True]:
-        ### If the message includes a string roughly equivalent to saying "I'm feeling depressed", then reply with
+        ### If the message includes a string roughly equivalent to saying "I'm feeling low/down/terrible", then reply with
         response = "Sorry to hear you're feeling low."
         feelingLowDownTerribleResponseAlreadyUsed = [conversationId,True]
 
 
     elif msgSaysImUpset == True and imUpsetResponseAlreadyUsed != [conversationId,True]:
-        ### If the message includes a string roughly equivalent to saying "I'm feeling depressed", then reply with
+        ### If the message includes a string roughly equivalent to saying "I'm feeling upset", then reply with
         response = "Sorry that you're upset. Could you say a bit more about that?"
         imUpsetResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysImAddicted == True and imAddictedResponseAlreadyUsed != [conversationId,True]:
-        ### If the message includes a string roughly equivalent to saying "I'm feeling depressed", then reply with
+        ### If the message includes a string roughly equivalent to saying "I'm addicted", then reply with
         response = "Addictions can be really tough. Could you say more about what it means for you?"
         imAddictedResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysFeelingRubbish == True and feelingRubbishResponseAlreadyUsed != [conversationId,True]:
-        ### If the message includes a string roughly equivalent to saying "I'm feeling depressed", then reply with
+        ### If the message includes a string roughly equivalent to saying "I'm feeling rubbish", then reply with
         response = "Sorry that you're feeling rubbish. Could you say a bit more about that?"
         feelingRubbishResponseAlreadyUsed = [conversationId,True]
+
+
+### I WAS GOING TO INCLUDE SOME RULES FOR "i have anxiety" AND "I'm anxious" BUT ON SECOND THOUGHTS I'M LEAVING THIS BE FOR NOW
+### LOOKING BACK AT PAST USER BEHAVIOUR, WHEN USERS SAYS THIS IT TENDS TO BE IN COMPLEX SITUATIONS WHERE THERE IS ALSO LOTS OF OTHER SUTFF GOING ON
+### SO I THINK IT BEST TO LEAVE THIS FOR NOW AND ANALYSE FURTTHER WHEN WE HAVE A BETTER IDEA OF HOW TO RESPOND
+
+    # elif msgSaysIHaveAnxiety == True and iHaveAnxietyResponseAlreadyUsed != [conversationId,True]:
+    #     ### If the message includes a string roughly equivalent to saying "I have anxiety", then reply with
+    #     response = "I understand you suffer from anxiety. Could you tell me more about your feelings right now?"
+    #     iHaveAnxietyResponseAlreadyUsed = [conversationId,True]
+    #
+    #
+    # elif msgSaysImAnxious == True and imAnxiousResponseAlreadyUsed != [conversationId,True]:
+    #     ### If the message includes a string roughly equivalent to saying "I'm anxious", then reply with
+    #     response = "Sorry that you're feeling anxious. Could you say a bit more about that?"
+    #     imAnxiousResponseAlreadyUsed = [conversationId,True]
+
+
+    elif msgSaysImWorried == True and second_imWorriedResponseAlreadyUsed != [conversationId,True]:
+        ### If the message includes a string roughly equivalent to saying "I'm worried"
+        ### This rule covers 2 scenarios: either we're early in the converation or not so early
+        ### If we're early, then second_imWorriedResponseAlreadyUsed can't be true for this conversation,
+        ### so the if statement above just refers to second_imWorriedResponseAlreadyUsed only
+
+        if USER_CHARACTER_COUNT < 100: # if its early in the conversation
+            if initial_imWorriedResponseAlreadyUsed != [conversationId,True]:
+                response = "Can you tell me more about what you're worried about?"
+                initial_imWorriedResponseAlreadyUsed = [conversationId,True]
+            else:
+                # I'm giving here several responses for the bot to choose at random.
+                # This is because conceivably a user might type "I'm worried" several times within hte first 100 characters
+                earlyWorriedResponses = ["I'm sorry to hear that you're feeling these worries.",
+                                        "Feeling worried like this must be tough for you.",
+                                        "Thank you for sharing the worries you're feeling. I'm here to listen.",
+                                        "It's a shame these worries are affecting you like this."]
+                randomlyChosenIndex = random.randint(0,len(earlyWorriedResponses)-1) # select a random number between 0 and final index of the earlyWorriedResponses array
+                response = earlyWorriedResponses[randomlyChosenIndex] # set the response equal to the string (or whatever) corresponding to the relevant index
+        else:                         # if it's not that early in the conversation
+            response = "I'm sorry to hear about all these worries you're experiencing"
+            second_imWorriedResponseAlreadyUsed  = [conversationId,True]
+
+        imWorriedResponseAlreadyUsed = [conversationId,True]
+
+    elif msgSaysIDontKnowWhatToDo == True and iDontKnowWhatToDoResponseAlreadyUsed != [conversationId,True]:
+        ### If the message includes a string roughly equivalent to saying "I'm feeling rubbish", then reply with
+        response = "So you said you're not sure what to do. Can you think of any options that you would like to explore with me?"
+        iDontKnowWhatToDoResponseAlreadyUsed = [conversationId,True]
 
     elif message.lower() in iDontKnowWhatToSayArray:
         ### If the message is equal to a string roughly equivalent to saying "I do'nt know what to say", then reply with
@@ -1032,7 +1435,7 @@ def choose_bot_wordy_response(message):
         iDontKnowWhatToSayResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysImNotHappy == True and imNotHappyResponseAlreadyUsed != [conversationId,True]:
-        ### If the message includes a string roughly equivalent to saying "I'm feeling depressed", then reply with
+        ### If the message includes a string roughly equivalent to saying "I'm not happy", then reply with
         response = "You said that you're not feeling happy. That's sad. "
         imNotHappyResponseAlreadyUsed = [conversationId,True]
 
@@ -1052,15 +1455,19 @@ def choose_bot_wordy_response(message):
 
     elif msgSaysDoYouGiveAdvice == True and doYouGiveAdviceResponseAlreadyUsed != [conversationId,True]:
         ### if the user asks if the bot gives advice
-        response = ["This bot is a safe, non-judgemental space to explore what's on your mind. Giving advice isn't part of \
+        adviceResponses = [["This bot is a safe, non-judgemental space to explore what's on your mind. Giving advice isn't part of \
         what I offer.", "Some people prefer not to be advised -- being told what to do can be disempowering, and talking \
         things through can help. But if advice is what you're after then I'm sorry not to be able to help. Would \
-        you like to talk about what's on your mind?"]
+        you like to talk about what's on your mind?"], "This bot isn't about me advising you; it's about you talking and finding your own way through things. You're welcome to continue talking if that would help?"]
+        randomlyChosenIndex = random.randint(0,len(adviceResponses)-1) # select a random number between 0 and final index of the adviceResponses array
+        response = adviceResponses[randomlyChosenIndex] # set the response equal to the string (or whatever) corresponding to the relevant index
         doYouGiveAdviceResponseAlreadyUsed = [conversationId,True]
 
 
-    elif section == 11 and len(message) < 15 and not " " in message:
-        ### If it's the user's first written response and they've given  (essentially) a one-word reply
+    elif section == 11 and len(message) < 10 or " " not in message :
+        ### If it's the user's first written response and they've given  (essentially) a one-word message
+        ### When I say one-word message, I mean that either it has no space characters in it, or something that might be longer but has no space characters (this includes someone typing gibberish)
+        ### Note that any space-character-free message will get this response, whereas a short response will only hear this if it's the first message
         ### NOTE: HARDCODING THE NUMBER 11 IS BAD PRACTICE! SHOULD UPDATE THIS LATER!!!!!!!!!!!!!11
         response = "I see you've said something very short there, which is cool :-). But feel free to type full sentences if you want. Just write about whatever's on your mind -- I'm here to listen."
 
@@ -1164,6 +1571,7 @@ def get_bot_response():
         nextUserInput = next_user_input_one("Yes, happy to listen to the explanation of how this bot works")
         nextUserInputType = "userInputButton"
         next_section = section + 1
+        #next_section = 9 # DEBUG CHEAT: for debugging purposes when you want to skip the intro. This shouldn't apply normally
 
         # The next few lines prepares some inputs for the write_data function
         conversationId = str(datetime.now())
@@ -1253,7 +1661,7 @@ def get_bot_response():
     elif section==8:
 
         anonymous = "true" if message.split()[0].lower()=="anonymous" else "false"
-        response = "Thanks! One last thing: You remember saying how you felt on scale from 1 to 10 \
+        response = "Thanks! One last thing: You remember saying how you felt on a scale from 1 to 10 \
         at the start? I'd like to ask you the same thing at the end so I know if we're helping."
         next_section = section + 1
         noOfResponseFragments = no_of_fragments_in_str_or_list(response)
