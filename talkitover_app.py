@@ -12,6 +12,9 @@ app = Flask(__name__)
 my_dict = {} # shoudl this be tidied up and deleted out?
 sleep_per_word = 0.04 # I don't think this is being used yet, but could use it in the future
 scores = [-0.5, 0, 0.3]
+# The frontEnd variable is to switch the html text strings between the old and new versions
+frontEnd = "pre2020m04" # can take the values "pre2020m04" or "2020m04"
+# At some point it would make sense to refactor out the frontEnd variable, because it's really a transitional thing
 # the below encouragingNoises are things the bot might say to the user
 encouragingNoises = ["I'm still listening, so feel free to say more.", "Go on talking, I'm still here.", \
 "Keep talking, I'll be here for as long as you need me.", \
@@ -72,7 +75,8 @@ imAddictedResponseAlreadyUsed = [conversationId,False]
 feelingRubbishResponseAlreadyUsed = [conversationId,False]
 iHaveAnxietyResponseAlreadyUsed = [conversationId,False]
 imAnxiousResponseAlreadyUsed = [conversationId,False]
-imWorriedResponseAlreadyUsed = [conversationId,False]
+initial_imWorriedResponseAlreadyUsed = [conversationId,False]
+second_imWorriedResponseAlreadyUsed = [conversationId,False]
 iDontKnowWhatToDoResponseAlreadyUsed = [conversationId,False]
 initial_iDontKnowWhatToSayResponseAlreadyUsed = [conversationId, False]
 second_iDontKnowWhatToSayResponseAlreadyUsed = [conversationId, False]
@@ -82,7 +86,8 @@ difficultDayResponseAlreadyUsed = [conversationId,False]
 familyProblemsResponseAlreadyUsed = [conversationId,False]
 feelLostResponseAlreadyUsed = [conversationId,False]
 doYouGiveAdviceResponseAlreadyUsed = [conversationId,False]
-
+shortResponseAlreadyUsed = [conversationId,False]
+thisBotIsBadResponseAlreadyUsed = [conversationId,False]
 
 ####### TODO TODO TODO ###################################
 ## Implement a separate css class for confidential text
@@ -146,7 +151,8 @@ def initialiseResponseAlreadyUsedVariables():
     feelingRubbishResponseAlreadyUsed = [conversationId,False]
     iHaveAnxietyResponseAlreadyUsed = [conversationId,False]
     imAnxiousResponseAlreadyUsed = [conversationId,False]
-    imWorriedResponseAlreadyUsed = [conversationId,False]
+    initial_imWorriedResponseAlreadyUsed = [conversationId,False]
+    second_imWorriedResponseAlreadyUsed = [conversationId,False]
     iDontKnowWhatToDoResponseAlreadyUsed = [conversationId,False]
     initial_iDontKnowWhatToSayResponseAlreadyUsed = [conversationId, False]
     second_iDontKnowWhatToSayResponseAlreadyUsed = [conversationId, False]
@@ -156,6 +162,8 @@ def initialiseResponseAlreadyUsedVariables():
     familyProblemsResponseAlreadyUsed = [conversationId,False]
     feelLostResponseAlreadyUsed = [conversationId,False]
     doYouGiveAdviceResponseAlreadyUsed = [conversationId,False]
+    shortResponseAlreadyUsed = [conversationId,False]
+    thisBotIsBadResponseAlreadyUsed = [conversationId,False]
 
 
 # returns the first index where an element occurs.
@@ -210,19 +218,32 @@ def write_data(anonymous, conversationId, message, response):
 
 def next_user_input_one(buttonText):
     ## when we send certain strings of html to the client side, this function helps with that
-    html_text = "<select type='text' id='userInputButton' onchange='getBotResponse()'> \
-    <option>Select</option>  \
-    <option value='"+buttonText+"'>"+buttonText+"</option> \
-    </select>"
+    if frontEnd == "pre2020m04":
+        html_text = "<select type='text' id='userInputButton' onchange='getBotResponse()'> \
+        <option>Select</option>  \
+        <option value='"+buttonText+"'>"+buttonText+"</option> \
+        </select>"
+    else:
+        html_text = "<select class='message_input' type='text' id='userInputButton' onchange='sendMessage()'> \
+        <option selected disabled>Select</option>  \
+        <option value='"+buttonText+"'>"+buttonText+"</option> \
+        </select>"
     return html_text
 
 def next_user_input_two(buttonText1,buttonText2):
     ## when we send certain strings of html to the client side, this function helps with that
-    html_text = "<select type='text' id='userInputButton' onchange='getBotResponse()'> \
-    <option>Select</option>  \
-    <option value='"+buttonText1+"'>"+buttonText1+"</option> \
-    <option value='"+buttonText2+"'>"+buttonText2+"</option> \
-    </select>"
+    if frontEnd == "pre2020m04":
+        html_text = "<select type='text' id='userInputButton' onchange='getBotResponse()'> \
+        <option>Select</option>  \
+        <option value='"+buttonText1+"'>"+buttonText1+"</option> \
+        <option value='"+buttonText2+"'>"+buttonText2+"</option> \
+        </select>"
+    else:
+        html_text = "<select class='message_input' type='text' id='userInputButton' onchange='sendMessage()'> \
+        <option selected disabled>Select</option>  \
+        <option value='"+buttonText1+"'>"+buttonText1+"</option> \
+        <option value='"+buttonText2+"'>"+buttonText2+"</option> \
+        </select>"
     return html_text
 
 def no_of_fragments_in_str_or_list(response):
@@ -310,9 +331,9 @@ def choose_bot_wordy_response(message):
                             "i just really want to kill myself", "i just really want to kill my self", "i just really want to kill mysefl", "i just really want to kill my sefl", "i just really wanna kill myself", "i just really wanna kill my self", "i just really wanna kill mysefl", "i just really wanna kill my sefl",\
                             "i still just really want to kill myself", "i still just really want to kill my self", "i still just really want to kill mysefl", "i still just really want to kill my sefl", "i still just really wanna kill myself", "i still just really wanna kill my self", "i still just really wanna kill mysefl", "i still just really wanna kill my sefl",\
                             "i still really want to kill myself", "i still really want to kill my self", "i still really want to kill mysefl", "i still really want to kill my sefl", "i still really wanna kill myself", "i still really wanna kill my self", "i still really wanna kill mysefl", "i still really wanna kill my sefl",
-                            "i want to take my life", "i wanna take my life", "i want to take my own life", "i wanna take my own life"]
-    imGoingToKillMyselfArray = ["i am going to kill myself", "im going to kill myself", "i am going to kill my self", "im going to kill my self",
-                                "i am oging to kill myself", "im oging to kill myself", "i am oging to kill my self", "im oging to kill my self",
+                            "i want to take my life", "i wanna take my life", "i want to take my own life", "i wanna take my own life", "i still really want to kill myself", "i still really want to kill my self", "i still really want to kill mysefl", "i still really want to kill my sefl", "i still really wanna kill myself", "i still really wanna kill my self", "i still really wanna kill mysefl", "i still really wanna kill my sefl"]
+    imGoingToKillMyselfArray = ["going to kill myself", "going to kill my self",
+                                "oging to kill myself", "oging to kill my self",
                                 "i will kill myself", "i will kill my self","ill kill myself", "ill kill my self"]
     #imPlanningToKillMyselfArray = ["im planning to kill myself", "i am planning to kill myself"]
     # have not built in anything for imPlanningToKillMyselfArray apart from the array itself. Maybe come back to this?
@@ -332,7 +353,8 @@ def choose_bot_wordy_response(message):
     # have not built in anything for imThinkingAboutKillingMyselfArray apart from the array itself. Maybe come back to this?
     iveBeenFeelingSuicidalArray = ["i've been feeling suic", "ive been feeling suic", "i've just been feeling suic", "ive just been feeling suic",\
                             "i've been feeling sucid", "ive been feeling sucid", "i've just been feeling sucid", "ive just been feeling sucid",]
-    suicidalThoughtsArray = ["i have suicidal thoughts", "i still have suicidal thoughts", "i have been having suicidal thoughts"]
+    suicidalThoughtsArray = ["i have suicidal thoughts", "i have suicidal thoughts", "i have been having suicidal thoughts", "ive been having suicidal thoughts",
+                            "i have suicidle  thoughts", "i have suicidle  thoughts", "i have been having suicidle  thoughts", "ive been having suicidle  thoughts"]
     iDontWantToLiveArray = ["i dont want to live", "i no longer want to live", "i dont wanna live", "i have no desire to live", "i no longer desire to live",
                             "i dont want to be alive", "i no longer want to be alive", "i dont wanna be alive", "i have no desire to be alive", "i no longer desire to be alive",
                             "i dont want to remain alive", "i no longer want to remain alive", "i dont wanna remain alive", "i have no desire to remain alive", "i no longer desire to remain alive",
@@ -351,8 +373,8 @@ def choose_bot_wordy_response(message):
     feelingDepressedArray = ["i feel depressed", "i just feel depressed", "i feeel depressed", "i just feeel depressed", "im feeling depressed", "i'm feeling depressed", "im just feeling depressed", "i'm just feeling depressed", "i feel very depressed", "i feel so depressed", "i am feeling depressed", "i'm feeling really depressed", "i'm feeling so depressed", "im feeling really depressed", "im feeling so depressed",\
                             "i'm depressed", "im depressed", "i am depressed", "i'm so depressed", "im so depressed", "i am so depressed", "i'm really depressed", "im really depressed", "i am really depressed",\
                             "im more depressed than ever", "i'm more depressed than ever" ]
-    iHaveNoWayOutArray = ["i have no way out", "i haven't got any way out", "ive got no way out", "ive no got any way out", "i don't feel i have any way out", "i dont feel i have any way out", "i don't feel i have got any way out", "i dont feel i have got any way out", "i don't have any way out", "i dont have any way out"]
-    hadEnoughOfLifeArray = ["i've had enough of life", "ive had enough of life", "i have had enough of life"]
+    iHaveNoWayOutArray = ["i have no way out", "i don't feel i have any way out", "i dont feel i have any way out", "i don't have any way out", "i dont have any way out", "i haven't got any way out", "ive got no way out", "ive no got any way out", "i don't feel i have any way out", "i dont feel i have any way out", "i don't feel i have got any way out", "i dont feel i have got any way out", "i don't have any way out", "i dont have any way out"]
+    hadEnoughOfLifeArray = ["i've had enough of life", "ive had enough of life", "i have had enough of life", "i had enough of life"]
     nothingToLookForwardToArray = ["i have nothing to look forward to", "i don't have anything to look forward to", "i've got nothing to look forward to", \
                                 "i literally have nothing to look forward to", "i literally don't have anything to look forward to", "i have literally nothing to look forward to", "i've literally got nothing to look forward to"\
                                 "i just have nothing to look forward to", "i just don't have anything to look forward to", "i've just got nothing to look forward to",\
@@ -462,18 +484,12 @@ def choose_bot_wordy_response(message):
                         "i am in such a bad place", "i'm in such a bad place", "im in such a bad place",\
                         "i am at a bad place", "i'm at a bad place", "im at a bad place",\
                         "i am at such a bad place", "i'm at such a bad place", "im at such a bad place"]
-    feelingLowDownTerribleArray = ["i feel low", "i'm feeling low", "im feeling low", " i feel down", "i'm feeling down", "im feeling down", "i feel terrible", "i'm feeling terrible", "im feeling terrible", "i feel horrible", "i'm feeling horrible", "im feeling horrible",\
-                                "i feel so low", "i'm feeling so low", "im feeling so low", "i feel so down", "i'm feeling so down", "im feeling so down", "i feel so terrible", "i'm feeling so terrible","im feeling so terrible", "i feel so horrible", "i'm feeling so horrible", "im feeling so horrible",\
-                                "i feel really low", "i'm feeling really low", "im feeling really low", "i feel really down", "i'm feeling really down", "im feeling really down", "i feel really terrible", "i'm feeling really terrible", "im feeling really terrible", "i feel really horrible", "i'm feeling really horrible",\
-                                "i feel totally low", "i'm feeling totally low", "im feeling totally low", "i feel totally down", "i'm feeling totally down", "im feeling totally down", "i feel totally terrible", "i'm feeling totally terrible", "im feeling totally terrible", "i feel totally horrible", "i'm feeling totally horrible", "im feeling totally horrible",\
-                                "i feel utterly low", "i'm feeling utterly low", "im feeling utterly low", "i feel utterly down", "i'm feeling utterly down", "im feeling utterly down", "i feel utterly terrible", "i'm feeling utterly terrible", "im feeling utterly terrible", "i feel utterly horrible", "i'm feeling utterly horrible", "im feeling utterly horrible",\
-                                "i just feel low", "i'm just feeling low", "im just feeling low", " i just feel down", "i'm just feeling down", "im just feeling down", "i just feel terrible", "i'm just feeling terrible", "im just feeling terrible", "i just feel horrible", "i'm just feeling horrible", "im just feeling horrible",\
-                                "i just feel so low", "i'm just feeling so low", "im just feeling so low", "i just feel so down", "i'm just feeling so down", "im just feeling so down", "i just feel so terrible", "i'm just feeling so terrible","im just feeling so terrible", "i just feel so horrible", "i'm just feeling so horrible", "im just feeling so horrible",\
-                                "i just feel really low", "i'm just feeling really low", "im just feeling really low", "i just feel really down", "i'm just feeling really down", "im just feeling really down", "i just feel really terrible", "i'm just feeling really terrible", "im just feeling really terrible", "i just feel really horrible", "i'm just feeling really horrible",\
-                                "i just feel totally low", "i'm just feeling totally low", "im just feeling totally low", "i just feel totally down", "i'm just feeling totally down", "im just feeling totally down", "i just feel totally terrible", "i'm just feeling totally terrible", "im just feeling totally terrible", "i just feel totally horrible", "i'm just feeling totally horrible", "im just feeling totally horrible",\
-                                "i just feel utterly low", "i'm just feeling utterly low", "im just feeling utterly low", "i just feel utterly down", "i'm just feeling utterly down", "im just feeling utterly down", "i just feel utterly terrible", "i'm just feeling utterly terrible", "im just feeling utterly terrible", "i just feel utterly horrible", "i'm just feeling utterly horrible", "im just feeling utterly horrible"]
-    iHateHowIFeelArray = ["i hate how i feel","i hate how im feeling", "i hate my feelings"]
-    imSadArray = ["i am sad", "i'm sad", "im sad",
+    feelingLowDownTerribleArray = ["i feel low", "i'm feeling low", "im feeling low", "i am feeling low",
+                                "i feel down", "i'm feeling down", "im feeling down", "i am feeling down",
+                                "i feel terrible", "i'm feeling terrible", "im feeling terrible", "i am feeling terrible",
+                                "i feel horrible", "i'm feeling horrible", "im feeling horrible", "i am feeling horrible"]
+    iHateHowIFeelArray = ["hate how i feel","hate how im feeling", "hate my feelings"]
+    imSadArray = ["i am sad", "i'm sad", "im sad", "i feel sad"
                 "i am feeling sad", "i'm feeling sad", "im feeling sad"]
     imUpsetArray = ["im upset", "i'm upset", "im feeling upset", "i'm feeling upset", "i feel upset", "i feel upset",\
                     "im so upset", "i'm so upset", "im feeling so upset", "i'm feeling so upset", "i feel so upset", "i feel so upset",\
@@ -530,11 +546,24 @@ def choose_bot_wordy_response(message):
                             "give me advice", "i need advice",
                             "dont you give advice", "you dont give advice",
                             "will you give me advice", "will you give advice"]
+    # you only give default/automatic replies
+    # you are useless / fuck off
     stopSynonymsArray = ["that's it", "thats it", "finish", "end", "nothing more to say", "no more to say", "bot stop", "bye","goodbye",\
                         "done", "i'm done", "im done", "i think im done", "im done speaking", "i think im done speaking",
                         "i have nothing more to say", "i have nothing else to say", "ive got nothing more to say", "ive got nothing else to say",
                         "i think i have nothing more to say", "i think i have nothing else to say", "i think ive got nothing more to say", "i think ive got nothing else to say",
                         "i dont want to talk any more" ]
+    thisBotIsBadArray_loose = ["this bot is bad", "this bot is awful", "this bot is terrible", "this bot is atrocious",
+                        "you are a bad bot", "you are an awful bot", "you are a terrible bot", "you are an atrocious bot",
+                        "this bot is not helping", "this bot isnt helping", "this bot is no help", "this bot is no use", "this bot aint helping",
+                        "i need to talk to a human", "i need to talk to a real person", "i need to talk to a real human",
+                        "i need to speak to a human", "i need to speak to a real person", "i need to speak to a real human" ]
+    thisBotIsBadArray_tight = ["you are bad", "you are awful", "you are terrible", "you are atrocious",
+                        "this isnt helping", "this is not helping", "this aint helping",
+                        "youre not helping", "your not helping", "you are not helping", "you arent helping", "you aint helping", "your no help", "youre no help", "your not a help", "youre not a help",
+                        "this is useless", "this is worthless", "this is crap", "this is rubbish", "this is trash", "this is annoying", "this is pointless",
+                        "you are useless", "you are worthless", "you are crap", "you are rubbish", "you are trash", "you are annoying", "you are pointless"
+                        "what a waste of time", "what a pointless waste of time", "what a useless waste of time"]
 
 
 
@@ -577,7 +606,8 @@ def choose_bot_wordy_response(message):
     global feelingRubbishResponseAlreadyUsed
     global iHaveAnxietyResponseAlreadyUsed
     global imAnxiousResponseAlreadyUsed
-    global imWorriedResponseAlreadyUsed
+    global initial_imWorriedResponseAlreadyUsed
+    global second_imWorriedResponseAlreadyUsed
     global iDontKnowWhatToDoResponseAlreadyUsed
     global initial_iDontKnowWhatToSayResponseAlreadyUsed
     global second_iDontKnowWhatToSayResponseAlreadyUsed
@@ -587,6 +617,8 @@ def choose_bot_wordy_response(message):
     global familyProblemsResponseAlreadyUsed
     global feelLostResponseAlreadyUsed
     global doYouGiveAdviceResponseAlreadyUsed
+    global shortResponseAlreadyUsed
+    global thisBotIsBadResponseAlreadyUsed
 
 
 # declaring some variables which track whether a message says certain things
@@ -629,21 +661,24 @@ def choose_bot_wordy_response(message):
     msgSaysIHaveAnxiety = False # code using this is commented out currently
     msgSaysImAnxious = False # code using this is commented out currently
     msgSaysImWorried = False
-    msgSaysIHaveAnxietyResponseAlreadyUsed = False
-    msgSaysImAnxiousResponseAlreadyUsed = False
-    msgSaysImWorriedResponseAlreadyUsed = False
     msgSaysIDontKnowWhatToDo = False
+    msgSaysIDontKnowWhatToSay = False
     msgSaysImNotHappy = False
     msgSaysIHateMyself = False
     msgSaysDifficultDay = False
     msgSaysFamilyProblems = False
     msgSaysFeelLost = False
     msgSaysDoYouGiveAdvice = False
+    msgSaysThisBotIsBad = False
 
     negatedString = ""
 
 
     def cleanText(message):
+        # can always simplify this function to something like the following which should do the same thing
+        # cleanedMessage = ["".join(list(filter(str.isalpha, i))) for i in message.split() if i not in extraneousWordsArray]
+        # cleanedMessage = ' '.join(cleanedMessage)
+        # Being picky, do note that this function has a space at the end of the last word
         """
         This function takes a string (e.g. the user's message) and cleans it to make it suitable for analysing.
         It does this by
@@ -651,18 +686,11 @@ def choose_bot_wordy_response(message):
         2. remove extraneous words (this results in a list)
         3. turn list back into string
         Cleaning the message makes the system more robust, because we've seen instances of triggers not getting recognised...
-        ... we speculate that different treatments of the apostrophe character might be the reason.
-        Note: Daniel has suggested that we do this more neatly with the below (ocmmented out) code. Have not implemented this yet.
+        ... we speculate that different treatments of the apostrophe character might be the reason
         """
 
-        ## NOTE Daniel suggested that this function could be implemented more neatly with the below code.
-        ## NOTE I haven't gone through this yet, so it's in here (commented out) but could be implemented later
-        #cleanedMessage = ["".join(list(filter(str.isalpha, i))) for i in message.split() if i not in extraneousWordsArray]
-        #cleanedMessage = ' '.join(cleanedMessage)
-
-
-        extraneousWordsArray = ["still", "just", "so", "very", "totally", "utterly", "really", "completely", "literally", "actually", \
-        "even", "some", "always"]
+        extraneousWordsArray = ["still", "just", "so", "very", "totally", "utterly", "really", "completely", \
+        "literally", "actually", "even", "some", "always", "fucking", "fuckin"]
         # I wanted to include "such a" in the extraneousWordsArray, but the current method does'nt work for that...
         #... because the current method "splits" the string into a list of separate words
 
@@ -671,7 +699,7 @@ def choose_bot_wordy_response(message):
         # Step 1: clean the string so that it only contains alphabetic characters and spaces (everything else is deleted)
         messageCleanedOfCharacters = ""
         for char in message:
-            if char.isalpha() or char == " ":
+            if (char.isalpha() or char == " ") and char != "â": # have explicitly decided to remove â (a circumflex) here, becuase it seems like in some circumtances (maybe when the user has a mac?) the apostrophe is rendered as 'â€™'
                 messageCleanedOfCharacters = messageCleanedOfCharacters+char
 
         print("DEBUG: in clean text function, messageCleanedOfCharacters = "+ messageCleanedOfCharacters)
@@ -719,6 +747,7 @@ def choose_bot_wordy_response(message):
     #         cleanedMessage = cleanedMessage+char
 
 
+    leadStringArray = ["i ", "i am ", "im ", "i feel ", "i am feeling ", "im feeling "]
 
     for string in iWantToKillMyselfArray:             # work out if anything from the iWantToKillMyselfArray is in the user's message
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "i Want To KillMyself" or similar
@@ -727,6 +756,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysIWantToKillMyself = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysIWantToKillMyself = True
     for string in imGoingToKillMyselfArray:             # work out if anything from the imGoingToKillMyselfArray is in the user's message
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "i Want To KillMyself" or similar
             msgSaysImGoingToKillMyself = True
@@ -734,6 +768,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysImGoingToKillMyself = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysImGoingToKillMyself = True
     for string in iWantToDieArray:             # work out if anything from the iWantToDieArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "i Want To KillMyself" or similar
             msgSaysIWantToDie = True
@@ -741,6 +780,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysIWantToDie = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysIWantToDie = True
     for string in imFeelingSuicidalArray:             # work out if anything from the imFeelingSuicidalArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "imfeelingsuicidal" or similar
             msgSaysImFeelingSuicidal = True
@@ -748,7 +792,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysImFeelingSuicidal = False                                     # ... then set this flag to false
-                    print("negated string has been found and msgSaysImFeelingSuicidal has been set to false!!!!!!!!!!!!!!!!!!!")
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysImFeelingSuicidal = True
     for string in iveBeenFeelingSuicidalArray:             # work out if anything from the iveBeenFeelingSuicidalArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "iveBeenFeelingSuicidal" or similar
             msgSaysIveBeenFeelingSuicidal = True
@@ -756,6 +804,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysIveBeenFeelingSuicidal = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysIveBeenFeelingSuicidal = True
     for string in imFeelingQuiteSuicidalArray:             # work out if anything from the imFeelingQuiteSuicidalArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "imFeelingQuiteSuicidal" or similar
             msgSaysImFeelingQuiteSuicidal = True
@@ -763,13 +816,23 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysImFeelingQuiteSuicidal = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysImFeelingQuiteSuicidal = True
     for string in suicidalThoughtsArray:             # work out if anything from the suicidalThoughtsArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "suicidalThoughts" or similar
             msgSaysSuicidalThoughts = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysSuicidalThoughts = False                                     # ... then set this flag to false
+                    msgSaysSuicidalThoughts = False
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysSuicidalThoughts = True
     for string in iDontWantToLiveArray:             # work out if anything from the  IDontWantToLiveArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains " IDontWantToLive" or similar
             msgSaysIDontWantToLive = True
@@ -777,13 +840,23 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysIDontWantToLive = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysIDontWantToLive = True
     for string in shouldIKillMyselfArray:             # work out if anything from the ShouldIKillMyselfArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "ShouldIKillMyself" or similar
             msgSaysShouldIKillMyself = True
             for negatingString in itsNotThatArray:
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysShouldIKillMyself = False                                     # ... then set this flag to false
+                    msgSaysShouldIKillMyself = False                                     # ... then set this flag to false                                                      # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysShouldIKillMyself = True
     for string in nothingToLiveForArray:             # work out if anything from the nothingToLiveForArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "nothingToLiveFor" or similar
             msgSaysNothingToLiveFor = True
@@ -791,6 +864,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysNothingToLiveFor = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysNothingToLiveFor = True
     for string in imCryingArray:             # work out if anything from the imCryingArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "imCrying" or similar
             msgSaysImCrying = True
@@ -798,6 +876,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysImCrying = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysImCrying = True
     for string in nothingToLiveForArray:             # work out if anything from the nothingToLiveForArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "nothingToLiveFor" or similar
             msgSaysNothingToLiveFor = True
@@ -805,6 +888,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysNothingToLiveFor = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysNothingToLiveFor = True
     for string in feelingDepressedArray:             # work out if anything from the feelingDepressedArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "feelingDepressed" or similar
             msgSaysFeelingDepressed = True
@@ -812,6 +900,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysFeelingDepressed = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysFeelingDepressed = True
     for string in feelingLonelyArray:             # work out if anything from the FeelingLonelyArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "FeelingLonely" or similar
             msgSaysFeelingLonely = True
@@ -819,6 +912,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysFeelingLonely = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysFeelingLonely = True
     for string in iHateMyselfArray:             # work out if anything from the iHateMyselfArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "iHateMyself" or similar
             msgSaysIHateMyself = True
@@ -826,6 +924,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysIHateMyself = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysIHateMyself = True
     for string in iHaveNoWayOutArray:             # work out if anything from the iHaveNoWayOutArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "iHaveNoWayOut" or similar
             msgSaysIHaveNoWayOut = True
@@ -833,6 +936,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysIHaveNoWayOut = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysIHaveNoWayOut = True
     for string in hadEnoughOfLifeArray:             # work out if anything from the hadEnoughOfLifeArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "hadEnoughOfLife" or similar
             msgSaysHadEnoughOfLife = True
@@ -840,6 +948,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysHadEnoughOfLife = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysHadEnoughOfLife = True
     for string in nothingToLookForwardToArray:             # work out if anything from the nothingToLookForwardToArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "nothingToLookForwardTo" or similar
             msgSaysNothingToLookForwardTo = True
@@ -847,6 +960,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysNothingToLookForwardTo = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysNothingToLookForwardTo = True
     for string in imUselessArray:             # work out if anything from the imUselessArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "imUseless" or similar
             msgSaysImUseless = True
@@ -854,6 +972,7 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysImUseless = False                                     # ... then set this flag to false
+        ## the code which detects whether the message starts with a lead string like "i am" and sees whether the user has omitted it is not being applied here because that risks just being the word "useless" on its own
     for string in imWorthlessArray:             # work out if anything from the imWorthlessArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "imWorthless" or similar
             msgSaysImWorthless = True
@@ -861,6 +980,7 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysImWorthless = False                                     # ... then set this flag to false
+        ## the code which detects whether the message starts with a lead string like "i am" and sees whether the user has omitted it is not being applied here because that risks just being the word "worthless" on its own
     for string in dontHaveAnyoneICanTalkToArray:             # work out if anything from the dontHaveAnyoneICanTalkToArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "dontHaveAnyoneICanTalkTo" or similar
             msgSaysDontHaveAnyoneICanTalkTo = True
@@ -868,6 +988,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysDontHaveAnyoneICanTalkTo = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysDontHaveAnyoneICanTalkTo = True
     for string in iHateHowILookArray:             # work out if anything from the iHateHowILookArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "iHateHowILook" or similar
             msgSaysIHateHowILook = True
@@ -875,6 +1000,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysIHateHowILook = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysIHateHowILook = True
     for string in feelOverwhelmedArray:             # work out if anything from the feelOverwhelmedArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "feelOverwhelmed" or similar
             msgSaysFeelOverwhelmed = True
@@ -882,6 +1012,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysFeelOverwhelmed = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysFeelOverwhelmed = True
     for string in feelingAwfulArray:             # work out if anything from the feelingAwfulArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "feelingAwful" or similar
             msgSaysFeelingAwful = True
@@ -889,6 +1024,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysFeelingAwful = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysFeelingAwful = True
     for string in imAFailureArray:             # work out if anything from the ImAFailureArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "ImAFailure" or similar
             msgSaysImAFailure = True
@@ -896,6 +1036,7 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysImAFailure = False                                     # ... then set this flag to false
+        ## the code which detects whether the message starts with a lead string like "i am" and sees whether the user has omitted it is not being applied here
     for string in imALetdownArray:             # work out if anything from the ImALetdownArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "ImALetdown" or similar
             msgSaysImALetdown = True
@@ -903,6 +1044,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysImALetdown = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysImALetdown = True
     ## NOTE:  letMyselfDown is treated slightly differently. All the other strings start with I (i.e. the first person pronoun)
     ## "Let myself down" doesn't need to because it already contains a reflexive first person pronoun
     ## But this means that the preceding "it's not that" check needs to be more sophisticated.
@@ -914,6 +1060,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysFeelOutOfControl = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysFeelOutOfControl = True
     for string in feelLostArray:             # work out if anything from the feelLostArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "feelLost" or similar
             msgSaysFeelLost = True
@@ -921,6 +1072,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysFeelLost = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysFeelLost = True
     for string in inABadPlaceArray:             # work out if anything from the inABadPlaceArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "inABadPlace" or similar
             msgSaysInABadPlace = True
@@ -928,6 +1084,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysInABadPlace = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysInABadPlace = True
     for string in iHateHowIFeelArray:             # work out if anything from the IHateHowIFeelArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "IHateHowIFeel" or similar
             msgSaysIHateHowIFeel = True
@@ -935,6 +1096,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysIHateHowIFeel = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysIHateHowIFeel = True
     for string in imSadArray:             # work out if anything from the imSadArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "imSad" or similar
             msgSaysImSad = True
@@ -942,6 +1108,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysImSad = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysImSad = True
     for string in feelingLowDownTerribleArray:             # work out if anything from the feelingLowDownTerribleArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "feelingLowDownTerrible" or similar
             msgSaysFeelingLowDownTerrible = True
@@ -949,6 +1120,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysFeelingLowDownTerrible = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysFeelingLowDownTerrible = True
     for string in imUpsetArray:             # work out if anything from the imUpsetArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "imUpset" or similar
             msgSaysImUpset = True
@@ -956,6 +1132,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysImUpset = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysImUpset = True
     for string in imAddictedArray:             # work out if anything from the imAddictedArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "imAddicted" or similar
             msgSaysImAddicted = True
@@ -963,6 +1144,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysImAddicted = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysImAddicted = True
     for string in feelingRubbishArray:             # work out if anything from the feelingRubbishArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "feelingRubbish" or similar
             msgSaysFeelingRubbish = True
@@ -970,6 +1156,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysFeelingRubbish = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysFeelingRubbish = True
     for string in imAnxiousArray:             # work out if anything from the imAnxiousArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "imAnxious" or similar
             msgSaysImAnxious = True
@@ -977,6 +1168,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysImAnxious = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysImAnxious = True
     for string in iHaveAnxietyArray:             # work out if anything from the iHaveAnxietyArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "iHaveAnxiety" or similar
             msgSaysIHaveAnxiety = True
@@ -984,6 +1180,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysIHaveAnxiety = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysIHaveAnxiety = True
     for string in imWorriedArray:             # work out if anything from the imWorriedArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "imWorried" or similar
             msgSaysImWorried = True
@@ -991,6 +1192,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysImWorried = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysImWorried = True
     for string in iDontKnowWhatToDoArray:             # work out if anything from the IDontKnowWhatToDoArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "IDontKnowWhatToDo" or similar
             msgSaysIDontKnowWhatToDo = True
@@ -998,6 +1204,23 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysIDontKnowWhatToDo = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysIDontKnowWhatToDo = True
+    for string in iDontKnowWhatToSayArray:             # work out if anything from the IDontKnowWhatToSayArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "IDontKnowWhatToSay" or similar
+            msgSaysIDontKnowWhatToSay = True
+            for negatingString in itsNotThatArray:
+                negatedString = negatingString+string
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                    msgSaysIDontKnowWhatToSay = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysIDontKnowWhatToSay = True
     for string in imNotHappyArray:             # work out if anything from the imNotHappyArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "imNotHappy" or similar
             msgSaysImNotHappy = True
@@ -1005,6 +1228,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysImNotHappy = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysImNotHappy = True
     for string in familyProblemsArray:             # work out if anything from the familyProblemsArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "familyProblems" or similar
             msgSaysFamilyProblems = True
@@ -1012,7 +1240,11 @@ def choose_bot_wordy_response(message):
                 negatedString = negatingString+string
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysFamilyProblems = False                                     # ... then set this flag to false
-
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysFamilyProblems = True
     ## "Let myself down" is treated slightly different because it doesn't have a first person pronoun at the start, so the negating string is done differently
     for string in letMyselfDownArray:             # work out if anything from the letMyselfDownArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "letMyselfDown" or similar
@@ -1022,11 +1254,58 @@ def choose_bot_wordy_response(message):
                 for negatedString in negatedStringArray:
                     if negatedString in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it, or "it's not that i" before it, or ...
                         msgSaysLetMyselfDown = False                                     # ... then set this flag to false
-
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysLetMyselfDown = True
     ## "Do you give advice" is trated differently ebcause there's no need to include the negatig string check
     for string in doYouGiveAdviceArray:             # work out if anything from the doYouGiveAdviceArray is in the user's message
         if string.replace(" ","") in cleanedMessage.lower().replace(" ",""):                          # if message contains "do you give advice" or similar
             msgSaysDoYouGiveAdvice = True
+    ## The thisBotIsBadArray_loose checking section!
+    for string in thisBotIsBadArray_loose:             # work out if anything from the thisBotIsBadArray_loose is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "thisBotIsBad" or similar
+            msgSaysThisBotIsBad = True
+            for negatingString in itsNotThatArray:
+                negatedString = negatingString+string
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                    msgSaysThisBotIsBad = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    print("msgSaysThisBotIsBad has just been set to true in hte thisBotIsBadArray_loose bit (loose)")
+                    msgSaysThisBotIsBad = True
+    ## The thisBotIsBadArray_tight checking section!
+    extraWordsToDeleteArray = ["ok", "well", "right", "see"]
+    # step 1: remove the extraWordsToDeleteArray words from the message string
+    global message_list # so we can reuse the array that we used in the cleanText functoin
+    message_list = cleanedMessage.split() # convert the cleanedMessage into an array of words
+    loopEnd = len(message_list) # for the while loop
+    i = 0                       # for the while loop
+    while i < loopEnd:
+        print("DEWBUG in thisBotIsBadArray_tight checking: i = "+str(i)+" and message_list[i] = "+ message_list[i])
+        print("is message_list[i] in extraWordsToDeleteArray? Ans: "+ str(message_list[i] in extraWordsToDeleteArray))
+        if message_list[i].lower() in extraWordsToDeleteArray:
+            del message_list[i]
+            loopEnd = loopEnd - 1
+            i = i - 1
+        i = i + 1
+    # step 2: convert the message_list array to a string (with no space characters)
+    extraCleanedMessage = ""
+    for word in message_list:
+        extraCleanedMessage = extraCleanedMessage + word # note: no space characters added in between words
+    print("This is extraCleanedMessage after the extraWordsToDelete have bene deleted: "+extraCleanedMessage)
+    thisBotIsBadArray_tight_noSpaces = []
+    for string in thisBotIsBadArray_tight:
+        thisBotIsBadArray_tight_noSpaces.append(string.replace(" ",""))
+    #if extraCleanedMessage.lower() in thisBotIsBadArray_tight_noSpaces: # if extraCleanedMessage is one of the strings in thisBotIsBadArray_tight (with all space characters removed)
+    #    msgSaysThisBotIsBad = True
+    for string in thisBotIsBadArray_tight_noSpaces:
+        if extraCleanedMessage.lower().startswith(string):
+            msgSaysThisBotIsBad = True
+
 
     ## This section is another way of checking if msgSaysNothingToLiveFor shuld be true.
     ## It works by going through each of hte words "have anything to live for" and checking
@@ -1034,6 +1313,7 @@ def choose_bot_wordy_response(message):
     ## (b) do they appear in the right order? (this is a slightly hacky way of checking that)
     ## if both (a) and (b) apply, then this also sets msgSaysNothingToLiveFor to True
     haveAnythingToLiveFor = "have anything to live for"
+    # (a) is each of those words in the user's message?
     wordInMessage = []
     for word in haveAnythingToLiveFor.lower().split():
         if word in cleanedMessage.lower():
@@ -1041,6 +1321,7 @@ def choose_bot_wordy_response(message):
         else:
             wordInMessage.append(False)
     allWordsInMessage = all(wordInMessage)
+    # (b) do they appear in the right order? (this is a slightly hacky way of checking that)
     wordsInRightOrderBool = False # initialising
     if allWordsInMessage:
         wordsInRightOrderArray = []
@@ -1055,7 +1336,7 @@ def choose_bot_wordy_response(message):
                 else:
                     wordsInRightOrderArray[i] = False
         wordsInRightOrderBool = all(wordsInRightOrderArray)
-
+    ## if both (a) and (b) apply, then this also sets msgSaysNothingToLiveFor to True
     if allWordsInMessage and wordsInRightOrderBool:
         msgSaysNothingToLiveFor = True
     ## This is the end of the section that is another way of checking if msgSaysNothingToLiveFor shuld be true.
@@ -1401,18 +1682,20 @@ def choose_bot_wordy_response(message):
                 randomlyChosenIndex = random.randint(0,len(earlyWorriedResponses)-1) # select a random number between 0 and final index of the earlyWorriedResponses array
                 response = earlyWorriedResponses[randomlyChosenIndex] # set the response equal to the string (or whatever) corresponding to the relevant index
         else:                         # if it's not that early in the conversation
-            response = "I'm sorry to hear about all these worries you're experiencing"
+            response = "I'm sorry to hear about these worries you're experiencing"
             second_imWorriedResponseAlreadyUsed  = [conversationId,True]
 
         imWorriedResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysIDontKnowWhatToDo == True and iDontKnowWhatToDoResponseAlreadyUsed != [conversationId,True]:
-        ### If the message includes a string roughly equivalent to saying "I'm feeling rubbish", then reply with
+        ### If the message includes a string roughly equivalent to saying "I don't know waht to do", then reply with
         response = "So you said you're not sure what to do. Can you think of any options that you would like to explore with me?"
         iDontKnowWhatToDoResponseAlreadyUsed = [conversationId,True]
 
-    elif message.lower() in iDontKnowWhatToSayArray:
-        ### If the message is equal to a string roughly equivalent to saying "I do'nt know what to say", then reply with
+    elif msgSaysIDontKnowWhatToSay == True:
+        ### If the message includes a string roughly equivalent to saying "I do'nt know what to say", then reply as follows
+        ### Note that if the user keeps on saying that they don't konw what to say, they risk getting a very repetitive response,
+        ### But at least it will be a resposne which acknowledges that it's being repetitive
         if USER_CHARACTER_COUNT < 200:
             if initial_iDontKnowWhatToSayResponseAlreadyUsed != [conversationId, True]:
                 response = "This is a space for you to talk about what you're feeling. I'm guessing if you've ended up \
@@ -1425,7 +1708,7 @@ def choose_bot_wordy_response(message):
             if second_iDontKnowWhatToSayResponseAlreadyUsed != [conversationId, True]:
                 response = ["Thank you for having shared the things you've shared thus far. Perhaps let's just pause for a moment \
                 and think about how you're feeling right now.", "Having thought about that for a moment, can you think of anything \
-                that's on your mind that would be useful to discuss?"]
+                that's on your mind that would be useful to discuss, and that you haven't already said?"]
                 second_iDontKnowWhatToSayResponseAlreadyUsed = [conversationId,True]
             else:
                 response = ["I realise you've asked me this before, and I'm just going to say the same thing again (I'm a very unimaginative bot!) \
@@ -1464,13 +1747,6 @@ def choose_bot_wordy_response(message):
         doYouGiveAdviceResponseAlreadyUsed = [conversationId,True]
 
 
-    elif section == 11 and len(message) < 10 or " " not in message :
-        ### If it's the user's first written response and they've given  (essentially) a one-word message
-        ### When I say one-word message, I mean that either it has no space characters in it, or something that might be longer but has no space characters (this includes someone typing gibberish)
-        ### Note that any space-character-free message will get this response, whereas a short response will only hear this if it's the first message
-        ### NOTE: HARDCODING THE NUMBER 11 IS BAD PRACTICE! SHOULD UPDATE THIS LATER!!!!!!!!!!!!!11
-        response = "I see you've said something very short there, which is cool :-). But feel free to type full sentences if you want. Just write about whatever's on your mind -- I'm here to listen."
-
     elif section == 11 and " feeling " in message.lower():
         ### If it's the user's first written response and it includes hte word "feeling" then the response is...
         ### NOTE: HARDCODING THE NUMBER 11 IS BAD PRACTICE! SHOULD UPDATE THIS LATER!!!!!!!!!!!!!11
@@ -1491,6 +1767,28 @@ def choose_bot_wordy_response(message):
         wrong because I'm a very simple bot). If that's right, could you click the stop button?"]
         randomlyChosenIndex = random.randint(0,len(responsesToStopMessages)-1) # select a random number between 0 and final index of the responsesToStopMessages array
         response = responsesToStopMessages[randomlyChosenIndex] # set the response equal to the string corresponding to the relevant index
+
+    elif msgSaysThisBotIsBad and thisBotIsBadResponseAlreadyUsed != [conversationId,True]:
+        ### if the user says something like "this bot is bad"
+        if message.isupper(): #if the message is all caps
+            messagePrefix = "I'm sensing your frustration. "
+        else:
+            messagePrefix = ""
+        response = [messagePrefix+"I'm sorry you're not finding this to be helpful. If you have a better option \
+        than this bot, such as calling Samaritans (and you don't mind the queue), or talking to a therapist, please \
+        do that.", "But if that doesn't work for you, you're welcome to try to make this conversation work, by \
+        using this as a space to talk. And sorry I'm only a very simple bot. If you choose not to do this, please \
+        hit the stop button and provide feedback so we can make this better for others"]
+        thisBotIsBadResponseAlreadyUsed = [conversationId,True]
+
+    elif ((section == 11 and " " not in message) or len(message) < 10) and shortResponseAlreadyUsed != [conversationId,True]:
+        ### If it's the user's first written response and they've given  (essentially) a one-word message, or maybe something without spaces (e.g. typing gibberish like usanvoiudvuvufdsiudsbca)
+        ### When I say one-word message, I mean that either it is short, or something that might be longer but has no space characters (this includes someone typing gibberish)
+        ### NOTE: HARDCODING THE NUMBER 11 IS BAD PRACTICE! SHOULD UPDATE THIS LATER!!!!!!!!!!!!!11
+        response = "I see you've said something very short there, which is cool :-). But feel free to type full sentences if you want. Just write about whatever's on your mind -- I'm here to listen."
+        shortResponseAlreadyUsed = [conversationId,True]
+
+
 
     else:
         response = selectRandomResponse()
@@ -1517,39 +1815,70 @@ def get_bot_response():
     conversationId = _input[7]
     start_again = False
     global USER_CHARACTER_COUNT
+    global frontEnd
     nextUserInput = ""
-    nextUserInputFreeText = "<input id='textInput' type='text' name='msg' placeholder='Message' />" # this is a standard choice of thing to have at the bottom of the chatbox which will allow the user to enter free text
-    nextUserInputYesNo = "<select type='text' id='userInputButton' onchange='getBotResponse()'> \
-    <option>Select</option>  \
-    <option value='yes'>Yes</option> \
-    <option value='no'>No</option> \
-    </select>"
-    nextUserInputOneOption = "<select type='text' id='userInputButton' onchange='getBotResponse()'> \
-    <option>Select</option>  \
-    <option value='yes'>Yes</option> \
-    </select>"
-    nextUserInputTwoOptions = "<select type='text' id='userInputButton' onchange='getBotResponse()'> \
-    <option>Select</option>  \
-    <option value='yes'>Yes</option> \
-    <option value='no'>No</option> \
-    </select>"
-    nextUserInputFinalHappinessSurvey = "<select type='number' id='finalHappinessSurvey' onchange='getBotResponse()'>\
-<option>Select</option>\
-<option name='finalHappinessValue' value=1>1</option>\
-<option name='finalHappinessValue' value=2>2</option>\
-<option name='finalHappinessValue' value=3>3</option>\
-<option name='finalHappinessValue' value=4>4</option>\
-<option name='finalHappinessValue' value=5>5</option>\
-<option name='finalHappinessValue' value=6>6</option>\
-<option name='finalHappinessValue' value=7>7</option>\
-<option name='finalHappinessValue' value=8>8</option>\
-<option name='finalHappinessValue' value=9>9</option>\
-<option name='finalHappinessValue' value=10>10</option>\
-</select>"
+    if frontEnd == "pre2020m04":
+        nextUserInputFreeText = "<input id='textInput' type='text' name='msg' placeholder='Type your message here' />" # this is a standard choice of thing to have at the bottom of the chatbox which will allow the user to enter free text
+        nextUserInputYesNo = "<select type='text' id='userInputButton' onchange='getBotResponse()'> \
+        <option>Select</option>  \
+        <option value='yes'>Yes</option> \
+        <option value='no'>No</option> \
+        </select>"
+        nextUserInputOneOption = "<select type='text' id='userInputButton' onchange='getBotResponse()'> \
+        <option>Select</option>  \
+        <option value='yes'>Yes</option> \
+        </select>"
+        nextUserInputTwoOptions = "<select type='text' id='userInputButton' onchange='getBotResponse()'> \
+        <option>Select</option>  \
+        <option value='yes'>Yes</option> \
+        <option value='no'>No</option> \
+        </select>"
+        nextUserInputFinalHappinessSurvey = "<select type='number' id='finalHappinessSurvey' onchange='getBotResponse()'>\
+        <option>Select</option>\
+        <option name='finalHappinessValue' value=1>1</option>\
+        <option name='finalHappinessValue' value=2>2</option>\
+        <option name='finalHappinessValue' value=3>3</option>\
+        <option name='finalHappinessValue' value=4>4</option>\
+        <option name='finalHappinessValue' value=5>5</option>\
+        <option name='finalHappinessValue' value=6>6</option>\
+        <option name='finalHappinessValue' value=7>7</option>\
+        <option name='finalHappinessValue' value=8>8</option>\
+        <option name='finalHappinessValue' value=9>9</option>\
+        <option name='finalHappinessValue' value=10>10</option>\
+        </select>"
+    else:
+        nextUserInputFreeText = "<input class='message_input' placeholder='Type your message here...'>" # this is a standard choice of thing to have at the bottom of the chatbox which will allow the user to enter free text
+        nextUserInputYesNo = "<select class='message_input' type='text' id='userInputButton' onchange='sendMessage()> \
+        <option selected disabled>Select</option>  \
+        <option value='yes'>Yes</option> \
+        <option value='no'>No</option> \
+        </select>"
+        nextUserInputOneOption = "<select class='message_input' type='text' id='userInputButton' onchange='sendMessage()> \
+        <option selected disabled>Select</option>  \
+        <option value='yes'>Yes</option> \
+        </select>"
+        nextUserInputTwoOptions = "<select class='message_input' type='text' id='userInputButton' onchange='sendMessage()> \
+        <option selected disabled>Select</option>  \
+        <option value='yes'>Yes</option> \
+        <option value='no'>No</option> \
+        </select>"
+        nextUserInputFinalHappinessSurvey = "<select class='message_input' type='number' id='finalHappinessSurvey' onchange='sendMessage()'>\
+        <option selected disabled>Select</option>\
+        <option name='finalHappinessValue' value=1>1</option>\
+        <option name='finalHappinessValue' value=2>2</option>\
+        <option name='finalHappinessValue' value=3>3</option>\
+        <option name='finalHappinessValue' value=4>4</option>\
+        <option name='finalHappinessValue' value=5>5</option>\
+        <option name='finalHappinessValue' value=6>6</option>\
+        <option name='finalHappinessValue' value=7>7</option>\
+        <option name='finalHappinessValue' value=8>8</option>\
+        <option name='finalHappinessValue' value=9>9</option>\
+        <option name='finalHappinessValue' value=10>10</option>\
+        </select>"
 
     nextUserInputType = "initialHappinessSurvey" # the javascript code needs to pull in the data entered by the user in the userInput div and then spit the same data back out again. The way to retrieve this depends on whether the userinput mechanism was a button or a free text field, so this boolean helps to track that. It feeds through to a variable called currentUserInputType in the javascript code
 
-    print("This si the get_bot_response function")
+    print("This is the get_bot_response function")
 
     if section==1:
 
