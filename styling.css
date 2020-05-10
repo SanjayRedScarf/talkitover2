@@ -13,7 +13,8 @@ body {
   position: absolute;
   width: calc(100% - 20px);
   max-width: 800px;
-  height: 500px;
+  /*height: 500px;*/
+  height: 80%; /* added by daniel*/
   border-radius: 10px;
   background-color: #fff;
   left: 50%;
@@ -27,6 +28,7 @@ body {
 .top_menu {
   background-color: #fff;
   width: 100%;
+  height: 70px;/* added by daniel*/
   padding: 20px 0 15px;
   box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
 }
@@ -54,7 +56,7 @@ body {
 .top_menu .title {
   text-align: center;
   color: #bcbdc0;
-  font-size: 20px;
+  font-size: 36px;
 }
 
 .messages {
@@ -63,7 +65,8 @@ body {
   padding: 20px 10px 0 10px;
   margin: 0;
   /*height: 347px;*/
-  height: 316px; /* changed by Daniel */
+  /*height: 316px; /* changed by Daniel */
+  height: calc(100% - 180px - 70px);
   overflow: scroll;
 }
 .messages .message {
@@ -139,14 +142,15 @@ body {
   margin-top: -2px;
 }
 .messages .message .text_wrapper .text {
-  font-size: 18px;
+  font-size: 36px; /* changed from 18 by daniel*/
   font-weight: 300;
 }
 
 .bottom_wrapper {
   position: relative;
   width: 100%;
-  min-height: 24%; /* added by Daniel */
+  /*min-height: 24%; /* added by Daniel */
+  height: 180px;
   background-color: #fff;
   padding: 20px 20px;
   position: absolute;
@@ -154,7 +158,7 @@ body {
 }
 .bottom_wrapper .message_input_wrapper {
   display: inline-block;
-  height: 50px;
+  height: 50px; /* changed from 50 by daniel*/
   border-radius: 25px;
   border: 1px solid #bcbdc0;
   width: calc(100% - 160px);
@@ -169,6 +173,7 @@ body {
   position: absolute;
   outline-width: 0;
   color: gray;
+  font-size: 36px;
 }
 .bottom_wrapper .send_message {
   width: 140px;
@@ -185,14 +190,19 @@ body {
 }
 
 .bottom_wrapper .send_message:hover {
-  color: #a3d063;
-  background-color: #fff;
+  /*color: #a3d063;
+  background-color: #fff;*/
 }
 .bottom_wrapper .send_message .text {
-  font-size: 18px;
+  font-size: 36px;
   font-weight: 300;
   display: inline-block;
   line-height: 48px;
+}
+
+select {
+  font-size: 36px;
+  font-weight: 300;
 }
 
 .message_template {
@@ -200,8 +210,8 @@ body {
 }
 
 .stop_message {
-  width: 70px;
-  height: 25px;
+  width: 80px;
+  height: 35px;
   display: inline-block;
   border-radius: 50px;
   /*background-color: #f5886e;
@@ -215,6 +225,8 @@ body {
   /*float: bottom;*/
   margin-top: 5px;
   margin-left: 15px !important;
+  font-size: 24px;
+  font-weight: 300;
 }
 
 .stop_message:hover {
