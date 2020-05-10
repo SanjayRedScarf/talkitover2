@@ -1,5 +1,5 @@
 #import files
-from flask import Flask, render_template, request, make_response
+from flask import Flask, render_template, request, make_response, jsonify
 from json import dumps
 from datetime import datetime
 import json
@@ -13,7 +13,7 @@ my_dict = {} # shoudl this be tidied up and deleted out?
 sleep_per_word = 0.04 # I don't think this is being used yet, but could use it in the future
 scores = [-0.5, 0, 0.3]
 # The frontEnd variable is to switch the html text strings between the old and new versions
-frontEnd = "pre2020m04" # can take the values "pre2020m04" or "2020m04"
+# frontEnd = "pre2020m04" # can take the values "pre2020m04" or "2020m04"
 # At some point it would make sense to refactor out the frontEnd variable, because it's really a transitional thing
 # the below encouragingNoises are things the bot might say to the user
 encouragingNoises = ["I'm still listening, so feel free to say more.", "Go on talking, I'm still here.", \
@@ -202,54 +202,85 @@ def get_yes_no(message, yes_message, no_message, not_understand_message, section
         response="Error"
     return [response, next_section]
 
-def write_data(anonymous, conversationId, message, response):
-    ## stores the messages to file, if the user agrees
-    ## need to adjust this -- currently this just stops recording abruptly at the moment the user says "confidential"...
-    ## ... however should at least continue to the end of the button-clicking section and then
-    ## ... stop recroding before the user says any free text of their own
-    if anonymous=="true":
+def write_data(anonymous, conversationId, message, response, section, clientId):
+    """
+    Stores the messages to file, if the user agrees, or if it's something inoffensive
+    More precisely, if the anonymous variable is set to true (i.e. the user has given permission not to be totally confidential)...
+    ... or if we're in the initial section where gathering data is inoffensive anyway...
+    ... then store the data.
+    Note: I considered using a different decision criterion, namely what the nextUserInputType was (although tha'ts off by one, should be currentUserInputType)
+    However for futureproofing reasons I decided against this.
+    This is because in the future we might have dropdowns or buttons occurring during the body of the conversation.
+    And those might be more sensitive.
+    """
+    if anonymous=="true" or section <= 10:  # note: this is bad practice; shouldn't hardcode the number of sections
         message = message.replace(",", "¬")
         response = response.replace(",", "¬")
 
         with open('storedData.csv', 'a') as f:
-            dataToStore = [str(conversationId), "User says:",str(message), "Chatbot says:",str(response)]
+            dataToStore = [str(conversationId), "User says:",str(message), "Chatbot says:",str(response), clientId]
             f.write("\n" + str(dataToStore))
     return None
 
-def next_user_input_one(buttonText):
+def next_user_input_one(buttonText_array, clientId):
     ## when we send certain strings of html to the client side, this function helps with that
-    if frontEnd == "pre2020m04":
+    if clientId == "originalJavascriptClient":
         html_text = "<select type='text' id='userInputButton' onchange='getBotResponse()'> \
         <option>Select</option>  \
-        <option value='"+buttonText+"'>"+buttonText+"</option> \
+        <option value='"+buttonText_array[0]+"'>"+buttonText_array[0]+"</option> \
+        </select>"
+    elif clientId == "bootstrapJavascriptClient":
+        #html_text = "<select class='message_input' type='text' id='userInputButton' onchange='sendMessage()'> \
+        html_text = "<select class='message_input' type='text' id='userInputButton'> \
+        <option selected disabled>Select</option>  \
+        <option value='"+buttonText_array[0]+"'>"+buttonText_array[0]+"</option> \
         </select>"
     else:
-        html_text = "<select class='message_input' type='text' id='userInputButton' onchange='sendMessage()'> \
-        <option selected disabled>Select</option>  \
-        <option value='"+buttonText+"'>"+buttonText+"</option> \
-        </select>"
+        html_text = buttonText_array[0] # in this scenario we're expecting that the client is the API, and therefore won't need any html text
     return html_text
 
-def next_user_input_two(buttonText1,buttonText2):
+def next_user_input_two(buttonText_array,clientId):
     ## when we send certain strings of html to the client side, this function helps with that
-    if frontEnd == "pre2020m04":
+    if clientId == "originalJavascriptClient":
         html_text = "<select type='text' id='userInputButton' onchange='getBotResponse()'> \
         <option>Select</option>  \
-        <option value='"+buttonText1+"'>"+buttonText1+"</option> \
-        <option value='"+buttonText2+"'>"+buttonText2+"</option> \
+        <option value='"+buttonText_array[0]+"'>"+buttonText_array[0]+"</option> \
+        <option value='"+buttonText_array[1]+"'>"+buttonText_array[1]+"</option> \
+        </select>"
+    elif clientId == "bootstrapJavascriptClient":
+        #html_text = "<select class='message_input' type='text' id='userInputButton' onchange='sendMessage()'> \
+        html_text = "<select class='message_input' type='text' id='userInputButton'> \
+        <option selected disabled>Select</option>  \
+        <option value='"+buttonText_array[0]+"'>"+buttonText_array[0]+"</option> \
+        <option value='"+buttonText_array[1]+"'>"+buttonText_array[1]+"</option> \
         </select>"
     else:
-        html_text = "<select class='message_input' type='text' id='userInputButton' onchange='sendMessage()'> \
-        <option selected disabled>Select</option>  \
-        <option value='"+buttonText1+"'>"+buttonText1+"</option> \
-        <option value='"+buttonText2+"'>"+buttonText2+"</option> \
-        </select>"
+        html_text = buttonText_array[0]+buttonText_array[1] # in this scenario we're expecting that the client is the API, and therefore won't need any html text. In fact, I'm not expecting thi s to be used at all.
     return html_text
+
+def convert_array_or_string_to_string(array_or_string):
+    """
+    Takes a variable which may be either an array or a string and converts it to a string by either:
+    -- if it's a string, do nothing
+    -- if it's an array of strings, just concatenate all the elements of the array
+    If the array contains something other htan strings, that will be problematic
+    """
+
+    output_string = ""
+    if isinstance(array_or_string,str):
+        output_string = array_or_string
+    elif isinstance(array_or_string, list):
+        for i in range(0,len(array_or_string)):
+            output_string = output_string + array_or_string[i]
+
+    return output_string
 
 def no_of_fragments_in_str_or_list(response):
-    ## Sometimes the bot response is just one fragment; at other times one fragment will appear,...
-    ## ... and then a typing ellipsis will appear for a moment, and then another fragment.
-    ## This function counts the number of fragments
+    """
+    Sometimes the bot response is just one fragment; at other times one fragment will appear,...
+    ... and then a typing ellipsis will appear for a moment, and then another fragment.
+    This function counts the number of fragments
+    """
     noOfResponseFragments = 0
     if isinstance(response,list):
         noOfResponseFragments = len(response)
@@ -259,10 +290,10 @@ def no_of_fragments_in_str_or_list(response):
         print("Error: expecting the response variable to be either a string or a list, otherwise don't know how to set the noOfResponseFragments variable")
     return noOfResponseFragments
 
-def choose_bot_wordy_response(message):
+def choose_bot_wordy_response(message, clientId):
     """
     In the free text section of the bot, this function chooses what the bot says.
-    This function is called in the get_bot_response function.
+    This function is called in the get_bot_response function. EDIT: it's now called in the bot_processing function (changed that function's name)
     The function chooses by searching the user's message for a keyword, according to a priority ranking.
     There are specific bot responses to give for each keyword.
     If no keyword is found, a randomly generated encouraging phrase is chosen
@@ -423,7 +454,9 @@ def choose_bot_wordy_response(message):
     iHateHowILookArray = ["i hate how i look", "i hate my looks", "i hate my appearance", "i hate the way i look",\
                         "i just hate how i look", "i just hate my looks", "i just hate my appearance", "i just hate the way i look",\
                         "i really hate how i look", "i really hate my looks", "i really hate my appearance", "i really hate the way i look",\
-                        "i really just hate how i look", "i really just hate my looks", "i really just hate my appearance", "i really just hate the way i look"]
+                        "i really just hate how i look", "i really just hate my looks", "i really just hate my appearance", "i really just hate the way i look",
+                        "im ugly", "i am ugly"
+                        "i look horrible", "i look disgusting", "i look atrocious"]
     feelOverwhelmedArray = ["i feel overwhelmed", "im feeling overwhelmed", "i'm feeling overwhelmed", \
                             "i feel so overwhelmed", "im feeling so overwhelmed", "i'm feeling so overwhelmed",\
                             "i feel really overwhelmed", "im feeling really overwhelmed", "i'm feeling really overwhelmed", \
@@ -553,18 +586,20 @@ def choose_bot_wordy_response(message):
                         "i have nothing more to say", "i have nothing else to say", "ive got nothing more to say", "ive got nothing else to say",
                         "i think i have nothing more to say", "i think i have nothing else to say", "i think ive got nothing more to say", "i think ive got nothing else to say",
                         "i dont want to talk any more" ]
-    thisBotIsBadArray_loose = ["this bot is bad", "this bot is awful", "this bot is terrible", "this bot is atrocious",
-                        "you are a bad bot", "you are an awful bot", "you are a terrible bot", "you are an atrocious bot",
+    thisBotIsBadArray_loose = ["this bot is bad", "this bot is awful", "this bot is terrible", "this bot is atrocious", "this bot is shit", "this bot is crap"
+                        "you are a bad bot", "you are an awful bot", "you are a terrible bot", "you are an atrocious bot", "you are a shit bot", "you are a crap bot",
+                        "you are such a bad bot", "you are such an awful bot", "you are such a terrible bot", "you are such an atrocious bot", "you are such a shit bot", "you are such a crap bot",
+                        "this is a bad bot", "this is an awful bot", "this is a terrible bot", "this is an atrocious bot", "this is a shit bot", "this is a crap bot",
+                        "this is such a bad bot", "this is such an awful bot", "this is such a terrible bot", "this is such an atrocious bot", "this is such a shit bot", "this is such a crap bot",
                         "this bot is not helping", "this bot isnt helping", "this bot is no help", "this bot is no use", "this bot aint helping",
                         "i need to talk to a human", "i need to talk to a real person", "i need to talk to a real human",
                         "i need to speak to a human", "i need to speak to a real person", "i need to speak to a real human" ]
-    thisBotIsBadArray_tight = ["you are bad", "you are awful", "you are terrible", "you are atrocious",
+    thisBotIsBadArray_tight = ["you are bad", "you are awful", "you are terrible", "you are atrocious", "you are shit", "you are crap",
                         "this isnt helping", "this is not helping", "this aint helping",
                         "youre not helping", "your not helping", "you are not helping", "you arent helping", "you aint helping", "your no help", "youre no help", "your not a help", "youre not a help",
                         "this is useless", "this is worthless", "this is crap", "this is rubbish", "this is trash", "this is annoying", "this is pointless",
                         "you are useless", "you are worthless", "you are crap", "you are rubbish", "you are trash", "you are annoying", "you are pointless"
                         "what a waste of time", "what a pointless waste of time", "what a useless waste of time"]
-
 
 
     # these variables are to keep track of whether a response has already been given (to avoid repeating it).
@@ -1459,9 +1494,9 @@ def choose_bot_wordy_response(message):
 
         if userIsSuicidal:
             response = "It sounds bleak to hear you say you have nothing to live for, and I find it sad that you've been expressing suicidal thoughts."
-        else:
+        else: # in this scenario, either the user hasn't expressed suicidal thoughts, or they have but the algorithm hasn't picked up on it
             response = "I'm sorry to hear you say that you have nothing to live for. You saying that makes me worry about \
-            whether you want to continue to live, or if you're having suicidal thoughts. Could you say more about what's on your mind?"
+            you, especially when people who say that so often have suicidal thoughts. Could you say more about what's on your mind?"
         nothingToLiveForResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysIHateMyself == True and iHateMyselfResponseAlreadyUsed != [conversationId,True]:
@@ -1707,13 +1742,13 @@ def choose_bot_wordy_response(message):
         else:
             if second_iDontKnowWhatToSayResponseAlreadyUsed != [conversationId, True]:
                 response = ["Thank you for having shared the things you've shared thus far. Perhaps let's just pause for a moment \
-                and think about how you're feeling right now.", "Having thought about that for a moment, can you think of anything \
+                and think about how you're feeling right now. ", "Having thought about that for a moment, can you think of anything \
                 that's on your mind that would be useful to discuss, and that you haven't already said?"]
                 second_iDontKnowWhatToSayResponseAlreadyUsed = [conversationId,True]
             else:
                 response = ["I realise you've asked me this before, and I'm just going to say the same thing again (I'm a very unimaginative bot!) \
                 Perhaps let's just pause for a moment \
-                and think about how you're feeling right now.", "Having thought about that for a moment, can you think of anything \
+                and think about how you're feeling right now. ", "Having thought about that for a moment, can you think of anything \
                 that's on your mind that would be useful to discuss?"]
         iDontKnowWhatToSayResponseAlreadyUsed = [conversationId,True]
 
@@ -1739,7 +1774,7 @@ def choose_bot_wordy_response(message):
     elif msgSaysDoYouGiveAdvice == True and doYouGiveAdviceResponseAlreadyUsed != [conversationId,True]:
         ### if the user asks if the bot gives advice
         adviceResponses = [["This bot is a safe, non-judgemental space to explore what's on your mind. Giving advice isn't part of \
-        what I offer.", "Some people prefer not to be advised -- being told what to do can be disempowering, and talking \
+        what I offer. ", "Some people prefer not to be advised -- being told what to do can be disempowering, and talking \
         things through can help. But if advice is what you're after then I'm sorry not to be able to help. Would \
         you like to talk about what's on your mind?"], "This bot isn't about me advising you; it's about you talking and finding your own way through things. You're welcome to continue talking if that would help?"]
         randomlyChosenIndex = random.randint(0,len(adviceResponses)-1) # select a random number between 0 and final index of the adviceResponses array
@@ -1756,15 +1791,26 @@ def choose_bot_wordy_response(message):
         ### If the user is saying something that seems to suggest they want to stop using the botText
         ### Note: most other responses are set up to not be repeated if already used, but I think this one can be repeated
         ### Because it's possible that this could come up more than once, multiple possible responses are coded
-        responsesToStopMessages = ["Sorry I'm such a simple bot and I'm not understanding you very well, but \
-        are you saying you want to stop using this bot? If so, would you mind clicking on the stop button on the side?",\
-        "Thank you. I think you're telling me you want to stop this conversation (sorry if I misunderstood!) If so, could \
-        you please click the stop button?",\
-        "If I'm understanding you right, you're telling me you want to stop now. Please feel free to click the stop button, \
-        or if you want to continue using this bot, just continue talking", "Are you saying you want to stop using this bot? If so, \
-        would you mind clicking on the stop button on the side? (or you can just keep talking, of course)", "I think you're telling me \
-        you want to stop now (but I could be \
-        wrong because I'm a very simple bot). If that's right, could you click the stop button?"]
+        if clientId == "originalJavascriptClient" or clientId == "bootstrapJavascriptClient":
+            responsesToStopMessages = ["Sorry I'm such a simple bot and I'm not understanding you very well, but \
+            are you saying you want to stop using this bot? If so, would you mind clicking on the stop button on the side?",\
+            "Thank you. I think you're telling me you want to stop this conversation (sorry if I misunderstood!) If so, could \
+            you please click the stop button?",\
+            "If I'm understanding you right, you're telling me you want to stop now. Please feel free to click the stop button, \
+            or if you want to continue using this bot, just continue talking", "Are you saying you want to stop using this bot? If so, \
+            would you mind clicking on the stop button on the side? (or you can just keep talking, of course)", "I think you're telling me \
+            you want to stop now (but I could be \
+            wrong because I'm a very simple bot). If that's right, could you click the stop button?"]
+        else: # written on the assumption that this is referring to guided track
+            responsesToStopMessages = ["Sorry I'm such a simple bot and I'm not understanding you very well, but \
+            are you saying you want to stop using this bot? If so, would you mind typing 'stop' below?",\
+            "Thank you. I think you're telling me you want to stop this conversation (sorry if I misunderstood!) If so, could \
+            you please type 'stop' below?",\
+            "If I'm understanding you right, you're telling me you want to stop now. Please feel free to type 'stop' below, \
+            or if you want to continue using this bot, just continue talking", "Are you saying you want to stop using this bot? If so, \
+            would you mind typing 'stop' below? (or you can just keep talking, of course)", "I think you're telling me \
+            you want to stop now (but I could be \
+            wrong because I'm a very simple bot). If that's right, could you type 'stop' below?"]
         randomlyChosenIndex = random.randint(0,len(responsesToStopMessages)-1) # select a random number between 0 and final index of the responsesToStopMessages array
         response = responsesToStopMessages[randomlyChosenIndex] # set the response equal to the string corresponding to the relevant index
 
@@ -1774,11 +1820,18 @@ def choose_bot_wordy_response(message):
             messagePrefix = "I'm sensing your frustration. "
         else:
             messagePrefix = ""
-        response = [messagePrefix+"I'm sorry you're not finding this to be helpful. If you have a better option \
-        than this bot, such as calling Samaritans (and you don't mind the queue), or talking to a therapist, please \
-        do that.", "But if that doesn't work for you, you're welcome to try to make this conversation work, by \
-        using this as a space to talk. And sorry I'm only a very simple bot. If you choose not to do this, please \
-        hit the stop button and provide feedback so we can make this better for others"]
+        if clientId == "originalJavascriptClient" or clientId == "bootstrapJavascriptClient":
+            response = [messagePrefix+"I'm sorry you're not finding this to be helpful. If you have a better option \
+            than this bot, such as calling Samaritans (and you don't mind the queue), or talking to a therapist, please \
+            do that. ", "But if that doesn't work for you, you're welcome to try to make this conversation work, by \
+            using this as a space to talk. And sorry I'm only a very simple bot. If you choose not to do this, please \
+            press the stop button and provide feedback so we can make this better for others"]
+        else:
+            response = [messagePrefix+"I'm sorry you're not finding this to be helpful. If you have a better option \
+            than this bot, such as calling Samaritans (and you don't mind the queue), or talking to a therapist, please \
+            do that. ", "But if that doesn't work for you, you're welcome to try to make this conversation work, by \
+            using this as a space to talk. And sorry I'm only a very simple bot. If you choose not to do this, please \
+            type 'stop' below and provide feedback so we can make this better for others"]
         thisBotIsBadResponseAlreadyUsed = [conversationId,True]
 
     elif ((section == 11 and " " not in message) or len(message) < 10) and shortResponseAlreadyUsed != [conversationId,True]:
@@ -1789,7 +1842,6 @@ def choose_bot_wordy_response(message):
         shortResponseAlreadyUsed = [conversationId,True]
 
 
-
     else:
         response = selectRandomResponse()
 
@@ -1798,26 +1850,93 @@ def choose_bot_wordy_response(message):
 
 @app.route("/")
 def home():
-    return render_template("home.html")
+    homepage_name = random.choice(["home - bootstrap 2020m05.html", "home - original pre-2020m05.html"])
+    return render_template(homepage_name)
 @app.route("/get")
-def get_bot_response():
-    time.sleep(1)
-    _input = json.loads(request.args.get('msg'))
+def first_function_after_app_route():
+    """
+    This function is the function immediately after the main app route
+    It uses request.args.get to pull in the inputs from the javascript frontend
+    It then calls the function which does all the work
+    And then it returns the outputs back to the front end
+    """
+
+    _input = json.loads(request.args.get('msg')) # perhaps don't need json.loads?
     message = _input[0]
     global section
     section = _input[1]
     output = _input[2] # I don't know what this is for!
-    score = _input[3]
+    #score = _input[3] #not being used
     initialHappinessScore = int(_input[4])
     finalHappinessScore = int(_input[5])
     anonymous = _input[6]
     global conversationId
     conversationId = _input[7]
-    start_again = False
+    clientId = _input[8]
+
+    inputs_dict = { "message" : message,
+                    "section" : section,
+                    "initialHappinessScore" : initialHappinessScore,
+                    "finalHappinessScore" : finalHappinessScore,
+                    "anonymous" : anonymous,
+                    "conversationId" : conversationId,
+                    "clientId" : clientId}
+
+    outputs_dict = bot_processing(inputs_dict)
+
+    ## The better approach here would be for the server to send a dict of outputs back to the front end
+    ## perhaps using the make_response function applied directly to the dict like the line immediately below, perhaps
+    #return make_response(outputs_dict) # looks like make_response can take a dict
+    ## However the front end js code is currenrtly set up to expect a list,
+    ## so the below code converts the dict into an array
+
+
+    response = outputs_dict["response"]
+    noOfResponseFragments = outputs_dict["noOfResponseFragments"]
+    next_section = outputs_dict["next_section"]
+    score = "" # not being used
+    nextUserInput = outputs_dict["nextUserInput"]
+    nextUserInputType = outputs_dict["nextUserInputType"]
+    anonymous = outputs_dict["anonymous"]
+    conversationId = outputs_dict["conversationId"]
+
+    return make_response(dumps([response, noOfResponseFragments, next_section, score, nextUserInput, nextUserInputType, anonymous, conversationId]))
+
+
+
+
+def bot_processing(inputs_dict):
+    """
+    At time of writing this is structured as if it's the function immediately after the app route
+    However when changes are made it's the main processing function which is called
+    either by the function after the "main" app route  (i.e. the app route linked to the javascript front end)
+    or by the function after the api app route.
+
+    """
+
+    ## THE BELOW COMMENTED OUT STUFF IS NO LONGER NEEDED
+    ## BECAUSE THE FUNCTION CLOSEST TO THE APP ROUTE DOES THIS NOW
+    # _input = json.loads(request.args.get('msg')) # perhaps don't need json.loads?
+
+
+    message = inputs_dict["message"]
+    global section
+    section = inputs_dict["section"]
+    #output = inputs_dict[2] # I don't know what this is for!
+    #score = inputs_dict[3]
+    initialHappinessScore = int(inputs_dict["initialHappinessScore"])
+    finalHappinessScore = int(inputs_dict["finalHappinessScore"])
+    anonymous = inputs_dict["anonymous"]
+    global conversationId
+    conversationId = inputs_dict["conversationId"]
+    clientId = inputs_dict["clientId"]
+
+
+    start_again = False # I don't think this is being used
     global USER_CHARACTER_COUNT
-    global frontEnd
+    # global frontEnd
     nextUserInput = ""
-    if frontEnd == "pre2020m04":
+    if clientId == "originalJavascriptClient":
         nextUserInputFreeText = "<input id='textInput' type='text' name='msg' placeholder='Type your message here' />" # this is a standard choice of thing to have at the bottom of the chatbox which will allow the user to enter free text
         nextUserInputYesNo = "<select type='text' id='userInputButton' onchange='getBotResponse()'> \
         <option>Select</option>  \
@@ -1846,23 +1965,27 @@ def get_bot_response():
         <option name='finalHappinessValue' value=9>9</option>\
         <option name='finalHappinessValue' value=10>10</option>\
         </select>"
-    else:
+    elif clientId == "bootstrapJavascriptClient":
         nextUserInputFreeText = "<input class='message_input' placeholder='Type your message here...'>" # this is a standard choice of thing to have at the bottom of the chatbox which will allow the user to enter free text
-        nextUserInputYesNo = "<select class='message_input' type='text' id='userInputButton' onchange='sendMessage()> \
+        #nextUserInputYesNo = "<select class='message_input' type='text' id='userInputButton' onchange='sendMessage()> \
+        nextUserInputYesNo = "<select class='message_input' type='text' id='userInputButton' > \
         <option selected disabled>Select</option>  \
         <option value='yes'>Yes</option> \
         <option value='no'>No</option> \
         </select>"
-        nextUserInputOneOption = "<select class='message_input' type='text' id='userInputButton' onchange='sendMessage()> \
+        #nextUserInputOneOption = "<select class='message_input' type='text' id='userInputButton' onchange='sendMessage()> \
+        nextUserInputOneOption = "<select class='message_input' type='text' id='userInputButton' > \
         <option selected disabled>Select</option>  \
         <option value='yes'>Yes</option> \
         </select>"
-        nextUserInputTwoOptions = "<select class='message_input' type='text' id='userInputButton' onchange='sendMessage()> \
+        #nextUserInputTwoOptions = "<select class='message_input' type='text' id='userInputButton' onchange='sendMessage()> \
+        nextUserInputTwoOptions = "<select class='message_input' type='text' id='userInputButton' > \
         <option selected disabled>Select</option>  \
         <option value='yes'>Yes</option> \
         <option value='no'>No</option> \
         </select>"
-        nextUserInputFinalHappinessSurvey = "<select class='message_input' type='number' id='finalHappinessSurvey' onchange='sendMessage()'>\
+        #nextUserInputFinalHappinessSurvey = "<select class='message_input' type='number' id='finalHappinessSurvey' onchange='sendMessage()'>\
+        nextUserInputFinalHappinessSurvey = "<select class='message_input' type='number' id='finalHappinessSurvey' >\
         <option selected disabled>Select</option>\
         <option name='finalHappinessValue' value=1>1</option>\
         <option name='finalHappinessValue' value=2>2</option>\
@@ -1875,10 +1998,15 @@ def get_bot_response():
         <option name='finalHappinessValue' value=9>9</option>\
         <option name='finalHappinessValue' value=10>10</option>\
         </select>"
+    else: # i.e. anticipating this scenario is where the API is using the server
+    # if the API is being used, these strings of HTML are not expected ot be needed
+        nextUserInputFreeText = ""
+        nextUserInputYesNo = ""
+        nextUserInputOneOption = ""
+        nextUserInputTwoOptions = ""
+        nextUserInputFinalHappinessSurvey = ""
 
     nextUserInputType = "initialHappinessSurvey" # the javascript code needs to pull in the data entered by the user in the userInput div and then spit the same data back out again. The way to retrieve this depends on whether the userinput mechanism was a button or a free text field, so this boolean helps to track that. It feeds through to a variable called currentUserInputType in the javascript code
-
-    print("This is the get_bot_response function")
 
     if section==1:
 
@@ -1892,12 +2020,13 @@ def get_bot_response():
         else:
             #response = "Oh dear, sounds like you're feeling really low, I'm sorry to hear that. \
             #I want to ask you more about that, but first can I tell you how this bot works?"
-            response = ["Oh dear, sounds like you're feeling really low, I'm sorry to hear that",
+            response = ["Oh dear, sounds like you're feeling really low, I'm sorry to hear that. ",
             "I want to ask you more about that, but first can I tell you how this bot works?"]
 
         noOfResponseFragments = 0 # to assign the variable
         noOfResponseFragments = no_of_fragments_in_str_or_list(response)
-        nextUserInput = next_user_input_one("Yes, happy to listen to the explanation of how this bot works")
+        nextUserOptions = ["Yes, happy to listen to the explanation of how this bot works"] # this is the option that the user can select
+        nextUserInput = next_user_input_one(nextUserOptions,clientId) # this puts a string of html around it
         nextUserInputType = "userInputButton"
         next_section = section + 1
         #next_section = 9 # DEBUG CHEAT: for debugging purposes when you want to skip the intro. This shouldn't apply normally
@@ -1909,25 +2038,26 @@ def get_bot_response():
         responseForWriteData = ""
         for responseIndex in range(0,noOfResponseFragments):
             responseForWriteData = responseForWriteData + response[responseIndex]
-        write_data(anonymous, conversationId, "initialHappinessScore (!!) = "+message, responseForWriteData)
+        write_data(anonymous, conversationId, "initialHappinessScore (!!) = "+message, responseForWriteData, section, clientId)
 
 
     elif section==2:
 
         response = ["I'm actually a very simple little bot. So please feel free to talk to me, \
-        and sorry in advance if I don't always do a good job of understanding you.",
+        and sorry in advance if I don't always do a good job of understanding you. ",
         "Instead think of this as being more like writing a journal, but as you keep writing, \
         I'll be here to encourage you to keep talking."]
 
         next_section = section + 1
         noOfResponseFragments = no_of_fragments_in_str_or_list(response)
-        nextUserInput = next_user_input_one("OK, I will talk with you even though you are a simple bot.")
+        nextUserOptions = ["OK, I will talk with you even though you are a simple bot."] # this is the option that the user can select
+        nextUserInput = next_user_input_one(nextUserOptions,clientId) # this puts a string of html around it
         nextUserInputType = "userInputButton"
 
         responseForWriteData = ""
         for responseIndex in range(0,noOfResponseFragments):
             responseForWriteData = responseForWriteData + response[responseIndex]
-        write_data(anonymous, conversationId, message, responseForWriteData)
+        write_data(anonymous, conversationId, message, responseForWriteData, section, clientId)
 
 
     elif section==3:
@@ -1937,10 +2067,11 @@ def get_bot_response():
         of tracking you down, knowing who you are, or linking what you write to you."
         next_section = section + 1
         noOfResponseFragments = no_of_fragments_in_str_or_list(response)
-        nextUserInput = next_user_input_one("OK, I understand that you do not know who I am.")
+        nextUserOptions = ["OK, I understand that you do not know who I am."] # this is the option that the user can select
+        nextUserInput = next_user_input_one(nextUserOptions,clientId) # this puts a string of html around it
         nextUserInputType = "userInputButton"
 
-        write_data(anonymous, conversationId, message, response)
+        write_data(anonymous, conversationId, message, response, section, clientId)
 
     elif section==4:
 
@@ -1949,10 +2080,11 @@ def get_bot_response():
         be able to help."
         next_section = section + 1
         noOfResponseFragments = no_of_fragments_in_str_or_list(response)
-        nextUserInput = next_user_input_one("OK, I know you cannot provide emergency services.")
+        nextUserOptions = ["OK, I know you cannot provide emergency services."] # this is the option that the user can select
+        nextUserInput = next_user_input_one(nextUserOptions,clientId) # this puts a string of html around it
         nextUserInputType = "userInputButton"
 
-        write_data(anonymous, conversationId, message, response)
+        write_data(anonymous, conversationId, message, response, section, clientId)
 
     elif section==5:
 
@@ -1961,10 +2093,11 @@ def get_bot_response():
         us improve the way this software works, but we still won't know who you are."
         next_section = section + 1
         noOfResponseFragments = no_of_fragments_in_str_or_list(response)
-        nextUserInput = next_user_input_one("OK, I know what you mean by anonymous.")
+        nextUserOptions = ["OK, I know what you mean by anonymous."] # this is the option that the user can select
+        nextUserInput = next_user_input_one(nextUserOptions,clientId) # this puts a string of html around it
         nextUserInputType = "userInputButton"
 
-        write_data(anonymous, conversationId, message, response)
+        write_data(anonymous, conversationId, message, response, section, clientId)
 
     elif section==6:
 
@@ -1972,20 +2105,22 @@ def get_bot_response():
         stored at all, and no human will see what you write."
         next_section = section + 1
         noOfResponseFragments = no_of_fragments_in_str_or_list(response)
-        nextUserInput = next_user_input_one("OK, I know what you mean by confidential.")
+        nextUserOptions = ["OK, I know what you mean by confidential."] # this is the option that the user can select
+        nextUserInput = next_user_input_one(nextUserOptions,clientId) # this puts a string of html around it
         nextUserInputType = "userInputButton"
 
-        write_data(anonymous, conversationId, message, response)
+        write_data(anonymous, conversationId, message, response, section, clientId)
 
     elif section==7:
 
         response = "Would you like this service to be anonymous or confidential?"
         next_section = section + 1
         noOfResponseFragments = no_of_fragments_in_str_or_list(response)
-        nextUserInput = next_user_input_two("Anonymous (my words can help improve the bot)", "Confidential (no human ever sees my words)")
+        nextUserOptions = ["Anonymous (my words can help improve the bot)", "Confidential (no human ever sees my words)"] # this is the option that the user can select
+        nextUserInput = next_user_input_two(nextUserOptions,clientId) # this puts a string of html around it
         nextUserInputType = "userInputButton"
 
-        write_data(anonymous, conversationId, message, response)
+        write_data(anonymous, conversationId, message, response, section, clientId)
 
     elif section==8:
 
@@ -1994,25 +2129,41 @@ def get_bot_response():
         at the start? I'd like to ask you the same thing at the end so I know if we're helping."
         next_section = section + 1
         noOfResponseFragments = no_of_fragments_in_str_or_list(response)
-        nextUserInput = next_user_input_one("Yes, I am happy to let you see how I feel at the end too")
+        nextUserOptions = ["Yes, I am happy to let you see how I feel at the end too"] # this is the option that the user can select
+        nextUserInput = next_user_input_one(nextUserOptions,clientId) # this puts a string of html around it
         nextUserInputType = "userInputButton"
 
-        write_data(anonymous, conversationId, message, response)
+        write_data(anonymous, conversationId, message, response, section, clientId)
 
     elif section==9:
 
-        response = ["When you're finished using the bot, please click the stop button on the right\
-        or just type 'stop'; this will take you to the super-quick final survey.", "Don't press it now, but \
-        can you press this button instead of closing/exiting this window?"]
+        if clientId == "originalJavascriptClient":
+            response = ["When you're finished using the bot, please click the stop button on the right \
+            or just type 'stop'; this will take you to the super-quick final survey. ", "Don't press it now, but \
+            can you press this button instead of closing/exiting this window?"]
+        elif clientId == "bootstrapJavascriptClient":
+            response = ["When you're finished using the bot, please click the stop button below \
+            or just type 'stop'; this will take you to the super-quick final survey. ", "Don't press it now, but \
+            can you press this button instead of closing/exiting this window?"]
+        else: # this is assumed to be the guided track front end
+            response = ["When you're finished using the bot, please type 'stop' in the text field \
+            where the responses go, this will take you to the super-quick one-question final survey. \
+            Please please do this, because we want to know if we are helping."]
         next_section = section + 1
         noOfResponseFragments = no_of_fragments_in_str_or_list(response)
-        nextUserInput = next_user_input_one("Yes, when I am finished I will click the stop button")
+        if clientId == "originalJavascriptClient":
+            nextUserOptions = ["Yes, when I am finished I will click the stop button"] # this is the option that the user can select
+        elif clientId == "bootstrapJavascriptClient":
+            nextUserOptions = ["Yes, when I am finished I will click the stop button"] # this is the option that the user can select
+        else: # this is assumed to be the guided track front end
+            nextUserOptions = ["Yes, I agree to fill in the quick survey at the end. I'll type 'stop' in a text field."]
+        nextUserInput = next_user_input_one(nextUserOptions,clientId) # this puts a string of html around it
         nextUserInputType = "userInputButton"
 
         responseForWriteData = ""
         for responseIndex in range(0,noOfResponseFragments):
             responseForWriteData = responseForWriteData + response[responseIndex]
-        write_data(anonymous, conversationId, message, responseForWriteData)
+        write_data(anonymous, conversationId, message, responseForWriteData, section, clientId)
 
 
     elif section==10:
@@ -2033,10 +2184,11 @@ def get_bot_response():
 
         next_section = section + 1
         noOfResponseFragments = no_of_fragments_in_str_or_list(response)
+        nextUserOptions = [""] # n/a because next user input type is not buttons
         nextUserInput = nextUserInputFreeText
         nextUserInputType = "freeText"
 
-        write_data(anonymous, conversationId, message, response)
+        write_data(anonymous, conversationId, message, response, section, clientId)
 
 
 
@@ -2120,26 +2272,29 @@ def get_bot_response():
             gave at the start was "+str(initialHappinessScore)
             next_section = -1
             noOfResponseFragments = no_of_fragments_in_str_or_list(response)
+            nextUserOptions = [""] # n/a because next user input type is not buttons
             nextUserInput = nextUserInputFinalHappinessSurvey
             nextUserInputType = "finalHappinessSurvey"
         else:
             #randomlyChosenIndex = random.randint(0,noOfEncouragingNoises-1)
             #response = encouragingNoises[randomlyChosenIndex]
-            response = choose_bot_wordy_response(message)
+            response = choose_bot_wordy_response(message, clientId)
             next_section = section + 1
             noOfResponseFragments = no_of_fragments_in_str_or_list(response)
+            nextUserOptions = [""] # n/a because next user input type is not buttons
             nextUserInput = nextUserInputFreeText
             nextUserInputType = "freeText"
 
         responseForWriteData = ""
 
-        if isinstance(response,str):
-            responseForWriteData = response
-        elif isinstance(response, list):
-            for responseIndex in range(0,noOfResponseFragments):
-                responseForWriteData = responseForWriteData + response[responseIndex]
+        responseForWriteData = convert_array_or_string_to_string(response)
+        # if isinstance(response,str):
+        #     responseForWriteData = response
+        # elif isinstance(response, list):
+        #     for responseIndex in range(0,noOfResponseFragments):
+        #         responseForWriteData = responseForWriteData + response[responseIndex]
 
-        write_data(anonymous, conversationId, message, responseForWriteData)
+        write_data(anonymous, conversationId, message, responseForWriteData, section, clientId)
 
 
     elif section == -1: # this is the "end" (i.e. user has entered "stop") section
@@ -2161,20 +2316,22 @@ def get_bot_response():
 
         next_section = -2
         noOfResponseFragments = no_of_fragments_in_str_or_list(response)
+        nextUserOptions = [""] # n/a because next user input type is not buttons
         nextUserInput = nextUserInputFreeText
         nextUserInputType = "freeText"
 
 
-        write_data(anonymous, conversationId, "finalHappinessScore (!!) = "+message, response)
+        write_data("true", conversationId, "finalHappinessScore (!!) = "+message, response, section, clientId) # the "anonymous" variable is hardcoded as true here, because we're going to store this data regardless of whether the user has said anonymous or confidential
 
 
     elif section == -2: # this is the "end" (i.e. user has entered "stop") section
 
-        response="This is the end. Thank you for using the Talk It Over chatbot."
+        response="Thank you for your feedback. This is the end. Thank you for using the Talk It Over chatbot."
         #print("The response variable has just been set equal to "+response)
 
         next_section = -3
         noOfResponseFragments = no_of_fragments_in_str_or_list(response)
+        nextUserOptions = [""] # n/a because next user input type is not buttons
         nextUserInput = ""
         nextUserInputType = ""
 
@@ -2190,13 +2347,87 @@ def get_bot_response():
         #f.write("\n" + str(dataToStore))
         #f.close()
 
-        write_data(anonymous, conversationId, message, response)
+        write_data("true", conversationId, message, response, section, clientId) # the "anonymous" variable is hardcoded as true here, because we're going to store this data regardless of whether the user has said anonymous or confidential
 
     #time.sleep(min(sleep_per_word*len(response.split()), 2))  # this delay is meant to represent the bot's thinking time. I'm just finding it annoying, but perhaps if there's a better dancing ellipsis to represent typing, it might be more worthwhile having the delay in.
     print("This is the data which gets sent to the client side")
-    print([response, noOfResponseFragments, next_section, score, nextUserInput, nextUserInputType, anonymous, conversationId])
-    return make_response(dumps([response, noOfResponseFragments, next_section, score, nextUserInput, nextUserInputType, anonymous, conversationId]))
+    print([response, noOfResponseFragments, next_section, nextUserInput, nextUserInputType, anonymous, conversationId])
+    outputs_dict = {"response" : response,
+                    "noOfResponseFragments" : noOfResponseFragments,
+                    "next_section" : next_section,
+                    "nextUserOptions" : nextUserOptions,
+                    "nextUserInput" : nextUserInput,
+                    "nextUserInputType" : nextUserInputType,
+                    "anonymous" : anonymous,
+                    "conversationId" : conversationId}
+    #return make_response(dumps([response, noOfResponseFragments, next_section, score, nextUserInput, nextUserInputType, anonymous, conversationId]))
+    return outputs_dict
 
+
+@app.route('/chatbot/api/v1.0/messages', methods=['GET'])
+def get_bot_response_api():
+
+
+    print("This statement is inside the get_bot_response_api function, so this is an API call. The time is "+str(datetime.now()))
+    message_api = request.args.get('userMessage')                               # type = string
+    section_api = int(request.args.get('section'))                              # type = int
+    initialHappinessScore_api = int(request.args.get('initialHappinessScore'))  # type = int
+    finalHappinessScore_api = int(request.args.get('finalHappinessScore'))      # type = int
+    anonymous_api = request.args.get('anonymous')                               # type = string
+    conversationId_api = request.args.get('conversationId')                     # type = string
+
+
+    inputs_dict = { "message" : message_api,
+                    "section" : section_api,
+                    "initialHappinessScore" : initialHappinessScore_api,
+                    "finalHappinessScore" : finalHappinessScore_api,
+                    "anonymous" : anonymous_api,
+                    "conversationId" : conversationId_api,
+                    "clientId" : "api"}
+
+    outputs_dict = bot_processing(inputs_dict)
+
+
+    #_input_api = request.args.get('apiClientData') # this is an array
+    #message_api = _input_api[0] # this is a string
+    #section_api = _input_api[1] # this is a string
+
+    print("THE INPUTS")
+    print("message from api is "+str(message_api))
+    print("section number from api is "+str(section_api))
+    print("initialHappinessScore from api is "+str(initialHappinessScore_api))
+    print("finalHappinessScore from api is "+str(finalHappinessScore_api))
+    print("anonConfid from api is "+str(anonymous_api))
+    print("conversationId from api is "+str(conversationId_api))
+
+    response_raw = outputs_dict["response"] # type might be either list or string
+    next_section = outputs_dict["next_section"]
+    #nextUserInput = outputs_dict["nextUserInput"] # don't really need this, because it's got loads of html on it
+    nextUserOptions_array = outputs_dict["nextUserOptions"]
+    nextUserInputType = outputs_dict["nextUserInputType"]
+    anonymous = outputs_dict["anonymous"]
+    conversationId = outputs_dict["conversationId"]
+
+
+    response = "" # not sure if this is stil needed?
+    response = convert_array_or_string_to_string(response_raw)
+
+    #nextUserOptions = convert_array_or_string_to_string(nextUserOptions_array) # Wait? I don't think this makes sense?!!!
+
+    print("THE OUTPUTS")
+    print("Api outputs; response = "+response)
+    print("Api outputs; next_section = "+str(next_section))
+    #print("Api outputs; nextUserInput = "+nextUserInput)
+    print("Api outputs; nextUserInputType = "+nextUserInputType)
+    print("Api outputs; anonymous = "+anonymous)
+    print("Api outputs; conversationId = "+conversationId)
+
+
+    #print("And this is the whole of the _input_api thing: "+ _input_api)
+    #_input_api = json.loads('userMessage')
+    #botResponse = "This is a dummy bot response for testing purposes. Hello. Now I'm just going to spit out the userMessage thing I've just received: "+str(message_api)+" and this is the current section number: "+str(section_api)
+    #response_to_frontend = jsonify({[response, noOfResponseFragments, next_section, score, nextUserInput, nextUserInputType, anonymous, conversationId]})
+    return jsonify(response = response, next_section = next_section, nextUserOptions = nextUserOptions_array, nextUserInputType = nextUserInputType, conversationId = conversationId)
 
 
 
