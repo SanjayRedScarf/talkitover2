@@ -218,7 +218,7 @@
             finalHappinessValueSent = finalHappinessValue;}   // then the variable which sends the finalHappinessValue to the server (which we're calling finalHappinessValueSent) is set equal to that value
           else {finalHappinessValueSent = -1;}                // otherwise just give it a random value -- in this case -1 -- (otherwise it throws up an error about the int() function in python not accepting a nonetype)
 
-          clientId = "originalJavascriptClientv4"
+          clientId = "originalJavascriptClient"
 
           $.get("/get", { msg: JSON.stringify([userText, sectionNumber, output, sentiment, initialHappinessValueSent, finalHappinessValueSent, anonymous, conversationId, clientId]) }).done(function(data) {
 
