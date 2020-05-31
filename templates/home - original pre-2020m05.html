@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+<title>Talk It Over</title>
+<body>
+  <center>
+    <h1>
+      <img
+        src="https://user-images.githubusercontent.com/20112458/49326597-773b7280-f57a-11e8-853d-20ed61d18b0d.png"
+        alt="TIO"
+        style="width:40px;height:40px;"
+      />TIO Your Personal ChatBot
+    </h1>
+  </center>
+<div class="box"></div>
+  <div id="mainBox" class="boxed">
+    <div>
+      <div id="chatbox">
+        <img
+          src="https://user-images.githubusercontent.com/20112458/49326597-773b7280-f57a-11e8-853d-20ed61d18b0d.png"
+          alt="TIO"
+          style="width:40px;height:40px;"
+        />
+        <p class="botText">
+          <span>Hi! I'm the Talk It Over chatbot and I am here for you to talk about whatever is on your mind. Thanks for trying this early prototype! I'm not a very clever piece of software and I might not understand everything you say, but if you think that talking things through in a safe confidential space might help, let's chat! Please rate how you feel on a scale from 1 to 10, where 1 is terrible and 10 is great</span>
+        </p>
+      </div>
+      <div id="userInputDiv" style="float: left;">
+        <!--<input id='textInput' type='text' name='msg' placeholder='Message' />  -->
+        <!--<button class="textInput" id="userInputButton" type="button" onclick="getBotResponse()" value="yes">Yes</button> -->
+        <!--<button class="textInput" id="userInputButton" type="button" onclick="getBotResponse()" value="no">No</button> -->
+        <select type='number' class="userInputDropdown" id='initialHappinessSurvey' onchange='getBotResponse()'>
+          <option>Select</option>
+          <option name="initialHappinessValue" value=1>1</option>
+          <option name="initialHappinessValue" value=2>2</option>
+          <option name="initialHappinessValue" value=3>3</option>
+          <option name="initialHappinessValue" value=4>4</option>
+          <option name="initialHappinessValue" value=5>5</option>
+          <option name="initialHappinessValue" value=6>6</option>
+          <option name="initialHappinessValue" value=7>7</option>
+          <option name="initialHappinessValue" value=8>8</option>
+          <option name="initialHappinessValue" value=9>9</option>
+          <option name="initialHappinessValue" value=10>10</option>
+        </select>
+
+      </div>
+    </div>
+  </div>
+  <div id="stopButtonMarker"></div>
+  <!--<div style="float: right;">
+    <button id="stopButton" type="button" onclick="initiateStopSection();">Stop</button>
+  </div>-->
+</body>
+</html>
+
+<head>
+  <link
+    rel="shortcut icon"
+    type="image/x-icon"
+    href="https://user-images.githubusercontent.com/20112458/49326597-773b7280-f57a-11e8-853d-20ed61d18b0d.png"
+  />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <style>
+    body {
+      font-family: monospace;
+    }
+    h1 {
+      background-color: yellow;
+      display: inline-block;
+      font-size: 3em;
+      margin: 0;
+      padding: 14px;
+    }
+    h3 {
+      color: black;
+      font-size: 20px;
+      margin-top: 3px;
+      text-align: center;
+    }
+
+
+    #stopButton {
+      float: right;
+      height: 50px;
+      margin-top: 60px;
+      font-size: 35px;
+    }
+
+    #chatbox {
+      margin-left: auto;
+      margin-right: auto;
+      width: 85%;
+      margin-top: 60px;
+    }
+    #userInputDiv {
+      margin-left: auto;
+      margin-right: auto;
+      width: 85%;
+      height: 100px;
+      margin-top: 60px;
+    }
+    #textInput {
+      width: 85%;
+      border: none;
+      border-bottom: 3px solid black;
+      font-family: monospace;
+      font-size: 35px;
+    }
+    .userText {
+      color: white;
+      font-family: monospace;
+      font-size: 35px;
+      text-align: right;
+      line-height: 60px;
+    }
+    .userText span {
+      background-color: #808080;
+      padding: 10px;
+      border-radius: 2px;
+    }
+
+    .userInputDropdown {
+      font-size: 15px;
+      width: 85%;
+      height: 20px;
+    }
+
+    .botText {
+      color: white;
+      font-family: monospace;
+      font-size: 35px;
+      text-align: left;
+      line-height: 60px;
+    }
+    .botText span {
+      background-color: #4169e1;
+      padding: 10px;
+      border-radius: 2px;
+    }
+    #tidbit {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 300px;
+    }
+    .boxed {
+      margin-left: auto;
+      margin-right: auto;
+      width: 78%;
+      margin-top: 60px;
+      border: 1px solid green;
+    }
+    .box {
+      border: 2px solid black;
+    }
+  </style>
+</head>
+
+<script>
+      var botResponseText = "";
+      var sectionNumber = 1;
+      var output = 1;
+      var sentiment = 1;
+      var initialHappinessValue = 0;
+      var nextUserInput = "";
+      //var currentUserInputIsFreeText = "false"; //need to initialise this based on whether the second implementation of the userinput div is actually free text or not
+      //var currentUserInputIsOneToTen = "true";
+      //var currentUserInputIsYesNo = "false";
+      var initialHappinessValueSent = 0;
+      var finalHappinessValue = 0;
+      var finalHappinessValueSent = 0;
+      var currentUserInputType = "initialHappinessSurvey"; // alternative values include: freeText and userInputButton
+      var dataToStore = [];
+      var anonymous = "true"
+      var conversationId = "null"
+      var botThinkingTime = 450;
+      var userText = "";
+
+
+      function getBotResponse() {
+
+
+        // This block of if statements sets the value of userText, which stores the text produced by the user
+        console.log("currentUserInputType = "+currentUserInputType);
+        if (currentUserInputType=="freeText") {
+          userText = $("#textInput").val();}
+        else if (currentUserInputType == "initialHappinessSurvey"){
+          initialHappinessValue = $("#initialHappinessSurvey").val();
+          userText = String(initialHappinessValue);}
+        else if (currentUserInputType == "finalHappinessSurvey"){
+          finalHappinessValue = $("#finalHappinessSurvey").val();
+          userText = String(finalHappinessValue);}
+        else if (currentUserInputType == "userInputButton"){
+          userText = document.getElementById("userInputButton").value;}
+        else if (currentUserInputType == "stopButton"){
+          sectionNumber = 100; // the server will do the right thing if the section number is > 10, 100 is a randomly chosen number > 10
+          userText = "stop";} // the server will do the right thing if the user text is 'stop'
+        console.log("userText has just been set as "+userText);
+
+
+
+        if (userText!=""){
+          // The next few lines put the "userText" (i.e. user text) into the grey text blob and scroll down so that it's visible.
+          // If the stop button has been triggered, should the word "stop" still appear? I think this is OK.
+          var userHtml = '<p class="userText"><span>' + userText + "</span></p>";
+          $("#chatbox").append(userHtml);
+          document
+            .getElementById("userInputDiv")
+            .scrollIntoView({ block: "start", behavior: "smooth" });
+
+          //if the stop button has been pressed, we want to take the stop button away
+          if(currentUserInputType=="stopButton"){$("#stopButton").remove();}
+
+          if (initialHappinessValue>0){                         // if the initialHappinessValue has a value (i.e. if it's the first section)
+            initialHappinessValueSent = initialHappinessValue;} // then the variable which sends the initialHappinessValue to the server (which we're calling initialHappinessValueSent) is set equal to that value
+          else {initialHappinessValueSent = -1;}                // otherwise just give it a random value -- in this case -1 -- (otherwise it throws up an error about the int() function in python not accepting a nonetype)
+
+          if (finalHappinessValue>0){                         // if the finalHappinessValue has a value (i.e. if it's the first section)
+            finalHappinessValueSent = finalHappinessValue;}   // then the variable which sends the finalHappinessValue to the server (which we're calling finalHappinessValueSent) is set equal to that value
+          else {finalHappinessValueSent = -1;}                // otherwise just give it a random value -- in this case -1 -- (otherwise it throws up an error about the int() function in python not accepting a nonetype)
+
+          clientId = "originalJavascriptClient"
+
+          $.get("/get", { msg: JSON.stringify([userText, sectionNumber, output, sentiment, initialHappinessValueSent, finalHappinessValueSent, anonymous, conversationId, clientId]) }).done(function(data) {
+
+          // The next two lines pick up a thinking/typing ellipsis (three dots) and place them in the chatbox
+          var botThinkingHtml = '<img class="botText" src="https://raw.githubusercontent.com/SanjayRedScarf/talkitover2/SanjayRedScarf-new/typing_dots_cropped.gif" style="width:90px;height:40px;"/>'; //
+          $("#chatbox").append(botThinkingHtml);
+
+          // We're going to need the next two variables to identify that ellipsis whcih we just put in the chatbox (this will help us remove it)
+          var indexOfLastBotTextElement = document.getElementsByClassName('botText').length-1;
+          var ellipsisElement = document.getElementsByClassName('botText')[indexOfLastBotTextElement];
+          // DRY!!! Maybe the previous two lines should be a function?
+
+          //ASSIGNING VARIABLE NAMES TO THE VARIABLES THAT HAVE COME FROM THE SERVER
+          // The next few lines pick up the data received from the server and assign them with variable names so they can be used here in the javascript
+          var noOfResponseFragments = JSON.parse(data)[1];
+          if (noOfResponseFragments == 1) {botResponseText = JSON.parse(data)[0];}
+          else {var botResponseTextArray = JSON.parse(data)[0]; }
+          sectionNumber = JSON.parse(data)[2];
+          sentiment = JSON.parse(data)[3];
+          nextUserInput = JSON.parse(data)[4];
+          currentUserInputType = JSON.parse(data)[5];
+          anonymous = JSON.parse(data)[6]
+          conversationId = JSON.parse(data)[7]
+
+          // This section generates the html for the things the bot says
+          if (noOfResponseFragments == 1){
+          var botHtml = '<p class="botText"><span>' + botResponseText + "</span></p>"; // This creates a string which consists of the bot's response together with the required html tags
+          var botHtmlArray = [];
+          botHtmlArray[0] = botResponseText; // this is needed for the section which sets the botThinkingTime
+          }
+          else {
+            var botHtmlArray = [];
+            var responseFragment = 0; // This is for the for loop
+            for (responseFragment=0; responseFragment < noOfResponseFragments; responseFragment++){
+              botHtmlArray[responseFragment] = '<p class="botText"><span>' + botResponseTextArray[responseFragment] + "</span></p>"; // This creates a string which consists of the bot's response together with the required html tags
+            }
+          }
+
+          // Determining the botThinkingTime
+          if (currentUserInputType=="freeText") {       // if the user has just entered free text (as opposed to, e.g., some sort of dropdown or form)
+            botThinkingTime = Math.max(userText.length*10,500); // set the thinking time to at least 500 milliseconds, and longer if the user text is long
+            botThinkingTime = Math.min(botThinkingTime, 3000); // make sure the user doesn't have to wait more than 3 seconds for a response
+          }
+
+          botThinkingTimeBeforeSecondFragment = Math.min(1000+botHtmlArray[0].length*60,5000) // This website suggested that the formula should be timeToRead=1300+(chars∗65); (I made it a bit shorter than that)  https://psychology.stackexchange.com/questions/1147/how-long-does-it-take-to-read-a-sentence-with-x-number-of-characters
+
+
+          // THE BELOW SECTIONS PLACE THE BOT RESPONSE ON THE SCREEN
+          // The setTimeout function is used below because we want the ellipsis to be on the screen briefly...
+          // ... and then after some time we remove the ellipsis and replace it with whatever is coming next
+
+          if (noOfResponseFragments==1){
+
+            setTimeout(function(){
+              ellipsisElement.parentNode.removeChild(ellipsisElement); // remove the ellipsis
+              $("#chatbox").append(botHtml); // add the bot's response onto the screen
+              document.getElementById("userInputDiv").innerHTML = nextUserInput; // in the userInputDiv put in the relevant html for the next user input
+              document
+                .getElementById("userInputDiv")
+                .scrollIntoView({ block: "start", behavior: "smooth" })  // scroll down the screen to make sure we can see the bit where the user input is
+              if (currentUserInputType == "freeText"){        // if the field is a free text field
+                document.getElementById("textInput").focus(); // make sure it already has the cursor in it so the user can just start typing straight away (rather than making the user select the field manually)
+                }
+            },botThinkingTime)
+
+          }
+
+          else if (noOfResponseFragments==2){
+
+            setTimeout(function(){
+              ellipsisElement.parentNode.removeChild(ellipsisElement); // remove the "thinking" ellipsis
+              $("#chatbox").append(botHtmlArray[0]); // add the bot's response onto the screen
+              $("#chatbox").append(botThinkingHtml); // add the "thinking" ellipsis at the bottom
+              document
+                .getElementById("userInputDiv")
+                .scrollIntoView({ block: "start", behavior: "smooth" })  // scroll down the screen to make sure we can see the bit where the user input is
+            },botThinkingTime)
+
+            setTimeout(function(){
+              indexOfLastBotTextElement = document.getElementsByClassName('botText').length-1;
+              ellipsisElement = document.getElementsByClassName('botText')[indexOfLastBotTextElement];
+              ellipsisElement.parentNode.removeChild(ellipsisElement); // remove the "thinking" ellipsis
+              $("#chatbox").append(botHtmlArray[1]); // add the bot's response onto the screen
+              document.getElementById("userInputDiv").innerHTML = nextUserInput; // in the userInputDiv put in the relevant html for the next user input
+              document
+                .getElementById("userInputDiv")
+                .scrollIntoView({ block: "start", behavior: "smooth" })  // scroll down the screen to make sure we can see the bit where the user input is
+              if (currentUserInputType == "freeText"){        // if the field is a free text field
+                document.getElementById("textInput").focus(); // make sure it already has the cursor in it so the user can just start typing straight away (rather than making the user select the field manually)
+                }
+            },botThinkingTime+botThinkingTimeBeforeSecondFragment)
+
+          }
+
+          else if (noOfResponseFragments>2){console.log("Error: this is set up for 1 or 2 response fragments only");}
+
+          if (sectionNumber == 10){appendStopButton();}
+
+          });
+        }
+      }
+
+      function appendStopButton(){
+        var stopButtonDiv = '<div style="float: right;"> <button id="stopButton" type="button" onclick="initiateStopSection();">Stop</button></div>'
+        $("#stopButtonMarker").append(stopButtonDiv);
+      }
+
+      //function removeStopButton(){
+        //$("#stopButton").remove();
+      //}
+
+      function initiateStopSection() {
+        console.log("initiateStopSection() has been called");
+        //userText = "stop";
+        currentUserInputType = "stopButton";
+        console.log("currentUserInputType is "+currentUserInputType);
+        getBotResponse();
+      }
+
+
+      $('body').on("keypress", '#textInput', function(e) {
+          console.log("this is inside the keypress thingy");
+        if (e.which == 13) {
+          getBotResponse();
+        }
+      });
+</script>

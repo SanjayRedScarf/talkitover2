@@ -782,296 +782,122 @@ def choose_bot_wordy_response(message, clientId):
     #         cleanedMessage = cleanedMessage+char
 
 
-    leadStringArray = ["i ", "i am ", "im ", "i feel ", "i am feeling ", "im feeling "]
+    leadStringArray = ["i ", "i am ", "im ", "i feel ", "i am feeling ", "im feeling ", "i'm "]
 
-    for string in iWantToKillMyselfArray:             # work out if anything from the iWantToKillMyselfArray is in the user's message
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "i Want To KillMyself" or similar
-            msgSaysIWantToKillMyself = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysIWantToKillMyself = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysIWantToKillMyself = True
-    for string in imGoingToKillMyselfArray:             # work out if anything from the imGoingToKillMyselfArray is in the user's message
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "i Want To KillMyself" or similar
-            msgSaysImGoingToKillMyself = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysImGoingToKillMyself = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysImGoingToKillMyself = True
-    for string in iWantToDieArray:             # work out if anything from the iWantToDieArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "i Want To KillMyself" or similar
-            msgSaysIWantToDie = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysIWantToDie = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysIWantToDie = True
-    for string in imFeelingSuicidalArray:             # work out if anything from the imFeelingSuicidalArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "imfeelingsuicidal" or similar
-            msgSaysImFeelingSuicidal = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysImFeelingSuicidal = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysImFeelingSuicidal = True
-    for string in iveBeenFeelingSuicidalArray:             # work out if anything from the iveBeenFeelingSuicidalArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "iveBeenFeelingSuicidal" or similar
-            msgSaysIveBeenFeelingSuicidal = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysIveBeenFeelingSuicidal = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysIveBeenFeelingSuicidal = True
-    for string in imFeelingQuiteSuicidalArray:             # work out if anything from the imFeelingQuiteSuicidalArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "imFeelingQuiteSuicidal" or similar
-            msgSaysImFeelingQuiteSuicidal = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysImFeelingQuiteSuicidal = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysImFeelingQuiteSuicidal = True
-    for string in suicidalThoughtsArray:             # work out if anything from the suicidalThoughtsArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "suicidalThoughts" or similar
-            msgSaysSuicidalThoughts = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysSuicidalThoughts = False
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysSuicidalThoughts = True
-    for string in iDontWantToLiveArray:             # work out if anything from the  IDontWantToLiveArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains " IDontWantToLive" or similar
-            msgSaysIDontWantToLive = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysIDontWantToLive = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysIDontWantToLive = True
-    for string in shouldIKillMyselfArray:             # work out if anything from the ShouldIKillMyselfArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "ShouldIKillMyself" or similar
-            msgSaysShouldIKillMyself = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysShouldIKillMyself = False                                     # ... then set this flag to false                                                      # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysShouldIKillMyself = True
-    for string in nothingToLiveForArray:             # work out if anything from the nothingToLiveForArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "nothingToLiveFor" or similar
-            msgSaysNothingToLiveFor = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysNothingToLiveFor = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysNothingToLiveFor = True
-    for string in imCryingArray:             # work out if anything from the imCryingArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "imCrying" or similar
-            msgSaysImCrying = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysImCrying = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysImCrying = True
-    for string in nothingToLiveForArray:             # work out if anything from the nothingToLiveForArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "nothingToLiveFor" or similar
-            msgSaysNothingToLiveFor = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysNothingToLiveFor = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysNothingToLiveFor = True
-    for string in feelingDepressedArray:             # work out if anything from the feelingDepressedArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "feelingDepressed" or similar
-            msgSaysFeelingDepressed = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysFeelingDepressed = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysFeelingDepressed = True
-    for string in feelingLonelyArray:             # work out if anything from the FeelingLonelyArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "FeelingLonely" or similar
-            msgSaysFeelingLonely = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysFeelingLonely = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysFeelingLonely = True
-    for string in iHateMyselfArray:             # work out if anything from the iHateMyselfArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "iHateMyself" or similar
-            msgSaysIHateMyself = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysIHateMyself = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysIHateMyself = True
-    for string in iHaveNoWayOutArray:             # work out if anything from the iHaveNoWayOutArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "iHaveNoWayOut" or similar
-            msgSaysIHaveNoWayOut = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysIHaveNoWayOut = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysIHaveNoWayOut = True
-    for string in hadEnoughOfLifeArray:             # work out if anything from the hadEnoughOfLifeArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "hadEnoughOfLife" or similar
-            msgSaysHadEnoughOfLife = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysHadEnoughOfLife = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysHadEnoughOfLife = True
-    for string in nothingToLookForwardToArray:             # work out if anything from the nothingToLookForwardToArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "nothingToLookForwardTo" or similar
-            msgSaysNothingToLookForwardTo = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysNothingToLookForwardTo = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysNothingToLookForwardTo = True
-    for string in imUselessArray:             # work out if anything from the imUselessArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "imUseless" or similar
-            msgSaysImUseless = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysImUseless = False                                     # ... then set this flag to false
-        ## the code which detects whether the message starts with a lead string like "i am" and sees whether the user has omitted it is not being applied here because that risks just being the word "useless" on its own
-    for string in imWorthlessArray:             # work out if anything from the imWorthlessArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "imWorthless" or similar
-            msgSaysImWorthless = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysImWorthless = False                                     # ... then set this flag to false
-        ## the code which detects whether the message starts with a lead string like "i am" and sees whether the user has omitted it is not being applied here because that risks just being the word "worthless" on its own
-    for string in dontHaveAnyoneICanTalkToArray:             # work out if anything from the dontHaveAnyoneICanTalkToArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "dontHaveAnyoneICanTalkTo" or similar
-            msgSaysDontHaveAnyoneICanTalkTo = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysDontHaveAnyoneICanTalkTo = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysDontHaveAnyoneICanTalkTo = True
-    for string in iHateHowILookArray:             # work out if anything from the iHateHowILookArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "iHateHowILook" or similar
-            msgSaysIHateHowILook = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysIHateHowILook = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysIHateHowILook = True
-    for string in feelOverwhelmedArray:             # work out if anything from the feelOverwhelmedArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "feelOverwhelmed" or similar
-            msgSaysFeelOverwhelmed = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysFeelOverwhelmed = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysFeelOverwhelmed = True
-    for string in feelingAwfulArray:             # work out if anything from the feelingAwfulArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "feelingAwful" or similar
-            msgSaysFeelingAwful = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysFeelingAwful = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysFeelingAwful = True
-    for string in imAFailureArray:             # work out if anything from the ImAFailureArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "ImAFailure" or similar
-            msgSaysImAFailure = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysImAFailure = False                                     # ... then set this flag to false
-        ## the code which detects whether the message starts with a lead string like "i am" and sees whether the user has omitted it is not being applied here
+    def CheckUserMessage(synonymsArray):
+        # work out if anything from the synonymsArray is in the user's message
+        for string in synonymsArray:                      
+            if string in cleanedMessage.lower():                          
+                return True
+
+                 # and if the string does have "it's not that" before it...
+                for negatingString in itsNotThatArray:
+                    negatedString = negatingString+string
+                    if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""): 
+                        return False
+            
+            # ... then set this flag to false
+            if synonymsArray not in (imUselessArray, imWorthlessArray):                             
+                for leadString in leadStringArray:
+                    if string.startswith(leadString):
+                        shortenedString = string.replace(leadString,"")
+                        if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                            return True
+
+    msgSaysIWantToKillMyself = CheckUserMessage(iWantToKillMyselfArray)
+
+    msgSaysImGoingToKillMyself = CheckUserMessage(imGoingToKillMyselfArray)
+
+    msgSaysIWantToDie = CheckUserMessage(iWantToDieArray)
+
+    msgSaysImFeelingSuicidal = CheckUserMessage(imFeelingSuicidalArray)
+
+    msgSaysIveBeenFeelingSuicidal = CheckUserMessage(iveBeenFeelingSuicidalArray)
+
+    msgSaysImFeelingQuiteSuicidal = CheckUserMessage(imFeelingQuiteSuicidalArray)
+
+    msgSaysSuicidalThoughts = CheckUserMessage(suicidalThoughtsArray)
+
+    msgSaysIDontWantToLive = CheckUserMessage(iDontWantToLiveArray)
+
+    msgSaysShouldIKillMyself = CheckUserMessage(shouldIKillMyselfArray)
+
+    msgSaysNothingToLiveFor = CheckUserMessage(nothingToLiveForArray)
+
+    msgSaysImCrying = CheckUserMessage(imCryingArray)
+
+    msgSaysFeelingDepressed = CheckUserMessage(feelingDepressedArray)
+
+    msgSaysFeelingLonely = CheckUserMessage(feelingLonelyArray)
+
+    msgSaysIHateMyself = CheckUserMessage(iHateMyselfArray)
+
+    msgSaysIHaveNoWayOut = CheckUserMessage(iHaveNoWayOutArray)
+
+    msgSaysHadEnoughOfLife = CheckUserMessage(hadEnoughOfLifeArray)
+
+    msgSaysNothingToLookForwardTo = CheckUserMessage(nothingToLookForwardToArray)
+
+    msgSaysImUseless = CheckUserMessage(imUselessArray)
+
+    msgSaysImWorthless = CheckUserMessage(imWorthlessArray)
+
+    msgSaysDontHaveAnyoneICanTalkTo = CheckUserMessage(dontHaveAnyoneICanTalkToArray)
+
+    msgSaysIHateHowILook = CheckUserMessage(iHateHowILookArray)
+
+    msgSaysFeelOverwhelmed = CheckUserMessage(feelOverwhelmedArray)
+
+    msgSaysFeelingAwful = CheckUserMessage(feelingAwfulArray)
+
+    msgSaysImAFailure = CheckUserMessage(imAFailureArray)        
+   
+    msgSaysFeelOutOfControl = CheckUserMessage(feelOutOfControlArray)
+
+    msgSaysFeelLost = CheckUserMessage(feelLostArray)
+
+    msgSaysInABadPlace = CheckUserMessage(inABadPlaceArray)
+
+    msgSaysIHateHowIFeel = CheckUserMessage(iHateHowIFeelArray)
+
+    msgSaysImSad = CheckUserMessage(imSadArray)
+
+    msgSaysFeelingLowDownTerrible = CheckUserMessage(feelingLowDownTerribleArray)
+
+    msgSaysImUpset = CheckUserMessage(imUpsetArray)
+
+    msgSaysImAddicted = CheckUserMessage(imAddictedArray)
+
+    msgSaysFeelingRubbish = CheckUserMessage(feelingRubbishArray)
+
+    msgSaysImAnxious = CheckUserMessage(imAnxiousArray)
+
+    msgSaysIHaveAnxiety = CheckUserMessage(iHaveAnxietyArray)
+
+    msgSaysImWorried = CheckUserMessage(imWorriedArray)
+
+    msgSaysIDontKnowWhatToDo = CheckUserMessage(iDontKnowWhatToDoArray)
+
+    msgSaysIDontKnowWhatToSay = CheckUserMessage(iDontKnowWhatToSayArray)
+
+    msgSaysImNotHappy = CheckUserMessage(imNotHappyArray)
+
+    msgSaysFamilyProblems = CheckUserMessage(familyProblemsArray)
+
+
+
+    # Is this one missing the 'for leadString...' on purpose or by accident?
+
+    # for string in imAFailureArray:             # work out if anything from the ImAFailureArray is in the user's cleanedMessage
+    #     if string in cleanedMessage.lower():                          # if cleanedMessage contains "ImAFailure" or similar
+    #         msgSaysImAFailure = True
+    #         for negatingString in itsNotThatArray:
+    #             negatedString = negatingString+string
+    #             if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+    #                 msgSaysImAFailure = False                                     # ... then set this flag to false
+    #     ## the code which detects whether the message starts with a lead string like "i am" and sees whether the user has omitted it is not being applied here
+
+
     for string in imALetdownArray:             # work out if anything from the ImALetdownArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "ImALetdown" or similar
             msgSaysImALetdown = True
@@ -1087,199 +913,7 @@ def choose_bot_wordy_response(message, clientId):
     ## NOTE:  letMyselfDown is treated slightly differently. All the other strings start with I (i.e. the first person pronoun)
     ## "Let myself down" doesn't need to because it already contains a reflexive first person pronoun
     ## But this means that the preceding "it's not that" check needs to be more sophisticated.
-    ## This is done further down.
-    for string in feelOutOfControlArray:             # work out if anything from the feelOutOfControlArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "feelOutOfControl" or similar
-            msgSaysFeelOutOfControl = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysFeelOutOfControl = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysFeelOutOfControl = True
-    for string in feelLostArray:             # work out if anything from the feelLostArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "feelLost" or similar
-            msgSaysFeelLost = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysFeelLost = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysFeelLost = True
-    for string in inABadPlaceArray:             # work out if anything from the inABadPlaceArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "inABadPlace" or similar
-            msgSaysInABadPlace = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysInABadPlace = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysInABadPlace = True
-    for string in iHateHowIFeelArray:             # work out if anything from the IHateHowIFeelArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "IHateHowIFeel" or similar
-            msgSaysIHateHowIFeel = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysIHateHowIFeel = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysIHateHowIFeel = True
-    for string in imSadArray:             # work out if anything from the imSadArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "imSad" or similar
-            msgSaysImSad = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysImSad = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysImSad = True
-    for string in feelingLowDownTerribleArray:             # work out if anything from the feelingLowDownTerribleArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "feelingLowDownTerrible" or similar
-            msgSaysFeelingLowDownTerrible = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysFeelingLowDownTerrible = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysFeelingLowDownTerrible = True
-    for string in imUpsetArray:             # work out if anything from the imUpsetArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "imUpset" or similar
-            msgSaysImUpset = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysImUpset = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysImUpset = True
-    for string in imAddictedArray:             # work out if anything from the imAddictedArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "imAddicted" or similar
-            msgSaysImAddicted = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysImAddicted = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysImAddicted = True
-    for string in feelingRubbishArray:             # work out if anything from the feelingRubbishArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "feelingRubbish" or similar
-            msgSaysFeelingRubbish = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysFeelingRubbish = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysFeelingRubbish = True
-    for string in imAnxiousArray:             # work out if anything from the imAnxiousArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "imAnxious" or similar
-            msgSaysImAnxious = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysImAnxious = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysImAnxious = True
-    for string in iHaveAnxietyArray:             # work out if anything from the iHaveAnxietyArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "iHaveAnxiety" or similar
-            msgSaysIHaveAnxiety = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysIHaveAnxiety = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysIHaveAnxiety = True
-    for string in imWorriedArray:             # work out if anything from the imWorriedArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "imWorried" or similar
-            msgSaysImWorried = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysImWorried = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysImWorried = True
-    for string in iDontKnowWhatToDoArray:             # work out if anything from the IDontKnowWhatToDoArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "IDontKnowWhatToDo" or similar
-            msgSaysIDontKnowWhatToDo = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysIDontKnowWhatToDo = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysIDontKnowWhatToDo = True
-    for string in iDontKnowWhatToSayArray:             # work out if anything from the IDontKnowWhatToSayArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "IDontKnowWhatToSay" or similar
-            msgSaysIDontKnowWhatToSay = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysIDontKnowWhatToSay = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysIDontKnowWhatToSay = True
-    for string in imNotHappyArray:             # work out if anything from the imNotHappyArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "imNotHappy" or similar
-            msgSaysImNotHappy = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysImNotHappy = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysImNotHappy = True
-    for string in familyProblemsArray:             # work out if anything from the familyProblemsArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "familyProblems" or similar
-            msgSaysFamilyProblems = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysFamilyProblems = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysFamilyProblems = True
+    
     ## "Let myself down" is treated slightly different because it doesn't have a first person pronoun at the start, so the negating string is done differently
     for string in letMyselfDownArray:             # work out if anything from the letMyselfDownArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "letMyselfDown" or similar
