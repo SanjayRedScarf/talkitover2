@@ -30,6 +30,6 @@ git clone https://github.com/SanjayRedScarf/talkitover2.git'.
 ```
 3. You should now be able to run the following command: 
 ```
-python talkitover2_app.py
+python talkitover_app.py
 ```
 
