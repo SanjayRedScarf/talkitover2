@@ -19,7 +19,7 @@ You will need the following prerequisites for this repository:
 To get this project working on your machine, do the following:
 1. Clone the repository on your machine in your development workspace using the following command: 
 ```
-git clone https://github.com/SanjayRedScarf/talkitover2.git'.
+git clone https://github.com/SanjayRedScarf/talkitover2.git.
 ```
 2. Next, open a CLI of your choice and run the following commands one by one:
 ```	
