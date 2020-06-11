@@ -67,6 +67,7 @@ letMyselfDownResponseAlreadyUsed = [conversationId,False]
 underAchievedResponseAlreadyUsed = [conversationId,False]
 feelOutOfControlResponseAlreadyUsed = [conversationId,False]
 feelLostResponseAlreadyUsed = [conversationId,False]
+feelEmptyResponseAlreadyUsed = [conversationId,False]
 inABadPlaceResponseAlreadyUsed = [conversationId,False]
 deserveResponseAlreadyUsed = [conversationId,False]
 iHateHowIFeelResponseAlreadyUsed = [conversationId,False]
@@ -147,6 +148,7 @@ def initialiseResponseAlreadyUsedVariables():
     underAchievedResponseAlreadyUsed = [conversationId,False]
     feelOutOfControlResponseAlreadyUsed = [conversationId,False]
     feelLostResponseAlreadyUsed = [conversationId,False]
+    feelEmptyResponseAlreadyUsed = [conversationId,False]
     inABadPlaceResponseAlreadyUsed = [conversationId,False]
     deserveResponseAlreadyUsed = [conversationId,False]
     iHateHowIFeelResponseAlreadyUsed = [conversationId,False]
@@ -523,6 +525,7 @@ def choose_bot_wordy_response(message, clientId):
                     "i just feel utterly lost", "i'm just feeling utterly lost", "im just feeling utterly lost",\
                     "i just feel really lost", "i'm just feeling really lost", "im just feeling really lost",\
                     "i just feel very lost", "i'm just feeling very lost", "im just feeling very lost"]
+    feelEmptyArray = ["i feel empty"]
     inABadPlaceArray = ["i am in a bad place", "i'm in a bad place", "im in a bad place",\
                         "i am in such a bad place", "i'm in such a bad place", "im in such a bad place",\
                         "i am at a bad place", "i'm at a bad place", "im at a bad place",\
@@ -645,6 +648,7 @@ def choose_bot_wordy_response(message, clientId):
     global underAchievedResponseAlreadyUsed
     global feelOutOfControlResponseAlreadyUsed
     global feelLostResponseAlreadyUsed
+    global feelEmptyResponseAlreadyUsed
     global inABadPlaceResponseAlreadyUsed
     global deserveResponseAlreadyUsed
     global iHateHowIFeelResponseAlreadyUsed
@@ -703,6 +707,7 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysUnderAchieved = False
     msgSaysFeelOutOfControl = False
     msgSaysFeelLost = False
+    msgSaysFeelEmpty = False
     msgSaysInABadPlace = False
     msgSaysDeserve = False
     msgSaysIHateHowIFeel = False
@@ -1146,6 +1151,20 @@ def choose_bot_wordy_response(message, clientId):
                 shortenedString = string.replace(leadString,"")
                 if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
                     msgSaysFeelLost = True
+
+    for string in feelEmptyArray:             # work out if anything from the feelempty is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "feelempty" or similar
+            msgSaysFeelEmpty = True
+            for negatingString in itsNotThatArray:
+                negatedString = negatingString+string
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                    msgSaysFeelEmpty = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysFeelEmpty = True
+
     for string in inABadPlaceArray:             # work out if anything from the inABadPlaceArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "inABadPlace" or similar
             msgSaysInABadPlace = True
@@ -1711,6 +1730,11 @@ def choose_bot_wordy_response(message, clientId):
         else:
             response = "That sounds like a very lost, forlorn feeling."
         feelLostResponseAlreadyUsed = [conversationId,True]
+
+    elif msgSaysFeelEmpty == True and feelEmptyResponseAlreadyUsed != [conversationId,True]:
+        ### If the message includes a string roughly equivalent to saying "Feel lost", then reply with
+        response = "Can you expand on that? What do you mean when you talk about this empty feeling?."
+        feelEmptyResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysInABadPlace == True and inABadPlaceResponseAlreadyUsed != [conversationId,True]:
         ### If the message includes a string roughly equivalent to saying "In a bad place", then reply with
