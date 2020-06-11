@@ -86,6 +86,7 @@ difficultDayResponseAlreadyUsed = [conversationId,False]
 familyProblemsResponseAlreadyUsed = [conversationId,False]
 feelLostResponseAlreadyUsed = [conversationId,False]
 doYouGiveAdviceResponseAlreadyUsed = [conversationId,False]
+thankYouResponseAlreadyUsed = [conversationId, False]
 shortResponseAlreadyUsed = [conversationId,False]
 thisBotIsBadResponseAlreadyUsed = [conversationId,False]
 
@@ -162,6 +163,7 @@ def initialiseResponseAlreadyUsedVariables():
     familyProblemsResponseAlreadyUsed = [conversationId,False]
     feelLostResponseAlreadyUsed = [conversationId,False]
     doYouGiveAdviceResponseAlreadyUsed = [conversationId,False]
+    thankYouResponseAlreadyUsed = [conversationId, False]
     shortResponseAlreadyUsed = [conversationId,False]
     thisBotIsBadResponseAlreadyUsed = [conversationId,False]
 
@@ -581,6 +583,7 @@ def choose_bot_wordy_response(message, clientId):
                             "will you give me advice", "will you give advice"]
     # you only give default/automatic replies
     # you are useless / fuck off
+    thankYouArray = ["thank you", "thanks"]
     stopSynonymsArray = ["that's it", "thats it", "finish", "end", "nothing more to say", "no more to say", "bot stop", "bye","goodbye",\
                         "done", "i'm done", "im done", "i think im done", "im done speaking", "i think im done speaking",
                         "i have nothing more to say", "i have nothing else to say", "ive got nothing more to say", "ive got nothing else to say",
@@ -652,6 +655,7 @@ def choose_bot_wordy_response(message, clientId):
     global familyProblemsResponseAlreadyUsed
     global feelLostResponseAlreadyUsed
     global doYouGiveAdviceResponseAlreadyUsed
+    global thankYouResponseAlreadyUsed
     global shortResponseAlreadyUsed
     global thisBotIsBadResponseAlreadyUsed
 
@@ -704,6 +708,7 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysFamilyProblems = False
     msgSaysFeelLost = False
     msgSaysDoYouGiveAdvice = False
+    msgSaysThankYou = False
     msgSaysThisBotIsBad = False
 
     negatedString = ""
@@ -1298,6 +1303,20 @@ def choose_bot_wordy_response(message, clientId):
     for string in doYouGiveAdviceArray:             # work out if anything from the doYouGiveAdviceArray is in the user's message
         if string.replace(" ","") in cleanedMessage.lower().replace(" ",""):                          # if message contains "do you give advice" or similar
             msgSaysDoYouGiveAdvice = True
+
+    for string in thankYouArray:             # work out if anything from the ThankYouArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "ThankYou" or similar
+            msgSaysThankYou = True
+            for negatingString in itsNotThatArray:
+                negatedString = negatingString+string
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                    msgSaysThankYou = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysThankYou = True
+                    
     ## The thisBotIsBadArray_loose checking section!
     for string in thisBotIsBadArray_loose:             # work out if anything from the thisBotIsBadArray_loose is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "thisBotIsBad" or similar
@@ -1780,6 +1799,11 @@ def choose_bot_wordy_response(message, clientId):
         randomlyChosenIndex = random.randint(0,len(adviceResponses)-1) # select a random number between 0 and final index of the adviceResponses array
         response = adviceResponses[randomlyChosenIndex] # set the response equal to the string (or whatever) corresponding to the relevant index
         doYouGiveAdviceResponseAlreadyUsed = [conversationId,True]
+
+    elif msgSaysThankYou == True and thankYouResponseAlreadyUsed != [conversationId, True]:
+        ### if the user is showing gratitude
+        response = "You're Welcome"
+        thankYouResponseAlreadyUsed = [conversationId, True]
 
 
     elif section == 11 and " feeling " in message.lower():
