@@ -63,6 +63,7 @@ feelingAwfulResponseAlreadyUsed = [conversationId,False]
 imAFailureResponseAlreadyUsed = [conversationId,False]
 imALetdownResponseAlreadyUsed = [conversationId,False]
 letMyselfDownResponseAlreadyUsed = [conversationId,False]
+underAchievedResponseAlreadyUsed = [conversationId,False]
 feelOutOfControlResponseAlreadyUsed = [conversationId,False]
 feelLostResponseAlreadyUsed = [conversationId,False]
 inABadPlaceResponseAlreadyUsed = [conversationId,False]
@@ -141,6 +142,7 @@ def initialiseResponseAlreadyUsedVariables():
     imAFailureResponseAlreadyUsed = [conversationId,False]
     imALetdownResponseAlreadyUsed = [conversationId,False]
     letMyselfDownResponseAlreadyUsed = [conversationId,False]
+    underAchievedResponseAlreadyUsed = [conversationId,False]
     feelOutOfControlResponseAlreadyUsed = [conversationId,False]
     feelLostResponseAlreadyUsed = [conversationId,False]
     inABadPlaceResponseAlreadyUsed = [conversationId,False]
@@ -497,6 +499,7 @@ def choose_bot_wordy_response(message, clientId):
                         "i feel like a letdown", "i feel a letdown", "i feel myself to be a letdown",
                         "i feel like such a letdown", "i feel such a letdown", "i feel myself to be such a letdown"]
     letMyselfDownArray = ["let myself down", "let my self down", "let mysefl down", "let my sefl down"]
+    underAchievedArray = ["i have accomplished nothing", "i have achieved nothing", "i havent accomplished anything", "i havent achieved anything"]
     feelOutOfControlArray = ["i feel out of control", "i'm feeling out of control", "im feeling out of control",\
                             "i feel so out of control", "i'm feeling so out of control", "im feeling so out of control",\
                             "i feel really out of control", "i'm feeling really out of control", "im feeling really out of control",\
@@ -635,6 +638,7 @@ def choose_bot_wordy_response(message, clientId):
     global imAFailureResponseAlreadyUsed
     global imALetdownResponseAlreadyUsed
     global letMyselfDownResponseAlreadyUsed
+    global underAchievedResponseAlreadyUsed
     global feelOutOfControlResponseAlreadyUsed
     global feelLostResponseAlreadyUsed
     global inABadPlaceResponseAlreadyUsed
@@ -691,6 +695,7 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysImAFailure = False
     msgSaysImALetdown = False
     msgSaysLetMyselfDown = False
+    msgSaysUnderAchieved = False
     msgSaysFeelOutOfControl = False
     msgSaysFeelLost = False
     msgSaysInABadPlace = False
@@ -1304,6 +1309,20 @@ def choose_bot_wordy_response(message, clientId):
                 shortenedString = string.replace(leadString,"")
                 if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
                     msgSaysLetMyselfDown = True
+
+    for string in underAchievedArray:             # work out if anything from the underAchievedArrayis in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "underAchievedArray" or similar
+            msgSaysUnderAchieved = True
+            for negatingString in itsNotThatArray:
+                negatedStringArray = [negatingString+string, negatingString+"i"+string, negatingString+"ive"+string, negatingString+"i've"+string] # including "i've" doesn't make sense any more now that we're using cleanedMessage, which takes the punctuation out anyway
+                for negatedString in negatedStringArray:
+                    if negatedString in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it, or "it's not that i" before it, or ...
+                        msgSaysUnderAchieved = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysUnderAchieved = True
     ## "Do you give advice" is trated differently ebcause there's no need to include the negatig string check
     for string in doYouGiveAdviceArray:             # work out if anything from the doYouGiveAdviceArray is in the user's message
         if string.replace(" ","") in cleanedMessage.lower().replace(" ",""):                          # if message contains "do you give advice" or similar
@@ -1649,6 +1668,11 @@ def choose_bot_wordy_response(message, clientId):
         ### If the message includes a string roughly equivalent to saying "I let myself down", then reply with
         response = "You mentioned feeling that you had let yourself down. I hope you feel able to share with me some more thoughts about that, knowing that this is a place where you can talk without being judged."
         letMyselfDownResponseAlreadyUsed = [conversationId,True]
+
+    elif msgSaysUnderAchieved == True and underAchievedResponseAlreadyUsed != [conversationId,True]:
+        ### If the message includes a string roughly equivalent to saying "I let myself down", then reply with
+        response = "Hmm. So you don't feel your achievements live up to the expectations you have of yourself?"
+        underAchievedResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysFeelOutOfControl == True and feelOutOfControlResponseAlreadyUsed != [conversationId,True]:
         ### If the message includes a string roughly equivalent to saying "FeelOutOfControl", then reply with
