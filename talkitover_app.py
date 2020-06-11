@@ -76,6 +76,7 @@ imSadResponseAlreadyUsed = [conversationId,False]
 feelingLowDownTerribleResponseAlreadyUsed = [conversationId,False]
 imUpsetResponseAlreadyUsed = [conversationId,False]
 imAddictedResponseAlreadyUsed = [conversationId,False]
+iHateCoronavirusResponseAlreadyUsed = [conversationId,False]
 feelingRubbishResponseAlreadyUsed = [conversationId,False]
 iHaveAnxietyResponseAlreadyUsed = [conversationId,False]
 imAnxiousResponseAlreadyUsed = [conversationId,False]
@@ -158,6 +159,7 @@ def initialiseResponseAlreadyUsedVariables():
     feelingLowDownTerribleResponseAlreadyUsed = [conversationId,False]
     imUpsetResponseAlreadyUsed = [conversationId,False]
     imAddictedResponseAlreadyUsed = [conversationId,False]
+    iHateCoronavirusResponseAlreadyUsed = [conversationId,False]
     feelingRubbishResponseAlreadyUsed = [conversationId,False]
     iHaveAnxietyResponseAlreadyUsed = [conversationId,False]
     imAnxiousResponseAlreadyUsed = [conversationId,False]
@@ -548,6 +550,7 @@ def choose_bot_wordy_response(message, clientId):
                     "im so upset", "i'm so upset", "im feeling so upset", "i'm feeling so upset", "i feel so upset", "i feel so upset",\
                     "im really upset", "i'm really upset", "im feeling really upset", "i'm feeling really upset", "i feel really upset", "i feel really upset"]
     imAddictedArray = ["im addicted", "i'm addicted"]
+    iHateCoronavirusArray = ["i hate coronavirus", "i hate the coronavirus", "i hate covid", "i hate covid19"]
     feelingRubbishArray = ["im feeling rubbish", "i'm feeling rubbish", "i feel rubbish", "i feel rubbish",\
                     "im feeling so rubbish", "i'm feeling so rubbish", "i feel so rubbish", "i feel so rubbish",\
                     "im feeling really rubbish", "i'm feeling really rubbish", "i feel really rubbish", "i feel really rubbish",\
@@ -665,6 +668,7 @@ def choose_bot_wordy_response(message, clientId):
     global feelingLowDownTerribleResponseAlreadyUsed
     global imUpsetResponseAlreadyUsed
     global imAddictedResponseAlreadyUsed
+    global iHateCoronavirusResponseAlreadyUsed
     global feelingRubbishResponseAlreadyUsed
     global iHaveAnxietyResponseAlreadyUsed
     global imAnxiousResponseAlreadyUsed
@@ -725,6 +729,7 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysFeelingLowDownTerrible = False
     msgSaysImUpset = False
     msgSaysImAddicted = False
+    msgSaysIHateCoronavirus = False
     msgSaysFeelingRubbish = False
     msgSaysIHaveAnxiety = False # code using this is commented out currently
     msgSaysImAnxious = False # code using this is commented out currently
@@ -1247,6 +1252,20 @@ def choose_bot_wordy_response(message, clientId):
                 shortenedString = string.replace(leadString,"")
                 if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
                     msgSaysImAddicted = True
+
+    for string in iHateCoronavirusArray:             # work out if anything from the IHateCoronavirusArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "HateCorona" or similar
+            msgSaysIHateCoronavirus = True
+            for negatingString in itsNotThatArray:
+                negatedString = negatingString+string
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                    msgSaysIHateCoronavirus = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysIHateCoronavirus = True
+
     for string in feelingRubbishArray:             # work out if anything from the feelingRubbishArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "feelingRubbish" or similar
             msgSaysFeelingRubbish = True
@@ -1814,6 +1833,11 @@ def choose_bot_wordy_response(message, clientId):
         ### If the message includes a string roughly equivalent to saying "I'm addicted", then reply with
         response = "Addictions can be really tough. Could you say more about what it means for you?"
         imAddictedResponseAlreadyUsed = [conversationId,True]
+
+    elif msgSaysIHateCoronavirus == True and iHateCoronavirusResponseAlreadyUsed != [conversationId,True]:
+        ### If the message includes a string roughly equivalent to saying "I Hate Coronavirus", then reply with
+        response = "This nasty virus has caused so many problems."
+        iHateCoronavirusResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysFeelingRubbish == True and feelingRubbishResponseAlreadyUsed != [conversationId,True]:
         ### If the message includes a string roughly equivalent to saying "I'm feeling rubbish", then reply with
