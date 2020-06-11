@@ -64,6 +64,7 @@ feelingAwfulResponseAlreadyUsed = [conversationId,False]
 imAFailureResponseAlreadyUsed = [conversationId,False]
 imALetdownResponseAlreadyUsed = [conversationId,False]
 letMyselfDownResponseAlreadyUsed = [conversationId,False]
+hardLifeResponseAlreadyUsed = [conversationId,False]
 underAchievedResponseAlreadyUsed = [conversationId,False]
 feelOutOfControlResponseAlreadyUsed = [conversationId,False]
 feelLostResponseAlreadyUsed = [conversationId,False]
@@ -145,6 +146,7 @@ def initialiseResponseAlreadyUsedVariables():
     imAFailureResponseAlreadyUsed = [conversationId,False]
     imALetdownResponseAlreadyUsed = [conversationId,False]
     letMyselfDownResponseAlreadyUsed = [conversationId,False]
+    hardLifeResponseAlreadyUsed = [conversationId,False]
     underAchievedResponseAlreadyUsed = [conversationId,False]
     feelOutOfControlResponseAlreadyUsed = [conversationId,False]
     feelLostResponseAlreadyUsed = [conversationId,False]
@@ -374,9 +376,8 @@ def choose_bot_wordy_response(message, clientId):
                             "i still really want to kill myself", "i still really want to kill my self", "i still really want to kill mysefl", "i still really want to kill my sefl", "i still really wanna kill myself", "i still really wanna kill my self", "i still really wanna kill mysefl", "i still really wanna kill my sefl",
                             "i want to take my life", "i wanna take my life", "i want to take my own life", "i wanna take my own life", "i still really want to kill myself", "i still really want to kill my self", "i still really want to kill mysefl", "i still really want to kill my sefl", "i still really wanna kill myself", \
                             "i still really wanna kill my self", "i still really wanna kill mysefl", "i still really wanna kill my sefl", "i want to end it all"]
-                            
-    imGoingToKillMyselfArray = ["going to kill myself", "going to kill my self",
-                                "oging to kill myself", "oging to kill my self",
+
+    imGoingToKillMyselfArray = ["going to kill myself", "going to kill my self", "oging to kill myself", "oging to kill my self", \
                                 "i will kill myself", "i will kill my self","ill kill myself", "ill kill my self"]
     #imPlanningToKillMyselfArray = ["im planning to kill myself", "i am planning to kill myself"]
     # have not built in anything for imPlanningToKillMyselfArray apart from the array itself. Maybe come back to this?
@@ -509,6 +510,7 @@ def choose_bot_wordy_response(message, clientId):
                         "i feel like a letdown", "i feel a letdown", "i feel myself to be a letdown",
                         "i feel like such a letdown", "i feel such a letdown", "i feel myself to be such a letdown"]
     letMyselfDownArray = ["let myself down", "let my self down", "let mysefl down", "let my sefl down"]
+    hardLifeArray = ["ive had a hard life", "ive had a bad life", "ive had a hard and bad life", "i have had a hard life", "i have had a bad life", "i have had a hard and bad life"]
     underAchievedArray = ["i have accomplished nothing", "i have achieved nothing", "i havent accomplished anything", "i havent achieved anything"]
     feelOutOfControlArray = ["i feel out of control", "i'm feeling out of control", "im feeling out of control",\
                             "i feel so out of control", "i'm feeling so out of control", "im feeling so out of control",\
@@ -651,6 +653,7 @@ def choose_bot_wordy_response(message, clientId):
     global imAFailureResponseAlreadyUsed
     global imALetdownResponseAlreadyUsed
     global letMyselfDownResponseAlreadyUsed
+    global hardLifeResponseAlreadyUsed
     global underAchievedResponseAlreadyUsed
     global feelOutOfControlResponseAlreadyUsed
     global feelLostResponseAlreadyUsed
@@ -710,6 +713,7 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysImAFailure = False
     msgSaysImALetdown = False
     msgSaysLetMyselfDown = False
+    msgSaysHardLife = False
     msgSaysUnderAchieved = False
     msgSaysFeelOutOfControl = False
     msgSaysFeelLost = False
@@ -1354,6 +1358,20 @@ def choose_bot_wordy_response(message, clientId):
                 if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
                     msgSaysLetMyselfDown = True
 
+    for string in hardLifeArray:             # work out if anything from the hardLifeArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "HardLife" or similar
+            msgSaysHardLife = True
+            for negatingString in itsNotThatArray:
+                negatedStringArray = [negatingString+string, negatingString+"i"+string, negatingString+"ive"+string, negatingString+"i've"+string] # including "i've" doesn't make sense any more now that we're using cleanedMessage, which takes the punctuation out anyway
+                for negatedString in negatedStringArray:
+                    if negatedString in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it, or "it's not that i" before it, or ...
+                        msgSaysHardLife = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysHardLife = True
+
     for string in underAchievedArray:             # work out if anything from the underAchievedArrayis in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "underAchievedArray" or similar
             msgSaysUnderAchieved = True
@@ -1719,6 +1737,11 @@ def choose_bot_wordy_response(message, clientId):
         response = "You mentioned feeling that you had let yourself down. I hope you feel able to share with me some more thoughts about that, knowing that this is a place where you can talk without being judged."
         letMyselfDownResponseAlreadyUsed = [conversationId,True]
 
+    elif msgSaysHardLife == True and hardLifeResponseAlreadyUsed != [conversationId,True]:
+        ### If the message includes a string roughly equivalent to saying "I let myself down", then reply with
+        response = "I'm sorry life has been so unpleasant to you."
+        hardLifeResponseAlreadyUsed = [conversationId,True]
+
     elif msgSaysUnderAchieved == True and underAchievedResponseAlreadyUsed != [conversationId,True]:
         ### If the message includes a string roughly equivalent to saying "I let myself down", then reply with
         response = "Hmm. So you don't feel your achievements live up to the expectations you have of yourself?"
@@ -1739,7 +1762,7 @@ def choose_bot_wordy_response(message, clientId):
 
     elif msgSaysFeelEmpty == True and feelEmptyResponseAlreadyUsed != [conversationId,True]:
         ### If the message includes a string roughly equivalent to saying "Feel lost", then reply with
-        response = "Can you expand on that? What do you mean when you talk about this empty feeling?."
+        response = "Can you expand on that? What do you mean when you talk about this empty feeling?"
         feelEmptyResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysInABadPlace == True and inABadPlaceResponseAlreadyUsed != [conversationId,True]:
