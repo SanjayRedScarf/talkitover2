@@ -88,6 +88,7 @@ feelLostResponseAlreadyUsed = [conversationId,False]
 doYouGiveAdviceResponseAlreadyUsed = [conversationId,False]
 thankYouResponseAlreadyUsed = [conversationId, False]
 shortResponseAlreadyUsed = [conversationId,False]
+areYouABotResponseAlreadyUsed = [conversationId,False]
 thisBotIsBadResponseAlreadyUsed = [conversationId,False]
 
 ####### TODO TODO TODO ###################################
@@ -165,6 +166,7 @@ def initialiseResponseAlreadyUsedVariables():
     doYouGiveAdviceResponseAlreadyUsed = [conversationId,False]
     thankYouResponseAlreadyUsed = [conversationId, False]
     shortResponseAlreadyUsed = [conversationId,False]
+    areYouABotResponseAlreadyUsed = [conversationId,False]
     thisBotIsBadResponseAlreadyUsed = [conversationId,False]
 
 
@@ -589,6 +591,7 @@ def choose_bot_wordy_response(message, clientId):
                         "i have nothing more to say", "i have nothing else to say", "ive got nothing more to say", "ive got nothing else to say",
                         "i think i have nothing more to say", "i think i have nothing else to say", "i think ive got nothing more to say", "i think ive got nothing else to say",
                         "i dont want to talk any more" ]
+    areYouABotArray = ["are you a bot", "is this a bot", "what is this a bot"]
     thisBotIsBadArray_loose = ["this bot is bad", "this bot is awful", "this bot is terrible", "this bot is atrocious", "this bot is shit", "this bot is crap"
                         "you are a bad bot", "you are an awful bot", "you are a terrible bot", "you are an atrocious bot", "you are a shit bot", "you are a crap bot",
                         "you are such a bad bot", "you are such an awful bot", "you are such a terrible bot", "you are such an atrocious bot", "you are such a shit bot", "you are such a crap bot",
@@ -657,6 +660,7 @@ def choose_bot_wordy_response(message, clientId):
     global doYouGiveAdviceResponseAlreadyUsed
     global thankYouResponseAlreadyUsed
     global shortResponseAlreadyUsed
+    global areYouABotResponseAlreadyUsed
     global thisBotIsBadResponseAlreadyUsed
 
 
@@ -709,6 +713,7 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysFeelLost = False
     msgSaysDoYouGiveAdvice = False
     msgSaysThankYou = False
+    msgSaysAreYouABot = False
     msgSaysThisBotIsBad = False
 
     negatedString = ""
@@ -1316,6 +1321,20 @@ def choose_bot_wordy_response(message, clientId):
                 shortenedString = string.replace(leadString,"")
                 if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
                     msgSaysThankYou = True
+
+        ## The areYouABot checking section!
+    for string in areYouABotArray:             # work out if anything from the areYouABotArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "areYouABot" or similar
+            msgSaysAreYouABot = True
+            for negatingString in itsNotThatArray:
+                negatedString = negatingString+string
+                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+                    msgSaysAreYouABot = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysAreYouABot = True
                     
     ## The thisBotIsBadArray_loose checking section!
     for string in thisBotIsBadArray_loose:             # work out if anything from the thisBotIsBadArray_loose is in the user's cleanedMessage
@@ -1837,6 +1856,12 @@ def choose_bot_wordy_response(message, clientId):
             wrong because I'm a very simple bot). If that's right, could you type 'stop' below?"]
         randomlyChosenIndex = random.randint(0,len(responsesToStopMessages)-1) # select a random number between 0 and final index of the responsesToStopMessages array
         response = responsesToStopMessages[randomlyChosenIndex] # set the response equal to the string corresponding to the relevant index
+
+    elif msgSaysAreYouABot == True and areYouABotResponseAlreadyUsed != [conversationId, True]:
+        ### if the user is showing gratitude
+        response = "Yes! Sorry, I should have explained that better earlier. I hope you don't mind. \
+            Please feel free to continue talking with me?"
+        areYouABotResponseAlreadyUsed = [conversationId, True]
 
     elif msgSaysThisBotIsBad and thisBotIsBadResponseAlreadyUsed != [conversationId,True]:
         ### if the user says something like "this bot is bad"
