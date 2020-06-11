@@ -65,6 +65,7 @@ imAFailureResponseAlreadyUsed = [conversationId,False]
 imALetdownResponseAlreadyUsed = [conversationId,False]
 letMyselfDownResponseAlreadyUsed = [conversationId,False]
 hardLifeResponseAlreadyUsed = [conversationId,False]
+iHaveRegretsResponseAlreadyUsed = [conversationId,False]
 underAchievedResponseAlreadyUsed = [conversationId,False]
 feelOutOfControlResponseAlreadyUsed = [conversationId,False]
 feelLostResponseAlreadyUsed = [conversationId,False]
@@ -148,6 +149,7 @@ def initialiseResponseAlreadyUsedVariables():
     imALetdownResponseAlreadyUsed = [conversationId,False]
     letMyselfDownResponseAlreadyUsed = [conversationId,False]
     hardLifeResponseAlreadyUsed = [conversationId,False]
+    iHaveRegretsResponseAlreadyUsed = [conversationId,False]
     underAchievedResponseAlreadyUsed = [conversationId,False]
     feelOutOfControlResponseAlreadyUsed = [conversationId,False]
     feelLostResponseAlreadyUsed = [conversationId,False]
@@ -368,7 +370,7 @@ def choose_bot_wordy_response(message, clientId):
     # this section creates arrays of synonyms relating to things which a user might say. Typically each element
     # of the array is an "equivalence class", by which I mean that they are basically the same thing, but
     # might differ only in terms of anticipating typos, or perhaps including intensifiers (like "really")
-    iWantToKillMyselfArray = ["i want to commit suicide", "i want to kill myself", "i want to kill my self", "i want to kill mysefl", "i want to kill my sefl", "i wanna kill myself", "i wanna kill my self", "i wanna kill mysefl", "i wanna kill my sefl",\
+    iWantToKillMyselfArray = ["i want to commit suic", "i want to kill myself", "i want to kill my self", "i want to kill mysefl", "i want to kill my sefl", "i wanna kill myself", "i wanna kill my self", "i wanna kill mysefl", "i wanna kill my sefl",\
                             "i just want to kill myself", "i just want to kill my self", "i just want to kill mysefl", "i just want to kill my sefl", "i just wanna kill myself", "i just wanna kill my self", "i just wanna kill mysefl", "i just wanna kill my sefl",\
                             "i still just want to kill myself", "i still just want to kill my self", "i still just want to kill mysefl", "i still just want to kill my sefl", "i still just wanna kill myself", "i still just wanna kill my self", "i still just wanna kill mysefl", "i still just wanna kill my sefl",\
                             "i still want to kill myself", "i still want to kill my self", "i still want to kill mysefl", "i still want to kill my sefl", "i still wanna kill myself", "i still wanna kill my self", "i still wanna kill mysefl", "i still wanna kill my sefl",\
@@ -513,6 +515,7 @@ def choose_bot_wordy_response(message, clientId):
                         "i feel like such a letdown", "i feel such a letdown", "i feel myself to be such a letdown"]
     letMyselfDownArray = ["let myself down", "let my self down", "let mysefl down", "let my sefl down"]
     hardLifeArray = ["ive had a hard life", "ive had a bad life", "ive had a hard and bad life", "i have had a hard life", "i have had a bad life", "i have had a hard and bad life"]
+    iHaveRegretsArray = ["i have regrets", "i have so many regrets", "my life is so full of regrets", "my life is full of regrets", "i am full of regret"]
     underAchievedArray = ["i have accomplished nothing", "i have achieved nothing", "i havent accomplished anything", "i havent achieved anything"]
     feelOutOfControlArray = ["i feel out of control", "i'm feeling out of control", "im feeling out of control",\
                             "i feel so out of control", "i'm feeling so out of control", "im feeling so out of control",\
@@ -657,6 +660,7 @@ def choose_bot_wordy_response(message, clientId):
     global imALetdownResponseAlreadyUsed
     global letMyselfDownResponseAlreadyUsed
     global hardLifeResponseAlreadyUsed
+    global iHaveRegretsResponseAlreadyUsed
     global underAchievedResponseAlreadyUsed
     global feelOutOfControlResponseAlreadyUsed
     global feelLostResponseAlreadyUsed
@@ -718,6 +722,7 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysImALetdown = False
     msgSaysLetMyselfDown = False
     msgSaysHardLife = False
+    msgSaysIHaveRegrets = False
     msgSaysUnderAchieved = False
     msgSaysFeelOutOfControl = False
     msgSaysFeelLost = False
@@ -1391,6 +1396,20 @@ def choose_bot_wordy_response(message, clientId):
                 if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
                     msgSaysHardLife = True
 
+    for string in iHaveRegretsArray:             # work out if anything from the regrestarray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "ihaveregrets" or similar
+            msgSaysIHaveRegrets = True
+            for negatingString in itsNotThatArray:
+                negatedStringArray = [negatingString+string, negatingString+"i"+string, negatingString+"ive"+string, negatingString+"i've"+string] # including "i've" doesn't make sense any more now that we're using cleanedMessage, which takes the punctuation out anyway
+                for negatedString in negatedStringArray:
+                    if negatedString in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it, or "it's not that i" before it, or ...
+                        msgSaysIHaveRegrets = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysIHaveRegrets = True
+
     for string in underAchievedArray:             # work out if anything from the underAchievedArrayis in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "underAchievedArray" or similar
             msgSaysUnderAchieved = True
@@ -1760,6 +1779,11 @@ def choose_bot_wordy_response(message, clientId):
         ### If the message includes a string roughly equivalent to saying "I let myself down", then reply with
         response = "I'm sorry life has been so unpleasant to you."
         hardLifeResponseAlreadyUsed = [conversationId,True]
+
+    elif msgSaysIHaveRegrets == True and iHaveRegretsResponseAlreadyUsed != [conversationId,True]:
+        ### If the message includes a string roughly equivalent to saying "I let myself down", then reply with
+        response = "That sounds sad."
+        iHaveRegretsResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysUnderAchieved == True and underAchievedResponseAlreadyUsed != [conversationId,True]:
         ### If the message includes a string roughly equivalent to saying "I let myself down", then reply with
