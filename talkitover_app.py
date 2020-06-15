@@ -827,8 +827,123 @@ def choose_bot_wordy_response(message, clientId):
     #         cleanedMessage = cleanedMessage+char
 
 
-    leadStringArray = ["i ", "i am ", "im ", "i feel ", "i am feeling ", "im feeling "]
+    leadStringArray = ["i ", "i am ", "im ", "i feel ", "i am feeling ", "im feeling ", "i'm "]
 
+    def CheckUserMessage(synonymsArray):
+        # work out if anything from the synonymsArray is in the user's message
+        for string in synonymsArray:                      
+            if string in cleanedMessage.lower():                          
+                return True
+
+                 # and if the string does have "it's not that" before it...
+                for negatingString in itsNotThatArray:
+                    negatedString = negatingString+string
+                    if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""): 
+                        return False
+            
+            # ... then set this flag to false
+            if synonymsArray not in (imUselessArray, imWorthlessArray):                             
+                for leadString in leadStringArray:
+                    if string.startswith(leadString):
+                        shortenedString = string.replace(leadString,"")
+                        if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                            return True
+
+    msgSaysIWantToKillMyself = CheckUserMessage(iWantToKillMyselfArray)
+
+    msgSaysImGoingToKillMyself = CheckUserMessage(imGoingToKillMyselfArray)
+
+    msgSaysIWantToDie = CheckUserMessage(iWantToDieArray)
+
+    msgSaysImFeelingSuicidal = CheckUserMessage(imFeelingSuicidalArray)
+
+    msgSaysIveBeenFeelingSuicidal = CheckUserMessage(iveBeenFeelingSuicidalArray)
+
+    msgSaysImFeelingQuiteSuicidal = CheckUserMessage(imFeelingQuiteSuicidalArray)
+
+    msgSaysSuicidalThoughts = CheckUserMessage(suicidalThoughtsArray)
+
+    msgSaysIDontWantToLive = CheckUserMessage(iDontWantToLiveArray)
+
+    msgSaysShouldIKillMyself = CheckUserMessage(shouldIKillMyselfArray)
+
+    msgSaysNothingToLiveFor = CheckUserMessage(nothingToLiveForArray)
+
+    msgSaysImCrying = CheckUserMessage(imCryingArray)
+
+    msgSaysFeelingDepressed = CheckUserMessage(feelingDepressedArray)
+
+    msgSaysFeelingLonely = CheckUserMessage(feelingLonelyArray)
+
+    msgSaysIHateMyself = CheckUserMessage(iHateMyselfArray)
+
+    msgSaysIHaveNoWayOut = CheckUserMessage(iHaveNoWayOutArray)
+
+    msgSaysHadEnoughOfLife = CheckUserMessage(hadEnoughOfLifeArray)
+
+    msgSaysNothingToLookForwardTo = CheckUserMessage(nothingToLookForwardToArray)
+
+    msgSaysImUseless = CheckUserMessage(imUselessArray)
+
+    msgSaysImWorthless = CheckUserMessage(imWorthlessArray)
+
+    msgSaysDontHaveAnyoneICanTalkTo = CheckUserMessage(dontHaveAnyoneICanTalkToArray)
+
+    msgSaysIHateHowILook = CheckUserMessage(iHateHowILookArray)
+
+    msgSaysFeelOverwhelmed = CheckUserMessage(feelOverwhelmedArray)
+
+    msgSaysFeelingAwful = CheckUserMessage(feelingAwfulArray)
+
+    msgSaysImAFailure = CheckUserMessage(imAFailureArray)        
+   
+    msgSaysFeelOutOfControl = CheckUserMessage(feelOutOfControlArray)
+
+    msgSaysFeelLost = CheckUserMessage(feelLostArray)
+
+    msgSaysInABadPlace = CheckUserMessage(inABadPlaceArray)
+
+    msgSaysIHateHowIFeel = CheckUserMessage(iHateHowIFeelArray)
+
+    msgSaysImSad = CheckUserMessage(imSadArray)
+
+    msgSaysFeelingLowDownTerrible = CheckUserMessage(feelingLowDownTerribleArray)
+
+    msgSaysImUpset = CheckUserMessage(imUpsetArray)
+
+    msgSaysImAddicted = CheckUserMessage(imAddictedArray)
+
+    msgSaysFeelingRubbish = CheckUserMessage(feelingRubbishArray)
+
+    msgSaysImAnxious = CheckUserMessage(imAnxiousArray)
+
+    msgSaysIHaveAnxiety = CheckUserMessage(iHaveAnxietyArray)
+
+    msgSaysImWorried = CheckUserMessage(imWorriedArray)
+
+    msgSaysIDontKnowWhatToDo = CheckUserMessage(iDontKnowWhatToDoArray)
+
+    msgSaysIDontKnowWhatToSay = CheckUserMessage(iDontKnowWhatToSayArray)
+
+    msgSaysImNotHappy = CheckUserMessage(imNotHappyArray)
+
+    msgSaysFamilyProblems = CheckUserMessage(familyProblemsArray)
+
+
+
+    # Is this one missing the 'for leadString...' on purpose or by accident?
+
+    # for string in imAFailureArray:             # work out if anything from the ImAFailureArray is in the user's cleanedMessage
+    #     if string in cleanedMessage.lower():                          # if cleanedMessage contains "ImAFailure" or similar
+    #         msgSaysImAFailure = True
+    #         for negatingString in itsNotThatArray:
+    #             negatedString = negatingString+string
+    #             if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+    #                 msgSaysImAFailure = False                                     # ... then set this flag to false
+    #     ## the code which detects whether the message starts with a lead string like "i am" and sees whether the user has omitted it is not being applied here
+
+
+<<<<<<< HEAD
     for string in iWantToKillMyselfArray:             # work out if anything from the iWantToKillMyselfArray is in the user's message
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "i Want To KillMyself" or similar
             msgSaysIWantToKillMyself = True
@@ -1131,6 +1246,8 @@ def choose_bot_wordy_response(message, clientId):
                 if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
                     msgSaysImAFailure = False                                     # ... then set this flag to false
         ## the code which detects whether the message starts with a lead string like "i am" and sees whether the user has omitted it is not being applied here
+=======
+>>>>>>> SanjayRedScarf-new
     for string in imALetdownArray:             # work out if anything from the ImALetdownArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "ImALetdown" or similar
             msgSaysImALetdown = True
@@ -1146,6 +1263,7 @@ def choose_bot_wordy_response(message, clientId):
     ## NOTE:  letMyselfDown is treated slightly differently. All the other strings start with I (i.e. the first person pronoun)
     ## "Let myself down" doesn't need to because it already contains a reflexive first person pronoun
     ## But this means that the preceding "it's not that" check needs to be more sophisticated.
+<<<<<<< HEAD
     ## This is done further down.
     for string in feelOutOfControlArray:             # work out if anything from the feelOutOfControlArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "feelOutOfControl" or similar
@@ -1367,6 +1485,9 @@ def choose_bot_wordy_response(message, clientId):
                 shortenedString = string.replace(leadString,"")
                 if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
                     msgSaysFamilyProblems = True
+=======
+    
+>>>>>>> SanjayRedScarf-new
     ## "Let myself down" is treated slightly different because it doesn't have a first person pronoun at the start, so the negating string is done differently
     for string in letMyselfDownArray:             # work out if anything from the letMyselfDownArray is in the user's cleanedMessage
         if string in cleanedMessage.lower():                          # if cleanedMessage contains "letMyselfDown" or similar
