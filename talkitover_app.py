@@ -863,6 +863,8 @@ def choose_bot_wordy_response(message, clientId):
 
     msgSaysSuicidalThoughts = CheckUserMessage(suicidalThoughtsArray)
 
+    msgSaysIWishIWasDead = CheckUserMessage(iWishIWasDeadArray)
+
     msgSaysIDontWantToLive = CheckUserMessage(iDontWantToLiveArray)
 
     msgSaysShouldIKillMyself = CheckUserMessage(shouldIKillMyselfArray)
@@ -901,6 +903,8 @@ def choose_bot_wordy_response(message, clientId):
 
     msgSaysFeelLost = CheckUserMessage(feelLostArray)
 
+    msgSaysFeelEmpty = CheckUserMessage(feelEmptyArray)
+
     msgSaysInABadPlace = CheckUserMessage(inABadPlaceArray)
 
     msgSaysIHateHowIFeel = CheckUserMessage(iHateHowIFeelArray)
@@ -912,6 +916,8 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysImUpset = CheckUserMessage(imUpsetArray)
 
     msgSaysImAddicted = CheckUserMessage(imAddictedArray)
+
+    msgSaysIHateCoronavirus = CheckUserMessage(iHateCoronavirusArray)
 
     msgSaysFeelingRubbish = CheckUserMessage(feelingRubbishArray)
 
@@ -987,34 +993,8 @@ def choose_bot_wordy_response(message, clientId):
 
     msgSaysThankYou = CheckUserMessage(thankYouArray)
 
-    # for string in thankYouArray:             # work out if anything from the ThankYouArray is in the user's cleanedMessage
-    #     if string in cleanedMessage.lower():                          # if cleanedMessage contains "ThankYou" or similar
-    #         msgSaysThankYou = True
-    #         for negatingString in itsNotThatArray:
-    #             negatedString = negatingString+string
-    #             if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-    #                 msgSaysThankYou = False                                     # ... then set this flag to false
-    #     for leadString in leadStringArray:
-    #         if string.startswith(leadString):
-    #             shortenedString = string.replace(leadString,"")
-    #             if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-    #                 msgSaysThankYou = True
-
     msgSaysAreYouABot = CheckUserMessage(areYouABotArray)
 
-        ## The areYouABot checking section!
-    # for string in areYouABotArray:             # work out if anything from the areYouABotArray is in the user's cleanedMessage
-    #     if string in cleanedMessage.lower():                          # if cleanedMessage contains "areYouABot" or similar
-    #         msgSaysAreYouABot = True
-    #         for negatingString in itsNotThatArray:
-    #             negatedString = negatingString+string
-    #             if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-    #                 msgSaysAreYouABot = False                                     # ... then set this flag to false
-    #     for leadString in leadStringArray:
-    #         if string.startswith(leadString):
-    #             shortenedString = string.replace(leadString,"")
-    #             if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-    #                 msgSaysAreYouABot = True
                     
     ## The thisBotIsBadArray_loose checking section!
     for string in thisBotIsBadArray_loose:             # work out if anything from the thisBotIsBadArray_loose is in the user's cleanedMessage
