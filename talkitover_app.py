@@ -976,49 +976,7 @@ def choose_bot_wordy_response(message, clientId):
 
     msgSaysHardLife = CheckUserMessage(hardLifeArray)
 
-    # for string in hardLifeArray:             # work out if anything from the hardLifeArray is in the user's cleanedMessage
-    #     if string in cleanedMessage.lower():                          # if cleanedMessage contains "HardLife" or similar
-    #         msgSaysHardLife = True
-    #         for negatingString in itsNotThatArray:
-    #             negatedStringArray = [negatingString+string, negatingString+"i"+string, negatingString+"ive"+string, negatingString+"i've"+string] # including "i've" doesn't make sense any more now that we're using cleanedMessage, which takes the punctuation out anyway
-    #             for negatedString in negatedStringArray:
-    #                 if negatedString in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it, or "it's not that i" before it, or ...
-    #                     msgSaysHardLife = False                                     # ... then set this flag to false
-    #     for leadString in leadStringArray:
-    #         if string.startswith(leadString):
-    #             shortenedString = string.replace(leadString,"")
-    #             if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-    #                 msgSaysHardLife = True
-
     msgSaysIHaveRegrets = CheckUserMessage(iHaveRegretsArray)
-
-    # for string in iHaveRegretsArray:             # work out if anything from the regrestarray is in the user's cleanedMessage
-    #     if string in cleanedMessage.lower():                          # if cleanedMessage contains "ihaveregrets" or similar
-    #         msgSaysIHaveRegrets = True
-    #         for negatingString in itsNotThatArray:
-    #             negatedStringArray = [negatingString+string, negatingString+"i"+string, negatingString+"ive"+string, negatingString+"i've"+string] # including "i've" doesn't make sense any more now that we're using cleanedMessage, which takes the punctuation out anyway
-    #             for negatedString in negatedStringArray:
-    #                 if negatedString in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it, or "it's not that i" before it, or ...
-    #                     msgSaysIHaveRegrets = False                                     # ... then set this flag to false
-    #     for leadString in leadStringArray:
-    #         if string.startswith(leadString):
-    #             shortenedString = string.replace(leadString,"")
-    #             if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-    #                 msgSaysIHaveRegrets = True
-
-    # for string in underAchievedArray:             # work out if anything from the underAchievedArrayis in the user's cleanedMessage
-    #     if string in cleanedMessage.lower():                          # if cleanedMessage contains "underAchievedArray" or similar
-    #         msgSaysUnderAchieved = True
-    #         for negatingString in itsNotThatArray:
-    #             negatedStringArray = [negatingString+string, negatingString+"i"+string, negatingString+"ive"+string, negatingString+"i've"+string] # including "i've" doesn't make sense any more now that we're using cleanedMessage, which takes the punctuation out anyway
-    #             for negatedString in negatedStringArray:
-    #                 if negatedString in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it, or "it's not that i" before it, or ...
-    #                     msgSaysUnderAchieved = False                                     # ... then set this flag to false
-    #     for leadString in leadStringArray:
-    #         if string.startswith(leadString):
-    #             shortenedString = string.replace(leadString,"")
-    #             if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-    #                 msgSaysUnderAchieved = True
 
     msgSaysUnderAchieved = CheckUserMessage(underAchievedArray)
 
@@ -1027,32 +985,36 @@ def choose_bot_wordy_response(message, clientId):
         if string.replace(" ","") in cleanedMessage.lower().replace(" ",""):                          # if message contains "do you give advice" or similar
             msgSaysDoYouGiveAdvice = True
 
-    for string in thankYouArray:             # work out if anything from the ThankYouArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "ThankYou" or similar
-            msgSaysThankYou = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysThankYou = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysThankYou = True
+    msgSaysThankYou = CheckUserMessage(thankYouArray)
+
+    # for string in thankYouArray:             # work out if anything from the ThankYouArray is in the user's cleanedMessage
+    #     if string in cleanedMessage.lower():                          # if cleanedMessage contains "ThankYou" or similar
+    #         msgSaysThankYou = True
+    #         for negatingString in itsNotThatArray:
+    #             negatedString = negatingString+string
+    #             if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+    #                 msgSaysThankYou = False                                     # ... then set this flag to false
+    #     for leadString in leadStringArray:
+    #         if string.startswith(leadString):
+    #             shortenedString = string.replace(leadString,"")
+    #             if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+    #                 msgSaysThankYou = True
+
+    msgSaysAreYouABot = CheckUserMessage(areYouABotArray)
 
         ## The areYouABot checking section!
-    for string in areYouABotArray:             # work out if anything from the areYouABotArray is in the user's cleanedMessage
-        if string in cleanedMessage.lower():                          # if cleanedMessage contains "areYouABot" or similar
-            msgSaysAreYouABot = True
-            for negatingString in itsNotThatArray:
-                negatedString = negatingString+string
-                if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
-                    msgSaysAreYouABot = False                                     # ... then set this flag to false
-        for leadString in leadStringArray:
-            if string.startswith(leadString):
-                shortenedString = string.replace(leadString,"")
-                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
-                    msgSaysAreYouABot = True
+    # for string in areYouABotArray:             # work out if anything from the areYouABotArray is in the user's cleanedMessage
+    #     if string in cleanedMessage.lower():                          # if cleanedMessage contains "areYouABot" or similar
+    #         msgSaysAreYouABot = True
+    #         for negatingString in itsNotThatArray:
+    #             negatedString = negatingString+string
+    #             if negatedString.replace(" ","") in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it...
+    #                 msgSaysAreYouABot = False                                     # ... then set this flag to false
+    #     for leadString in leadStringArray:
+    #         if string.startswith(leadString):
+    #             shortenedString = string.replace(leadString,"")
+    #             if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+    #                 msgSaysAreYouABot = True
                     
     ## The thisBotIsBadArray_loose checking section!
     for string in thisBotIsBadArray_loose:             # work out if anything from the thisBotIsBadArray_loose is in the user's cleanedMessage
