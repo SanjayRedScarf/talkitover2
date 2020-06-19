@@ -515,7 +515,7 @@ def choose_bot_wordy_response(message, clientId):
                         "i feel like such a letdown", "i feel such a letdown", "i feel myself to be such a letdown"]
     letMyselfDownArray = ["let myself down", "let my self down", "let mysefl down", "let my sefl down"]
     hardLifeArray = ["ive had a hard life", "ive had a bad life", "ive had a hard and bad life", "i have had a hard life", "i have had a bad life", "i have had a hard and bad life"]
-    iHaveRegretsArray = ["i have regrets", "i have so many regrets", "my life is so full of regrets", "my life is full of regrets", "i am full of regret"]
+    iHaveRegretsArray = ["i have regrets", "i have many regrets", "my life is so full of regrets", "my life is full of regrets", "i am full of regret"]
     underAchievedArray = ["i have accomplished nothing", "i have achieved nothing", "i havent accomplished anything", "i havent achieved anything"]
     feelOutOfControlArray = ["i feel out of control", "i'm feeling out of control", "im feeling out of control",\
                             "i feel so out of control", "i'm feeling so out of control", "im feeling so out of control",\
