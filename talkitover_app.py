@@ -51,12 +51,16 @@ cryingResponseAlreadyUsed = [conversationId,False]
 nothingToLiveForResponseAlreadyUsed = [conversationId,False]
 singleWordDepressionResponseAlreadyUsed = [conversationId,False]
 feelingDepressedResponseAlreadyUsed = [conversationId,False]
+iHaveDepressionResponseAlreadyUsed = [conversationId,False]
 iHaveNoWayOutResponseAlreadyUsed = [conversationId,False]
 hadEnoughOfLifeResponseAlreadyUsed = [conversationId,False]
 nothingToLookForwardToResponseAlreadyUsed = [conversationId,False]
 imUselessResponseAlreadyUsed = [conversationId,False]
 imWorthlessResponseAlreadyUsed = [conversationId,False]
+iWantSomeoneToLoveMeResponseAlreadyUsed = [conversationId,False]
 feelingLonelyResponseAlreadyUsed = [conversationId,False]
+imSickOfLockdownResponseAlreadyUsed = [conversationId,False]
+iDontSleepResponseAlreadyUsed = [conversationId,False]
 dontHaveAnyoneICanTalkToResponseAlreadyUsed = [conversationId,False]
 iHateHowILookResponseAlreadyUsed = [conversationId,False]
 feelOverwhelmedResponseAlreadyUsed = [conversationId,False]
@@ -67,6 +71,8 @@ letMyselfDownResponseAlreadyUsed = [conversationId,False]
 hardLifeResponseAlreadyUsed = [conversationId,False]
 iHaveRegretsResponseAlreadyUsed = [conversationId,False]
 underAchievedResponseAlreadyUsed = [conversationId,False]
+hurtsMyFeelingsResponseAlreadyUsed = [conversationId,False]
+hurtsToKnowThatResponseAlreadyUsed = [conversationId,False]
 feelOutOfControlResponseAlreadyUsed = [conversationId,False]
 feelLostResponseAlreadyUsed = [conversationId,False]
 feelEmptyResponseAlreadyUsed = [conversationId,False]
@@ -88,9 +94,14 @@ initial_iDontKnowWhatToSayResponseAlreadyUsed = [conversationId, False]
 second_iDontKnowWhatToSayResponseAlreadyUsed = [conversationId, False]
 imNotHappyResponseAlreadyUsed = [conversationId,False]
 iHateMyselfResponseAlreadyUsed = [conversationId,False]
+abandonedMeResponseAlreadyUsed = [conversationId,False]
+imStuckAtHomeResponseAlreadyUsed = [conversationId,False]
 difficultDayResponseAlreadyUsed = [conversationId,False]
 familyProblemsResponseAlreadyUsed = [conversationId,False]
+iWantAFriendResponseAlreadyUsed = [conversationId,False]
+iDontSeeManyPeopleResponseAlreadyUsed = [conversationId,False]
 feelLostResponseAlreadyUsed = [conversationId,False]
+helpResponseAlreadyUsed = [conversationId,False]
 doYouGiveAdviceResponseAlreadyUsed = [conversationId,False]
 thankYouResponseAlreadyUsed = [conversationId, False]
 shortResponseAlreadyUsed = [conversationId,False]
@@ -135,12 +146,16 @@ def initialiseResponseAlreadyUsedVariables():
     nothingToLiveForResponseAlreadyUsed = [conversationId,False]
     singleWordDepressionResponseAlreadyUsed = [conversationId,False]
     feelingDepressedResponseAlreadyUsed = [conversationId,False]
+    iHaveDepressionResponseAlreadyUsed = [conversationId,False]
     iHaveNoWayOutResponseAlreadyUsed = [conversationId,False]
     hadEnoughOfLifeResponseAlreadyUsed = [conversationId,False]
     nothingToLookForwardToResponseAlreadyUsed = [conversationId,False]
     imUselessResponseAlreadyUsed = [conversationId,False]
     imWorthlessResponseAlreadyUsed = [conversationId,False]
+    iWantSomeoneToLoveMeResponseAlreadyUsed = [conversationId,False]
     feelingLonelyResponseAlreadyUsed = [conversationId,False]
+    imSickOfLockdownResponseAlreadyUsed = [conversationId,False]
+    iDontSleepResponseAlreadyUsed = [conversationId,False]
     dontHaveAnyoneICanTalkToResponseAlreadyUsed = [conversationId,False]
     iHateHowILookResponseAlreadyUsed = [conversationId,False]
     feelOverwhelmedResponseAlreadyUsed = [conversationId,False]
@@ -151,6 +166,8 @@ def initialiseResponseAlreadyUsedVariables():
     hardLifeResponseAlreadyUsed = [conversationId,False]
     iHaveRegretsResponseAlreadyUsed = [conversationId,False]
     underAchievedResponseAlreadyUsed = [conversationId,False]
+    hurtsMyFeelingsResponseAlreadyUsed = [conversationId,False]
+    hurtsToKnowThatResponseAlreadyUsed = [conversationId,False]
     feelOutOfControlResponseAlreadyUsed = [conversationId,False]
     feelLostResponseAlreadyUsed = [conversationId,False]
     feelEmptyResponseAlreadyUsed = [conversationId,False]
@@ -172,9 +189,14 @@ def initialiseResponseAlreadyUsedVariables():
     second_iDontKnowWhatToSayResponseAlreadyUsed = [conversationId, False]
     imNotHappyResponseAlreadyUsed = [conversationId,False]
     iHateMyselfResponseAlreadyUsed = [conversationId,False]
+    abandonedMeResponseAlreadyUsed = [conversationId,False]
+    imStuckAtHomeResponseAlreadyUsed = [conversationId,False]
     difficultDayResponseAlreadyUsed = [conversationId,False]
     familyProblemsResponseAlreadyUsed = [conversationId,False]
+    iWantAFriendResponseAlreadyUsed = [conversationId,False]
+    iDontSeeManyPeopleResponseAlreadyUsed = [conversationId,False]
     feelLostResponseAlreadyUsed = [conversationId,False]
+    helpResponseAlreadyUsed = [conversationId,False]
     doYouGiveAdviceResponseAlreadyUsed = [conversationId,False]
     thankYouResponseAlreadyUsed = [conversationId, False]
     shortResponseAlreadyUsed = [conversationId,False]
@@ -385,7 +407,7 @@ def choose_bot_wordy_response(message, clientId):
                                 "i will kill myself", "i will kill my self","ill kill myself", "ill kill my self"]
     #imPlanningToKillMyselfArray = ["im planning to kill myself", "i am planning to kill myself"]
     # have not built in anything for imPlanningToKillMyselfArray apart from the array itself. Maybe come back to this?
-    iWantToDieArray = ["i want to die", "i wanna die", "i would like to die"]
+    iWantToDieArray = ["i want to die", "i wanna die", "i would like to die", "I have become suic", "ive become suic"]
     imFeelingSuicidalArray = ["i feel suic", "i'm feeling suic", "im feeling suic", "i just feel suic", "i'm just feeling suic", "im just feeling suic", "i'm suic", "im suic", "i am suic",\
                             "i feel sucid", "i'm feeling sucid", "im feeling sucid", "i just feel sucid", "i'm just feeling sucid", "im just feeling sucid", "i'm sucid", "im sucid", "i am sucid",\
                             "i still feel suic", "i'm still feeling suic", "im still feeling suic", "i still just feel suic", "i'm still just feeling suic", "im still just feeling suic", "i'm still suic", "im still suic",\
@@ -425,6 +447,7 @@ def choose_bot_wordy_response(message, clientId):
     feelingDepressedArray = ["i feel depressed", "i just feel depressed", "i feeel depressed", "i just feeel depressed", "im feeling depressed", "i'm feeling depressed", "im just feeling depressed", "i'm just feeling depressed", "i feel very depressed", "i feel so depressed", "i am feeling depressed", "i'm feeling really depressed", "i'm feeling so depressed", "im feeling really depressed", "im feeling so depressed",\
                             "i'm depressed", "im depressed", "i am depressed", "i'm so depressed", "im so depressed", "i am so depressed", "i'm really depressed", "im really depressed", "i am really depressed",\
                             "im more depressed than ever", "i'm more depressed than ever" ]
+    iHaveDepressionArray = ["I have depression"]
     iHaveNoWayOutArray = ["i have no way out", "i don't feel i have any way out", "i dont feel i have any way out", "i don't have any way out", "i dont have any way out", "i haven't got any way out", "ive got no way out", "ive no got any way out", "i don't feel i have any way out", "i dont feel i have any way out", "i don't feel i have got any way out", "i dont feel i have got any way out", "i don't have any way out", "i dont have any way out"]
     hadEnoughOfLifeArray = ["i've had enough of life", "ive had enough of life", "i have had enough of life", "i had enough of life"]
     nothingToLookForwardToArray = ["i have nothing to look forward to", "i don't have anything to look forward to", "i've got nothing to look forward to", \
@@ -451,6 +474,7 @@ def choose_bot_wordy_response(message, clientId):
                     "im just really worthless", "i'm just really worthless", "im just really worthlses", "i'm just really worthlses",\
                     "im just totally worthless", "i'm just totally worthless", "im just totally worthlses", "i'm just totally worthlses",\
                     "im just utterly worthless", "i'm just utterly worthless", "im just utterly worthlses", "i'm just utterly worthlses"]
+    iWantSomeoneToLoveMeArray = ["I want someone to love me", "I want to be loved"]
     feelingLonelyArray = ["i sit alone", "i feel lonely", "im feeling lonely", "i am feeling lonely","making me feel lonely", "making me lonely","makes me feel lonely", "makes me lonely",
                         "i feel alone", "im feeling alone", "i am feeling alone", "making me feel alone", "making me alone","makes me feel alone", "makes me alone",
                         "i feel sad and lonely", "im feeling sad and lonely", "i am feeling sad and lonely","making me feel sad and lonely", "making me sad and lonely", "makes me feel sad and lonely", "makes me sad and lonely",
@@ -468,6 +492,8 @@ def choose_bot_wordy_response(message, clientId):
                         "im low and alone", "i am low and alone", "making me low and alone", "making me low and alone", "makes me low and alone", "makes me low and alone",
                         "im isolated", "i am isolated", "making me isolated", "making me isolated", "makes me isolated", "makes me isolated",
                         "im sad and isolated", "i am sad and isolated", "making me sad and isolated", "making me sad and isolated", "makes me sad and isolated", "makes me sad and isolated"]
+    imSickOfLockdownArray = ["im sick of lockdown", "im fed up of lockdown", "im sick to the back teeth of lockdown", "ive had enough of lockdown", "i have had enough of lockdown", "i cant cope with lockdown", "im bored of lockdown", "i am bored of lockdown"]
+    iDontSleepArray = ["i dont sleep", "i have insomnia", "i suffer from insomnia", "im an insomniac", "insomnia is killing me", "i hardly ever get any sleep", "i struggle to sleep", "i cant sleep"]
     dontHaveAnyoneICanTalkToArray = ["don't have anyone i can talk to", "dont have anyone i can talk to","don't have anyone i can talk with", "dont have anyone i can talk with",
                                     "i have no one to talk to", "i have nobody to talk to", "i have no one to talk with", "i have nobody to talk with",
                                     "i've no one to talk to", "i've nobody to talk to", "i've no one to talk with", "i've nobody to talk with",
@@ -476,8 +502,7 @@ def choose_bot_wordy_response(message, clientId):
                         "i just hate how i look", "i just hate my looks", "i just hate my appearance", "i just hate the way i look",\
                         "i really hate how i look", "i really hate my looks", "i really hate my appearance", "i really hate the way i look",\
                         "i really just hate how i look", "i really just hate my looks", "i really just hate my appearance", "i really just hate the way i look",
-                        "im ugly", "i am ugly"
-                        "i look horrible", "i look disgusting", "i look atrocious"]
+                        "im ugly", "i am ugly", "i look horrible", "i look disgusting", "i look atrocious", "I feel insecure about my body", "I feel insecure about my appearance", "I hate my body", "I despise my body"]
     feelOverwhelmedArray = ["i feel overwhelmed", "im feeling overwhelmed", "i'm feeling overwhelmed", \
                             "i feel so overwhelmed", "im feeling so overwhelmed", "i'm feeling so overwhelmed",\
                             "i feel really overwhelmed", "im feeling really overwhelmed", "i'm feeling really overwhelmed", \
@@ -517,6 +542,8 @@ def choose_bot_wordy_response(message, clientId):
     hardLifeArray = ["ive had a hard life", "ive had a bad life", "ive had a hard and bad life", "i have had a hard life", "i have had a bad life", "i have had a hard and bad life"]
     iHaveRegretsArray = ["i have regrets", "i have many regrets", "my life is so full of regrets", "my life is full of regrets", "i am full of regret"]
     underAchievedArray = ["i have accomplished nothing", "i have achieved nothing", "i havent accomplished anything", "i havent achieved anything"]
+    hurtsMyFeelingsArray = ["hurts my feelings", "continues to hurt my feelings"]    
+    hurtsToKnowThatArray = ["It hurts to know that", "It pains me to know that", "It hurts knowing that", "I feel the pain of knowing that"]
     feelOutOfControlArray = ["i feel out of control", "i'm feeling out of control", "im feeling out of control",\
                             "i feel so out of control", "i'm feeling so out of control", "im feeling so out of control",\
                             "i feel really out of control", "i'm feeling really out of control", "im feeling really out of control",\
@@ -564,6 +591,10 @@ def choose_bot_wordy_response(message, clientId):
     iHaveAnxietyArray = ["i have anxiety", "i suffer from anxiety"]
     imWorriedArray = ["im worried", "i am worried", "i have worries", "making me worried", "makes me worried", "leaves me feeling worried", " i have so much to worry "]
     imNotHappyArray = ["im not happy", "i'm not happy", "im just not happy", "i'm just not happy", "im really not happy", "i'm really not happy"]
+    abandonedMeArray = ["boyfriends abandoned me", "boyfriend has abandoned me", "girlfriends abandoned me", "girlfriend has abandoned me", "wifes abandoned me", "wife has abandoned me", "husband has abandoned me", "husbands abandoned me"]
+    imStuckAtHomeArray = ["im stuck in my home", "im stuck in my house", "im stuck in my flat", "i am stuck in my home", "i am stuck in my house", "i am stuck in my flat", "im stuck in the home", "im stuck in the house", "im stuck in the flat", \
+                          "i am stuck in the home", "i am stuck in the house", "i am stuck in the flat", "im stuck at my home", "im stuck at my house", "im stuck at my flat", "i am stuck at my home", "i am stuck at my house", "i am stuck at my flat", "im stuck at the home", "im stuck at the house",\
+                          "im stuck at the flat", "i am stuck at the home", "i am stuck at the house", "i am stuck at the flat", "im stuck at home", "i cant leave my home", "i cant leave my house", "i cant leave my flat", "i cant leave the home", "i cant leave the house", "i cant leave the flat"]
     difficultDayArray = ["its been a tough day", "it's been a tough day", "i've had a tough day", "ive had a tough day", \
                         "its been a difficult day", "it's been a difficult day", "i've had a difficult day", "ive had a difficult day"]
     familyProblemsArray = ["i have family problems", "i'm having family problems", "im having family problems", "ive got family problems", \
@@ -574,6 +605,9 @@ def choose_bot_wordy_response(message, clientId):
                             "i have difficulties with my family", "i'm having difficulties with my family", "im having difficulties with my family", "ive got difficulties with my family", \
                             "i have family worries", "i'm having family worries", "im having family worries", "ive got family worries", "ive got worries with my family", \
                             "i have worries with my family", "i'm having worries with my family", "im having worries with my family", "ive got worries with my family"]
+    iWantAFriendArray = ["i want a friend", "i need a friend", "I have no friends", "I don't have any friends", "I havent got any friends", "ive got no friends" "I don’t have friends"]
+    iDontSeeManyPeopleArray = ["i dont see many people", "i dont see a lot of people"]
+    helpArray = ["Help", "Help me", "I need help"]
     iDontKnowWhatToDoArray = ["i dont know what to do", "i dunno what to do", "i have no idea what to do",
                             "ive no idea what to do", "i hvaent a clue what to do", "i havent a clue what to do",
                             "i havent any idea what to do", "i dont have any idea what to do",
@@ -646,12 +680,16 @@ def choose_bot_wordy_response(message, clientId):
     global nothingToLiveForResponseAlreadyUsed
     global singleWordDepressionResponseAlreadyUsed
     global feelingDepressedResponseAlreadyUsed
+    global iHaveDepressionResponseAlreadyUsed
     global iHaveNoWayOutResponseAlreadyUsed
     global hadEnoughOfLifeResponseAlreadyUsed
     global nothingToLookForwardToResponseAlreadyUsed
     global imUselessResponseAlreadyUsed
     global imWorthlessResponseAlreadyUsed
+    global iWantSomeoneToLoveMeResponseAlreadyUsed
     global feelingLonelyResponseAlreadyUsed
+    global imSickOfLockdownResponseAlreadyUsed
+    global iDontSleepResponseAlreadyUsed
     global dontHaveAnyoneICanTalkToResponseAlreadyUsed
     global iHateHowILookResponseAlreadyUsed
     global feelOverwhelmedResponseAlreadyUsed
@@ -662,6 +700,8 @@ def choose_bot_wordy_response(message, clientId):
     global hardLifeResponseAlreadyUsed
     global iHaveRegretsResponseAlreadyUsed
     global underAchievedResponseAlreadyUsed
+    global hurtsMyFeelingsResponseAlreadyUsed
+    global hurtsToKnowThatResponseAlreadyUsed
     global feelOutOfControlResponseAlreadyUsed
     global feelLostResponseAlreadyUsed
     global feelEmptyResponseAlreadyUsed
@@ -683,9 +723,14 @@ def choose_bot_wordy_response(message, clientId):
     global second_iDontKnowWhatToSayResponseAlreadyUsed
     global imNotHappyResponseAlreadyUsed
     global iHateMyselfResponseAlreadyUsed
+    global abandonedMeResponseAlreadyUsed
+    global imStuckAtHomeResponseAlreadyUsed
     global difficultDayResponseAlreadyUsed
     global familyProblemsResponseAlreadyUsed
+    global iWantAFriendResponseAlreadyUsed
+    global iDontSeeManyPeopleResponseAlreadyUsed
     global feelLostResponseAlreadyUsed
+    global helpResponseAlreadyUsed
     global doYouGiveAdviceResponseAlreadyUsed
     global thankYouResponseAlreadyUsed
     global shortResponseAlreadyUsed
@@ -708,12 +753,16 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysNothingToLiveFor = False
     msgSaysSingleWordDepression = False
     msgSaysFeelingDepressed = False
+    msgSaysIHaveDepression = False
     msgSaysIHaveNoWayOut = False
     msgSaysHadEnoughOfLife = False
     msgSaysNothingToLookForwardTo = False
     msgSaysImUseless = False
     msgSaysImWorthless = False
+    msgSaysIWantSomeoneToLoveMe = False
     msgSaysFeelingLonely = False
+    msgSaysImSickOfLockdown = False
+    msgSaysIDontSleep = False
     msgSaysDontHaveAnyoneICanTalkTo = False
     msgSaysIHateHowILook = False
     msgSaysFeelOverwhelmed = False
@@ -724,6 +773,8 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysHardLife = False
     msgSaysIHaveRegrets = False
     msgSaysUnderAchieved = False
+    msgSaysHurtsMyFeelings = False
+    msgSaysHurtsToKnowThat = False
     msgSaysFeelOutOfControl = False
     msgSaysFeelLost = False
     msgSaysFeelEmpty = False
@@ -743,9 +794,14 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysIDontKnowWhatToSay = False
     msgSaysImNotHappy = False
     msgSaysIHateMyself = False
+    msgSaysAbandonedMe = False
+    msgSaysImStuckAtHome = False
     msgSaysDifficultDay = False
     msgSaysFamilyProblems = False
+    msgSaysIWantAFriend = False
+    msgSaysIDontSeeManyPeople = False
     msgSaysFeelLost = False
+    msgSaysHelp = False
     msgSaysDoYouGiveAdvice = False
     msgSaysThankYou = False
     msgSaysAreYouABot = False
@@ -877,7 +933,13 @@ def choose_bot_wordy_response(message, clientId):
 
     msgSaysFeelingLonely = CheckUserMessage(feelingLonelyArray)
 
+    msgSaysImSickOfLockdown = CheckUserMessage(imSickOfLockdownArray)
+
+    msgSaysIDontSleep = CheckUserMessage(iDontSleepArray)
+
     msgSaysIHateMyself = CheckUserMessage(iHateMyselfArray)
+
+    msgSaysIHaveDepression = CheckUserMessage(iHaveDepressionArray)
 
     msgSaysIHaveNoWayOut = CheckUserMessage(iHaveNoWayOutArray)
 
@@ -888,6 +950,8 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysImUseless = CheckUserMessage(imUselessArray)
 
     msgSaysImWorthless = CheckUserMessage(imWorthlessArray)
+
+    msgSaysIWantSomeoneToLoveMe = CheckUserMessage(iWantSomeoneToLoveMeArray)
 
     msgSaysDontHaveAnyoneICanTalkTo = CheckUserMessage(dontHaveAnyoneICanTalkToArray)
 
@@ -933,9 +997,28 @@ def choose_bot_wordy_response(message, clientId):
 
     msgSaysImNotHappy = CheckUserMessage(imNotHappyArray)
 
+        ## "Abandoned Me" is treated slightly different because it doesn't have a first person pronoun at the start, so the negating string is done differently
+    for string in abandonedMeArray:             # work out if anything from the abandonedMeArray is in the user's cleanedMessage
+        if string in cleanedMessage.lower():                          # if cleanedMessage contains "abandonedMe" or similar
+            msgSaysAbandonedMe = True
+            for negatingString in itsNotThatArray:
+                negatedStringArray = [negatingString+string, negatingString+"i"+string, negatingString+"ive"+string, negatingString+"i've"+string] # including "i've" doesn't make sense any more now that we're using cleanedMessage, which takes the punctuation out anyway
+                for negatedString in negatedStringArray:
+                    if negatedString in cleanedMessage.lower().replace(" ",""):  # and if the string does have "it's not that" before it, or "it's not that i" before it, or ...
+                        msgSaysAbandonedMe = False                                     # ... then set this flag to false
+        for leadString in leadStringArray:
+            if string.startswith(leadString):
+                shortenedString = string.replace(leadString,"")
+                if cleanedMessage.lower().replace(" ","").startswith(shortenedString.replace(" ","")):
+                    msgSaysAbandonedMe = True
+
+    msgSaysImStuckAtHome = CheckUserMessage(imStuckAtHomeArray)
+
     msgSaysFamilyProblems = CheckUserMessage(familyProblemsArray)
 
-    
+    msgSaysIWantAFriend = CheckUserMessage(iWantAFriendArray)
+
+    msgSaysIDontSeeManyPeople = CheckUserMessage(iDontSeeManyPeopleArray)
 
     # Is this one missing the 'for leadString...' on purpose or by accident?
 
@@ -985,6 +1068,14 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysIHaveRegrets = CheckUserMessage(iHaveRegretsArray)
 
     msgSaysUnderAchieved = CheckUserMessage(underAchievedArray)
+
+    msgSaysHurtsToKnowThat = CheckUserMessage(hurtsToKnowThatArray)
+
+    msgSaysHurtsMyFeelings = CheckUserMessage(hurtsMyFeelingsArray)
+
+    for string in helpArray:
+        if string == cleanedMessage.lower():
+            msgSaysHelp = True
 
     ## "Do you give advice" is trated differently ebcause there's no need to include the negatig string check
     for string in doYouGiveAdviceArray:             # work out if anything from the doYouGiveAdviceArray is in the user's message
@@ -1087,7 +1178,6 @@ def choose_bot_wordy_response(message, clientId):
         return response
 
 
-
     if msgSaysIWantToKillMyself == True and iWantToKillMyselfResponseAlreadyUsed != [conversationId,True]:
         # if the user's message contains some variant of "I want to kill myself"
         print("This is inside the if msgSaysIWantToKillMyself == True and... statement")
@@ -1180,9 +1270,6 @@ def choose_bot_wordy_response(message, clientId):
 
         shouldIKillMyselfResponseAlreadyUsed = [conversationId,True]
 
-
-
-
     elif msgSaysImCrying == True and cryingResponseAlreadyUsed != [conversationId,True]:
         # if the users message contains some variant of "i'm crying"
         response = "I'm sorry to hear that you're feeling this way, and that it's making you cry. That sounds so sad."
@@ -1224,6 +1311,16 @@ def choose_bot_wordy_response(message, clientId):
         response = "Sorry to hear you're feeling depressed. Would you like to tell me more about that?"
         feelingDepressedResponseAlreadyUsed = [conversationId,True]
 
+    elif msgSaysIHaveDepression == True and iHaveDepressionResponseAlreadyUsed != [conversationId,True]:
+        # if the users message contains some variant of "i hate myself"
+        if len(message) > 200:
+            response = "Sorry about all that's going on for you, and about your depression."
+        else:
+            response = "Sorry to hear that you have depression."
+        if USER_CHARACTER_COUNT < 1000:
+            response = response + " Could you tell me more about that?"
+        iHaveDepressionResponseAlreadyUsed = [conversationId,True]
+
     elif msgSaysIHaveNoWayOut == True and iHaveNoWayOutResponseAlreadyUsed != [conversationId,True]:
         ### If the message includes a string roughly equivalent to saying "IHaveNoWayOut", then reply with
         response = "I heard you mentioned that you feel you have no way out. Do you feel trapped?"
@@ -1263,6 +1360,11 @@ def choose_bot_wordy_response(message, clientId):
             response = "I'm sorry to hear you say that you're worthless. You might want to place a bit less value on what I'm going to say now, because (a) I don't know you and (b) I'm really only a very unintelligent bot that doesn't understand everything, but I don't think you're worthless. For what it's worth."
         imWorthlessResponseAlreadyUsed = [conversationId,True]
 
+    elif msgSaysIWantSomeoneToLoveMe == True and iWantSomeoneToLoveMeResponseAlreadyUsed != [conversationId,True]:
+        ### If the message includes a string roughly equivalent to saying "DontHaveAnyoneICanTalkTo", then reply with
+        response = "Feeling loved is important, and I'm sure it's something that everyone wants."
+        iWantSomeoneToLoveMeResponseAlreadyUsed = [conversationId,True]
+
     elif msgSaysFeelingLonely == True and feelingLonelyResponseAlreadyUsed != [conversationId,True]:
         ### If the message includes a string roughly equivalent to saying "I'm feeling lonely", then reply with
         ### a response that varies depending on whether we are early in the conversation or not
@@ -1274,6 +1376,15 @@ def choose_bot_wordy_response(message, clientId):
         response = "Feeling connected to other people is such a fundamental human need. It's sad to hear you talk about this loneliness"+feelingLonelyResponseEnding
         feelingLonelyResponseAlreadyUsed = [conversationId,True]
 
+    elif msgSaysImSickOfLockdown == True and imSickOfLockdownResponseAlreadyUsed != [conversationId,True]:
+        ### If the message includes a string roughly equivalent to saying "DontHaveAnyoneICanTalkTo", then reply with
+        response = "I'm not following the latest on coronavirus (I'm far too simple a bot for that!) but do feel free to tell me your feelings about lockdown."
+        imSickOfLockdownResponseAlreadyUsed = [conversationId,True]
+
+    elif msgSaysIDontSleep == True and iDontSleepResponseAlreadyUsed != [conversationId,True]:
+        ### If the message includes a string roughly equivalent to saying "DontHaveAnyoneICanTalkTo", then reply with
+        response = "Sleep is important. How are you feeling now?"
+        iDontSleepResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysDontHaveAnyoneICanTalkTo == True and dontHaveAnyoneICanTalkToResponseAlreadyUsed != [conversationId,True]:
         ### If the message includes a string roughly equivalent to saying "DontHaveAnyoneICanTalkTo", then reply with
@@ -1330,6 +1441,16 @@ def choose_bot_wordy_response(message, clientId):
         ### If the message includes a string roughly equivalent to saying "I let myself down", then reply with
         response = "Hmm. So you don't feel your achievements live up to the expectations you have of yourself?"
         underAchievedResponseAlreadyUsed = [conversationId,True]
+
+    elif msgSaysHurtsMyFeelings == True and hurtsMyFeelingsResponseAlreadyUsed != [conversationId,True]:
+        ### If the message includes a string roughly equivalent to saying "I let myself down", then reply with
+        response = "That sounds painful for you."
+        hurtsMyFeelingsResponseAlreadyUsed = [conversationId,True]
+
+    elif msgSaysHurtsToKnowThat == True and hurtsToKnowThatResponseAlreadyUsed != [conversationId,True]:
+        ### If the message includes a string roughly equivalent to saying "I let myself down", then reply with
+        response = "Thank you for sharing that pain with me. I'm sorry you have to experience it."
+        hurtsToKnowThatResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysFeelOutOfControl == True and feelOutOfControlResponseAlreadyUsed != [conversationId,True]:
         ### If the message includes a string roughly equivalent to saying "FeelOutOfControl", then reply with
@@ -1486,6 +1607,19 @@ def choose_bot_wordy_response(message, clientId):
         response = "You said that you're not feeling happy. That's sad. "
         imNotHappyResponseAlreadyUsed = [conversationId,True]
 
+    elif msgSaysAbandonedMe == True and abandonedMeResponseAlreadyUsed != [conversationId,True]:
+        ### If the message includes a string roughly equivalent to saying "I hate how i feel", then reply with
+        if USER_CHARACTER_COUNT < 1000:             # if it's early in the conversation
+            response = "Can you say more about being abandoned?"
+        else:
+            response = "Thank you for letting me know about this abandonment that you're experiencing"
+        abandonedMeResponseAlreadyUsed = [conversationId,True]
+
+    elif msgSaysImStuckAtHome == True and imStuckAtHomeResponseAlreadyUsed != [conversationId,True]:
+        ### If the message includes a string roughly equivalent to saying "I'm not happy", then reply with
+        response = "Sorry to hear you're stuck at home."
+        imStuckAtHomeResponseAlreadyUsed = [conversationId,True]
+
     elif message.lower() in difficultDayArray and difficultDayResponseAlreadyUsed != [conversationId,True]:
         ### If the user's message is equal to "i've had a difficult day" (or a synonym in the array) then give this response
         response = "Could you tell me more about the difficult day you've been having?"
@@ -1495,6 +1629,21 @@ def choose_bot_wordy_response(message, clientId):
         ### if the user says that they have family problems somewhree in their message
         response = "Could you tell me more about these family difficulties?"
         familyProblemsResponseAlreadyUsed = [conversationId,True]
+    
+    elif msgSaysIWantAFriend == True and iWantAFriendResponseAlreadyUsed != [conversationId,True]:
+        ### if the user says that they have family problems somewhree in their message
+        response = "Having a friend is important. I imagine you might be feeling lonely? Please tell me more about it…"
+        iWantAFriendResponseAlreadyUsed = [conversationId,True]
+
+    elif msgSaysIDontSeeManyPeople == True and iDontSeeManyPeopleResponseAlreadyUsed != [conversationId,True]:
+        ### if the user says that they have family problems somewhree in their message
+        response = "That sounds lonely."
+        iDontSeeManyPeopleResponseAlreadyUsed = [conversationId,True]
+
+    elif msgSaysHelp == True and helpResponseAlreadyUsed != [conversationId,True]:
+        ### if the user says that they have family problems somewhree in their message
+        response = "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+        helpResponseAlreadyUsed = [conversationId,True]
 
     elif section == 11 and message.lower() in helloArray:
         ### if the user says hello
