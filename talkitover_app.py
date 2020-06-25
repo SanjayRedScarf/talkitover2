@@ -424,7 +424,8 @@ def choose_bot_wordy_response(message, clientId):
                         "i don't think that", "i dont think that", "i don't thnk that", "i dont thnk that",\
                         "i don't believe that", "i dont believe that", "i don't belive that", "i dont belive that",\
                         "i don't feel that", "i dont feel that",\
-                        "i don't reckon that", "i dont reckon that"]
+                        "i don't reckon that", "i dont reckon that", "i wouldn’t say that", "i would not say that", "i wouldn't necessarily say that",\
+                        "i would not necessarily say that"]
     # this section creates arrays of synonyms relating to things which a user might say. Typically each element
     # of the array is an "equivalence class", by which I mean that they are basically the same thing, but
     # might differ only in terms of anticipating typos, or perhaps including intensifiers (like "really")
@@ -508,7 +509,8 @@ def choose_bot_wordy_response(message, clientId):
                     "im just so worthless", "i'm just so worthless", "im just so worthlses", "i'm just so worthlses",\
                     "im just really worthless", "i'm just really worthless", "im just really worthlses", "i'm just really worthlses",\
                     "im just totally worthless", "i'm just totally worthless", "im just totally worthlses", "i'm just totally worthlses",\
-                    "im just utterly worthless", "i'm just utterly worthless", "im just utterly worthlses", "i'm just utterly worthlses"]
+                    "im just utterly worthless", "i'm just utterly worthless", "im just utterly worthlses", "i'm just utterly worthlses",\
+                    "i feel worthless"]
     feelingLonelyArray = ["i sit alone", "i feel lonely", "im feeling lonely", "i am feeling lonely","making me feel lonely", "making me lonely","makes me feel lonely", "makes me lonely",
                         "i feel alone", "im feeling alone", "i am feeling alone", "making me feel alone", "making me alone","makes me feel alone", "makes me alone",
                         "i feel sad and lonely", "im feeling sad and lonely", "i am feeling sad and lonely","making me feel sad and lonely", "making me sad and lonely", "makes me feel sad and lonely", "makes me sad and lonely",
@@ -599,7 +601,7 @@ def choose_bot_wordy_response(message, clientId):
                     "i just feel utterly lost", "i'm just feeling utterly lost", "im just feeling utterly lost",\
                     "i just feel really lost", "i'm just feeling really lost", "im just feeling really lost",\
                     "i just feel very lost", "i'm just feeling very lost", "im just feeling very lost"]
-    feelEmptyArray = ["i feel empty"]
+    feelEmptyArray = ["i feel empty", "i feel empty", "i feel a sense of emptiness"]
     inABadPlaceArray = ["i am in a bad place", "i'm in a bad place", "im in a bad place",\
                         "i am in such a bad place", "i'm in such a bad place", "im in such a bad place",\
                         "i am at a bad place", "i'm at a bad place", "im at a bad place",\
