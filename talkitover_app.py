@@ -61,6 +61,7 @@ dontHaveAnyoneICanTalkToResponseAlreadyUsed = [conversationId,False]
 iHateHowILookResponseAlreadyUsed = [conversationId,False]
 feelOverwhelmedResponseAlreadyUsed = [conversationId,False]
 feelingAwfulResponseAlreadyUsed = [conversationId,False]
+feelLikeCryingResponseAlreadyUsed = [conversationId,False]
 imAFailureResponseAlreadyUsed = [conversationId,False]
 imALetdownResponseAlreadyUsed = [conversationId,False]
 letMyselfDownResponseAlreadyUsed = [conversationId,False]
@@ -84,8 +85,11 @@ imAnxiousResponseAlreadyUsed = [conversationId,False]
 initial_imWorriedResponseAlreadyUsed = [conversationId,False]
 second_imWorriedResponseAlreadyUsed = [conversationId,False]
 iDontKnowWhatToDoResponseAlreadyUsed = [conversationId,False]
+whatToDoWithMyselfResponseAlreadyUsed = [conversationId,False]
 initial_iDontKnowWhatToSayResponseAlreadyUsed = [conversationId, False]
 second_iDontKnowWhatToSayResponseAlreadyUsed = [conversationId, False]
+personalHygieneResponseAlreadyUsed = [conversationId, False]
+iSmellResponseAlreadyUsed = [conversationId, False]
 imNotHappyResponseAlreadyUsed = [conversationId,False]
 iHateMyselfResponseAlreadyUsed = [conversationId,False]
 difficultDayResponseAlreadyUsed = [conversationId,False]
@@ -145,6 +149,7 @@ def initialiseResponseAlreadyUsedVariables():
     iHateHowILookResponseAlreadyUsed = [conversationId,False]
     feelOverwhelmedResponseAlreadyUsed = [conversationId,False]
     feelingAwfulResponseAlreadyUsed = [conversationId,False]
+    feelLikeCryingResponseAlreadyUsed = [conversationId,False]
     imAFailureResponseAlreadyUsed = [conversationId,False]
     imALetdownResponseAlreadyUsed = [conversationId,False]
     letMyselfDownResponseAlreadyUsed = [conversationId,False]
@@ -168,8 +173,11 @@ def initialiseResponseAlreadyUsedVariables():
     initial_imWorriedResponseAlreadyUsed = [conversationId,False]
     second_imWorriedResponseAlreadyUsed = [conversationId,False]
     iDontKnowWhatToDoResponseAlreadyUsed = [conversationId,False]
+    whatToDoWithMyselfResponseAlreadyUsed = [conversationId,False]
     initial_iDontKnowWhatToSayResponseAlreadyUsed = [conversationId, False]
     second_iDontKnowWhatToSayResponseAlreadyUsed = [conversationId, False]
+    personalHygieneResponseAlreadyUsed = [conversationId, False]
+    iSmellResponseAlreadyUsed = [conversationId, False]
     imNotHappyResponseAlreadyUsed = [conversationId,False]
     iHateMyselfResponseAlreadyUsed = [conversationId,False]
     difficultDayResponseAlreadyUsed = [conversationId,False]
@@ -336,6 +344,7 @@ def choose_bot_wordy_response(message, clientId):
     # iHateHowILook
     # feelOverwhelmed
     # feelingAwful
+    # feelLikeCrying
     # letMyselfDown
     # feelOutOfControl
     # feelLost
@@ -347,6 +356,8 @@ def choose_bot_wordy_response(message, clientId):
     # imAddicted
     # feelingRubbish
     # iDontKnowWhatToSay
+    # personalHygiene
+    # iSmell
     # imNotHappy
     # iHateMyself
     # difficultDay
@@ -495,6 +506,7 @@ def choose_bot_wordy_response(message, clientId):
                         "i just feel awful", "i'm just feeling awful", "im just feeling awful",\
                         "i just feel so awful", "i'm just feeling so awful", "im just feeling so awful",\
                         "i just feel really awful", "i'm just feeling really awful", "im just feeling really awful"]
+    feelLikeCryingArray = ["i want to cry all the time", "am crying all the time", "feel like crying all the time", "im crying all the time"]                    
     imAFailureArray = ["im a failure", "i am a failure", "im a total failure", "i am a total failure", "im a total utter failure", "i am a total utter failure", "im an utter failure", "i am an utter failure",
                         "im just a failure", "i am just a failure", "im just a total failure", "i am just a total failure", "im just a total utter failure", "i am just a total utter failure", "im an utter failure", "i am an utter failure",
                         "im just a failure", "i really am just a failure", "im just a total failure", "i really am just a total failure", "im just a total utter failure", "i really am just a total utter failure", "im an utter failure", "i really am an utter failure",
@@ -580,6 +592,7 @@ def choose_bot_wordy_response(message, clientId):
                             "im not sure what to do", "im not all that sure what to do", "i am not sure what to do", "im not at all sure what to do",
                             "what do you think i should do", "what do you think i shuld do", "what do u think i should do", "wat do you think i should do",
                             "what should i do", "what can i do", "what do i do"]
+    whatToDoWithMyselfArray = ["i don't know what to do with myself"]
     iDontKnowWhatToSayArray = ["i dont know what to say", "i don't know what to say", "i dont know what else to say", "i don't know what else to say", "i dont know what more to say", "i don't know what more to say",
                                 "i dont know what to tell you", "i don't know what to tell you", "i dont know what else to tell you", "i don't know what else to tell you", "i dont know what more to tell you", "i don't know what more to tell you",
                                 "dont know what to say", "don't know what to say", "dont know what else to say", "don't know what else to say", "dont know what more to say", "don't know what more to say",
@@ -593,6 +606,8 @@ def choose_bot_wordy_response(message, clientId):
                                 "dont really know what to tell you", "don't really know what to tell you", "dont really know what else to tell you", "don't really know what else to tell you", "dont really know what more to tell you", "don't really know what more to tell you",
                                 "i dont really know what to say now", "i don't really know what to say now", "i dont really know what else to say now", "i don't really know what else to say now", "i dont really know what more to say now", "i don't really know what more to say now",
                                 "dont really know what to say now", "don't really know what to say now", "dont really know what else to say now", "don't really know what else to say now", "dont really know what more to say now", "don't really know what more to say now"]
+    personalHygieneArray = ["my personal hygiene isn't the best", "my personal hygiene isn't great", "i haven't showered in days"]
+    iSmellArray = ["i smell"]
     helloArray = ["hello", "hi", "hey","hello!", "hi!", "hey!", "hello?", "hi?", "hey?"]
     doYouGiveAdviceArray = ["do you give advice", "do you provide advice","do you offer advice"
                             "do you give any advice", "do you provide any advice","do you offer any advice",
@@ -656,6 +671,7 @@ def choose_bot_wordy_response(message, clientId):
     global iHateHowILookResponseAlreadyUsed
     global feelOverwhelmedResponseAlreadyUsed
     global feelingAwfulResponseAlreadyUsed
+    global feelLikeCryingResponseAlreadyUsed
     global imAFailureResponseAlreadyUsed
     global imALetdownResponseAlreadyUsed
     global letMyselfDownResponseAlreadyUsed
@@ -679,8 +695,11 @@ def choose_bot_wordy_response(message, clientId):
     global initial_imWorriedResponseAlreadyUsed
     global second_imWorriedResponseAlreadyUsed
     global iDontKnowWhatToDoResponseAlreadyUsed
+    global whatToDoWithMyselfResponseAlreadyUsed
     global initial_iDontKnowWhatToSayResponseAlreadyUsed
     global second_iDontKnowWhatToSayResponseAlreadyUsed
+    global personalHygieneResponseAlreadyUsed
+    global iSmellResponseAlreadyUsed
     global imNotHappyResponseAlreadyUsed
     global iHateMyselfResponseAlreadyUsed
     global difficultDayResponseAlreadyUsed
@@ -718,6 +737,7 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysIHateHowILook = False
     msgSaysFeelOverwhelmed = False
     msgSaysFeelingAwful = False
+    msgSaysFeelLikeCrying = False
     msgSaysImAFailure = False
     msgSaysImALetdown = False
     msgSaysLetMyselfDown = False
@@ -740,7 +760,10 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysImAnxious = False # code using this is commented out currently
     msgSaysImWorried = False
     msgSaysIDontKnowWhatToDo = False
+    msgSaysWhatToDoWithMyself = False 
     msgSaysIDontKnowWhatToSay = False
+    msgSaysPersonalHygiene = False
+    msgSaysISmell = False
     msgSaysImNotHappy = False
     msgSaysIHateMyself = False
     msgSaysDifficultDay = False
@@ -897,6 +920,8 @@ def choose_bot_wordy_response(message, clientId):
 
     msgSaysFeelingAwful = CheckUserMessage(feelingAwfulArray)
 
+    msgSaysFeelLikeCrying = CheckUserMessage(feelLikeCryingArray)
+
     msgSaysImAFailure = CheckUserMessage(imAFailureArray)        
    
     msgSaysFeelOutOfControl = CheckUserMessage(feelOutOfControlArray)
@@ -929,7 +954,13 @@ def choose_bot_wordy_response(message, clientId):
 
     msgSaysIDontKnowWhatToDo = CheckUserMessage(iDontKnowWhatToDoArray)
 
+    msgSaysWhatToDoWithMyself = CheckUserMessage(whatToDoWithMyselfArray)
+
     msgSaysIDontKnowWhatToSay = CheckUserMessage(iDontKnowWhatToSayArray)
+
+    msgSaysPersonalHygiene = CheckUserMessage(personalHygieneArray)
+
+    msgSaysISmell = CheckUserMessage(iSmellArray)
 
     msgSaysImNotHappy = CheckUserMessage(imNotHappyArray)
 
@@ -1301,6 +1332,11 @@ def choose_bot_wordy_response(message, clientId):
         response = "I'm sorry to hear you're feeling so awful. If you think sharing more about that with me might help you feel less awful, I'm here to be a space for you to talk."
         feelingAwfulResponseAlreadyUsed = [conversationId,True]
 
+    elif msgSaysFeelLikeCrying == True and feelLikeCryingResponseAlreadyUsed != [conversationId,True]:
+        ### If the message includes a string roughly equivalent to saying "FeelAwful", then reply with
+        response = "Sounds like this is really, really getting you down. Is there more you want to say about this?"
+        feelLikeCryingResponseAlreadyUsed = [conversationId,True]
+
     elif msgSaysImAFailure == True and imAFailureResponseAlreadyUsed != [conversationId,True]:
         ### If the message includes a string roughly equivalent to saying "I@m a failrure", then reply with
         response = "It's sad to hear you call yourself a failure. I'd love to tell you all the reasons why you're actually really awesome, but I don't know you (and I'm only a very simple bot) so I can't do that. But I do think everyone is valuable in their own way."
@@ -1456,6 +1492,11 @@ def choose_bot_wordy_response(message, clientId):
         response = "So you said you're not sure what to do. Can you think of any options that you would like to explore with me?"
         iDontKnowWhatToDoResponseAlreadyUsed = [conversationId,True]
 
+    elif msgSaysWhatToDoWithMyself == True and whatToDoWithMyselfResponseAlreadyUsed != [conversationId,True]:
+        ### If the message includes a string roughly equivalent to saying "I don't know waht to do", then reply with
+        response = "You don't know what to do with yourself? Can you think of anything you would like to do?"
+        whatToDoWithMyselfResponseAlreadyUsed = [conversationId,True]
+
     elif msgSaysIDontKnowWhatToSay == True:
         ### If the message includes a string roughly equivalent to saying "I do'nt know what to say", then reply as follows
         ### Note that if the user keeps on saying that they don't konw what to say, they risk getting a very repetitive response,
@@ -1480,6 +1521,16 @@ def choose_bot_wordy_response(message, clientId):
                 and think about how you're feeling right now. ", "Having thought about that for a moment, can you think of anything \
                 that's on your mind that would be useful to discuss?"]
         iDontKnowWhatToSayResponseAlreadyUsed = [conversationId,True]
+
+    elif msgSaysPersonalHygiene == True and personalHygieneResponseAlreadyUsed != [conversationId,True]:
+        ### If the message includes a string roughly equivalent to saying "I don't know waht to do", then reply with
+        response = "I understand this hygiene stuff is a thing for humans, I am just a little bot. What are your thoughts on how to respond to this?"
+        personalHygieneResponseAlreadyUsed = [conversationId,True]
+
+    elif msgSaysISmell == True and iSmellResponseAlreadyUsed != [conversationId,True]:
+        ### If the message includes a string roughly equivalent to saying "I don't know waht to do", then reply with
+        response = "I understand this hygiene stuff is a thing for humans, I am just a little bot. What are your thoughts on how to respond to this?"
+        iSmellResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysImNotHappy == True and imNotHappyResponseAlreadyUsed != [conversationId,True]:
         ### If the message includes a string roughly equivalent to saying "I'm not happy", then reply with
