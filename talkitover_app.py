@@ -59,7 +59,9 @@ imWorthlessResponseAlreadyUsed = [conversationId,False]
 feelingLonelyResponseAlreadyUsed = [conversationId,False]
 dontHaveAnyoneICanTalkToResponseAlreadyUsed = [conversationId,False]
 iHateHowILookResponseAlreadyUsed = [conversationId,False]
+loseWeightResponseAlreadyUsed = [conversationId, False]
 feelOverwhelmedResponseAlreadyUsed = [conversationId,False]
+aLotOnMyMindResponseAlreadyUsed = [conversationId,False]
 feelingAwfulResponseAlreadyUsed = [conversationId,False]
 feelLikeCryingResponseAlreadyUsed = [conversationId,False]
 imAFailureResponseAlreadyUsed = [conversationId,False]
@@ -79,6 +81,8 @@ iHateHowIFeelResponseAlreadyUsed = [conversationId,False]
 imSadResponseAlreadyUsed = [conversationId,False]
 feelingLowDownTerribleResponseAlreadyUsed = [conversationId,False]
 imUpsetResponseAlreadyUsed = [conversationId,False]
+hurtFeelingsResponseAlreadyUsed = [conversationId,False]
+beingBulliedResponseAlreadyUsed = [conversationId,False]
 imAddictedResponseAlreadyUsed = [conversationId,False]
 iHateCoronavirusResponseAlreadyUsed = [conversationId,False]
 feelingRubbishResponseAlreadyUsed = [conversationId,False]
@@ -159,7 +163,9 @@ def initialiseResponseAlreadyUsedVariables():
     feelingLonelyResponseAlreadyUsed = [conversationId,False]
     dontHaveAnyoneICanTalkToResponseAlreadyUsed = [conversationId,False]
     iHateHowILookResponseAlreadyUsed = [conversationId,False]
+    loseWeightResponseAlreadyUsed = [conversationId, False]
     feelOverwhelmedResponseAlreadyUsed = [conversationId,False]
+    aLotOnMyMindResponseAlreadyUsed = [conversationId,False]
     feelingAwfulResponseAlreadyUsed = [conversationId,False]
     feelLikeCryingResponseAlreadyUsed = [conversationId,False]
     imAFailureResponseAlreadyUsed = [conversationId,False]
@@ -179,6 +185,8 @@ def initialiseResponseAlreadyUsedVariables():
     imSadResponseAlreadyUsed = [conversationId,False]
     feelingLowDownTerribleResponseAlreadyUsed = [conversationId,False]
     imUpsetResponseAlreadyUsed = [conversationId,False]
+    hurtFeelingsResponseAlreadyUsed = [conversationId,False]
+    beingBulliedResponseAlreadyUsed = [conversationId,False]
     imAddictedResponseAlreadyUsed = [conversationId,False]
     iHateCoronavirusResponseAlreadyUsed = [conversationId,False]
     feelingRubbishResponseAlreadyUsed = [conversationId,False]
@@ -366,7 +374,9 @@ def choose_bot_wordy_response(message, clientId):
     # feelingLonely
     # dontHaveAnyoneICanTalkTo
     # iHateHowILook
+    # loseWeight
     # feelOverwhelmed
+    # aLotOnMyMind
     # feelingAwful
     # feelLikeCrying
     # letMyselfDown
@@ -379,6 +389,8 @@ def choose_bot_wordy_response(message, clientId):
     # imSad
     # feelingLowDownTerrible
     # imUpset
+    # hurtFeelings
+    # beingBullied
     # imAddicted
     # feelingRubbish
     # panicAttacks
@@ -523,8 +535,9 @@ def choose_bot_wordy_response(message, clientId):
                         "i just hate how i look", "i just hate my looks", "i just hate my appearance", "i just hate the way i look",\
                         "i really hate how i look", "i really hate my looks", "i really hate my appearance", "i really hate the way i look",\
                         "i really just hate how i look", "i really just hate my looks", "i really just hate my appearance", "i really just hate the way i look",
-                        "im ugly", "i am ugly"
-                        "i look horrible", "i look disgusting", "i look atrocious"]
+                        "im ugly", "i am ugly", "i look horrible", "i look disgusting", "i look atrocious"]
+    loseWeightArray = ["i want to lose weight", "i don’t know how to lose weight", "i cant lose weight", "im fat", "ive been fat-shamed", "ive been fatshamed",\
+                       "i have been fat-shamed", "i have been fatshamed", "has been fat-shaming me", "has been fatshaming me", "fat-shamed me", "fatshamed me"]
     feelOverwhelmedArray = ["i feel overwhelmed", "im feeling overwhelmed", "i'm feeling overwhelmed", \
                             "i feel so overwhelmed", "im feeling so overwhelmed", "i'm feeling so overwhelmed",\
                             "i feel really overwhelmed", "im feeling really overwhelmed", "i'm feeling really overwhelmed", \
@@ -536,6 +549,7 @@ def choose_bot_wordy_response(message, clientId):
                             "i just feel totally overwhelmed", "im just feeling totally overwhelmed", "i'm just feeling totally overwhelmed",\
                             "i just feel utterly overwhelmed", "im just feeling utterly overwhelmed", "i'm just feeling utterly overwhelmed",
                             "i am overwhelmed", "im overwhelmed"]
+    aLotOnMyMindArray = ["i have a lot on my mind", "ive a lot on my mind", "ive got a lot on my mind", "i have got a lot on my mind"]
     feelingAwfulArray = ["i feel awful", "i'm feeling awful", "im feeling awful",\
                         "i feel so awful", "i'm feeling so awful", "im feeling so awful",\
                         "i feel really awful", "i'm feeling really awful", "im feeling really awful",\
@@ -602,6 +616,8 @@ def choose_bot_wordy_response(message, clientId):
     imUpsetArray = ["im upset", "i'm upset", "im feeling upset", "i'm feeling upset", "i feel upset", "i feel upset",\
                     "im so upset", "i'm so upset", "im feeling so upset", "i'm feeling so upset", "i feel so upset", "i feel so upset",\
                     "im really upset", "i'm really upset", "im feeling really upset", "i'm feeling really upset", "i feel really upset", "i feel really upset"]
+    hurtFeelingsArray = ["hurts my feelings", "hurt my feelings"]
+    beingBulliedArray = ["im being bullied", "im being cyberbullied", "bullied me"]
     imAddictedArray = ["im addicted", "i'm addicted"]
     iHateCoronavirusArray = ["i hate coronavirus", "i hate the coronavirus", "i hate covid", "i hate covid19"]
     feelingRubbishArray = ["im feeling rubbish", "i'm feeling rubbish", "i feel rubbish", "i feel rubbish",\
@@ -723,7 +739,9 @@ def choose_bot_wordy_response(message, clientId):
     global feelingLonelyResponseAlreadyUsed
     global dontHaveAnyoneICanTalkToResponseAlreadyUsed
     global iHateHowILookResponseAlreadyUsed
+    global loseWeightResponseAlreadyUsed
     global feelOverwhelmedResponseAlreadyUsed
+    global aLotOnMyMindResponseAlreadyUsed
     global feelingAwfulResponseAlreadyUsed
     global feelLikeCryingResponseAlreadyUsed
     global imAFailureResponseAlreadyUsed
@@ -743,6 +761,8 @@ def choose_bot_wordy_response(message, clientId):
     global imSadResponseAlreadyUsed
     global feelingLowDownTerribleResponseAlreadyUsed
     global imUpsetResponseAlreadyUsed
+    global hurtFeelingsResponseAlreadyUsed
+    global beingBulliedResponseAlreadyUsed
     global imAddictedResponseAlreadyUsed
     global iHateCoronavirusResponseAlreadyUsed
     global feelingRubbishResponseAlreadyUsed
@@ -801,7 +821,9 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysFeelingLonely = False
     msgSaysDontHaveAnyoneICanTalkTo = False
     msgSaysIHateHowILook = False
+    msgSaysLoseWeight = False
     msgSaysFeelOverwhelmed = False
+    msgSaysALotOnMyMind = False
     msgSaysFeelingAwful = False
     msgSaysFeelLikeCrying = False
     msgSaysImAFailure = False
@@ -821,6 +843,8 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysImSad = False
     msgSaysFeelingLowDownTerrible = False
     msgSaysImUpset = False
+    msgSaysHurtFeelings = False
+    msgSaysBeingBullied = False
     msgSaysImAddicted = False
     msgSaysIHateCoronavirus = False
     msgSaysFeelingRubbish = False
@@ -871,7 +895,7 @@ def choose_bot_wordy_response(message, clientId):
         """
 
         extraneousWordsArray = ["still", "just", "so", "very", "totally", "utterly", "really", "completely", \
-        "literally", "actually", "even", "some", "always", "fucking", "fuckin"]
+        "literally", "actually", "even", "some", "always", "fucking", "fuckin", "increasingly"]
         # I wanted to include "such a" in the extraneousWordsArray, but the current method does'nt work for that...
         #... because the current method "splits" the string into a list of separate words
 
@@ -994,7 +1018,11 @@ def choose_bot_wordy_response(message, clientId):
 
     msgSaysIHateHowILook = CheckUserMessage(iHateHowILookArray)
 
+    msgSaysLoseWeight = CheckUserMessage(loseWeightArray)
+
     msgSaysFeelOverwhelmed = CheckUserMessage(feelOverwhelmedArray)
+
+    msgSaysALotOnMyMind = CheckUserMessage(aLotOnMyMindArray)
 
     msgSaysFeelingAwful = CheckUserMessage(feelingAwfulArray)
 
@@ -1021,6 +1049,10 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysFeelingLowDownTerrible = CheckUserMessage(feelingLowDownTerribleArray)
 
     msgSaysImUpset = CheckUserMessage(imUpsetArray)
+
+    msgSaysHurtFeelings = CheckUserMessage(hurtFeelingsArray)
+
+    msgSaysBeingBullied = CheckUserMessage(beingBulliedArray)
 
     msgSaysImAddicted = CheckUserMessage(imAddictedArray)
 
@@ -1420,6 +1452,16 @@ def choose_bot_wordy_response(message, clientId):
         response = "That sounds really tough. Could you say more about your thoughts on your looks?"
         iHateHowILookResponseAlreadyUsed = [conversationId,True]
 
+    elif msgSaysLoseWeight == True and loseWeightResponseAlreadyUsed != [conversationId,True]:
+        ### If the message includes a string roughly equivalent to saying "IHateHowILook", then reply with
+        if USER_CHARACTER_COUNT < 700:
+            response = "I'm sorry to hear about these things relating to your weight. Could we explore those some more?"
+
+        else:   
+            response = "I would love it if we lived in a world where being larger didn't make people judge you, \
+                        and I'm sorry that your size is making you feel bad"
+        loseWeightResponseAlreadyUsed = [conversationId,True]
+
     elif msgSaysFeelOverwhelmed == True and feelOverwhelmedResponseAlreadyUsed != [conversationId,True]:
         ### If the message includes a string roughly equivalent to saying "FeelOverwhelmed", then reply with
         if USER_CHARACTER_COUNT < 100:  # if it's early in hte conversation
@@ -1429,6 +1471,14 @@ def choose_bot_wordy_response(message, clientId):
         else: # by this stage (i.e. for a user_character_cout this high) the user has probably explained a lot of what's happened to make them feel overwhelemed
             response = "That all sounds like a lot to deal with. "
         feelOverwhelmedResponseAlreadyUsed = [conversationId,True]
+
+    elif msgSaysALotOnMyMind == True and aLotOnMyMindResponseAlreadyUsed != [conversationId,True]:
+        ### If the message includes a string roughly equivalent to saying "a lot on my mind", then reply with
+        if USER_CHARACTER_COUNT < 1000:  # if it's early in hte conversation
+            response = "I'm sensing you've got a lot on your plate, would you like to tell me more?"
+        else: # by this stage (i.e. for a user_character_cout this high) the user has probably explained a lot of what's on their mind
+            response = "I see you've got a lot on your plate there"
+        aLotOnMyMindResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysFeelingAwful == True and feelingAwfulResponseAlreadyUsed != [conversationId,True]:
         ### If the message includes a string roughly equivalent to saying "FeelAwful", then reply with
@@ -1542,6 +1592,17 @@ def choose_bot_wordy_response(message, clientId):
         ### If the message includes a string roughly equivalent to saying "I'm feeling upset", then reply with
         response = "Sorry that you're upset. Could you say a bit more about that?"
         imUpsetResponseAlreadyUsed = [conversationId,True]
+
+        
+    elif msgSaysHurtFeelings == True and hurtFeelingsResponseAlreadyUsed != [conversationId,True]:
+        ### If the message includes a string roughly equivalent to saying "it hurt my feelings", then reply with
+        response = "Sorry to hear about this, and sorry that it's been hurting your feelings."
+        hurtFeelingsResponseAlreadyUsed = [conversationId,True]
+
+    elif msgSaysBeingBullied == True and beingBulliedResponseAlreadyUsed != [conversationId,True]:
+        ### If the message includes a string roughly equivalent to saying "im being bullied", then reply with
+        response = "Sorry to hear about you being bullied, that can be really rough."
+        beingBulliedResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysImAddicted == True and imAddictedResponseAlreadyUsed != [conversationId,True]:
         ### If the message includes a string roughly equivalent to saying "I'm addicted", then reply with
