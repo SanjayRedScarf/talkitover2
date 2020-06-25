@@ -407,7 +407,7 @@ def choose_bot_wordy_response(message, clientId):
                                 "i will kill myself", "i will kill my self","ill kill myself", "ill kill my self"]
     #imPlanningToKillMyselfArray = ["im planning to kill myself", "i am planning to kill myself"]
     # have not built in anything for imPlanningToKillMyselfArray apart from the array itself. Maybe come back to this?
-    iWantToDieArray = ["i want to die", "i wanna die", "i would like to die", "I have become suic", "ive become suic"]
+    iWantToDieArray = ["i want to die", "i wanna die", "i would like to die", "i have become suic", "ive become suic"]
     imFeelingSuicidalArray = ["i feel suic", "i'm feeling suic", "im feeling suic", "i just feel suic", "i'm just feeling suic", "im just feeling suic", "i'm suic", "im suic", "i am suic",\
                             "i feel sucid", "i'm feeling sucid", "im feeling sucid", "i just feel sucid", "i'm just feeling sucid", "im just feeling sucid", "i'm sucid", "im sucid", "i am sucid",\
                             "i still feel suic", "i'm still feeling suic", "im still feeling suic", "i still just feel suic", "i'm still just feeling suic", "im still just feeling suic", "i'm still suic", "im still suic",\
@@ -447,7 +447,7 @@ def choose_bot_wordy_response(message, clientId):
     feelingDepressedArray = ["i feel depressed", "i just feel depressed", "i feeel depressed", "i just feeel depressed", "im feeling depressed", "i'm feeling depressed", "im just feeling depressed", "i'm just feeling depressed", "i feel very depressed", "i feel so depressed", "i am feeling depressed", "i'm feeling really depressed", "i'm feeling so depressed", "im feeling really depressed", "im feeling so depressed",\
                             "i'm depressed", "im depressed", "i am depressed", "i'm so depressed", "im so depressed", "i am so depressed", "i'm really depressed", "im really depressed", "i am really depressed",\
                             "im more depressed than ever", "i'm more depressed than ever" ]
-    iHaveDepressionArray = ["I have depression"]
+    iHaveDepressionArray = ["i have depression"]
     iHaveNoWayOutArray = ["i have no way out", "i don't feel i have any way out", "i dont feel i have any way out", "i don't have any way out", "i dont have any way out", "i haven't got any way out", "ive got no way out", "ive no got any way out", "i don't feel i have any way out", "i dont feel i have any way out", "i don't feel i have got any way out", "i dont feel i have got any way out", "i don't have any way out", "i dont have any way out"]
     hadEnoughOfLifeArray = ["i've had enough of life", "ive had enough of life", "i have had enough of life", "i had enough of life"]
     nothingToLookForwardToArray = ["i have nothing to look forward to", "i don't have anything to look forward to", "i've got nothing to look forward to", \
@@ -474,7 +474,7 @@ def choose_bot_wordy_response(message, clientId):
                     "im just really worthless", "i'm just really worthless", "im just really worthlses", "i'm just really worthlses",\
                     "im just totally worthless", "i'm just totally worthless", "im just totally worthlses", "i'm just totally worthlses",\
                     "im just utterly worthless", "i'm just utterly worthless", "im just utterly worthlses", "i'm just utterly worthlses"]
-    iWantSomeoneToLoveMeArray = ["I want someone to love me", "I want to be loved"]
+    iWantSomeoneToLoveMeArray = ["i want someone to love me", "i want to be loved"]
     feelingLonelyArray = ["i sit alone", "i feel lonely", "im feeling lonely", "i am feeling lonely","making me feel lonely", "making me lonely","makes me feel lonely", "makes me lonely",
                         "i feel alone", "im feeling alone", "i am feeling alone", "making me feel alone", "making me alone","makes me feel alone", "makes me alone",
                         "i feel sad and lonely", "im feeling sad and lonely", "i am feeling sad and lonely","making me feel sad and lonely", "making me sad and lonely", "makes me feel sad and lonely", "makes me sad and lonely",
@@ -502,7 +502,7 @@ def choose_bot_wordy_response(message, clientId):
                         "i just hate how i look", "i just hate my looks", "i just hate my appearance", "i just hate the way i look",\
                         "i really hate how i look", "i really hate my looks", "i really hate my appearance", "i really hate the way i look",\
                         "i really just hate how i look", "i really just hate my looks", "i really just hate my appearance", "i really just hate the way i look",
-                        "im ugly", "i am ugly", "i look horrible", "i look disgusting", "i look atrocious", "I feel insecure about my body", "I feel insecure about my appearance", "I hate my body", "I despise my body"]
+                        "im ugly", "i am ugly", "i look horrible", "i look disgusting", "i look atrocious", "i feel insecure about my body", "i feel insecure about my appearance", "i hate my body", "i despise my body"]
     feelOverwhelmedArray = ["i feel overwhelmed", "im feeling overwhelmed", "i'm feeling overwhelmed", \
                             "i feel so overwhelmed", "im feeling so overwhelmed", "i'm feeling so overwhelmed",\
                             "i feel really overwhelmed", "im feeling really overwhelmed", "i'm feeling really overwhelmed", \
@@ -543,7 +543,7 @@ def choose_bot_wordy_response(message, clientId):
     iHaveRegretsArray = ["i have regrets", "i have many regrets", "my life is so full of regrets", "my life is full of regrets", "i am full of regret"]
     underAchievedArray = ["i have accomplished nothing", "i have achieved nothing", "i havent accomplished anything", "i havent achieved anything"]
     hurtsMyFeelingsArray = ["hurts my feelings", "continues to hurt my feelings"]    
-    hurtsToKnowThatArray = ["It hurts to know that", "It pains me to know that", "It hurts knowing that", "I feel the pain of knowing that"]
+    hurtsToKnowThatArray = ["it hurts to know that", "it pains me to know that", "it hurts knowing that", "i feel the pain of knowing that"]
     feelOutOfControlArray = ["i feel out of control", "i'm feeling out of control", "im feeling out of control",\
                             "i feel so out of control", "i'm feeling so out of control", "im feeling so out of control",\
                             "i feel really out of control", "i'm feeling really out of control", "im feeling really out of control",\
@@ -605,9 +605,9 @@ def choose_bot_wordy_response(message, clientId):
                             "i have difficulties with my family", "i'm having difficulties with my family", "im having difficulties with my family", "ive got difficulties with my family", \
                             "i have family worries", "i'm having family worries", "im having family worries", "ive got family worries", "ive got worries with my family", \
                             "i have worries with my family", "i'm having worries with my family", "im having worries with my family", "ive got worries with my family"]
-    iWantAFriendArray = ["i want a friend", "i need a friend", "I have no friends", "I don't have any friends", "I havent got any friends", "ive got no friends" "I don’t have friends"]
+    iWantAFriendArray = ["i want a friend", "i need a friend", "i have no friends", "i don't have any friends", "i havent got any friends", "ive got no friends" "i don’t have friends"]
     iDontSeeManyPeopleArray = ["i dont see many people", "i dont see a lot of people"]
-    helpArray = ["Help", "Help me", "I need help"]
+    helpArray = ["help", "help me", "i need help"]
     iDontKnowWhatToDoArray = ["i dont know what to do", "i dunno what to do", "i have no idea what to do",
                             "ive no idea what to do", "i hvaent a clue what to do", "i havent a clue what to do",
                             "i havent any idea what to do", "i dont have any idea what to do",
@@ -1074,7 +1074,7 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysHurtsMyFeelings = CheckUserMessage(hurtsMyFeelingsArray)
 
     for string in helpArray:
-        if string == cleanedMessage.lower():
+        if string.replace(" ","") == cleanedMessage.lower().replace(" ",""):
             msgSaysHelp = True
 
     ## "Do you give advice" is trated differently ebcause there's no need to include the negatig string check
