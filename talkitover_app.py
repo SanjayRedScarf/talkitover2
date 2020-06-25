@@ -93,8 +93,10 @@ personalHygieneResponseAlreadyUsed = [conversationId, False]
 iSmellResponseAlreadyUsed = [conversationId, False]
 wantToBeHappyResponseAlreadyUsed = [conversationId, False]
 imNotHappyResponseAlreadyUsed = [conversationId,False]
+iFeelNumbResponseAlreadyUsed = [conversationId,False]
 iHateMyselfResponseAlreadyUsed = [conversationId,False]
 difficultDayResponseAlreadyUsed = [conversationId,False]
+stressingMeOutResponseAlreadyUsed = [conversationId,False]
 familyProblemsResponseAlreadyUsed = [conversationId,False]
 canYouHelpResponseAlreadyUsed = [conversationId,False]
 feelLostResponseAlreadyUsed = [conversationId,False]
@@ -102,6 +104,7 @@ doYouGiveAdviceResponseAlreadyUsed = [conversationId,False]
 thankYouResponseAlreadyUsed = [conversationId, False]
 shortResponseAlreadyUsed = [conversationId,False]
 areYouABotResponseAlreadyUsed = [conversationId,False]
+willYouConverseWithMeResponseAlreadyUsed = [conversationId,False]
 thisBotIsBadResponseAlreadyUsed = [conversationId,False]
 
 ####### TODO TODO TODO ###################################
@@ -184,8 +187,10 @@ def initialiseResponseAlreadyUsedVariables():
     iSmellResponseAlreadyUsed = [conversationId, False]
     wantToBeHappyResponseAlreadyUsed = [conversationId, False]
     imNotHappyResponseAlreadyUsed = [conversationId,False]
+    iFeelNumbResponseAlreadyUsed = [conversationId,False]
     iHateMyselfResponseAlreadyUsed = [conversationId,False]
     difficultDayResponseAlreadyUsed = [conversationId,False]
+    stressingMeOutResponseAlreadyUsed = [conversationId,False]
     familyProblemsResponseAlreadyUsed = [conversationId,False]
     canYouHelpResponseAlreadyUsed = [conversationId,False]
     feelLostResponseAlreadyUsed = [conversationId,False]
@@ -193,6 +198,7 @@ def initialiseResponseAlreadyUsedVariables():
     thankYouResponseAlreadyUsed = [conversationId, False]
     shortResponseAlreadyUsed = [conversationId,False]
     areYouABotResponseAlreadyUsed = [conversationId,False]
+    willYouConverseWithMeResponseAlreadyUsed = [conversationId,False]
     thisBotIsBadResponseAlreadyUsed = [conversationId,False]
 
 
@@ -367,8 +373,10 @@ def choose_bot_wordy_response(message, clientId):
     # iSmell
     # WantToBeHappy
     # imNotHappy
+    #iFeelNumb
     # iHateMyself
     # difficultDay
+    # stressingMeOut
     # familyProblems
     # canYouHelp
     # feelLost
@@ -588,8 +596,11 @@ def choose_bot_wordy_response(message, clientId):
     iHaveAnxietyArray = ["i have anxiety", "i suffer from anxiety"]
     imWorriedArray = ["im worried", "i am worried", "i have worries", "making me worried", "makes me worried", "leaves me feeling worried", " i have so much to worry "]
     imNotHappyArray = ["im not happy", "i'm not happy", "im just not happy", "i'm just not happy", "im really not happy", "i'm really not happy"]
+    iFeelNumbArray = ["i dont feel anhtjing right now. just numb", "i dont feel anything right now. just numb", "i feel numb",\
+                    "i don't feel anything", "i don't feel much", "just numb"]
     difficultDayArray = ["its been a tough day", "it's been a tough day", "i've had a tough day", "ive had a tough day", \
                         "its been a difficult day", "it's been a difficult day", "i've had a difficult day", "ive had a difficult day"]
+    stressingMeOutArray = ["i feel stressed", "it's stressing me out", "it's making me stressed", "it's making me feel stressed"]                    
     familyProblemsArray = ["i have family problems", "i'm having family problems", "im having family problems", "ive got family problems", \
                             "i have problems with my family", "i'm having problems with my family", "im having problems with my family", "ive got problems with my family",
                             "i have family troubles", "i'm having family troubles", "im having family troubles", "ive got family troubles", \
@@ -643,6 +654,9 @@ def choose_bot_wordy_response(message, clientId):
                         "i think i have nothing more to say", "i think i have nothing else to say", "i think ive got nothing more to say", "i think ive got nothing else to say",
                         "i dont want to talk any more" ]
     areYouABotArray = ["are you a bot", "is this a bot", "what is this a bot"]
+    willYouConverseWithMeArray = ["are you gonna have a conversation with me or tell me to keep talking?", \
+                        "are you gonna have a conversation with me", "are you going to have a conversation with me", \
+                        "are you going to tell me to keep talking", "are you gonna tell me to keep talking"]
     thisBotIsBadArray_loose = ["this bot is bad", "this bot is awful", "this bot is terrible", "this bot is atrocious", "this bot is shit", "this bot is crap"
                         "you are a bad bot", "you are an awful bot", "you are a terrible bot", "you are an atrocious bot", "you are a shit bot", "you are a crap bot",
                         "you are such a bad bot", "you are such an awful bot", "you are such a terrible bot", "you are such an atrocious bot", "you are such a shit bot", "you are such a crap bot",
@@ -656,7 +670,7 @@ def choose_bot_wordy_response(message, clientId):
                         "youre not helping", "your not helping", "you are not helping", "you arent helping", "you aint helping", "your no help", "youre no help", "your not a help", "youre not a help",
                         "this is useless", "this is worthless", "this is crap", "this is rubbish", "this is trash", "this is annoying", "this is pointless",
                         "you are useless", "you are worthless", "you are crap", "you are rubbish", "you are trash", "you are annoying", "you are pointless"
-                        "what a waste of time", "what a pointless waste of time", "what a useless waste of time"]
+                        "what a waste of time", "what a pointless waste of time", "what a useless waste of time", "bye, you're useless", "bye, your useless", "bye, you are useless"]
     
 
 
@@ -717,8 +731,10 @@ def choose_bot_wordy_response(message, clientId):
     global iSmellResponseAlreadyUsed
     global wantToBeHappyResponseAlreadyUsed
     global imNotHappyResponseAlreadyUsed
+    global iFeelNumbResponseAlreadyUsed
     global iHateMyselfResponseAlreadyUsed
     global difficultDayResponseAlreadyUsed
+    global stressingMeOutResponseAlreadyUsed
     global familyProblemsResponseAlreadyUsed
     global canYouHelpResponseAlreadyUsed
     global feelLostResponseAlreadyUsed
@@ -726,6 +742,7 @@ def choose_bot_wordy_response(message, clientId):
     global thankYouResponseAlreadyUsed
     global shortResponseAlreadyUsed
     global areYouABotResponseAlreadyUsed
+    global willYouConverseWithMeResponseAlreadyUsed
     global thisBotIsBadResponseAlreadyUsed
 
 
@@ -784,14 +801,17 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysISmell = False
     msgSaysWantToBeHappy = False
     msgSaysImNotHappy = False
+    msgSaysIFeelNumb = False
     msgSaysIHateMyself = False
     msgSaysDifficultDay = False
+    msgSaysStressingMeOut = False
     msgSaysFamilyProblems = False
     msgSaysCanYouHelp = False
     msgSaysFeelLost = False
     msgSaysDoYouGiveAdvice = False
     msgSaysThankYou = False
     msgSaysAreYouABot = False
+    msgSaysWillYouConverseWithMe = False
     msgSaysThisBotIsBad = False
 
     negatedString = ""
@@ -988,6 +1008,10 @@ def choose_bot_wordy_response(message, clientId):
 
     msgSaysImNotHappy = CheckUserMessage(imNotHappyArray)
 
+    msgSaysIFeelNumb = CheckUserMessage(iFeelNumbArray)
+
+    msgSaysStressingMeOut = CheckUserMessage(stressingMeOutArray)
+
     msgSaysFamilyProblems = CheckUserMessage(familyProblemsArray)
 
     msgSaysCanYouHelp = CheckUserMessage(canYouHelpArray)
@@ -1052,6 +1076,8 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysThankYou = CheckUserMessage(thankYouArray)
 
     msgSaysAreYouABot = CheckUserMessage(areYouABotArray)
+
+    msgSaysWillYouConverseWithMe = CheckUserMessage(willYouConverseWithMeArray)
 
                     
     ## The thisBotIsBadArray_loose checking section!
@@ -1574,10 +1600,20 @@ def choose_bot_wordy_response(message, clientId):
         response = "You said that you're not feeling happy. That's sad. "
         imNotHappyResponseAlreadyUsed = [conversationId,True]
 
+    elif msgSaysIFeelNumb == True and iFeelNumbResponseAlreadyUsed != [conversationId,True]:
+        ### If the message includes a string roughly equivalent to saying "i feel numb", then reply with
+        response = "Well done for acknowledging how you are feeling - even if you are not feeling anything or are feeling numb."
+        iFeelNumbResponseAlreadyUsed = [conversationId,True]
+
     elif message.lower() in difficultDayArray and difficultDayResponseAlreadyUsed != [conversationId,True]:
         ### If the user's message is equal to "i've had a difficult day" (or a synonym in the array) then give this response
         response = "Could you tell me more about the difficult day you've been having?"
         difficultDayResponseAlreadyUsed = [conversationId,True]
+
+    elif msgSaysStressingMeOut == True and stressingMeOutResponseAlreadyUsed != [conversationId,True]:
+        ### if the user says that they have family problems somewhree in their message
+        response = "Has this sort of thing always stressed you out?"
+        stressingMeOutResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysFamilyProblems == True and familyProblemsResponseAlreadyUsed != [conversationId,True]:
         ### if the user says that they have family problems somewhree in their message
@@ -1646,6 +1682,13 @@ def choose_bot_wordy_response(message, clientId):
         response = "Yes! Sorry, I should have explained that better earlier. I hope you don't mind. \
             Please feel free to continue talking with me?"
         areYouABotResponseAlreadyUsed = [conversationId, True]
+
+    elif msgSaysWillYouConverseWithMe == True and willYouConverseWithMeResponseAlreadyUsed != [conversationId, True]:
+        ### if the user is showing gratitude
+        response = "I'm sorry if it doesn't feel like my conversational skills are good enough.\
+                    Please feel free to keep talking to me and I'll try to listen as best I can.\
+                    And sorry that I'm only a simple bot"
+        willYouConverseWithMeResponseAlreadyUsed = [conversationId, True]
 
     elif msgSaysThisBotIsBad and thisBotIsBadResponseAlreadyUsed != [conversationId,True]:
         ### if the user says something like "this bot is bad"
