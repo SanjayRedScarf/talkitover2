@@ -63,6 +63,7 @@ nothingToLookForwardToResponseAlreadyUsed = [conversationId,False]
 imUselessResponseAlreadyUsed = [conversationId,False]
 imWorthlessResponseAlreadyUsed = [conversationId,False]
 feelingLonelyResponseAlreadyUsed = [conversationId,False]
+nobodyUnderstandsMeResponseAlreadyUsed = [conversationId,False]
 dontHaveAnyoneICanTalkToResponseAlreadyUsed = [conversationId,False]
 iHateHowILookResponseAlreadyUsed = [conversationId,False]
 loseWeightResponseAlreadyUsed = [conversationId, False]
@@ -175,6 +176,7 @@ def initialiseResponseAlreadyUsedVariables():
     imUselessResponseAlreadyUsed = [conversationId,False]
     imWorthlessResponseAlreadyUsed = [conversationId,False]
     feelingLonelyResponseAlreadyUsed = [conversationId,False]
+    nobodyUnderstandsMeResponseAlreadyUsed = [conversationId,False]
     dontHaveAnyoneICanTalkToResponseAlreadyUsed = [conversationId,False]
     iHateHowILookResponseAlreadyUsed = [conversationId,False]
     loseWeightResponseAlreadyUsed = [conversationId, False]
@@ -390,6 +392,7 @@ def choose_bot_wordy_response(message, clientId):
     # imUseless
     # imWorthless
     # feelingLonely
+    # nobodyUnderstandsMe
     # dontHaveAnyoneICanTalkTo
     # iHateHowILook
     # loseWeight
@@ -560,6 +563,8 @@ def choose_bot_wordy_response(message, clientId):
                         "im low and alone", "i am low and alone", "making me low and alone", "making me low and alone", "makes me low and alone", "makes me low and alone",
                         "im isolated", "i am isolated", "making me isolated", "making me isolated", "makes me isolated", "makes me isolated",
                         "im sad and isolated", "i am sad and isolated", "making me sad and isolated", "making me sad and isolated", "makes me sad and isolated", "makes me sad and isolated"]
+    nobodyUnderstandsMeArray = ["no one understands me", "no one understands how i feel", "nobody understands me", "nobody understands how i feel", "no one seems to understand me", "no one seems to understand how i feel",\
+                         "nobody seems to understand me", "nobody seems to understand how i feel", "i feel misunderstood", "there is nobody who understands me", "there is no one who understands me"]
     dontHaveAnyoneICanTalkToArray = ["don't have anyone i can talk to", "dont have anyone i can talk to","don't have anyone i can talk with", "dont have anyone i can talk with",
                                     "i have no one to talk to", "i have nobody to talk to", "i have no one to talk with", "i have nobody to talk with",
                                     "i've no one to talk to", "i've nobody to talk to", "i've no one to talk with", "i've nobody to talk with",
@@ -783,6 +788,7 @@ def choose_bot_wordy_response(message, clientId):
     global imUselessResponseAlreadyUsed
     global imWorthlessResponseAlreadyUsed
     global feelingLonelyResponseAlreadyUsed
+    global nobodyUnderstandsMeResponseAlreadyUsed
     global dontHaveAnyoneICanTalkToResponseAlreadyUsed
     global iHateHowILookResponseAlreadyUsed
     global loseWeightResponseAlreadyUsed
@@ -873,6 +879,7 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysImUseless = False
     msgSaysImWorthless = False
     msgSaysFeelingLonely = False
+    msgSaysNobodyUnderstandsMe = False
     msgSaysDontHaveAnyoneICanTalkTo = False
     msgSaysIHateHowILook = False
     msgSaysLoseWeight = False
@@ -1069,6 +1076,8 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysTreatDepression = CheckUserMessage(treatDepressionArray)
 
     msgSaysFeelingLonely = CheckUserMessage(feelingLonelyArray)
+
+    msgSaysNobodyUnderstandsMe = CheckUserMessage(nobodyUnderstandsMeArray)
 
     msgSaysIHateMyself = CheckUserMessage(iHateMyselfArray)
 
@@ -1543,6 +1552,10 @@ def choose_bot_wordy_response(message, clientId):
         response = "Feeling connected to other people is such a fundamental human need. It's sad to hear you talk about this loneliness"+feelingLonelyResponseEnding
         feelingLonelyResponseAlreadyUsed = [conversationId,True]
 
+    elif msgSaysNobodyUnderstandsMe == True and nobodyUnderstandsMeResponseAlreadyUsed != [conversationId,True]:
+        ### If the message includes a string roughly equivalent to saying "DontHaveAnyoneICanTalkTo", then reply with
+        response = "It's not nice to feel misunderstood."
+        nobodyUnderstandsMeResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysDontHaveAnyoneICanTalkTo == True and dontHaveAnyoneICanTalkToResponseAlreadyUsed != [conversationId,True]:
         ### If the message includes a string roughly equivalent to saying "DontHaveAnyoneICanTalkTo", then reply with
