@@ -46,6 +46,7 @@ imFeelingSuicidalResponseAlreadyUsed = [conversationId,False]
 suicidalThoughtsResponseAlreadyUsed = [conversationId,False]
 contemplatedSuicideButResponseAlreadyUsed = [conversationId,False]
 iWishIWasDeadResponseAlreadyUsed = [conversationId,False]
+betterOffDeadResponseAlreadyUsed = [conversationId,False]
 iDontWantToLiveResponseAlreadyUsed = [conversationId,False]
 sleepForeverResponseAlreadyUsed = [conversationId,False]
 shouldIKillMyselfResponseAlreadyUsed = [conversationId,False]
@@ -159,6 +160,7 @@ def initialiseResponseAlreadyUsedVariables():
     suicidalThoughtsResponseAlreadyUsed = [conversationId,False]
     contemplatedSuicideButResponseAlreadyUsed = [conversationId,False]
     iWishIWasDeadResponseAlreadyUsed = [conversationId,False]
+    betterOffDeadResponseAlreadyUsed = [conversationId,False]
     iDontWantToLiveResponseAlreadyUsed = [conversationId,False]
     sleepForeverResponseAlreadyUsed = [conversationId,False]
     shouldIKillMyselfResponseAlreadyUsed = [conversationId,False]
@@ -488,7 +490,8 @@ def choose_bot_wordy_response(message, clientId):
                             "i have had thoughts of shooting myself", "i have had some thoughts of shooting myelf"]
     contemplatedSuicideButArray = ["i have thought about killing myself, but", "i have contemplated killing myself, but", "i have thought about ending my life, but", "i have contemplated ending my life, but",\
                             "i have thought about suicide, but", "i have contemplated suicide, but"]
-    iWishIWasDeadArray = ["i wish i could die", "i wish i was dead"]                        
+    iWishIWasDeadArray = ["i wish i could die", "i wish i was dead"]   
+    betterOffDeadArray = ["i would be better off dead", "id be better off dead", "better off if I weren't alive"]                     
     iDontWantToLiveArray = ["i dont want to live", "i no longer want to live", "i dont wanna live", "i have no desire to live", "i no longer desire to live",
                             "i dont want to be alive", "i no longer want to be alive", "i dont wanna be alive", "i have no desire to be alive", "i no longer desire to be alive",
                             "i dont want to remain alive", "i no longer want to remain alive", "i dont wanna remain alive", "i have no desire to remain alive", "i no longer desire to remain alive",
@@ -771,6 +774,7 @@ def choose_bot_wordy_response(message, clientId):
     global suicidalThoughtsResponseAlreadyUsed
     global contemplatedSuicideButResponseAlreadyUsed
     global iWishIWasDeadResponseAlreadyUsed
+    global betterOffDeadResponseAlreadyUsed
     global iDontWantToLiveResponseAlreadyUsed
     global sleepForeverResponseAlreadyUsed
     global shouldIKillMyselfResponseAlreadyUsed
@@ -862,6 +866,7 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysSuicidalThoughts = False
     msgSaysContemplatedSuicideBut = False
     msgSaysIWishIWasDead = False
+    msgSaysBetterOffDead = False
     msgSaysIDontWantToLive = False
     msgSaysSleepForever = False
     msgSaysShouldIKillMyself = False
@@ -1054,6 +1059,8 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysContemplatedSuicideBut = CheckUserMessage(contemplatedSuicideButArray)
 
     msgSaysIWishIWasDead = CheckUserMessage(iWishIWasDeadArray)
+
+    msgSaysBetterOffDead = CheckUserMessage(betterOffDeadArray)
 
     msgSaysIDontWantToLive = CheckUserMessage(iDontWantToLiveArray)
 
@@ -1397,6 +1404,16 @@ def choose_bot_wordy_response(message, clientId):
         # if the user's message contains some variant of "i have suicidal thoughts"
         response = "So you're saying you wish you were dead. Which is a pretty drastic thing to wish for."
         iWishIWasDeadResponseAlreadyUsed = [conversationId,True]
+
+    elif msgSaysBetterOffDead == True and betterOffDeadResponseAlreadyUsed != [conversationId,True]:
+        # if the user's message contains some variant of "id be better off dead"
+        userIsSuicidal = False
+        userIsSuicidal = msgSaysIWantToKillMyself or msgSaysIWantToDie or msgSaysImFeelingSuicidal or msgSaysImFeelingQuiteSuicidal or msgSaysSuicidalThoughts or msgSaysIWishIWasDead \
+        or iWantToKillMyselfResponseAlreadyUsed == [conversationId,True] or iWantToDieResponseAlreadyUsed == [conversationId,True] or imFeelingSuicidalResponseAlreadyUsed == [conversationId,True] \
+            or suicidalThoughtsResponseAlreadyUsed == [conversationId,True] or iWishIWasDeadResponseAlreadyUsed == [conversationId,True]
+        if userIsSuicidal:
+            response = "I'm sorry to hear you indicate that you would be better off if you weren't alive."
+        betterOffDeadResponseAlreadyUsed = [conversationId,True]
 
 
     elif msgSaysIDontWantToLive == True and iDontWantToLiveResponseAlreadyUsed != [conversationId,True]:
