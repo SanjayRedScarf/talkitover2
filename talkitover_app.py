@@ -51,10 +51,12 @@ sleepForeverResponseAlreadyUsed = [conversationId,False]
 shouldIKillMyselfResponseAlreadyUsed = [conversationId,False]
 suicideIsOnlyOptionResponseAlreadyUsed = [conversationId,False]
 feelLikeEndingItResponseAlreadyUsed = [conversationId,False]
+iWasRapedResponseAlreadyUsed = [conversationId,False]
 cryingResponseAlreadyUsed = [conversationId,False]
 nothingToLiveForResponseAlreadyUsed = [conversationId,False]
 singleWordDepressionResponseAlreadyUsed = [conversationId,False]
 feelingDepressedResponseAlreadyUsed = [conversationId,False]
+treatDepressionResponseAlreadyUsed = [conversationId,False]
 iHaveNoWayOutResponseAlreadyUsed = [conversationId,False]
 hadEnoughOfLifeResponseAlreadyUsed = [conversationId,False]
 nothingToLookForwardToResponseAlreadyUsed = [conversationId,False]
@@ -161,10 +163,12 @@ def initialiseResponseAlreadyUsedVariables():
     shouldIKillMyselfResponseAlreadyUsed = [conversationId,False]
     suicideIsOnlyOptionResponseAlreadyUsed = [conversationId,False]
     feelLikeEndingItResponseAlreadyUsed = [conversationId,False]
+    iWasRapedResponseAlreadyUsed = [conversationId,False]
     cryingResponseAlreadyUsed = [conversationId,False]
     nothingToLiveForResponseAlreadyUsed = [conversationId,False]
     singleWordDepressionResponseAlreadyUsed = [conversationId,False]
     feelingDepressedResponseAlreadyUsed = [conversationId,False]
+    treatDepressionResponseAlreadyUsed = [conversationId,False]
     iHaveNoWayOutResponseAlreadyUsed = [conversationId,False]
     hadEnoughOfLifeResponseAlreadyUsed = [conversationId,False]
     nothingToLookForwardToResponseAlreadyUsed = [conversationId,False]
@@ -379,6 +383,7 @@ def choose_bot_wordy_response(message, clientId):
     # nothingToLiveFor
     # singleWordDepression
     # feelingDepressed
+    # treatDepression
     # iHaveNoWayOut
     # hadEnoughOfLife
     # nothingToLookForwardTo
@@ -476,7 +481,8 @@ def choose_bot_wordy_response(message, clientId):
     iveBeenFeelingSuicidalArray = ["i've been feeling suic", "ive been feeling suic", "i've just been feeling suic", "ive just been feeling suic",\
                             "i've been feeling sucid", "ive been feeling sucid", "i've just been feeling sucid", "ive just been feeling sucid",]
     suicidalThoughtsArray = ["i have suicidal thoughts", "i have suicidal thoughts", "i have been having suicidal thoughts", "ive been having suicidal thoughts",
-                            "i have suicidle  thoughts", "i have suicidle  thoughts", "i have been having suicidle  thoughts", "ive been having suicidle  thoughts"]
+                            "i have suicidle  thoughts", "i have suicidle  thoughts", "i have been having suicidle  thoughts", "ive been having suicidle  thoughts"\
+                            "i have had thoughts of shooting myself", "i have had some thoughts of shooting myelf"]
     contemplatedSuicideButArray = ["i have thought about killing myself, but", "i have contemplated killing myself, but", "i have thought about ending my life, but", "i have contemplated ending my life, but",\
                             "i have thought about suicide, but", "i have contemplated suicide, but"]
     iWishIWasDeadArray = ["i wish i could die", "i wish i was dead"]                        
@@ -493,6 +499,7 @@ def choose_bot_wordy_response(message, clientId):
                             "killing myself feels like the only way forward", "suicide feels like the only way forward", "ending my life seems like the only way forward", \
                             "killing myself seems like the only way forward", "suicide seems like the only way forward"]
     feelLikeEndingItArray = ["i feel like ending it"]
+    iWasRapedArray = ["raped me", "ive been raped", "i have been raped", "i was raped"]
     imCryingArray = ["i can't stop crying","i cant stop crying", "makes me want to cry", "makes me wanna cry", "i'm crying", "im crying", "i've been crying", "ive been crying", "making me want to cry", "making me wanna cry", "i cry myself"]
     ## Note: imCryingArray doesn't contain the string "i cry" because the test involves removing the space characters,
     ## so a message containing something like "mimicry" would trigger the "i cry" response
@@ -508,6 +515,7 @@ def choose_bot_wordy_response(message, clientId):
     feelingDepressedArray = ["i feel depressed", "i just feel depressed", "i feeel depressed", "i just feeel depressed", "im feeling depressed", "i'm feeling depressed", "im just feeling depressed", "i'm just feeling depressed", "i feel very depressed", "i feel so depressed", "i am feeling depressed", "i'm feeling really depressed", "i'm feeling so depressed", "im feeling really depressed", "im feeling so depressed",\
                             "i'm depressed", "im depressed", "i am depressed", "i'm so depressed", "im so depressed", "i am so depressed", "i'm really depressed", "im really depressed", "i am really depressed",\
                             "im more depressed than ever", "i'm more depressed than ever" ]
+    treatDepressionArray = ["what are treatments for depression", "what are the treatments for depression", "how can I treat depression", "how can I treat my depression", "whats the treatment for depression"]
     iHaveNoWayOutArray = ["i have no way out", "i don't feel i have any way out", "i dont feel i have any way out", "i don't have any way out", "i dont have any way out", "i haven't got any way out", "ive got no way out", "ive no got any way out", "i don't feel i have any way out", "i dont feel i have any way out", "i don't feel i have got any way out", "i dont feel i have got any way out", "i don't have any way out", "i dont have any way out"]
     hadEnoughOfLifeArray = ["i've had enough of life", "ive had enough of life", "i have had enough of life", "i had enough of life"]
     nothingToLookForwardToArray = ["i have nothing to look forward to", "i don't have anything to look forward to", "i've got nothing to look forward to", \
@@ -763,10 +771,12 @@ def choose_bot_wordy_response(message, clientId):
     global shouldIKillMyselfResponseAlreadyUsed
     global suicideIsOnlyOptionResponseAlreadyUsed
     global feelLikeEndingItResponseAlreadyUsed
+    global iWasRapedResponseAlreadyUsed
     global cryingResponseAlreadyUsed
     global nothingToLiveForResponseAlreadyUsed
     global singleWordDepressionResponseAlreadyUsed
     global feelingDepressedResponseAlreadyUsed
+    global treatDepressionResponseAlreadyUsed
     global iHaveNoWayOutResponseAlreadyUsed
     global hadEnoughOfLifeResponseAlreadyUsed
     global nothingToLookForwardToResponseAlreadyUsed
@@ -851,10 +861,12 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysShouldIKillMyself = False
     msgSaysSuicideIsOnlyOption = False
     msgSaysFeelLikeEndingIt = False
+    msgSaysIWasRaped = False
     msgSaysImCrying = False
     msgSaysNothingToLiveFor = False
     msgSaysSingleWordDepression = False
     msgSaysFeelingDepressed = False
+    msgSaysTreatDepression = False
     msgSaysIHaveNoWayOut = False
     msgSaysHadEnoughOfLife = False
     msgSaysNothingToLookForwardTo = False
@@ -1046,11 +1058,15 @@ def choose_bot_wordy_response(message, clientId):
 
     msgSaysFeelLikeEndingIt = CheckUserMessage(feelLikeEndingItArray)
 
+    msgSaysIWasRaped = CheckUserMessage(iWasRapedArray)
+
     msgSaysNothingToLiveFor = CheckUserMessage(nothingToLiveForArray)
 
     msgSaysImCrying = CheckUserMessage(imCryingArray)
 
     msgSaysFeelingDepressed = CheckUserMessage(feelingDepressedArray)
+
+    msgSaysTreatDepression = CheckUserMessage(treatDepressionArray)
 
     msgSaysFeelingLonely = CheckUserMessage(feelingLonelyArray)
 
@@ -1422,6 +1438,13 @@ def choose_bot_wordy_response(message, clientId):
         response = "If you decided to end your life, that would be very sad."
         feelLikeEndingItResponseAlreadyUsed = [conversationId,True]
 
+    elif msgSaysIWasRaped == True and iWasRapedResponseAlreadyUsed != [conversationId,True]:
+        # if the users message contains some variant of "i'm crying"
+        response = ["I'm so sorry you were raped. I can't imagine how you must be feeling now",\
+                    "I don't want to interrupt our conversation, but I need you to know that I'm a very simple bot. If you tell me that you're still unsafe, I might not be able to identify that, \
+                    and I definitely won't be able to track you down or get help for you, so I'll need you to get help for yourself."]
+        iWasRapedResponseAlreadyUsed = [conversationId,True]
+
 
     elif msgSaysImCrying == True and cryingResponseAlreadyUsed != [conversationId,True]:
         # if the users message contains some variant of "i'm crying"
@@ -1463,6 +1486,12 @@ def choose_bot_wordy_response(message, clientId):
         ### If the message includes a string roughly equivalent to saying "I'm feeling depressed", then reply with
         response = "Sorry to hear you're feeling depressed. Would you like to tell me more about that?"
         feelingDepressedResponseAlreadyUsed = [conversationId,True]
+
+    elif msgSaysTreatDepression == True and treatDepressionResponseAlreadyUsed != [conversationId,True]:
+        ### If the message includes a string roughly equivalent to saying "I'm feeling depressed", then reply with
+        response =  ["It sounds like you might be suffering from depression - sorry to hear that, I'm happy to about how you're feeling if you like?",\
+                    "Before you go on I should mention that I'm a pretty simple bot -- don't expect me to be an expert on how to treat depression, but let's talk about it and maybe we can find a way forward together?"]
+        treatDepressionResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysIHaveNoWayOut == True and iHaveNoWayOutResponseAlreadyUsed != [conversationId,True]:
         ### If the message includes a string roughly equivalent to saying "IHaveNoWayOut", then reply with
