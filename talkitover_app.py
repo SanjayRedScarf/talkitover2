@@ -488,8 +488,8 @@ def choose_bot_wordy_response(message, clientId):
     suicidalThoughtsArray = ["i have suicidal thoughts", "i have suicidal thoughts", "i have been having suicidal thoughts", "ive been having suicidal thoughts",
                             "i have suicidle  thoughts", "i have suicidle  thoughts", "i have been having suicidle  thoughts", "ive been having suicidle  thoughts"\
                             "i have had thoughts of shooting myself", "i have had some thoughts of shooting myelf"]
-    contemplatedSuicideButArray = ["i have thought about killing myself, but", "i have contemplated killing myself, but", "i have thought about ending my life, but", "i have contemplated ending my life, but",\
-                            "i have thought about suicide, but", "i have contemplated suicide, but"]
+    contemplatedSuicideButArray = ["i have thought about killing myself but", "i have contemplated killing myself but", "i have thought about ending my life but", "i have contemplated ending my life but",\
+                            "i have thought about suicide but", "i have contemplated suicide but"]
     iWishIWasDeadArray = ["i wish i could die", "i wish i was dead"]   
     betterOffDeadArray = ["i would be better off dead", "id be better off dead", "better off if I weren't alive"]                     
     iDontWantToLiveArray = ["i dont want to live", "i no longer want to live", "i dont wanna live", "i have no desire to live", "i no longer desire to live",
@@ -1586,13 +1586,15 @@ def choose_bot_wordy_response(message, clientId):
         iHateHowILookResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysLoseWeight == True and loseWeightResponseAlreadyUsed != [conversationId,True]:
-        ### If the message includes a string roughly equivalent to saying "IHateHowILook", then reply with
-        if USER_CHARACTER_COUNT < 700:
+        ### If the message includes a string roughly equivalent to saying "Lose Weight", then reply with
+        if msgSaysIHateHowILook == True or iHateHowILookResponseAlreadyUsed == [conversationId,True]:
+            response = "I would love it if we lived in a world where being larger didn't make people judge you, \
+                        and I'm sorry that your size is making you feel bad"
+        elif USER_CHARACTER_COUNT < 700:
             response = "I'm sorry to hear about these things relating to your weight. Could we explore those some more?"
 
         else:   
-            response = "I would love it if we lived in a world where being larger didn't make people judge you, \
-                        and I'm sorry that your size is making you feel bad"
+            response = "I'm sorry to hear about these things relating to your weight"
         loseWeightResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysFeelOverwhelmed == True and feelOverwhelmedResponseAlreadyUsed != [conversationId,True]:
