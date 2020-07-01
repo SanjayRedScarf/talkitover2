@@ -573,8 +573,7 @@ def choose_bot_wordy_response(message, clientId):
                     "im just really worthless", "i'm just really worthless", "im just really worthlses", "i'm just really worthlses",\
                     "im just totally worthless", "i'm just totally worthless", "im just totally worthlses", "i'm just totally worthlses",\
                     "im just utterly worthless", "i'm just utterly worthless", "im just utterly worthlses", "i'm just utterly worthlses",\
-                    "i feel worthless"]
-                    "im just utterly worthless", "i'm just utterly worthless", "im just utterly worthlses", "i'm just utterly worthlses"]
+                    "i feel worthless", "im just utterly worthless", "i'm just utterly worthless", "im just utterly worthlses", "i'm just utterly worthlses"]
     iWantSomeoneToLoveMeArray = ["i want someone to love me", "i want to be loved"]
     feelingLonelyArray = ["i sit alone", "i feel lonely", "im feeling lonely", "i am feeling lonely","making me feel lonely", "making me lonely","makes me feel lonely", "makes me lonely",
                         "i feel alone", "im feeling alone", "i am feeling alone", "making me feel alone", "making me alone","makes me feel alone", "makes me alone",
@@ -608,7 +607,7 @@ def choose_bot_wordy_response(message, clientId):
                         "i really just hate how i look", "i really just hate my looks", "i really just hate my appearance", "i really just hate the way i look",
                         "im ugly", "i am ugly", "i look horrible", "i look disgusting", "i look atrocious"]
     loseWeightArray = ["i want to lose weight", "i don’t know how to lose weight", "i cant lose weight", "im fat", "ive been fat-shamed", "ive been fatshamed",\
-                       "i have been fat-shamed", "i have been fatshamed", "has been fat-shaming me", "has been fatshaming me", "fat-shamed me", "fatshamed me"]
+                       "i have been fat-shamed", "i have been fatshamed", "has been fat-shaming me", "has been fatshaming me", "fat-shamed me", "fatshamed me",\
                         "im ugly", "i am ugly", "i look horrible", "i look disgusting", "i look atrocious", "i feel insecure about my body", "i feel insecure about my appearance", "i hate my body", "i despise my body"]
     feelOverwhelmedArray = ["i feel overwhelmed", "im feeling overwhelmed", "i'm feeling overwhelmed", \
                             "i feel so overwhelmed", "im feeling so overwhelmed", "i'm feeling so overwhelmed",\
