@@ -30,8 +30,7 @@ encouragingNoises = ["I'm still listening, so feel free to say more.", "Go on ta
 "Mhm, thanks for sharing this, please keep going", "Mhm, I hear you, go on talking",\
 "I'm still here, feel free to continue talking as long as it's helping you", "Mhm, I hear you...",\
 "Thank you for sharing. I'm still listening...", "I hear you. I'm still here...", "I hear you...",\
-"Mhm, I hear you, thank you for sharing", "you can talk to me if you would like - I am a bot though. That means I can'give you space and won't judge ( I don't know how to!). It also means I won't pick up every human nuance. I am still learning….."]
-
+"Mhm, I hear you, thank you for sharing"]
 
 noOfEncouragingNoises = len(encouragingNoises)
 section = 0
@@ -155,8 +154,8 @@ iWantAFriendResponseAlreadyUsed = [conversationId,False]
 iDontSeeManyPeopleResponseAlreadyUsed = [conversationId,False]
 feelLostResponseAlreadyUsed = [conversationId,False]
 helpResponseAlreadyUsed = [conversationId,False]
-iWantFreedomResponseAlreadyUsed = [conversationId,False]
-whoCanITalkToResponseAlreadyUsed = [conversationId,False]
+# iWantFreedomResponseAlreadyUsed = [conversationId,False]
+# whoCanITalkToResponseAlreadyUsed = [conversationId,False]
 howAreYouResponseAlreadyUsed = [conversationId,False]
 doYouGiveAdviceResponseAlreadyUsed = [conversationId,False]
 dontKnowResponseAlreadyUsed = [conversationId,False]
@@ -313,8 +312,8 @@ def initialiseResponseAlreadyUsedVariables():
     iDontSeeManyPeopleResponseAlreadyUsed = [conversationId,False]
     feelLostResponseAlreadyUsed = [conversationId,False]
     helpResponseAlreadyUsed = [conversationId,False]
-    iWantFreedomResponseAlreadyUsed = [conversationId,False]
-    whoCanITalkToResponseAlreadyUsed = [conversationId,False]
+    # iWantFreedomResponseAlreadyUsed = [conversationId,False]
+    # whoCanITalkToResponseAlreadyUsed = [conversationId,False]
     howAreYouResponseAlreadyUsed = [conversationId,False]
     doYouGiveAdviceResponseAlreadyUsed = [conversationId,False]
     dontKnowResponseAlreadyUsed = [conversationId,False]
@@ -844,9 +843,9 @@ def choose_bot_wordy_response(message, clientId):
     wantToBeHappyArray = ["i want to be happy again", "i wish i could be happy again"]
     helloArray = ["hello", "hi", "hey","hello!", "hi!", "hey!", "hello?", "hi?", "hey?"]
     iWantFreedomArray = ["i want freedom", "set me free", "let me be free"]
-    whoCanITalkToArray = ["who can i talk to", "is there anyone i can talk to"]
+    whoCanITalkToArray = ["who can i talk to", "is there anyone i can talk to", "is there someone i can talk to"]
     whatDoYouThinkArray = ["what do you think", "what do u think"]
-    whoCanITalkToArray = ["who can i talk to", "is there anyone i can talk to ", "is there someone i can talk to"]
+    # whoCanITalkToArray = ["who can i talk to", "is there anyone i can talk to "]
     howAreYouArray = ["how are you", "how r u", "how are u", "how are you doing", "how r u doing"]
     doYouGiveAdviceArray = ["do you give advice", "do you provide advice","do you offer advice"
                             "do you give any advice", "do you provide any advice","do you offer any advice",
@@ -1016,8 +1015,8 @@ def choose_bot_wordy_response(message, clientId):
     global iDontSeeManyPeopleResponseAlreadyUsed
     global feelLostResponseAlreadyUsed
     global helpResponseAlreadyUsed
-    global iWantFreedomResponseAlreadyUsed
-    global whoCanITalkToResponseAlreadyUsed
+    # global iWantFreedomResponseAlreadyUsed
+    # global whoCanITalkToResponseAlreadyUsed
     global howAreYouResponseAlreadyUsed
     global doYouGiveAdviceResponseAlreadyUsed
     global dontKnowResponseAlreadyUsed
@@ -1150,8 +1149,8 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysIDontSeeManyPeople = False
     msgSaysFeelLost = False
     msgSaysHelp = False
-    msgSaysFreedom = False
-    msgSaysWhoCanITalkTo = False
+    # msgSaysFreedom = False
+    # msgSaysWhoCanITalkTo = False
     msgSaysHowAreYou = False
     msgSaysWhatDoYouThink = False
     msgSaysDoYouGiveAdvice = False
@@ -1553,13 +1552,13 @@ def choose_bot_wordy_response(message, clientId):
         if string.lower().replace(" ","") == cleanedMessage.lower().replace(" ",""):
             msgSaysHelp = True
 
-    for string in iWantFreedomArray:
-        if string.lower().replace(" ","") in cleanedMessage.lower().replace(" ",""):
-            msgSaysFreedom = True
+    # for string in iWantFreedomArray:
+    #     if string.lower().replace(" ","") in cleanedMessage.lower().replace(" ",""):
+    #         msgSaysFreedom = True
 
-    for string in whoCanITalkToArray:
-        if string.lower().replace(" ","") in cleanedMessage.lower().replace(" ",""):
-            msgSaysWhoCanITalkTo = True
+    # for string in whoCanITalkToArray:
+    #     if string.lower().replace(" ","") in cleanedMessage.lower().replace(" ",""):
+    #         msgSaysWhoCanITalkTo = True
 
     for string in howAreYouArray:
         if string.lower().replace(" ","") == cleanedMessage.lower().replace(" ",""):
@@ -2400,8 +2399,13 @@ def choose_bot_wordy_response(message, clientId):
 
     elif msgSaysWhoCanITalkTo == True and whoCanITalkToResponseAlreadyUsed != [conversationId, True]:
         ### if the user is asking who they can talk to
-        response = "You can talk to me if you like, I am Tio, a chatbot."
-        whoCanITalkToResponseAlreadyUsed = [conversationId, True]
+        whoCanITalkToResponses = ["You can talk to me if you like, I am Tio, a chatbot.",\
+                    "You can talk to me if you would like - I am a bot though. That means I can'give you space and won't judge ( I don't know how to!). \
+                    It also means I won't pick up every human nuance. I am still learning….."]
+
+        randomlyChosenIndex = random.randint(0,len(whoCanITalkToResponses)-1) # select a random number between 0 and final index of the whocanitalkto array
+        response = whoCanITalkToResponses[randomlyChosenIndex] # set the response equal to the string (or whatever) corresponding to the relevant index
+        whoCanITalkToResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysHowAreYou == True and howAreYouResponseAlreadyUsed != [conversationId, True]:
         ### if the user is asking how are you to the bot
@@ -2414,13 +2418,13 @@ def choose_bot_wordy_response(message, clientId):
             I can give you space to explore how you are feeling without any judgement."
         whatDoYouThinkResponseAlreadyUsed = [conversationId, True]
 
-    elif msgSaysFreedom == True and iWantFreedomResponseAlreadyUsed != [conversationId,True]:
-        response = "What does freedom or being free mean to you?"
-        iWantFreedomResponseAlreadyUsed = [conversationId,True]
+    # elif msgSaysFreedom == True and iWantFreedomResponseAlreadyUsed != [conversationId,True]:
+    #     response = "What does freedom or being free mean to you?"
+    #     iWantFreedomResponseAlreadyUsed = [conversationId,True]
 
-    elif msgSaysWhoCanITalkTo == True and whoCanITalkToResponseAlreadyUsed != [conversationId,True]:
-        response = "You can talk to me if you like, I am Tio, a chatbot."
-        whoCanITalkToResponseAlreadyUsed = [conversationId,True]
+    # elif msgSaysWhoCanITalkTo == True and whoCanITalkToResponseAlreadyUsed != [conversationId,True]:
+    #     response = "You can talk to me if you like, I am Tio, a chatbot."
+    #     whoCanITalkToResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysHowAreYou == True and howAreYouResponseAlreadyUsed != [conversationId,True]:
         response = "I am ok thanks - let's talk about you, how are you?"
