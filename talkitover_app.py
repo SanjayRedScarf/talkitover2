@@ -1570,9 +1570,9 @@ def choose_bot_wordy_response(message, clientId):
 
     ## "Do you give advice" is trated differently ebcause there's no need to include the negatig string check
     for string in doYouGiveAdviceArray:             # work out if anything from the doYouGiveAdviceArray is in the user's message
-        # if string.lower() == "i wanted advice":
-        #     msgSaysDoYouGiveAdvice = True
-        if string.lower().replace(" ","") in cleanedMessage.lower().replace(" ",""):                          # if message contains "do you give advice" or similar
+        if string.lower() == "i wanted advice" and cleanedMessage.lower() == "i wanted advice":
+            msgSaysDoYouGiveAdvice = True
+        elif string.lower().replace(" ","") in cleanedMessage.lower().replace(" ",""):                          # if message contains "do you give advice" or similar
             msgSaysDoYouGiveAdvice = True
 
     for string in dontKnowArray:
