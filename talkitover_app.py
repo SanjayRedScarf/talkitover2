@@ -30,7 +30,7 @@ encouragingNoises = ["I'm still listening, so feel free to say more.", "Go on ta
 "Mhm, I hear you, thank you for sharing"]
 
 noOfEncouragingNoises = len(encouragingNoises)
-section = 0
+section = 0.0
 dataToStore = []
 USER_CHARACTER_COUNT = 0
 conversationId = str(datetime.now())
@@ -2758,21 +2758,20 @@ def bot_processing(inputs_dict):
 
         if initialHappinessScore > 7:
             response = "Sounds like you're feeling OK! I'm designed for people who are feeling low \
-            and have something on their mind. But that's cool, let's talk anyway! :-) \
-            Can I tell you first how this bot works?"
+            and have something on their mind. But that's cool, let's talk anyway! :-)"
         elif initialHappinessScore > 3:
-            response = "Thanks for sharing. I'm going to ask you to talk about whatever is on your \
-            mind, but first I'm going to explain how this bot works, is that OK?"
+            response = "Thanks for sharing. Sounds like you're not quite on top of the world - shame about that. \
+                Is there anything specific on your mind at the moment?"
         else:
             #response = "Oh dear, sounds like you're feeling really low, I'm sorry to hear that. \
             #I want to ask you more about that, but first can I tell you how this bot works?"
             response = ["Oh dear, sounds like you're feeling really low, I'm sorry to hear that. ",
-            "I want to ask you more about that, but first can I tell you how this bot works?"]
+            "Is there something specific that's triggered this?"]
 
         noOfResponseFragments = 0 # to assign the variable
         noOfResponseFragments = no_of_fragments_in_str_or_list(response)
-        nextUserOptions = ["Yes, happy to listen to the explanation of how this bot works"] # this is the option that the user can select
-        nextUserInput = next_user_input_one(nextUserOptions,clientId) # this puts a string of html around it
+        nextUserOptions = ["Yes", "No"]
+        nextUserInput = next_user_input_two(nextUserOptions,clientId) # this puts a string of html around it
         nextUserInputType = "userInputButton"
         next_section = section + 1
         #next_section = 9 # DEBUG CHEAT: for debugging purposes when you want to skip the intro. This shouldn't apply normally
@@ -2786,9 +2785,54 @@ def bot_processing(inputs_dict):
             responseForWriteData = responseForWriteData + response[responseIndex]
         write_data(anonymous, conversationId, "initialHappinessScore (!!) = "+message, responseForWriteData, section, clientId)
 
-
     elif section==2:
 
+        if message.lower()=="yes":
+            response = "I'd love to hear you say more about that. Before we do that, would you like me to explain about how this chatbot works?"
+            nextUserOptions = ["Yes"] # this is the option that the user can select
+            nextUserInput = next_user_input_one(nextUserOptions,clientId) # this puts a string of html around it
+            next_section = section + 2
+        else:
+            response = "Do you feel this way often?"
+            nextUserOptions = ["Yes", "No"] # this is the option that the user can select
+            nextUserInput = next_user_input_two(nextUserOptions,clientId) # this puts a string of html around it
+            next_section = section + 1
+
+        noOfResponseFragments = no_of_fragments_in_str_or_list(response)
+        nextUserInputType = "userInputButton"
+
+        responseForWriteData = ""
+        for responseIndex in range(0,noOfResponseFragments):
+            responseForWriteData = responseForWriteData + response[responseIndex]
+        write_data(anonymous, conversationId, message, responseForWriteData, section, clientId)
+
+    elif section==3:
+        if message.lower() == "yes":
+            response = "Feeling this way often sounds pretty rubbish. I'm sorry about that. How long have been like this?"
+        next_section = section + 0.5
+        noOfResponseFragments = no_of_fragments_in_str_or_list(response)
+        nextUserOptions = [""] # n/a because next user input type is not buttons
+        nextUserInput = nextUserInputFreeText
+        nextUserInputType = "freeText"    
+
+        responseForWriteData = ""
+        for responseIndex in range(0,noOfResponseFragments):
+            responseForWriteData = responseForWriteData + response[responseIndex]
+        write_data(anonymous, conversationId, message, responseForWriteData, section, clientId)
+
+    elif section==3.5:
+        response = "I'd like to hear more about that. Before we do that, I'd like to quickly explain how this chatbot works, if that's OK?"
+        noOfResponseFragments = no_of_fragments_in_str_or_list(response)
+        nextUserOptions = ["Yes"] # this is the option that the user can select
+        nextUserInput = next_user_input_one(nextUserOptions,clientId) # this puts a string of html around it
+        next_section = section + 0.5
+        responseForWriteData = ""
+
+        for responseIndex in range(0,noOfResponseFragments):
+            responseForWriteData = responseForWriteData + response[responseIndex]
+        write_data(anonymous, conversationId, message, responseForWriteData, section, clientId)
+
+    elif section==4:
         response = ["I'm actually a very simple little bot. So please feel free to talk to me, \
         and sorry in advance if I don't always do a good job of understanding you. ",
         "Instead think of this as being more like writing a journal, but as you keep writing, \
@@ -2805,21 +2849,7 @@ def bot_processing(inputs_dict):
             responseForWriteData = responseForWriteData + response[responseIndex]
         write_data(anonymous, conversationId, message, responseForWriteData, section, clientId)
 
-
-    elif section==3:
-
-        response = "Now let's talk about confidentiality and anonymity. \
-        We offer an anonymised service. We don't have any way \
-        of tracking you down, knowing who you are, or linking what you write to you."
-        next_section = section + 1
-        noOfResponseFragments = no_of_fragments_in_str_or_list(response)
-        nextUserOptions = ["OK, I understand that you do not know who I am."] # this is the option that the user can select
-        nextUserInput = next_user_input_one(nextUserOptions,clientId) # this puts a string of html around it
-        nextUserInputType = "userInputButton"
-
-        write_data(anonymous, conversationId, message, response, section, clientId)
-
-    elif section==4:
+    elif section==5:
 
         response = "So given that I can't track you down, and also because I'm a very simple bot, \
         if you told me about an emergency/crisis situation, I wouldn't \
@@ -2832,7 +2862,7 @@ def bot_processing(inputs_dict):
 
         write_data(anonymous, conversationId, message, response, section, clientId)
 
-    elif section==5:
+    elif section==6:
 
         response = "Next I'm going to give you the choice whether you want to use this on a confidential \
         or anonymous basis. When I say anonymous, I mean that our boffins may see your text to help \
@@ -2845,7 +2875,7 @@ def bot_processing(inputs_dict):
 
         write_data(anonymous, conversationId, message, response, section, clientId)
 
-    elif section==6:
+    elif section==7:
 
         response = "And when I say confidential, I mean that your text won't be \
         stored at all, and no human will see what you write."
@@ -2857,7 +2887,7 @@ def bot_processing(inputs_dict):
 
         write_data(anonymous, conversationId, message, response, section, clientId)
 
-    elif section==7:
+    elif section==8:
 
         response = "Would you like this service to be anonymous or confidential?"
         next_section = section + 1
@@ -2868,7 +2898,7 @@ def bot_processing(inputs_dict):
 
         write_data(anonymous, conversationId, message, response, section, clientId)
 
-    elif section==8:
+    elif section==9:
 
         anonymous = "true" if message.split()[0].lower()=="anonymous" else "false"
         response = "Thanks! One last thing: You remember saying how you felt on a scale from 1 to 10 \
@@ -2881,7 +2911,7 @@ def bot_processing(inputs_dict):
 
         write_data(anonymous, conversationId, message, response, section, clientId)
 
-    elif section==9:
+    elif section==10:
 
         if clientId == "originalJavascriptClient":
             response = ["When you're finished using the bot, please click the stop button on the right \
@@ -2912,7 +2942,7 @@ def bot_processing(inputs_dict):
         write_data(anonymous, conversationId, message, responseForWriteData, section, clientId)
 
 
-    elif section==10:
+    elif section==11:
 
         responseFragmentBasedOnScore =""
 
@@ -2939,7 +2969,7 @@ def bot_processing(inputs_dict):
 
 
 
-    elif section > 10:
+    elif section > 11:
 
         USER_CHARACTER_COUNT += len(message)
 
