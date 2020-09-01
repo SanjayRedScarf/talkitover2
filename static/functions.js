@@ -24,6 +24,10 @@
   var message_side = "left";
   var sendDisabled = true;
 
+  $( document ).ready(function() {
+    window.history.replaceState({}, document.title, "/" + "");
+  });
+
   // This is the message class
   Message = function (arg) {
       this.text = arg.text,
@@ -97,7 +101,6 @@
     setTimeout(function(){
       removeLatestMessage();
       printMessage(response, "left"); // print the message on the screen
-
       // add html and disable or enable buttons
       if (add_html==true){
         if (currentUserInputType=="freeText") {
@@ -212,6 +215,12 @@
           }
       });
     })
+  }
+
+  cleanUrl = function(){
+    $( document ).ready(function() {
+      window.history.replaceState({}, document.title, "/" + "my-new-url.html");
+    });
   }
 
   // attach dropdown to mainFunction function

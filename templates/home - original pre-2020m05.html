@@ -175,6 +175,9 @@
       var botThinkingTime = 450;
       var userText = "";
 
+      $( document ).ready(function() {
+        window.history.replaceState({}, document.title, "/" + "");
+      });
 
       function getBotResponse() {
 
