@@ -1,5 +1,5 @@
 #import files
-from flask import Flask, render_template, request, make_response, jsonify
+from flask import Flask, render_template, request, make_response, jsonify, redirect
 from json import dumps
 from datetime import datetime
 import json
@@ -346,7 +346,7 @@ def write_data(anonymous, conversationId, message, response, section, clientId):
         response = response.replace(",", "¬")
 
         with open('storedData.csv', 'a') as f:
-            dataToStore = [str(conversationId), "User says:",str(message), "Chatbot says:",str(response), clientId]
+            dataToStore = [str(conversationId), "User says: " + str(message), "Chatbot says: " + str(response), "ClientId: " + clientId, "Campaign: " + campaign, "Group: " + group, "Geo: " + geo, "Device: " + device]
             f.write("\n" + str(dataToStore))
     return None
 
@@ -1441,8 +1441,6 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysBrokeUpWithPartner = CheckUserMessage(BrokeUpWithPartnerArray)
 
     msgSaysCanYouHelp = CheckUserMessage(canYouHelpArray)
-
-
 
     msgSaysIFeelStuck = CheckUserMessage(iFeelStuckArray)
 
@@ -2594,10 +2592,29 @@ def choose_bot_wordy_response(message, clientId):
     return response
 
 
-@app.route("/")
+@app.route('/')
 def home():
     homepage_name = random.choice(["home - bootstrap 2020m05.html", "home - original pre-2020m05.html"])
+    get_google_ads_data()
     return render_template(homepage_name)
+
+campaign = ""
+group = ""
+geo = ""
+device = ""
+
+def get_google_ads_data():
+    global campaign
+    global group
+    global geo
+    global device
+    
+    campaign = request.args.get('campaign')
+    group = request.args.get('group')
+    geo = request.args.get('geo')
+    device = request.args.get('device')
+
+
 @app.route("/get")
 def first_function_after_app_route():
     """
@@ -2756,14 +2773,9 @@ def bot_processing(inputs_dict):
 
     if section==1:
 
-        abortConversation = False
-        noOfResponseFragments = 0 # to assign the variable
-
         if initialHappinessScore > 7:
-            response = ["Sounds like you're feeling OK! I'm designed for people who are feeling low \
-            and have something on their mind. But you're feeling good, which is great! :-)", \
-            "Or maybe you're just here to check out this site, which is cool. Why don't you refresh the page, but pretend you're feeling sad this time!"]
-            abortConversation = True
+            response = "Sounds like you're feeling OK! I'm designed for people who are feeling low \
+            and have something on their mind. But that's cool, let's talk anyway! :-)"
         elif initialHappinessScore > 3:
             response = "Thanks for sharing. Sounds like you're not quite on top of the world - shame about that. \
                 Is there anything specific on your mind at the moment?"
@@ -2773,41 +2785,28 @@ def bot_processing(inputs_dict):
             response = ["Oh dear, sounds like you're feeling really low, I'm sorry to hear that. ",
             "Is there something specific that's triggered this?"]
 
+        noOfResponseFragments = 0 # to assign the variable
+        noOfResponseFragments = no_of_fragments_in_str_or_list(response)
+        nextUserOptions = ["Yes", "No"]
+        nextUserInput = next_user_input_two(nextUserOptions,clientId) # this puts a string of html around it
+        nextUserInputType = "userInputButton"
+        next_section = section + 1
+        #next_section = 9 # DEBUG CHEAT: for debugging purposes when you want to skip the intro. This shouldn't apply normally
 
-        if abortConversation == False:
-            noOfResponseFragments = no_of_fragments_in_str_or_list(response)
-            nextUserOptions = ["Yes", "No"]
-            nextUserInput = next_user_input_two(nextUserOptions,clientId) # this puts a string of html around it
-            nextUserInputType = "userInputButton"
-            next_section = section + 1
-            #next_section = 9 # DEBUG CHEAT: for debugging purposes when you want to skip the intro. This shouldn't apply normally
-
-            # The next few lines prepares some inputs for the write_data function
-            conversationId = str(datetime.now())
-            initialiseResponseAlreadyUsedVariables()
-            responseIndex = 0 # I don't think this declaration is needed
-            responseForWriteData = ""
-            for responseIndex in range(0,noOfResponseFragments):
-                responseForWriteData = responseForWriteData + response[responseIndex]
-            write_data(anonymous, conversationId, "initialHappinessScore (!!) = "+message, responseForWriteData, section, clientId)
-        elif abortConversation == True:
-            next_section = -3
-            noOfResponseFragments = no_of_fragments_in_str_or_list(response)
-            nextUserOptions = [""] # n/a because next user input type is not buttons
-            nextUserInput = ""
-            nextUserInputType = ""
-
-            # output data
-            responseForWriteData = ""
-            for responseIndex in range(0,noOfResponseFragments):
-                responseForWriteData = responseForWriteData + response[responseIndex]
-            write_data(anonymous, conversationId, message, responseForWriteData, section, clientId)
+        # The next few lines prepares some inputs for the write_data function
+        conversationId = str(datetime.now())
+        initialiseResponseAlreadyUsedVariables()
+        responseIndex = 0 # I don't think this declaration is needed
+        responseForWriteData = ""
+        for responseIndex in range(0,noOfResponseFragments):
+            responseForWriteData = responseForWriteData + response[responseIndex]
+        write_data(anonymous, conversationId, "initialHappinessScore (!!) = "+message, responseForWriteData, section, clientId)
 
     elif section==2:
 
         if message.lower()=="yes":
             response = "I'd love to hear you say more about that. Before we do that, would you like me to explain about how this chatbot works?"
-            nextUserOptions = ["Yes, tell me how this bot works"] # this is the option that the user can select
+            nextUserOptions = ["Yes"] # this is the option that the user can select
             nextUserInput = next_user_input_one(nextUserOptions,clientId) # this puts a string of html around it
             next_section = section + 2
         else:
@@ -2827,18 +2826,11 @@ def bot_processing(inputs_dict):
     elif section==3:
         if message.lower() == "yes":
             response = "Feeling this way often sounds pretty rubbish. I'm sorry about that. How long have been like this?"
-            next_section = section + 0.5
-            noOfResponseFragments = no_of_fragments_in_str_or_list(response)
-            nextUserOptions = [""] # n/a because next user input type is not buttons
-            nextUserInput = nextUserInputFreeText
-            nextUserInputType = "freeText"
-        elif message.lower() == "no":
-            response = "I'd very much like to hear more about that. Before we do that, I'd like to quickly explain how this chatbot works, if that's OK?"
-            next_section = section + 1
-            noOfResponseFragments = no_of_fragments_in_str_or_list(response)
-            nextUserOptions = ["Yes, tell me how this bot works"] # this is the option that the user can select
-            nextUserInput = next_user_input_one(nextUserOptions,clientId) # this puts a string of html around it
-            nextUserInputType = "userInputButton"
+        next_section = section + 0.5
+        noOfResponseFragments = no_of_fragments_in_str_or_list(response)
+        nextUserOptions = [""] # n/a because next user input type is not buttons
+        nextUserInput = nextUserInputFreeText
+        nextUserInputType = "freeText"    
 
         responseForWriteData = ""
         for responseIndex in range(0,noOfResponseFragments):
@@ -2848,9 +2840,8 @@ def bot_processing(inputs_dict):
     elif section==3.5:
         response = "I'd like to hear more about that. Before we do that, I'd like to quickly explain how this chatbot works, if that's OK?"
         noOfResponseFragments = no_of_fragments_in_str_or_list(response)
-        nextUserOptions = ["Yes, tell me how this bot works"] # this is the option that the user can select
+        nextUserOptions = ["Yes"] # this is the option that the user can select
         nextUserInput = next_user_input_one(nextUserOptions,clientId) # this puts a string of html around it
-        nextUserInputType = "userInputButton"
         next_section = section + 0.5
         responseForWriteData = ""
 
@@ -2983,11 +2974,6 @@ def bot_processing(inputs_dict):
 
         response = "OK, now we've got the intro stuff out the way... you were saying before that \
         you were feeling "+str(initialHappinessScore)+" out of 10. "+responseFragmentBasedOnScore
-
-        print("TESTING on 28th Aug")
-        print("initialHappinessScore ="+str(initialHappinessScore))
-        print("responseFragmentBasedOnScore = "+responseFragmentBasedOnScore)
-        print("response = "+response)
 
         next_section = section + 1
         noOfResponseFragments = no_of_fragments_in_str_or_list(response)
