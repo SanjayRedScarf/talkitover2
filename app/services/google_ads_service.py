@@ -2,6 +2,16 @@ from flask import request
 
 class GoogleAdsService:
     def get_google_ads_data_from_url(self): 
+
+        """
+        This function gets the parameters from the URL passed from Google Ads.  These parameters are then hidden from user view via JavaScript.
+        """
+        
+        campaign = ""
+        group = ""
+        geo = ""
+        device = ""
+        
         campaign = request.args.get('campaign')
         group = request.args.get('group')
         geo = request.args.get('geo')

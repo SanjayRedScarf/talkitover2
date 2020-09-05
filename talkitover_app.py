@@ -2686,24 +2686,10 @@ def first_function_after_app_route():
 
 
 def bot_processing(inputs_dict):
-    """
-    At time of writing this is structured as if it's the function immediately after the app route
-    However when changes are made it's the main processing function which is called
-    either by the function after the "main" app route  (i.e. the app route linked to the javascript front end)
-    or by the function after the api app route.
-
-    """
-
-    ## THE BELOW COMMENTED OUT STUFF IS NO LONGER NEEDED
-    ## BECAUSE THE FUNCTION CLOSEST TO THE APP ROUTE DOES THIS NOW
-    # _input = json.loads(request.args.get('msg')) # perhaps don't need json.loads?
-
 
     message = inputs_dict["message"]
     global section
     section = inputs_dict["section"]
-    #output = inputs_dict[2] # I don't know what this is for!
-    #score = inputs_dict[3]
     initialHappinessScore = int(inputs_dict["initialHappinessScore"])
     finalHappinessScore = int(inputs_dict["finalHappinessScore"])
     anonymous = inputs_dict["anonymous"]
@@ -2711,10 +2697,7 @@ def bot_processing(inputs_dict):
     conversationId = inputs_dict["conversationId"]
     clientId = inputs_dict["clientId"]
 
-
-    start_again = False # I don't think this is being used
     global USER_CHARACTER_COUNT
-    # global frontEnd
     nextUserInput = ""
     if clientId == "originalJavascriptClient":
         nextUserInputFreeText = "<input id='textInput' type='text' name='msg' placeholder='Type your message here' />" # this is a standard choice of thing to have at the bottom of the chatbox which will allow the user to enter free text
