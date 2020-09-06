@@ -346,7 +346,7 @@ def write_data(anonymous, conversationId, message, response, section, clientId):
         response = response.replace(",", "¬")
 
         with open('storedData.csv', 'a') as f:
-            dataToStore = [str(conversationId), "User says:", str(message), "Chatbot says:", str(response), clientId, "Campaign: " + str(campaign or ''), "Group: " + str(group or ''), "Geo: " + str(geo or ''), "Device: " + str(device or '')]
+            dataToStore = [str(conversationId), "User says:", str(message), "Chatbot says:", str(response), clientId, "Campaign: " + str(campaign or ''), "Group: " + str(group or ''), "Geo: " + str(geo or ''), "Device: " + str(device or ''), "Timestamp: "+ str(datetime.now())]
             f.write("\n" + str(dataToStore))
     return None
 
