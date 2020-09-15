@@ -346,7 +346,7 @@ def write_data(anonymous, conversationId, message, response, section, clientId):
         response = response.replace(",", "¬")
 
         with open('storedData.csv', 'a') as f:
-            dataToStore = [str(conversationId), "User says:", str(message), "Chatbot says:", str(response), clientId, "Campaign: " + campaign, "Group: " + group, "Geo: " + geo, "Device: " + device]
+            dataToStore = [str(conversationId), "User says:", str(message), "Chatbot says:", str(response), clientId, "Campaign: " + str(campaign or ''), "Group: " + str(group or ''), "Geo: " + str(geo or ''), "Device: " + str(device or ''), "Timestamp: "+ str(datetime.now())]
             f.write("\n" + str(dataToStore))
     return None
 
@@ -2613,24 +2613,6 @@ def get_google_ads_data():
     group = request.args.get('group')
     geo = request.args.get('geo')
     device = request.args.get('device')
-
-    # if there is no query string, need to change this to a string, otherwise it will cause a fatal error
-    if type(campaign) != "str":
-        campaign=""
-    if type(group) != "str":
-        group=""
-    if type(geo) != "str":
-        geo=""
-    if type(device) != "str":
-        device=""
-
-    print("Types of capmaign, group, geo, dreivce:")
-    print(type(campaign))
-    print(type(group))
-    print(type(geo))
-    print(type(device))
-
-
 
 @app.route("/get")
 def first_function_after_app_route():
