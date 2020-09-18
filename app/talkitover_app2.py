@@ -10,6 +10,8 @@ conversation_data_service = ConversationDataService()
 @app.route('/')
 def home():
     homepage_name = random.choice(["home - bootstrap 2020m05.html", "home - original pre-2020m05.html"])
+    google_ads_data = ''
+    global google_ads_data
     google_ads_data = google_ads_service.get_google_ads_data_from_url()
     return render_template(homepage_name)
 
