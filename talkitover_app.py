@@ -353,16 +353,15 @@ def write_data(anonymous, conversationId, message, response, section, clientId):
 def next_user_input_one(buttonText_array, clientId):
     ## when we send certain strings of html to the client side, this function helps with that
     if clientId == "originalJavascriptClient":
-        html_text = "<select type='text' id='userInputButton' onchange='getBotResponse()'> \
-        <option>Select</option>  \
-        <option value='"+buttonText_array[0]+"'>"+buttonText_array[0]+"</option> \
-        </select>"
+        html_text = '<button type="button" class = "userButton" id = "userInputButton" value = "'+buttonText_array[0]+'" onclick="getBotResponse()">'+buttonText_array[0]+'</button>'
+
     elif clientId == "bootstrapJavascriptClient":
-        #html_text = "<select class='message_input' type='text' id='userInputButton' onchange='sendMessage()'> \
         html_text = "<select class='message_input' type='text' id='userInputButton'> \
         <option selected disabled>Select</option>  \
         <option value='"+buttonText_array[0]+"'>"+buttonText_array[0]+"</option> \
         </select>"
+        #html_text = '<button type="button" class = "userButton" id = "userInputButton" value = "'+buttonText_array[0]+'" onclick="mainFunction()">'+buttonText_array[0]+'</button>'
+
     else:
         html_text = buttonText_array[0] # in this scenario we're expecting that the client is the API, and therefore won't need any html text
     return html_text
@@ -370,11 +369,9 @@ def next_user_input_one(buttonText_array, clientId):
 def next_user_input_two(buttonText_array,clientId):
     ## when we send certain strings of html to the client side, this function helps with that
     if clientId == "originalJavascriptClient":
-        html_text = "<select type='text' id='userInputButton' onchange='getBotResponse()'> \
-        <option>Select</option>  \
-        <option value='"+buttonText_array[0]+"'>"+buttonText_array[0]+"</option> \
-        <option value='"+buttonText_array[1]+"'>"+buttonText_array[1]+"</option> \
-        </select>"
+        html_text = '<button type="button" class = "userButton" id = "userInputButton" value = "'+buttonText_array[0]+'" onclick="getBotResponse()">'+buttonText_array[0]+'</button> \
+                     <button type="button" class = "userButton" id = "userInputButton" value = "'+buttonText_array[1]+'" onclick="getBotResponse()">'+buttonText_array[1]+'</button>'
+
     elif clientId == "bootstrapJavascriptClient":
         #html_text = "<select class='message_input' type='text' id='userInputButton' onchange='sendMessage()'> \
         html_text = "<select class='message_input' type='text' id='userInputButton'> \
@@ -2697,7 +2694,7 @@ def bot_processing(inputs_dict):
         <option value='yes'>Yes</option> \
         <option value='no'>No</option> \
         </select>"
-        nextUserInputFinalHappinessSurvey = "<select type='number' id='finalHappinessSurvey' onchange='getBotResponse()'>\
+        nextUserInputFinalHappinessSurvey = "<select type='number' id='finalHappinessSurvey' onchange='getBotResponse()' style = 'width:500px;'>\
         <option>Select</option>\
         <option name='finalHappinessValue' value=1>1</option>\
         <option name='finalHappinessValue' value=2>2</option>\
@@ -2829,11 +2826,20 @@ def bot_processing(inputs_dict):
     elif section==3:
         if message.lower() == "yes":
             response = "Feeling this way often sounds pretty rubbish. I'm sorry about that. How long have been like this?"
-        next_section = 35
-        noOfResponseFragments = no_of_fragments_in_str_or_list(response)
-        nextUserOptions = [""] # n/a because next user input type is not buttons
-        nextUserInput = nextUserInputFreeText
-        nextUserInputType = "freeText"
+            next_section = 35
+            noOfResponseFragments = no_of_fragments_in_str_or_list(response)
+            nextUserOptions = [""] # n/a because next user input type is not buttons
+            nextUserInput = nextUserInputFreeText
+            nextUserInputType = "freeText"
+        elif message.lower() == "no":
+            response = "I'd like to explore this more with you. Before we do that, I'd like to quickly explain how this chatbot works, if that's OK?"
+            noOfResponseFragments = no_of_fragments_in_str_or_list(response)
+            nextUserOptions = ["Yes, tell me how this bot works"] # this is the option that the user can select
+            nextUserInput = next_user_input_one(nextUserOptions,clientId) # this puts a string of html around it
+            nextUserInputType = "userInputButton"
+            next_section = 4
+            if message.lower() != "no":
+                print("ERROR ERROR ERROR ERROR ERROR ERROR ERROR: in section==3, we're expecting the message to be yes or no, but it's coming through as something else")
 
         responseForWriteData = ""
         for responseIndex in range(0,noOfResponseFragments):
