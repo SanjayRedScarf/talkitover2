@@ -88,7 +88,7 @@
   addBotThinking = function(time=0){
     var image;
     //var botThinkingHtml = '<img class="botText" src="https://raw.githubusercontent.com/SanjayRedScarf/talkitover2/SanjayRedScarf-new/typing_dots_cropped.gif" style="width:90px; height:40px; margin-bottom: 10px;"/>'
-    var botThinkingHtml = '<img class="botText" src="https://raw.githubusercontent.com/SanjayRedScarf/talkitover2/SanjayRedScarf-new/typing_dots_cropped_roundedcorners.gif" style="width:90px; height:50px; margin-bottom: 10px;"/>'
+    var botThinkingHtml = '<img class="botText" src="/static/typing_dots_cropped.gif" style="width:90px; height:50px; margin-bottom: 10px;"/>'
     var bot
     setTimeout(function(){
       $('.messages').append(botThinkingHtml);
@@ -155,7 +155,7 @@
 
     clientId = "bootstrapJavascriptClient"
 
-    $.get("/get", { msg: JSON.stringify([userText, sectionNumber, output, sentiment, initialHappinessValueSent, finalHappinessValueSent, anonymous, conversationId, clientId]) }).done(function(data) {
+    $.get("/get", { msg: JSON.stringify([userText, sectionNumber, output, initialHappinessValueSent, finalHappinessValueSent, anonymous, conversationId, clientId]) }).done(function(data) {
 
       var noOfResponseFragments = JSON.parse(data)[1];
       if (noOfResponseFragments == 1) {
@@ -164,11 +164,10 @@
         var botResponseTextArray = JSON.parse(data)[0];
       }
       sectionNumber = JSON.parse(data)[2];
-      sentiment = JSON.parse(data)[3];
-      nextUserInput = JSON.parse(data)[4];
-      currentUserInputType = JSON.parse(data)[5];
-      anonymous = JSON.parse(data)[6]
-      conversationId = JSON.parse(data)[7]
+      nextUserInput = JSON.parse(data)[3];
+      currentUserInputType = JSON.parse(data)[4];
+      anonymous = JSON.parse(data)[5]
+      conversationId = JSON.parse(data)[6]
 
       // This section generates the html for the things the bot says
       var botHtmlArray = [];
