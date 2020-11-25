@@ -42,5 +42,3 @@ class TriggersRepository:
             del triggers_dict[trigger]
 
         return None
-        
-            
