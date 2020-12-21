@@ -176,6 +176,19 @@ nooneHelpsMeFeelBetterResponseAlreadyUsed = [conversationId,False]
 iHaveLostMyFriendsResponseAlreadyUsed = [conversationId,False]
 makesMeWantToSelfHarmResponseAlreadyUsed = [conversationId,False]
 iHaventSelfHarmedResponseAlreadyUsed = [conversationId,False]
+iDontHaveMotivationResponseAlreadyUsed = [conversationId,False]
+myLifeIsBoringResponseAlreadyUsed = [conversationId,False]
+iStruggleToBeHappyResponseAlreadyUsed = [conversationId,False]
+iStruggleToMakeConversationResponseAlreadyUsed = [conversationId,False]
+iDontHaveGoodRelationshipsWithAnybodyResponseAlreadyUsed = [conversationId,False]
+physicallyHurtMyselfResponseAlreadyUsed = [conversationId,False]
+speakToAProfessionalResponseAlreadyUsed = [conversationId,False]
+imTiredResponseAlreadyUsed = [conversationId,False]
+iHaveBeenDepressedResponseAlreadyUsed = [conversationId,False]
+boyfriendsLeftMeResponseAlreadyUsed = [conversationId,False]
+iKeepGettingHorribleThoughtsResponseAlreadyUsed = [conversationId,False]
+imMakingPeopleUpsetResponseAlreadyUsed = [conversationId,False]
+iWantToDieButResponseAlreadyUsed = [conversationId,False]
 
 ####### TODO TODO TODO ###################################
 ## Implement a separate css class for confidential text
@@ -343,6 +356,19 @@ def initialiseResponseAlreadyUsedVariables():
     iHaveLostMyFriendsResponseAlreadyUsed = [conversationId,False]
     makesMeWantToSelfHarmResponseAlreadyUsed = [conversationId,False]
     iHaventSelfHarmedResponseAlreadyUsed = [conversationId,False]
+    iDontHaveMotivationResponseAlreadyUsed = [conversationId,False]
+    myLifeIsBoringResponseAlreadyUsed = [conversationId,False]
+    iStruggleToBeHappyResponseAlreadyUsed = [conversationId,False]
+    iStruggleToMakeConversationResponseAlreadyUsed = [conversationId,False]
+    iDontHaveGoodRelationshipsWithAnybodyResponseAlreadyUsed = [conversationId,False]
+    physicallyHurtMyselfResponseAlreadyUsed = [conversationId,False]
+    speakToAProfessionalResponseAlreadyUsed = [conversationId,False]
+    imTiredResponseAlreadyUsed = [conversationId,False]
+    iHaveBeenDepresedResponseAlreadyUsed = [conversationId,False]
+    boyfriendsLeftMeResponseAlreadyUsed = [conversationId,False]
+    iKeepGettingHorribleThoughtsResponseAlreadyUsed = [conversationId,False]
+    imMakingPeopleUpsetResponseAlreadyUsed = [conversationId,False]
+    iWantToDieButResponseAlreadyUsed = [conversationId,False]
 
 def write_data(anonymous, conversationId, message, response, section, clientId):
     """
@@ -922,7 +948,24 @@ def choose_bot_wordy_response(message, clientId):
     makesMeWantToSelfHarmArray = ["makes me want to self harm", "makes me want to self-harm", "makes me want to selfharm",            "gives me urges to self harm", "gives me urges to self-harm", "gives me urges to selfharm",            "gives me desires to self harm", "gives me desires to self-harm", 
                         "gives me desires to selfharm", "makes me think i want to self harm", "makes me think i want to self-harm", "makes me think i want to selfharm",]
     iHaventSelfHarmedArray = ["i havent self-harmed", "i havent self harmed", "i havent selfharmed",               "ive managed not to self-harm", "ive managed not to self harm", "ive managed not to selfharm", "i have managed not to self-harm", "i have managed not to self harm", "i have managed not to selfharm", ]
-
+    iDontHaveMotivationArray = ["i dont have motivation", "i dont have the motivation", "i dont have any motivation", "i dont have any of the motivation", "i dont have any kind of motivation", "i dont have enough motivation", "i do not have motivation", "i do not have the motivation", "i do not have any motivation",
+                         "i do not have any of the motivation", "i do not have any kind of motivation", "i do not have enough motivation", "im lacking in motivation", "im lacking in any motivation", "im lacking in any of the motivation", "im lacking in any kind of motivation", "i am lacking in motivation", 
+                         "i am lacking in any motivation", "i am lacking in any of the motivation", "i am lacking in any kind of motivation", "ive lost all motivation", "i no longer have any motivation", "ive no longer got any motivation", "i dont have drive", "i dont have the drive", "i dont have any drive", 
+                         "i dont have any of the drive", "i dont have any kind of drive", "i dont have enough drive", "i do not have drive", "i do not have the drive", "i do not have any drive", "i do not have any of the drive", "i do not have any kind of drive", "i do not have enough drive",  "im lacking in drive",
+                         "im lacking in any drive", "im lacking in any of the drive", "im lacking in any kind of drive", "i am lacking in drive", "i am lacking in any drive", "i am lacking in any of the drive", "i am lacking in any kind of drive", "ive lost all drive", "i no longer have any drive", "ive no longer got any drive"]
+    myLifeIsBoringArray = ["my life is boring", "my life is dull", " my life is tedious", "life is boring for me", "life is dull for me", " life is tedious for me", ]
+    iStruggleToBeHappyArray = ["i struggle to be happy", "i find it hard to be happy", "i find it difficult to be happy"]
+    iStruggleToMakeConversationArray = ["i struggle to make conversation", "i find it hard to make conversation", "i find it difficult to make conversation", "i find it tough to make conversation", "making conversation is tough for me", "making conversation is hard for me", "making conversation is difficult for me",]
+    iDontHaveGoodRelationshipsWithAnybodyArray = ["i dont have good relationships with anybody", "i dont have any good relationships with anybody", "i have no good relationships with anybody", ]
+    physicallyHurtMyselfArray = ["physically hurt myself"]
+    speakToAProfessionalArray = ["speak to a professional"]
+    imTiredArray = ["im tired", "i am tired", "im drained", "i am drained", "im exhausted", "i am exhausted",      "im worn out", "i am worn out",]
+    iHaveBeenDepressedArray = ["i have been depressed"]
+    boyfriendsLeftMeArray = ["boyfriends left me", "boyfriend has left me", "boyfriend left me",            "girlfriends left me", "girlfriend has left me", "girlfriend left me",            "wifes left me", "wife has left me", "wife left me", "husband has left me", "husbands left me", "husband left me"]
+    iKeepGettingHorribleThoughtsArray = ["i keep getting horrible thoughts", "i keep getting terrible thoughts", "i keep getting nasty thoughts", "i keep getting horrific thoughts", "i keep getting unpleasant thoughts", "i get horrible thoughts", 
+                        "i get terrible thoughts", "i get nasty thoughts", "i get horrific thoughts", "i get unpleasant thoughts",]
+    imMakingPeopleUpsetArray = ["im making people upset", "im upsetting people", "im causing people upset", "im causing upset for people", "people are getting upset and im the cause", "im making people hurt", "im hurting people", "im causing people hurt", "im causing hurt for people", "people are getting hurt and im the cause", "im harming people", "im causing people harm", "im causing harm for people", "people are getting harmed and im the cause"]
+    iWantToDieButArray = ["i want to die, but", "i wanna die, but", "i would like to die, but"]
     # these variables are to keep track of whether a response has already been given (to avoid repeating it).
     # Just asserting here that they are global
     global iWantToKillMyselfResponseAlreadyUsed
@@ -1067,6 +1110,19 @@ def choose_bot_wordy_response(message, clientId):
     global iHaveLostMyFriendsResponseAlreadyUsed
     global makesMeWantToSelfHarmResponseAlreadyUsed
     global iHaventSelfHarmedResponseAlreadyUsed
+    global iDontHaveMotivationResponseAlreadyUsed
+    global myLifeIsBoringResponseAlreadyUsed
+    global iStruggleToBeHappyResponseAlreadyUsed
+    global iStruggleToMakeConversationResponseAlreadyUsed
+    global iDontHaveGoodRelationshipsWithAnybodyResponseAlreadyUsed
+    global physicallyHurtMyselfResponseAlreadyUsed
+    global speakToAProfessionalResponseAlreadyUsed
+    global imTiredResponseAlreadyUsed
+    global iHaveBeenDepressedResponseAlreadyUsed
+    global boyfriendsLeftMeResponseAlreadyUsed
+    global iKeepGettingHorribleThoughtsResponseAlreadyUsed
+    global imMakingPeopleUpsetResponseAlreadyUsed
+    global iWantToDieButResponseAlreadyUsed
 
 # declaring some variables which track whether a message says certain things
     msgSaysIWantToKillMyself = False
@@ -1210,6 +1266,19 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysIHaveLostMyFriends = False
     msgSaysMakesMeWantToSelfHarm = False
     msgSaysIHaventSelfHarmed = False
+    msgSaysIDontHaveMotivation = False
+    msgSaysMyLifeIsBoring = False
+    msgSaysIStruggleToBeHappy = False
+    msgSaysIStruggleToMakeConversation = False
+    msgSaysIDontHaveGoodRelationshipsWithAnybody = False
+    msgSaysPhysicallyHurtMyself = False
+    msgSaysSpeakToAProfessional = False
+    msgSaysImTired = False
+    msgSaysIHaveBeenDepressed = False
+    msgSaysBoyfriendsLeftMe = False
+    msgSaysIKeepGettingHorribleThoughts = False
+    msgSaysImMakingPeopleUpset = False
+    msgSaysIWantToDieBut = False
 
     negatedString = ""
 
@@ -1708,6 +1777,19 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysIHaveLostMyFriends = CheckUserMessage(iHaveLostMyFriendsArray)
     msgSaysMakesMeWantToSelfHarm = CheckUserMessage(makesMeWantToSelfHarmArray)
     msgSaysIHaventSelfHarmed = CheckUserMessage(iHaventSelfHarmedArray)
+    msgSaysIDontHaveMotivation = CheckUserMessage(iDontHaveMotivationArray)
+    msgSaysMyLifeIsBoring = CheckUserMessage(myLifeIsBoringArray)
+    msgSaysIStruggleToBeHappy = CheckUserMessage(iStruggleToBeHappyArray)
+    msgSaysIStruggleToMakeConversation = CheckUserMessage(iStruggleToMakeConversationArray)
+    msgSaysIDontHaveGoodRelationshipsWithAnybody = CheckUserMessage(iDontHaveGoodRelationshipsWithAnybodyArray)
+    msgSaysPhysicallyHurtMyself = CheckUserMessage(physicallyHurtMyselfArray)
+    msgSaysSpeakToAProfessional = CheckUserMessage(speakToAProfessionalArray)
+    msgSaysImTired = CheckUserMessage(imTiredArray)
+    msgSaysIHaveBeenDepressed = CheckUserMessage(iHaveBeenDepressedArray)
+    msgSaysBoyfriendsLeftMe = CheckUserMessage(boyfriendsLeftMeArray)
+    msgSaysIKeepGettingHorribleThoughts = CheckUserMessage(iKeepGettingHorribleThoughtsArray)
+    msgSaysImMakingPeopleUpset = CheckUserMessage(imMakingPeopleUpsetArray)
+    msgSaysIWantToDieBut = CheckUserMessage(iWantToDieButArray)
 
     def selectRandomResponse():
         ### If none of the triggers is hit, the backup option is to select a random encouraging Noise.
@@ -1742,6 +1824,10 @@ def choose_bot_wordy_response(message, clientId):
     elif msgSaysIWillDieToday == True and iWillDieTodayResponseAlreadyUsed != [conversationId,True]:
         response = "You say you will die today - how do you feel about that?"
         iWillDieTodayResponseAlreadyUsed = [conversationId,True]
+
+    elif msgSaysIWantToDieBut == True and iWantToDieButResponseAlreadyUsed != [conversationId,True]:
+        respone = "It's sad that you want to die, but I'm glad you're still staying alive"
+        iWantToDieButResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysIWantToDie == True and iWantToDieResponseAlreadyUsed != [conversationId,True]:
         # if the user's message contains some variant of "I want to kill myself"
@@ -1855,9 +1941,6 @@ def choose_bot_wordy_response(message, clientId):
                 response = "I like it when I hear about people loving their lives, and when someone says that they don't like being alive, that's always sad. All the more so since people who say that can often be suicidal..."
         iHateBeingAliveResponseAlreadyUsed = [conversationId,True]
 
-
-
-
     elif msgSaysShouldIEndIt == True and shouldIEndItResponseAlreadyUsed != [conversationId,True]:
         userIsSuicidal = False
         userIsSuicidal = msgSaysIWantToKillMyself or msgSaysIWantToDie or msgSaysImFeelingSuicidal or msgSaysImFeelingQuiteSuicidal or msgSaysSuicidalThoughts or msgSaysShouldIKillMyself \
@@ -1904,6 +1987,10 @@ def choose_bot_wordy_response(message, clientId):
                     "I don't want to interrupt our conversation, but I need you to know that I'm a very simple bot. If you tell me that you're still unsafe, I might not be able to identify that, \
                     and I definitely won't be able to track you down or get help for you, so I'll need you to get help for yourself. But I'm still here to listen..."]
         iWasRapedResponseAlreadyUsed = [conversationId,True]
+
+    elif msgSaysPhysicallyHurtMyself == True and physicallyHurtMyselfResponseAlreadyUsed != [conversationId,True]:
+        response = "Do you know why you do that"
+        physicallyHurtMyselfResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysMakesMeWantToSelfHarm == True and makesMeWantToSelfHarmResponseAlreadyUsed != [conversationId,True]:
         response = "I'm sorry to hear about these urges to self-harm. What you're going through sounds tough."
@@ -1983,6 +2070,12 @@ def choose_bot_wordy_response(message, clientId):
             response = " If it feels like you might have depression, things are probably tough for you. Sorry about that."
         iMightHaveDepressionResponseAlreadyUsed = [conversationId,True]
 
+    elif msgSaysIHaveBeenDepressed == True and iHaveBeenDepressedResponseAlreadyUsed != [conversationId,True]:
+        if USER_CHARACTER_COUNT < 300:
+            response = "I'm sorry to hear about the depressed feelings you've been having. Would you like to say more about those?"
+        else:
+            response = "So I'm hearing you have been depressed and I'm guessing you still are depressed now. I'm sorry to hear that."
+
     elif msgSaysIHaveNoWayOut == True and iHaveNoWayOutResponseAlreadyUsed != [conversationId,True]:
         ### If the message includes a string roughly equivalent to saying "IHaveNoWayOut", then reply with
         response = "I heard you mentioned that you feel you have no way out. Do you feel trapped?"
@@ -2013,6 +2106,12 @@ def choose_bot_wordy_response(message, clientId):
         response = "I'm sensing how close you are to being suicidal"
         theOnlyReasonIHaventKilledMyselfResponseAlreadyUsed = [conversationId,True]
 
+    elif msgSaysIKeepGettingHorribleThoughts == True and iKeepGettingHorribleThoughtsResponseAlreadyUsed != [conversationId,True]:
+        if USER_CHARACTER_COUNT < 300:
+            response = "Those thoughts sound unpleasant. Would you like to say more about those?"
+        else:
+            response = "I'm sorry to hear about the horrible thoughts"
+
     elif msgSaysIDontTrustAnyone == True and iDontTrustAnyoneResponseAlreadyUsed != [conversationId,True]:
         response = "Not being able to trust anyone sounds tough. And lonely..."
         iDontTrustAnyoneResponseAlreadyUsed = [conversationId,True]
@@ -2040,6 +2139,14 @@ def choose_bot_wordy_response(message, clientId):
     elif msgSaysImNotSpecialToAnyone == True and imNotSpecialToAnyoneResponseAlreadyUsed != [conversationId,True]:
         response = "That's sad. Everyone should feel like they're special to someone"
         imNotSpecialToAnyoneResponseAlreadyUsed = [conversationId,True]
+
+    elif msgSaysImMakingPeopleUpset == True and imMakingPeopleUpsetResponseAlreadyUsed != [conversationId,True]:
+        userIsLonely = False
+        userIsLonely = msgSaysFeelingLonely or feelingLonelyResponseAlreadyUsed == [conversationId,True]
+        if userIsLonely:
+            response = "It sounds difficult and lonely, knowing that you've caused hurt to others"
+        else:
+            response = "It sounds difficult and maybe also lonely, knowing that you've caused hurt to others"
 
     elif msgSaysIWantSomeoneToLoveMe == True and iWantSomeoneToLoveMeResponseAlreadyUsed != [conversationId,True]:
         ### If the message includes a string roughly equivalent to saying "DontHaveAnyoneICanTalkTo", then reply with
@@ -2080,6 +2187,13 @@ def choose_bot_wordy_response(message, clientId):
         response = "It's a shame that you feel you don't have anyone you can talk to. It sounds really isolating."
         dontHaveAnyoneICanTalkToResponseAlreadyUsed = [conversationId,True]
 
+    elif msgSaysIDontHaveGoodRelationshipsWithAnybody == True and iDontHaveGoodRelationshipsWithAnybodyResponseAlreadyUsed = [conversationId,True]:
+        response = "Not having good relationships with anyone sounds hard. And lonely."
+        iDontHaveGoodRelationshipsWithAnybodyResponseAlreadyUsed = [conversationId,True]
+
+    elif msgSaysIStruggleToMakeConversation == True and iStruggleToMakeConversationResponseAlreadyUsed != [conversationId,True]:
+        response = "Is there anything more you'd like to tell me about conversations?"
+        iStruggleToMakeConversationResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysIHateHowILook == True and iHateHowILookResponseAlreadyUsed != [conversationId,True]:
         ### If the message includes a string roughly equivalent to saying "IHateHowILook", then reply with
@@ -2111,6 +2225,12 @@ def choose_bot_wordy_response(message, clientId):
         else: # by this stage (i.e. for a user_character_cout this high) the user has probably explained a lot of what's happened to make them feel overwhelemed
             response = "That all sounds like a lot to deal with. "
         feelOverwhelmedResponseAlreadyUsed = [conversationId,True]
+
+    elif msgSaysImTired == True and imTiredResponseAlreadyUsed != [conversationId,True]:
+        if USER_CHARACTER_COUNT < 300:
+            response = "Sorry to hear you're feeling tired. Would you like to tell me more about what's making you feel this way?"
+        else:
+            response = "Sorry to hear you're feeling tired."
 
     elif msgSaysALotOnMyMind == True and aLotOnMyMindResponseAlreadyUsed != [conversationId,True]:
         ### If the message includes a string roughly equivalent to saying "a lot on my mind", then reply with
@@ -2159,6 +2279,10 @@ def choose_bot_wordy_response(message, clientId):
         ### If the message includes a string roughly equivalent to saying "I let myself down", then reply with
         response = "Hmm. So you don't feel your achievements live up to the expectations you have of yourself?"
         underAchievedResponseAlreadyUsed = [conversationId,True]
+
+    elif msgSaysIDontHaveMotivation == True and iDontHaveMotivationResponseAlreadyUsed != [conversationId,True]:
+        response = "Sounds tough, feeling like you don't have enough motivation or drive"
+        iDontHaveMotivationResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysHurtsMyFeelings == True and hurtsMyFeelingsResponseAlreadyUsed != [conversationId,True]:
         ### If the message includes a string roughly equivalent to saying "I let myself down", then reply with
@@ -2389,6 +2513,10 @@ def choose_bot_wordy_response(message, clientId):
         response = "You said that you're not feeling happy. That's sad. "
         imNotHappyResponseAlreadyUsed = [conversationId,True]
 
+    elif msgSaysIStruggleToBeHappy == True and iStruggleToBeHappyResponseAlreadyUsed != [conversationId,True]:
+        respone = "Happiness is so important. I'm sorry to hear happiness seems elusive for you."
+        iStruggleToBeHappyResponseAlreadyUsed = [conversationId,True]
+
     elif msgSaysIFeelNumb == True and iFeelNumbResponseAlreadyUsed != [conversationId,True]:
         ### If the message includes a string roughly equivalent to saying "i feel numb", then reply with
         response = "Well done for acknowledging how you are feeling - even if you are not feeling anything or are feeling numb."
@@ -2485,6 +2613,10 @@ def choose_bot_wordy_response(message, clientId):
         response = "That sounds lonely."
         iDontSeeManyPeopleResponseAlreadyUsed = [conversationId,True]
 
+    elif msgSaysMyLifeIsBoring == True and myLifeIsBoringResponseAlreadyUsed != [conversationId,True]:
+        response = "Sorry to hear you're not sounding excited about your life. I'd be happy to hear you say more about your feelings about your life?"
+        myLifeIsBoringResponseAlreadyUsed = [conversationId,True]
+
     elif msgSaysHelp == True and helpResponseAlreadyUsed != [conversationId,True]:
         ### if the user says that they have family problems somewhree in their message
         response = "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
@@ -2499,6 +2631,12 @@ def choose_bot_wordy_response(message, clientId):
         ### if the user says that they have family problems somewhree in their message
         response = "How are you feeling now?"
         brokeUpWithPartnerResponseAlreadyUsed = [conversationId,True]
+
+    elif msgSaysBoyfriendsLeftMe == True and boyfriendsLeftMeResponseAlreadyUsed = [conversationId,True]:
+        if USER_CHARACTER_COUNT < 300:
+            response = "Relationships are complex. I'm a pretty simple bot, but if you want to tell me more about it, I'm here to be a space for you to discuss this further."
+        else:
+            response = "I'm sorry to hear about the end of your relationship."
 
     elif msgSaysCanYouHelp == True and canYouHelpResponseAlreadyUsed != [conversationId,True]:
         ### if the user says can you help somewhree in their message
@@ -2556,6 +2694,10 @@ def choose_bot_wordy_response(message, clientId):
             randomlyChosenIndex = random.randint(0,len(adviceResponses)-1) # select a random number between 0 and final index of the adviceResponses array
             response = adviceResponses[randomlyChosenIndex] # set the response equal to the string (or whatever) corresponding to the relevant index
             doYouGiveAdviceResponseAlreadyUsed = [conversationId,True]
+
+    elif msgSaysSpeakToAProfessional = True and speakToAProfessionalResponseAlreadyUsed = [conversationId,True]:
+        response = "What sort of help do you need"
+        speakToAProfessionalResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysDontKnow == True and dontKnowResponseAlreadyUsed != [conversationId,True]:
         response = "You have said you don't know - I hope that by talking things through you will be able to work out a next step."
