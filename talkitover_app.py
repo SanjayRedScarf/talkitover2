@@ -2187,7 +2187,7 @@ def choose_bot_wordy_response(message, clientId):
         response = "It's a shame that you feel you don't have anyone you can talk to. It sounds really isolating."
         dontHaveAnyoneICanTalkToResponseAlreadyUsed = [conversationId,True]
 
-    elif msgSaysIDontHaveGoodRelationshipsWithAnybody == True and iDontHaveGoodRelationshipsWithAnybodyResponseAlreadyUsed = [conversationId,True]:
+    elif msgSaysIDontHaveGoodRelationshipsWithAnybody == True and iDontHaveGoodRelationshipsWithAnybodyResponseAlreadyUsed != [conversationId,True]:
         response = "Not having good relationships with anyone sounds hard. And lonely."
         iDontHaveGoodRelationshipsWithAnybodyResponseAlreadyUsed = [conversationId,True]
 
@@ -2514,7 +2514,7 @@ def choose_bot_wordy_response(message, clientId):
         imNotHappyResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysIStruggleToBeHappy == True and iStruggleToBeHappyResponseAlreadyUsed != [conversationId,True]:
-        respone = "Happiness is so important. I'm sorry to hear happiness seems elusive for you."
+        response = "Happiness is so important. I'm sorry to hear happiness seems elusive for you."
         iStruggleToBeHappyResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysIFeelNumb == True and iFeelNumbResponseAlreadyUsed != [conversationId,True]:
@@ -2632,7 +2632,7 @@ def choose_bot_wordy_response(message, clientId):
         response = "How are you feeling now?"
         brokeUpWithPartnerResponseAlreadyUsed = [conversationId,True]
 
-    elif msgSaysBoyfriendsLeftMe == True and boyfriendsLeftMeResponseAlreadyUsed = [conversationId,True]:
+    elif msgSaysBoyfriendsLeftMe == True and boyfriendsLeftMeResponseAlreadyUsed != [conversationId,True]:
         if USER_CHARACTER_COUNT < 300:
             response = "Relationships are complex. I'm a pretty simple bot, but if you want to tell me more about it, I'm here to be a space for you to discuss this further."
         else:
@@ -2695,7 +2695,7 @@ def choose_bot_wordy_response(message, clientId):
             response = adviceResponses[randomlyChosenIndex] # set the response equal to the string (or whatever) corresponding to the relevant index
             doYouGiveAdviceResponseAlreadyUsed = [conversationId,True]
 
-    elif msgSaysSpeakToAProfessional = True and speakToAProfessionalResponseAlreadyUsed = [conversationId,True]:
+    elif msgSaysSpeakToAProfessional == True and speakToAProfessionalResponseAlreadyUsed != [conversationId,True]:
         response = "What sort of help do you need"
         speakToAProfessionalResponseAlreadyUsed = [conversationId,True]
 
