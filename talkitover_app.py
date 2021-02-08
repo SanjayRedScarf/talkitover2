@@ -169,6 +169,7 @@ areYouABotResponseAlreadyUsed = [conversationId,False]
 willYouConverseWithMeResponseAlreadyUsed = [conversationId,False]
 thisBotIsBadResponseAlreadyUsed = [conversationId,False]
 parentsFightingResponseAlreadyUsed = [conversationId, False]
+iWantSomeoneToTalkToResponseAlreadyUsed = [conversationId, False]
 
 ####### TODO TODO TODO ###################################
 ## Implement a separate css class for confidential text
@@ -329,6 +330,7 @@ def initialiseResponseAlreadyUsedVariables():
     willYouConverseWithMeResponseAlreadyUsed = [conversationId,False]
     thisBotIsBadResponseAlreadyUsed = [conversationId,False]
     parentsFightingResponseAlreadyUsed = [conversationId, False]
+    iWantSomeoneToTalkToResponseAlreadyUsed = [conversationId, False]
 
 
 
@@ -893,6 +895,8 @@ def choose_bot_wordy_response(message, clientId):
                         "your useless", "your worthless", "your crap", "your rubbish", "your trash", "your annoying", "your pointless",
                         "what a waste of time", "what a pointless waste of time", "what a useless waste of time", "bye, you're useless", "bye, your useless", "bye, you are useless"]
     parentsFightingArray = ["my parents keep fighting", "my parents fight", "my parents always fight"]
+    iWantSomeoneToTalkToArray = ["i want someone who I can talk to", "i want someone to talk to", "i need someone to talk to"]
+    
 
 
 
@@ -1033,6 +1037,7 @@ def choose_bot_wordy_response(message, clientId):
     global willYouConverseWithMeResponseAlreadyUsed
     global thisBotIsBadResponseAlreadyUsed
     global parentsFightingResponseAlreadyUsed
+    global iWantSomeoneToTalkToResponseAlreadyUsed
 
 
 # declaring some variables which track whether a message says certain things
@@ -1170,6 +1175,7 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysWillYouConverseWithMe = False
     msgSaysThisBotIsBad = False
     msgSaysParentsFighting = False
+    msgSaysIWantSomeoneToTalkTo = False
 
     negatedString = ""
 
@@ -1661,6 +1667,8 @@ def choose_bot_wordy_response(message, clientId):
             msgSaysThisBotIsBad = True
 
     msgSaysParentsFighting = CheckUserMessage(parentsFightingArray)
+    
+    msgSaysIWantSomeoneToTalkTo = CheckUserMessage(iWantSomeoneToTalkToArray)
 
 
     def selectRandomResponse():
@@ -2450,6 +2458,10 @@ def choose_bot_wordy_response(message, clientId):
         ### if the user is asking how are you to the bot
         response = "I am ok thanks - let's talk about you, how are you?"
         howAreYouResponseAlreadyUsed = [conversationId, True]
+
+    elif msgSaysIWantSomeonToTalkTo == True and iWantSomeoneToTalkToResponseAlreadyUsed != [conversationId, True]:
+        response = "I can understand wanting to talk to someone. It's good to talk. I know I'm a bot but you can talk to me if you want."
+        iWantSomeoneToTalkToResponseAlreadyUsed = [conversationId, True]
 
     elif msgSaysWhatDoYouThink == True and whatDoYouThinkResponseAlreadyUsed != [conversationId, True]:
         ### if the user is asking what the bot thinks
