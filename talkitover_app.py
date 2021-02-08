@@ -168,6 +168,7 @@ shortResponseAlreadyUsed = [conversationId,False]
 areYouABotResponseAlreadyUsed = [conversationId,False]
 willYouConverseWithMeResponseAlreadyUsed = [conversationId,False]
 thisBotIsBadResponseAlreadyUsed = [conversationId,False]
+parentsFightingResponseAlreadyUsed = [conversationId, False]
 
 ####### TODO TODO TODO ###################################
 ## Implement a separate css class for confidential text
@@ -327,6 +328,7 @@ def initialiseResponseAlreadyUsedVariables():
     areYouABotResponseAlreadyUsed = [conversationId,False]
     willYouConverseWithMeResponseAlreadyUsed = [conversationId,False]
     thisBotIsBadResponseAlreadyUsed = [conversationId,False]
+    parentsFightingResponseAlreadyUsed = [conversationId, False]
 
 
 
@@ -890,6 +892,7 @@ def choose_bot_wordy_response(message, clientId):
                         "youre useless", "youre worthless", "youre crap", "youre rubbish", "youre trash", "youre annoying", "youre pointless",
                         "your useless", "your worthless", "your crap", "your rubbish", "your trash", "your annoying", "your pointless",
                         "what a waste of time", "what a pointless waste of time", "what a useless waste of time", "bye, you're useless", "bye, your useless", "bye, you are useless"]
+    parentsFightingArray = ["my parents keep fighting", "my parents fight", "my parents always fight"]
 
 
 
@@ -1029,6 +1032,7 @@ def choose_bot_wordy_response(message, clientId):
     global areYouABotResponseAlreadyUsed
     global willYouConverseWithMeResponseAlreadyUsed
     global thisBotIsBadResponseAlreadyUsed
+    global parentsFightingResponseAlreadyUsed
 
 
 # declaring some variables which track whether a message says certain things
@@ -1165,6 +1169,7 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysAreYouABot = False
     msgSaysWillYouConverseWithMe = False
     msgSaysThisBotIsBad = False
+    msgSaysParentsFighting = False
 
     negatedString = ""
 
@@ -1654,6 +1659,8 @@ def choose_bot_wordy_response(message, clientId):
     for string in thisBotIsBadArray_tight_noSpaces:
         if extraCleanedMessage.lower().startswith(string.lower()):
             msgSaysThisBotIsBad = True
+
+    msgSaysParentsFighting = CheckUserMessage(parentsFightingArray)
 
 
     def selectRandomResponse():
