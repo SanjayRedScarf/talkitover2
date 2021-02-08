@@ -900,7 +900,8 @@ def choose_bot_wordy_response(message, clientId):
                         "you are useless", "you are worthless", "you are crap", "you are rubbish", "you are trash", "you are annoying", "you are pointless",
                         "youre useless", "youre worthless", "youre crap", "youre rubbish", "youre trash", "youre annoying", "youre pointless",
                         "your useless", "your worthless", "your crap", "your rubbish", "your trash", "your annoying", "your pointless",
-                        "what a waste of time", "what a pointless waste of time", "what a useless waste of time", "bye, you're useless", "bye, your useless", "bye, you are useless"]
+                        "what a waste of time", "what a pointless waste of time", "what a useless waste of time", "bye, you're useless", "bye, your useless", "bye, you are useless", 
+                        "fucking waste of time", "fuck off", "fuck you", "stick it up your ass", "stick it up your arse", "you fucking retard", "not helping"]
     parentsFightingArray = ["my parents keep fighting", "my parents fight", "my parents always fight"]
     iWantSomeoneToTalkToArray = ["i want someone who I can talk to", "i want someone to talk to", "i need someone to talk to"]
     degradingMeArray = ["keep degrading me", "degrade me", "demean me", "keep demeaning me", "denigrate me", "keep denigrating me"]
