@@ -797,7 +797,8 @@ def choose_bot_wordy_response(message, clientId):
                             "i have family difficulties", "i'm having family difficulties", "im having family difficulties", "ive got family difficulties", "ive got difficulties with my family", \
                             "i have difficulties with my family", "i'm having difficulties with my family", "im having difficulties with my family", "ive got difficulties with my family", \
                             "i have family worries", "i'm having family worries", "im having family worries", "ive got family worries", "ive got worries with my family", \
-                            "i have worries with my family", "i'm having worries with my family", "im having worries with my family", "ive got worries with my family"]
+                            "i have worries with my family", "i'm having worries with my family", "im having worries with my family", "ive got worries with my family", 
+                            "i want to be in a different family", "the thing i want is to be in a different family", "my life would be easier if i were in a different family"]
     gotDumpedArray = ["my ex broke up with me", "my ex dumped me", "my exboyfriend broke up with me", "my exboyfriend dumped me", "my boyfriend broke up with me",\
                         "my boyfriend dumped me", "my exgirlfriend broke up with me", "my exgirlfriend dumped me", "my girlfriend broke up with me", "my girlfriend dumped me", \
                         "my exhusband broke up with me", "my exhusband dumped me", "my husband broke up with me", "my husband dumped me", "my exwife broke up with me", "my exwife dumped me",\
