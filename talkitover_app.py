@@ -172,6 +172,7 @@ parentsFightingResponseAlreadyUsed = [conversationId, False]
 iWantSomeoneToTalkToResponseAlreadyUsed = [conversationId, False]
 degradingMeResponseAlreadyUsed = [conversationId, False]
 feelingPanickyResponseAlreadyUsed = [conversationId, False]
+shouldIContactDoctorResponseAlreadyUsed = [conversationId, False]
 
 ####### TODO TODO TODO ###################################
 ## Implement a separate css class for confidential text
@@ -335,6 +336,7 @@ def initialiseResponseAlreadyUsedVariables():
     iWantSomeoneToTalkToResponseAlreadyUsed = [conversationId, False]
     degradingMeResponseAlreadyUsed = [conversationId, False]
     feelingPanickyResponseAlreadyUsed = [conversationId, False]
+    shouldIContactDoctorResponseAlreadyUsed = [conversationId, False]
 
 
 
@@ -903,6 +905,9 @@ def choose_bot_wordy_response(message, clientId):
     iWantSomeoneToTalkToArray = ["i want someone who I can talk to", "i want someone to talk to", "i need someone to talk to"]
     degradingMeArray = ["keep degrading me", "degrade me", "demean me", "keep demeaning me", "denigrate me", "keep denigrating me"]
     feelingPanickyArray = ["i feel panicky", "im feeling panicky", "im panicking", "im having a panic attack", "i am having a panic attack"]
+    shouldIContactDoctorArray = ["should i call a doctor", "should i contact a doctor", "should i get in touch with a doctor", "should i call my doctor", "should i contact my doctor", 
+                            "should i get in touch with my doctor", "would it be a good idea for me to call a doctor", "would it be a good idea for me to call my doctor", "shall i call a doctor", 
+                            "shall i get in touch with a doctor", "shall i call my doctor", "shall i get in touch with my doctor"]
     
 
 
@@ -1047,6 +1052,7 @@ def choose_bot_wordy_response(message, clientId):
     global iWantSomeoneToTalkToResponseAlreadyUsed
     global degradingMeResponseAlreadyUsed
     global feelingPanickyResponseAlreadyUsed
+    global shouldIContactDoctorResponseAlreadyUsed
 
 
 # declaring some variables which track whether a message says certain things
@@ -1187,6 +1193,7 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysIWantSomeoneToTalkTo = False
     msgSaysDegradingMe = False
     msgSaysFeelingPanicky = False
+    msgSaysShouldIContactDoctor = False
 
     negatedString = ""
 
@@ -1685,6 +1692,8 @@ def choose_bot_wordy_response(message, clientId):
 
     msgSaysFeelingPanicky = CheckUserMessage(feelingPanickyArray)
 
+    msgSaysShouldIContactDoctor = CheckUserMessage(shouldIContactDoctorArray)
+
 
     def selectRandomResponse():
         ### If none of the triggers is hit, the backup option is to select a random encouraging Noise.
@@ -1833,7 +1842,9 @@ def choose_bot_wordy_response(message, clientId):
         iHateBeingAliveResponseAlreadyUsed = [conversationId,True]
 
 
-
+    elif msgSaysShouldIContactDoctor == True and shouldIContactDoctorResponseAlreadyUsed != [conversationId, True]:
+        response = "Would you like to explore with me your thoughts on contacting your doctor?"
+        shouldIContactDoctorResponseAlreadyUsed != [conversationId, True]
 
     elif msgSaysShouldIEndIt == True and shouldIEndItResponseAlreadyUsed != [conversationId,True]:
         userIsSuicidal = False
