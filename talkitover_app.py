@@ -173,6 +173,7 @@ iWantSomeoneToTalkToResponseAlreadyUsed = [conversationId, False]
 degradingMeResponseAlreadyUsed = [conversationId, False]
 feelingPanickyResponseAlreadyUsed = [conversationId, False]
 shouldIContactDoctorResponseAlreadyUsed = [conversationId, False]
+strugglingWithSchoolResponseAlreadyUsed = [conversationId, False]
 
 ####### TODO TODO TODO ###################################
 ## Implement a separate css class for confidential text
@@ -337,6 +338,7 @@ def initialiseResponseAlreadyUsedVariables():
     degradingMeResponseAlreadyUsed = [conversationId, False]
     feelingPanickyResponseAlreadyUsed = [conversationId, False]
     shouldIContactDoctorResponseAlreadyUsed = [conversationId, False]
+    strugglingWithSchoolResponseAlreadyUsed = [conversationId, False]
 
 
 
@@ -909,6 +911,8 @@ def choose_bot_wordy_response(message, clientId):
     shouldIContactDoctorArray = ["should i call a doctor", "should i contact a doctor", "should i get in touch with a doctor", "should i call my doctor", "should i contact my doctor", 
                             "should i get in touch with my doctor", "would it be a good idea for me to call a doctor", "would it be a good idea for me to call my doctor", "shall i call a doctor", 
                             "shall i get in touch with a doctor", "shall i call my doctor", "shall i get in touch with my doctor"]
+    strugglingWithSchoolArray = ["im struggling with school", "im struggling at school", "im having a hard time with school", "i am struggling with school", "i am struggling at school", 
+        "i am having a hard time with school"]
     
 
 
@@ -1054,6 +1058,7 @@ def choose_bot_wordy_response(message, clientId):
     global degradingMeResponseAlreadyUsed
     global feelingPanickyResponseAlreadyUsed
     global shouldIContactDoctorResponseAlreadyUsed
+    global strugglingWithSchoolResponseAlreadyUsed
 
 
 # declaring some variables which track whether a message says certain things
@@ -1196,6 +1201,7 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysFeelingPanicky = False
     msgSaysShouldIContactDoctor = False
     msgIsQuestion = False
+    msgSaysStrugglingWithSchool = False
 
     negatedString = ""
 
@@ -1695,6 +1701,8 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysFeelingPanicky = CheckUserMessage(feelingPanickyArray)
 
     msgSaysShouldIContactDoctor = CheckUserMessage(shouldIContactDoctorArray)
+
+    msgSaysStrugglingWithSchool = CheckUserMessage(strugglingWithSchoolArray)
 
     if message[-1] == '?':
         #if the message ends in a question mark
@@ -2388,7 +2396,7 @@ def choose_bot_wordy_response(message, clientId):
         waitingToSeeIfPoliceAreGoingToChargeMeWithAnOffenceResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysImHomeless == True and imHomelessResponseAlreadyUsed != [conversationId,True]:
-        response = "Being homeless sounds tough"
+        response = "Being homeless ParentsFighting tough"
         imHomelessResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysIHaventSeenMyKids == True and iHaventSeenMyKidsResponseAlreadyUsed != [conversationId,True]:
@@ -2466,6 +2474,10 @@ def choose_bot_wordy_response(message, clientId):
         ### if the user says that they have family problems somewhree in their message
         response = "Oh no, I'm sorry, it's really awful when a relationship ends."
         gotDumpedResponseAlreadyUsed = [conversationId,True]
+
+    elif msgSaysStrugglingWithSchool == True and strugglingWithSchoolResponseAlreadyUsed != [conversationId, True]:
+        response = "Struggling with school sounds hard."
+        strugglingWithSchoolResponseAlreadyUsed = [conversationId, True]
 
     elif msgSaysBrokeUpWithPartner == True and brokeUpWithPartnerResponseAlreadyUsed != [conversationId,True]:
         ### if the user says that they have family problems somewhree in their message
