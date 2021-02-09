@@ -1869,7 +1869,7 @@ def choose_bot_wordy_response(message, clientId):
 
     elif msgSaysShouldIContactDoctor == True and shouldIContactDoctorResponseAlreadyUsed != [conversationId, True]:
         response = "Would you like to explore with me your thoughts on contacting your doctor?"
-        shouldIContactDoctorResponseAlreadyUsed != [conversationId, True]
+        shouldIContactDoctorResponseAlreadyUsed = [conversationId, True]
 
     elif msgSaysShouldIEndIt == True and shouldIEndItResponseAlreadyUsed != [conversationId,True]:
         userIsSuicidal = False
@@ -2409,7 +2409,7 @@ def choose_bot_wordy_response(message, clientId):
         waitingToSeeIfPoliceAreGoingToChargeMeWithAnOffenceResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysImHomeless == True and imHomelessResponseAlreadyUsed != [conversationId,True]:
-        response = "Being homeless ParentsFighting tough"
+        response = "Being homeless sounds tough"
         imHomelessResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysIHaventSeenMyKids == True and iHaventSeenMyKidsResponseAlreadyUsed != [conversationId,True]:
