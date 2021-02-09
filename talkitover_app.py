@@ -174,6 +174,7 @@ degradingMeResponseAlreadyUsed = [conversationId, False]
 feelingPanickyResponseAlreadyUsed = [conversationId, False]
 shouldIContactDoctorResponseAlreadyUsed = [conversationId, False]
 strugglingWithSchoolResponseAlreadyUsed = [conversationId, False]
+notFunctioningDueToDepressionResponseAlreadyUsed = [conversationId, False]
 
 ####### TODO TODO TODO ###################################
 ## Implement a separate css class for confidential text
@@ -339,6 +340,7 @@ def initialiseResponseAlreadyUsedVariables():
     feelingPanickyResponseAlreadyUsed = [conversationId, False]
     shouldIContactDoctorResponseAlreadyUsed = [conversationId, False]
     strugglingWithSchoolResponseAlreadyUsed = [conversationId, False]
+    notFunctioningDueToDepressionResponseAlreadyUsed = [conversationId, False]
 
 
 
@@ -913,6 +915,9 @@ def choose_bot_wordy_response(message, clientId):
                             "shall i get in touch with a doctor", "shall i call my doctor", "shall i get in touch with my doctor"]
     strugglingWithSchoolArray = ["im struggling with school", "im struggling at school", "im having a hard time with school", "i am struggling with school", "i am struggling at school", 
         "i am having a hard time with school"]
+    notFunctioningDueToDepressionArray = ["im not functioning due to depression", "im not functioning because of depression", "i am not functioning due to depression", 
+        "i am not functioning because of depression", "depression is causing me not to function", "i cant function because of depression","i cant function due to depression", 
+        "depression means i cant function", "im a low-functioning depressive"]
     
 
 
@@ -1059,6 +1064,7 @@ def choose_bot_wordy_response(message, clientId):
     global feelingPanickyResponseAlreadyUsed
     global shouldIContactDoctorResponseAlreadyUsed
     global strugglingWithSchoolResponseAlreadyUsed
+    global notFunctioningDueToDepressionResponseAlreadyUsed
 
 
 # declaring some variables which track whether a message says certain things
@@ -1202,6 +1208,7 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysShouldIContactDoctor = False
     msgIsQuestion = False
     msgSaysStrugglingWithSchool = False
+    msgSaysNotFunctioningDueToDepression = False
 
     negatedString = ""
 
@@ -1703,6 +1710,8 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysShouldIContactDoctor = CheckUserMessage(shouldIContactDoctorArray)
 
     msgSaysStrugglingWithSchool = CheckUserMessage(strugglingWithSchoolArray)
+
+    msgSaysNotFunctioningDueToDepression = CheckUserMessage(notFunctioningDueToDepressionArray)
 
     if message[-1] == '?':
         #if the message ends in a question mark
@@ -2308,9 +2317,13 @@ def choose_bot_wordy_response(message, clientId):
 
         imWorriedResponseAlreadyUsed = [conversationId,True]
 
+    elif msgSaysNotFunctioningDueToDepression == True and notFunctioningDueToDepressionResponseAlreadyUsed != [conversationId, True]:
+        response = "Would you like to say more about not being able to function?"
+        notFunctioningDueToDepressionResponseAlreadyUsed = [conversationId, True]
+
     elif msgSaysFeelingPanicky == True and feelingPanickyResponseAlreadyUsed != [conversationId, True]:
         response = "Sorry to hear about your panicking feelings. I'm here for you."
-        feelingPanickyResponseAlreadyUsed != [conversationId, True]
+        feelingPanickyResponseAlreadyUsed = [conversationId, True]
 
     elif msgSaysIDontKnowWhatToDo == True and iDontKnowWhatToDoResponseAlreadyUsed != [conversationId,True]:
         ### If the message includes a string roughly equivalent to saying "I don't know waht to do", then reply with
