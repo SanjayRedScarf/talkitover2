@@ -1195,6 +1195,7 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysDegradingMe = False
     msgSaysFeelingPanicky = False
     msgSaysShouldIContactDoctor = False
+    msgIsQuestion = False
 
     negatedString = ""
 
@@ -1694,6 +1695,12 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysFeelingPanicky = CheckUserMessage(feelingPanickyArray)
 
     msgSaysShouldIContactDoctor = CheckUserMessage(shouldIContactDoctorArray)
+
+    if message[-1] == '?':
+        #if the message ends in a question mark
+        msgIsQuestion = True
+
+    
 
 
     def selectRandomResponse():
@@ -2628,6 +2635,16 @@ def choose_bot_wordy_response(message, clientId):
             using this as a space to talk. And sorry I'm only a very simple bot. If you choose not to do this, please \
             type 'stop' below and provide feedback so we can make this better for others"]
         thisBotIsBadResponseAlreadyUsed = [conversationId,True]
+
+    elif msgIsQuestion:
+        #if the message ends in a question mark
+        msgIsQuestionResponses = ["I might not always do a good job of answering your questions, but I'm happy to be here to listen", 
+            "Sorry if I don't always know answers to things -- I'm a pretty simple bot. However if you want to keep on talking to me, please feel free.", 
+            "Thanks for posing your question, and sorry -- I'm terrible at coming up with good answers. I'm just here to listen, so feel free to use me as a space to explore your feelings.", 
+            "I'm here to listen, so feel free to continuing discussing things with me. Sorry I'm not great at answering questions.", 
+            "I'm quite a simple little bot, so please forgive me if I don't always give clever answers to questions; I'm here to listen, so please keep talking to me if it helps"]
+        randomlyChosenIndex = random.randint(0, len(msgIsQuestionResponses)-1)
+        response = msgIsQuestionResponses[randomlyChosenIndex]
 
     elif ((section == 11 and " " not in message) or len(message) < 10) and shortResponseAlreadyUsed != [conversationId,True]:
         ### If it's the user's first written response and they've given  (essentially) a one-word message, or maybe something without spaces (e.g. typing gibberish like usanvoiudvuvufdsiudsbca)
