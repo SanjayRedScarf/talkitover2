@@ -780,7 +780,7 @@ def choose_bot_wordy_response(message, clientId):
                                 "i feel horrible", "i'm feeling horrible", "im feeling horrible", "i am feeling horrible"]
     iWantThisFeelingToGoAwayArray = ["i want this feeling to go away", "i wish this feeling would go away", "i wish i didnt feel like this", "i dont want to feel like this"]
     iHateHowIFeelArray = ["hate how i feel","hate how im feeling", "hate my feelings"]
-    imSadArray = ["i am sad", "i'm sad", "im sad", "i feel sad"
+    imSadArray = ["i am sad", "i'm sad", "im sad", "i feel sad",
                 "i am feeling sad", "i'm feeling sad", "im feeling sad"]
     imUpsetArray = ["im upset", "i'm upset", "im feeling upset", "i'm feeling upset", "i feel upset", "i feel upset",\
                     "im so upset", "i'm so upset", "im feeling so upset", "i'm feeling so upset", "i feel so upset", "i feel so upset",\
