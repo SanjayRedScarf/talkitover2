@@ -71,7 +71,7 @@ class IntroductionService:
             introduction_output_data = output_data.OutputData(response, 2, next_user_options, next_user_input, "userInputButton")
         
         elif abort_conversation == True:
-            introduction_output_data = output_data.OutputData("", -3, [""], "", "earlyAbort")
+            introduction_output_data = output_data.OutputData(response, -3, [""], "", "earlyAbort")
 
         return introduction_output_data
 
