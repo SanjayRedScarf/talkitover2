@@ -6,7 +6,7 @@ class TriggerCheckService:
         self.triggers_dictionary = current_app.config['TRIGGERS_DICT']
         print(len(self.triggers_dictionary))
         # The exclusion list below is for arrays that don't need to be checked as they are for other functionality or have their own specific checking function
-        self.exclusion_list = ["encouragingNoises", "itsNotThat", "leadString", "thisBotIsBadtight"] 
+        self.exclusion_list = ["encouragingNoises", "itsNotThat", "leadString", "thisBotIsBadtight", "hello"] 
         # The exclusion list below is for arrays that don't need the lead string check
         self.lead_string_exclusion_list = ["imUseless", "imWorthless"]
         # The exclusion list below is for arrays that have a different way of checking the negating string
@@ -26,6 +26,10 @@ class TriggerCheckService:
                 has_triggered = self.__check_user_message(key, value, message, has_triggered)
             elif key == "thisBotIsBadtight":
                 has_triggered = self.__check_this_bot_is_bad_tight(message, has_triggered)
+            elif key == "hello":
+                for item in self.triggers_dictionary["hello"]:
+                    if item == message:
+                        has_triggered = True
 
             if has_triggered:
                 trigger = key
