@@ -525,7 +525,7 @@ class TriggerResponseService:
             things through can help. But if advice is what you're after then I'm sorry not to be able to help. Would \
             you like to talk about what's on your mind?"], "This bot isn't about me advising you; it's about you talking and finding your own way through things. You're welcome to continue talking if that would help?"]
             
-            response = random.choice[possible_responses] 
+            response = random.choice(possible_responses)
 
         elif trigger == "dontKnow":
             response = "You have said you don't know - I hope that by talking things through you will be able to work out a next step."
