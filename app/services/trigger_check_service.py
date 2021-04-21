@@ -18,7 +18,7 @@ class TriggerCheckService:
         Determines the trigger for the user's message.
         """
         # if nothing is triggered, encouraging noises array will be used by default
-        trigger = "encourgingNoises"
+        trigger = "encouragingNoises"
         has_triggered = False
 
         for (key, value) in self.triggers_dictionary.items():
