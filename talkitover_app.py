@@ -4,7 +4,7 @@ from json import dumps
 from datetime import datetime
 import json
 import time
-
+import os
 
 #for sentence encoder
 import tensorflow as tf
@@ -25,9 +25,13 @@ app = Flask(__name__)
 # At some point it would make sense to refactor out the frontEnd variable, because it's really a transitional thing
 # the below encouragingNoises are things the bot might say to the user
 
-module_url = "https://tfhub.dev/google/universal-sentence-encoder/4"
-model = hub.load(module_url)
-dataset = pd.read_csv("data.csv")
+THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
+my_file = os.path.join(THIS_FOLDER, 'data.csv')
+
+
+#module_url = "https://tfhub.dev/google/universal-sentence-encoder/4"
+#model = hub.load(module_url)
+dataset = pd.read_csv(my_file)
 
 
 encouragingNoises = ["I'm listening…", 
@@ -1605,7 +1609,7 @@ def choose_bot_wordy_response(message, clientId):
 
         return all_info
     
-    print(get_cat(message))
+    #print(get_cat(message))
 
 
     msgSaysIWantToKillMyself = CheckUserMessage(iWantToKillMyselfArray)
