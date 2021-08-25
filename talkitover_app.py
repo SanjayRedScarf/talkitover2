@@ -542,8 +542,8 @@ def write_data(anonymous, conversationId, message, response, section, clientId):
     """
     Stores the messages to file, if the user agrees, or if it's something inoffensive
     More precisely, if the anonymous variable is set to true (i.e. the user has given permission not to be totally confidential)...
-    ... or if we're in the initial section where gathering data is inoffensive anyway...
-    ... then store the data.
+    or if we're in the initial section where gathering data is inoffensive anyway...
+    then store the data.
     Note: I considered using a different decision criterion, namely what the nextUserInputType was (although tha'ts off by one, should be currentUserInputType)
     However for futureproofing reasons I decided against this.
     This is because in the future we might have dropdowns or buttons occurring during the body of the conversation.
@@ -1413,8 +1413,8 @@ def choose_bot_wordy_response(message, clientId):
     msgSaysImHomeless = False
     msgSaysIHaventSeenMyKids = False
     msgSaysDifficultDay = False
-    # msgSaysStressingMeOut = False
-    # msgSaysFamilyProblems = False
+    msgSaysStressingMeOut = False
+    msgSaysFamilyProblems = False
     msgSaysGotDumped = False
     msgSaysBrokeUpWithPartner = False
     msgSaysCanYouHelp = False
@@ -2910,7 +2910,7 @@ def choose_bot_wordy_response(message, clientId):
         response = "I am ok thanks - let's talk about you, how are you?"
         howAreYouResponseAlreadyUsed = [conversationId, True]
 
-    elif msgSaysIWantSomeonToTalkTo == True and iWantSomeoneToTalkToResponseAlreadyUsed != [conversationId, True]:
+    elif msgSaysIWantSomeoneToTalkTo == True and iWantSomeoneToTalkToResponseAlreadyUsed != [conversationId, True]:
         response = "I can understand wanting to talk to someone. It's good to talk. I know I'm a bot but you can talk to me if you want."
         iWantSomeoneToTalkToResponseAlreadyUsed = [conversationId, True]
 
