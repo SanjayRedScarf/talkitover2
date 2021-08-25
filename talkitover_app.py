@@ -6,14 +6,6 @@ import json
 import time
 import os
 
-#for sentence encoder
-import tensorflow as tf
-import tensorflow_hub as hub
-import seaborn as sns
-import pandas as pd
-import numpy as np
-import csv
-import operator
 from guse import SentenceEncoder
 #from textblob import TextBlob # was using this, but it doesn't seem to be working on Sanjay's machine
 #import nltk
@@ -24,8 +16,6 @@ app = Flask(__name__)
 # frontEnd = "pre2020m04" # can take the values "pre2020m04" or "2020m04"
 # At some point it would make sense to refactor out the frontEnd variable, because it's really a transitional thing
 # the below encouragingNoises are things the bot might say to the user
-
-#os.environ["TFHUB_CACHE_DIR"] = "gs://my-bucket/tfhub-modules-cache"
 
 se = SentenceEncoder()
 
