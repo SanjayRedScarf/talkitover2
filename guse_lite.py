@@ -7,16 +7,27 @@ import numpy as np
 import csv
 import operator
 import os
+import sentencepiece as spm
 
 class SentenceEncoder:
     def __init__(self):
         THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
         my_file = os.path.join(THIS_FOLDER, 'data.csv')
 
-        module_url = "https://tfhub.dev/google/universal-sentence-encoder/4"
+        with tf.Session() as sess:
+            module = hub.Module("https://tfhub.dev/google/universal-sentence-encoder-lite/2")
+            spm_path = sess.run(module(signature="spm_path"))
+        sp = spm.SentencePieceProcessor()
+        sp.Load(spm_path)
+
         self.model = hub.load(module_url)
         self.dataset = pd.read_csv(my_file)
 
+        
+
+
+sp = spm.SentencePieceProcessor()
+sp.Load(spm_path)
     def embed(self,sentences):
         return self.model(sentences)
 
@@ -33,10 +44,10 @@ class SentenceEncoder:
             return [" ".join(msg)]
 
     def get_cat(self,message):
-        threshold = {'Abuse':0.5,'Addiction':0.8,'Anxiety':0.6,'Bullied':0.5,'Complaining about using the bot':0.5,
-                'Coronavirus/Lockdown': 0.9,'Depression':0.7,'Empty':0.8,'Family & Relationships':0.55,
-                'Hate myself':0.7,'Help':0.8,"I don't know what to do":0.9,'I feel ugly':0.8,'Lonely':0.75,
-                'Lost':0.85,'Overwhelmed':0.85,'Self-harm':0.6,'Suicidal':0.75,'Upset':0.65,"Useless/Worthless/Failure":0.55}
+        threshold = {'Abuse':0.6,'Addiction':0.8,'Anxiety':0.7,'Bullied':0.68,'Complaining about using the bot':0.57,
+                'Coronavirus/Lockdown': 0.8,'Depression':0.82,'Empty':0.55,'Family & Relationships':0.58,
+                'Hate myself':0.78,'Help':0.72,"I don't know what to do":0.8,'I feel ugly':0.5,'Lonely':0.69,
+                'Lost':0.53,'Overwhelmed':0.6,'Self-harm':0.65,'Suicidal':0.8,'Upset':0.7,"Useless/Worthless/Failure":0.65}
     
         all_info = {}
         average_dot_products_per_category = {}
