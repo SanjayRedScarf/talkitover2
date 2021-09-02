@@ -1,0 +1,376 @@
+{
+      "Abuse": {
+            "exemplars": [
+                  "abuses me",
+                  "I'm a victim of abuse",
+                  "I'm being abused",
+                  "is abusing me"
+            ],
+            "threshold": 0.5,
+            "already_used": "helpResponseAlreadyUsed",
+            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+      },
+      "Addiction": {
+            "exemplars": [
+                  "I'm addicted",
+                  "I'm an addict",
+                  "is an alcoholic",
+                  "I am an alcoholic",
+                  "I am suffering from addiction",
+                  "I have addiction issues",
+                  "I'm using drugs and I can't stop",
+                  "I have an addiction",
+                  "I'm addicted to cocaine",
+                  "I'm addicted to heroin",
+                  "I'm addicted to smack",
+                  "I'm addicted to alcohol"
+            ],
+            "threshold": 0.9,
+            "already_used": "helpResponseAlreadyUsed",
+            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+      },
+      "Anxiety": {
+            "exemplars": [
+                  "Im having really bad anxiety ",
+                  "I suffer from anxiety",
+                  "I'm suffering from anxiety",
+                  "I'm having a panic attack",
+                  "AM SO SCARED",
+                  "I AM SO SCARED",
+                  "and i get very anxious constantly",
+                  "the pressure is getting to me",
+                  "im just scared",
+                  "I'm being forced to do something. I feel so uncomfortable. And I am shy. I get anxiety. I hate it!",
+                  "i feel like im just stressed and not doing enough work but then i wont have time to realx",
+                  "Just amount of stress"
+            ],
+            "threshold": 0.6,
+            "already_used": "helpResponseAlreadyUsed",
+            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+      },
+      "Complaining about using the bot": {
+            "exemplars": [
+                  "this bot is bad",
+                  "this bot is awful",
+                  "this bot is terrible",
+                  "this bot is atrocious",
+                  "this bot is shit",
+                  "this bot is crap",
+                  "you are a bad bot",
+                  "you are an awful bot",
+                  "you are a terrible bot",
+                  "you are an atrocious bot",
+                  "you are a shit bot",
+                  "you are a crap bot",
+                  "you are such a bad bot",
+                  "you are such an awful bot",
+                  "you are such a terrible bot",
+                  "you are such an atrocious bot",
+                  "you are such a shit bot",
+                  "you are such a crap bot",
+                  "this is a bad bot",
+                  "this is an awful bot",
+                  "this is a terrible bot",
+                  "this is an atrocious bot",
+                  "this is a shit bot",
+                  "this is a crap bot",
+                  "this is such a bad bot",
+                  "this is such an awful bot",
+                  "this is such a terrible bot",
+                  "this is such an atrocious bot",
+                  "this is such a shit bot",
+                  "this is such a crap bot",
+                  "this bot is not helping",
+                  "this bot isnt helping",
+                  "this bot is no help",
+                  "this bot is no use",
+                  "this bot aint helping",
+                  "i need to speak to a human",
+                  "i need to speak to a real person",
+                  "i need to speak to a real human",
+                  "are you even gonna actually have a conversation with me or just tell me to keep talking?",
+                  "is this all you do",
+                  "I fucking hate you",
+                  "fuck you",
+                  "why you just say the same thing over and over",
+                  "youre a faggot",
+                  "you are actually less help than talking to any of my piece of shit friends",
+                  "everything you say is fake as fuck",
+                  "fuck you",
+                  "you were never listening in the first place",
+                  "fucking cunt ass bot",
+                  "I hope they pull the plug on your AI ass you fucking bot faggot",
+                  "U r not answer meh :('",
+                  "no youre not",
+                  "Youre dumb",
+                  "you dont undertsand a thing im saying",
+                  "Omg I cant believe my friend recommended this :/\"",
+                  "ARE YOU FUCKING DONE??!?!!'",
+                  "you just said that a thousand times"
+            ],
+            "threshold": 0.5,
+            "already_used": "helpResponseAlreadyUsed",
+            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+      },
+      "Coronavirus/Lockdown": {
+            "exemplars": [
+                  "this pandemic",
+                  "COVID",
+                  "COVID-19",
+                  "coronavirus",
+                  "lockdown"
+            ],
+            "threshold": 0.9,
+            "already_used": "helpResponseAlreadyUsed",
+            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+      },
+      "Depression": {
+            "exemplars": [
+                  "I have a history of depression",
+                  "my depression started",
+                  "I was diagnosed with depression",
+                  "I suffer from depression",
+                  "I have depression"
+            ],
+            "threshold": 0.7,
+            "already_used": "helpResponseAlreadyUsed",
+            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+      },
+      "Empty": {
+            "exemplars": [
+                  "i feel emptiness",
+                  "I feel empty",
+                  "I can't feel anything",
+                  "I feel numb"
+            ],
+            "threshold": 0.8,
+            "already_used": "helpResponseAlreadyUsed",
+            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+      },
+      "Family & Relationships": {
+            "exemplars": [
+                  "I see people in beautiful romantic relationships and I think I want that too!\"",
+                  "my family",
+                  "my girlfriend had sex with",
+                  "I cant seem to find a girlfriend",
+                  "friendzoned me",
+                  "I have been trying to date for so long and nobody wants me",
+                  "I want a boyfriend",
+                  "I want a girlfriend",
+                  "I want to be in a relationship",
+                  "My boyfriend",
+                  "My husband",
+                  "My girlfriend",
+                  "My wife",
+                  "My stepfather",
+                  "My uncle",
+                  "My brother",
+                  "My sister",
+                  "My mother",
+                  "My father",
+                  "My stepmother",
+                  "My grandfather",
+                  "My grandmother"
+            ],
+            "threshold": 0.55,
+            "already_used": "helpResponseAlreadyUsed",
+            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+      },
+      "Hate myself": {
+            "exemplars": [
+                  "I hate myself",
+                  "I really hate myself",
+                  "I despise myself",
+                  "I can't stand myself",
+                  "I loathe myself",
+                  "Ive been feeling unworthy of the life I live",
+                  "The world would be better without me",
+                  "I dont like how I am",
+                  "There are things about myself that I don't like",
+                  "I feel like I should have died",
+                  "I think it would be better if I didn't exist",
+                  "I don't deserve affection",
+                  "Nobody likes me"
+            ],
+            "threshold": 0.7,
+            "already_used": "helpResponseAlreadyUsed",
+            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+      },
+      "Help": {
+            "exemplars": [
+                  "I need help",
+                  "can you help?",
+                  "help me please"
+            ],
+            "threshold": 0.8,
+            "already_used": "helpResponseAlreadyUsed",
+            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+      },
+      "I don't know what to do": {
+            "exemplars": [
+                  "I don't know what to do",
+                  "I just am not sure what to do"
+            ],
+            "threshold": 0.9,
+            "already_used": "helpResponseAlreadyUsed",
+            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+      },
+      "I feel ugly": {
+            "exemplars": [
+                  "I feel ugly",
+                  "I am ugly",
+                  "I look at myself in the mirror and feel disgusted",
+                  "Ive begun to hate how I look.",
+                  "I am so overweight and ugly",
+                  "I am fat and ugly",
+                  "I don't like my appearance",
+                  "I don't like how I look"
+            ],
+            "threshold": 0.8,
+            "already_used": "helpResponseAlreadyUsed",
+            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+      },
+      "Lonely": {
+            "exemplars": [
+                  "I'm lonely",
+                  "I'm alone",
+                  "I'm very lonely",
+                  "I'm very alone",
+                  "I have no one to connect with.",
+                  "I don’t have any friends",
+                  "I don't see my friends much",
+                  "I don't see people much",
+                  "Im meant to be alone",
+                  "I'm stuck in the house",
+                  "I have no one to talk to",
+                  "It's hard to be alone",
+                  "I'm missing human contact",
+                  "I feel terribly alone"
+            ],
+            "threshold": 0.75,
+            "already_used": "helpResponseAlreadyUsed",
+            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+      },
+      "Lost": {
+            "exemplars": [
+                  "I'm feeling lost",
+                  "I'm feeling forlorn"
+            ],
+            "threshold": 0.85,
+            "already_used": "helpResponseAlreadyUsed",
+            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+      },
+      "Overwhelmed": {
+            "exemplars": [
+                  "I'm overwhelmed",
+                  "I'm feeling overwhelmed",
+                  "YeahÂ¬ I just wish I didnt have to do so much work.",
+                  "I have too much to do",
+                  "I can't cope",
+                  "I cant handle all of the pressure",
+                  "it makes me feel overwhelmed",
+                  "I don't know how to handle it",
+                  "I'm not managing",
+                  "I'm barely managing",
+                  "Im not handling the stress in my life"
+            ],
+            "threshold": 0.85,
+            "already_used": "helpResponseAlreadyUsed",
+            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+      },
+      "Self-harm": {
+            "exemplars": [
+                  "I self-harm",
+                  "I hurt myself",
+                  "I'm a self-harmer",
+                  "sometimes I cut myself",
+                  "I cut when I'm feeling down",
+                  "Sometimes I cut myself",
+                  "When I feel bad I hurt myself",
+                  "I try to stop myself from cutting",
+                  "Can you think of anything to help me stop cutting myself?",
+                  "How can I stop myself from self-harming?",
+                  "I dont want to actually hurt myself."
+            ],
+            "threshold": 0.6,
+            "already_used": "helpResponseAlreadyUsed",
+            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+      },
+      "Suicidal": {
+            "exemplars": [
+                  "I want to kill myself",
+                  "I'm feeling suicidal",
+                  "I want to end my life",
+                  "I want to end it all",
+                  "I'm going to kill myself",
+                  "I'm going to end my life today",
+                  "I want to die",
+                  "I want to be dead",
+                  "I want to go to sleep and never wake up again",
+                  "i sometimes go to bed hoping i don't wake up",
+                  "I feel suicidal",
+                  "I've come to feel suicidal",
+                  "I have suicidal thoughts",
+                  "I would be better off dead",
+                  "I don't want to live",
+                  "I have no desire to be alive",
+                  "should i end my life",
+                  "should I end it all?",
+                  "ending my life feels like the only option",
+                  "killing myself feels like the only option",
+                  "suicide feels like the only option",
+                  "I tried to end my life",
+                  "i dont see life worth living anymore",
+                  "idk if i want to live anymore"
+            ],
+            "threshold": 0.75,
+            "already_used": "helpResponseAlreadyUsed",
+            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+      },
+      "Upset": {
+            "exemplars": [
+                  "I am sad",
+                  "i'm sad",
+                  "im sad",
+                  "i feel sad",
+                  "i am feeling sad",
+                  "i'm feeling sad",
+                  "im feeling sad",
+                  "I am upset",
+                  "i'm upset",
+                  "im upset",
+                  "i feel upset",
+                  "i am feeling upset",
+                  "i'm feeling upset",
+                  "im feeling upset",
+                  "I want to cry",
+                  "I am so sad",
+                  "I wish I wasnt so sad all the time...\""
+            ],
+            "threshold": 0.65,
+            "already_used": "helpResponseAlreadyUsed",
+            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+      },
+      "Useless/Worthless/Failure": {
+            "exemplars": [
+                  "I'm useless",
+                  "I feel useless",
+                  "it just makes me feel useless",
+                  "I'm totally useless",
+                  "I can't believe how useless I am",
+                  "I'm worthless",
+                  "I feel worthless",
+                  "it just makes me feel worthless",
+                  "I'm totally worthless",
+                  "I can't believe how worthless I am",
+                  "I'm a failure",
+                  "I feel like a failure",
+                  "and it just makes me feel like a failure",
+                  "I'm such a failure",
+                  "I can't believe how much of a failure I am"
+            ],
+            "threshold": 0.55,
+            "already_used": "helpResponseAlreadyUsed",
+            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+      }
+}

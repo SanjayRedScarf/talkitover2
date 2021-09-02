@@ -7,15 +7,18 @@ import numpy as np
 import csv
 import operator
 import os
+import json 
 
 class SentenceEncoder:
     def __init__(self):
         THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
-        my_file = os.path.join(THIS_FOLDER, 'data.csv')
-
+        my_file = os.path.join(THIS_FOLDER, 'aidata.json')
+        with open(my_file) as f:
+            self.dataset = json.load(f)
         module_url = "https://tfhub.dev/google/universal-sentence-encoder/4"
         self.model = hub.load(module_url)
-        self.dataset = pd.read_csv(my_file)
+        #self.dataset = pd.read_csv(my_file)
+        self.response = []
 
     def embed(self,sentences):
         return self.model(sentences)
@@ -33,21 +36,18 @@ class SentenceEncoder:
             return [" ".join(msg)]
 
     def get_cat(self,message):
-        threshold = {'Abuse':0.5,'Addiction':0.8,'Anxiety':0.6,'Bullied':0.5,'Complaining about using the bot':0.5,
-                'Coronavirus/Lockdown': 0.9,'Depression':0.7,'Empty':0.8,'Family & Relationships':0.55,
-                'Hate myself':0.7,'Help':0.8,"I don't know what to do":0.9,'I feel ugly':0.8,'Lonely':0.75,
-                'Lost':0.85,'Overwhelmed':0.85,'Self-harm':0.6,'Suicidal':0.75,'Upset':0.65,"Useless/Worthless/Failure":0.55}
+        threshold = dict(zip(self.dataset.keys(),[self.dataset[x]['threshold'] for x in self.dataset.keys()]))
     
         all_info = {}
         average_dot_products_per_category = {}
         max_dot_per_cat = {}
 
-        for category in self.dataset.columns[1:]:
+        for category in self.dataset.keys():
             dot_products = []
-            dfWithoutNaNs = self.dataset.dropna(subset=[str(category)], inplace=False)
-            category_message_embeddings = self.embed(dfWithoutNaNs[str(category)].tolist())
-
-            for x,toy in enumerate(dfWithoutNaNs[str(category)].tolist()):
+            #dfWithoutNaNs = self.dataset.dropna(subset=[str(category)], inplace=False)
+            #category_message_embeddings = self.embed(dfWithoutNaNs[str(category)].tolist())
+            category_message_embeddings = self.embed(self.dataset[category]['exemplars'])
+            for x,toy in enumerate(self.dataset[category]['exemplars']):
                 embeded_msgs = self.embed(self.cut_up_msg3(message,toy))
                 dot_products.append(np.max(np.inner(embeded_msgs,category_message_embeddings[x])))
         
@@ -71,10 +71,11 @@ class SentenceEncoder:
         return all_info
 
     def guse_response(self,cat):
-        return cat
+        cat_keys = list(cat)
+        return self.dataset[cat_keys[0]]['already_used'],self.dataset[cat_keys[0]]['response']
 
 
 
 if __name__ == '__main__':
     se = SentenceEncoder()
-    print(se.get_cat('im so mad')['highest_max_score_category'])
+    print(len(se.get_cat('my girlfriend hit me')['max_over_thresh']))

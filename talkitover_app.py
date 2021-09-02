@@ -1955,7 +1955,7 @@ def choose_bot_wordy_response(message, clientId):
         response = encouragingNoises[randomlyChosenIndex]
         return response
 
-    guse_cat = se.get_cat(message)['highest_max_score_category']
+    guse_cat = se.get_cat(message)['max_over_thresh']
 
     if msgSaysIWantToKillMyself == True and iWantToKillMyselfResponseAlreadyUsed != [conversationId,True]:
         # if the user's message contains some variant of "I want to kill myself"
@@ -2967,8 +2967,14 @@ def choose_bot_wordy_response(message, clientId):
         response = "I see you've said something very short there, which is cool :-). But feel free to type full sentences if you want. Just write about whatever's on your mind -- I'm here to listen."
         shortResponseAlreadyUsed = [conversationId,True]
 
-    elif guse_cat != 'printer': # just for test purposes
-        response = se.guse_response(guse_cat)
+    elif len(guse_cat) != 0: # just for test purposes
+        check, response_guse = se.guse_response(guse_cat)
+        
+        if globals()[check] != [conversationId,True]:
+            response = response_guse
+            globals()[check] = [conversationId,True]
+        else:
+            response = selectRandomResponse()
     else:
         response = selectRandomResponse()
  
