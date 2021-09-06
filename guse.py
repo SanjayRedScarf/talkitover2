@@ -19,6 +19,9 @@ class SentenceEncoder:
         self.model = hub.load(module_url)
         #self.dataset = pd.read_csv(my_file)
         self.response = []
+        self.repeat = []
+        self.threshold = dict(zip(self.dataset.keys(),[self.dataset[x]['threshold'] for x in self.dataset.keys()]))
+        #self.priority = dict(zip(self.dataset.keys(),[self.dataset[x]['priority'] for x in self.dataset.keys()]))
 
     def embed(self,sentences):
         return self.model(sentences)
@@ -36,7 +39,7 @@ class SentenceEncoder:
             return [" ".join(msg)]
 
     def get_cat(self,message):
-        threshold = dict(zip(self.dataset.keys(),[self.dataset[x]['threshold'] for x in self.dataset.keys()]))
+        #threshold = dict(zip(self.dataset.keys(),[self.dataset[x]['threshold'] for x in self.dataset.keys()]))
     
         all_info = {}
         average_dot_products_per_category = {}
@@ -54,8 +57,8 @@ class SentenceEncoder:
             average_dot_products_per_category[str(category)] = np.average(dot_products)
             max_dot_per_cat[str(category)] = max(dot_products)
 
-        max_compare_thresh = {x:max_dot_per_cat[x] for x in max_dot_per_cat.keys() & threshold.keys() if max_dot_per_cat[x] > threshold[x]}
-        avg_compare_thresh = {x:average_dot_products_per_category[x] for x in average_dot_products_per_category.keys() & threshold.keys() if average_dot_products_per_category[x] > threshold[x]}    
+        max_compare_thresh = {x:max_dot_per_cat[x] for x in max_dot_per_cat.keys() & self.threshold.keys() if max_dot_per_cat[x] > self.threshold[x]}
+        avg_compare_thresh = {x:average_dot_products_per_category[x] for x in average_dot_products_per_category.keys() & self.threshold.keys() if average_dot_products_per_category[x] > self.threshold[x]}    
         
         highest_average_score_category = max(average_dot_products_per_category, key=average_dot_products_per_category.get)
         highest_max_score_category = max(max_dot_per_cat,key=max_dot_per_cat.get)
@@ -71,11 +74,19 @@ class SentenceEncoder:
         return all_info
 
     def guse_response(self,cat):
-        cat_keys = list(cat)
-        return self.dataset[cat_keys[0]]['already_used'],self.dataset[cat_keys[0]]['response']
+        
+        compare = [item for item in cat.keys() if item not in self.repeat]
+        priority = dict(zip(compare,[self.dataset[x]['priority'] for x in compare]))
+        out_cat = min(priority,key=priority.get)
+        
+        self.repeat.append(out_cat)
+        print(self.repeat)
+        return self.dataset[str(out_cat)]['already_used'],self.dataset[str(out_cat)]['response']
 
 
 
 if __name__ == '__main__':
     se = SentenceEncoder()
-    print(len(se.get_cat('my girlfriend hit me')['max_over_thresh']))
+    cat = se.get_cat('my girlfriend hit me and im being abused and im depressed and also Upset. You fucking suck')['max_over_thresh']
+    print(cat)
+    print(se.guse_response(cat))

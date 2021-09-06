@@ -2969,11 +2969,13 @@ def choose_bot_wordy_response(message, clientId):
 
     elif len(guse_cat) != 0: # just for test purposes
         check, response_guse = se.guse_response(guse_cat)
-        
-        if globals()[check] != [conversationId,True]:
-            response = response_guse
-            globals()[check] = [conversationId,True]
-        else:
+        try:
+            if globals()[check] != [conversationId,True]:
+                response = response_guse
+                globals()[check] = [conversationId,True]
+            else:
+                response = selectRandomResponse()
+        except:
             response = selectRandomResponse()
     else:
         response = selectRandomResponse()

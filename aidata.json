@@ -7,8 +7,9 @@
                   "is abusing me"
             ],
             "threshold": 0.5,
-            "already_used": "helpResponseAlreadyUsed",
-            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+            "already_used": "abuseResponseAlreadyUsed",
+            "response": "[\"Just a quick reminder -- if there's any kind of abuse situation going on, or if you or anyone else is unsafe, please remember that I can't get help for you, so you would need to get help for yourself if you need it.\", \"And I'm programmed to err on the side of caution (i.e. I might accidentally give this response when it's not a clearly abusive situation, sorry about that). I didn't mean to interrupt the flow of this conversation, so please feel free to keep talking.\"]",
+            "priority": 3
       },
       "Addiction": {
             "exemplars": [
@@ -26,8 +27,9 @@
                   "I'm addicted to alcohol"
             ],
             "threshold": 0.9,
-            "already_used": "helpResponseAlreadyUsed",
-            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+            "already_used": "imAddictedResponseAlreadyUsed",
+            "response": "Addictions can be really tough. Could you say more about what it means for you?",
+            "priority": 5
       },
       "Anxiety": {
             "exemplars": [
@@ -45,8 +47,9 @@
                   "Just amount of stress"
             ],
             "threshold": 0.6,
-            "already_used": "helpResponseAlreadyUsed",
-            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+            "already_used": "imAnxiousResponseAlreadyUsed",
+            "response": "If there's anything more about stress/anxiety/fear you want to explore, feel free to say more about that here",
+            "priority": 6
       },
       "Complaining about using the bot": {
             "exemplars": [
@@ -109,8 +112,9 @@
                   "you just said that a thousand times"
             ],
             "threshold": 0.5,
-            "already_used": "helpResponseAlreadyUsed",
-            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+            "already_used": "thisBotIsBadResponseAlreadyUsed",
+            "response": "I'm a simple bot, trying my best to listen and help. I won't always get it right (sorry about that) but I'm still here to listen",
+            "priority": 18
       },
       "Coronavirus/Lockdown": {
             "exemplars": [
@@ -121,8 +125,9 @@
                   "lockdown"
             ],
             "threshold": 0.9,
-            "already_used": "helpResponseAlreadyUsed",
-            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+            "already_used": "iHateCoronavirusResponseAlreadyUsed",
+            "response": "I don't know much about coronavirus or pandemics, but I can be here for you while you talk about it if that might help",
+            "priority": 17
       },
       "Depression": {
             "exemplars": [
@@ -133,8 +138,9 @@
                   "I have depression"
             ],
             "threshold": 0.7,
-            "already_used": "helpResponseAlreadyUsed",
-            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+            "already_used": "iHaveDepressionResponseAlreadyUsed",
+            "response": "I think it's sad whenever anyone feels depression or anything like that",
+            "priority": 2
       },
       "Empty": {
             "exemplars": [
@@ -144,8 +150,9 @@
                   "I feel numb"
             ],
             "threshold": 0.8,
-            "already_used": "helpResponseAlreadyUsed",
-            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+            "already_used": "feelEmptyResponseAlreadyUsed",
+            "response": "I just wanted to pick up on the idea of emptiness. Feel free to say anything more about that?",
+            "priority": 8
       },
       "Family & Relationships": {
             "exemplars": [
@@ -173,8 +180,9 @@
                   "My grandmother"
             ],
             "threshold": 0.55,
-            "already_used": "helpResponseAlreadyUsed",
-            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+            "already_used": "familyProblemsResponseAlreadyUsed",
+            "response": "Do keep telling me more. I'm definitely no expert on family or relationships or anything like that, but I hope talking about it is helping.",
+            "priority": 13
       },
       "Hate myself": {
             "exemplars": [
@@ -193,8 +201,9 @@
                   "Nobody likes me"
             ],
             "threshold": 0.7,
-            "already_used": "helpResponseAlreadyUsed",
-            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+            "already_used": "iHateMyselfResponseAlreadyUsed",
+            "response": "I'm sensing some negativity towards yourself, and that's really sad",
+            "priority": 4
       },
       "Help": {
             "exemplars": [
@@ -204,7 +213,8 @@
             ],
             "threshold": 0.8,
             "already_used": "helpResponseAlreadyUsed",
-            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+            "response": "If you're needing help, I can try to be useful by being a place for you to talk through what's on your mind",
+            "priority": 7
       },
       "I don't know what to do": {
             "exemplars": [
@@ -212,8 +222,9 @@
                   "I just am not sure what to do"
             ],
             "threshold": 0.9,
-            "already_used": "helpResponseAlreadyUsed",
-            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+            "already_used": "iDontKnowWhatToDoResponseAlreadyUsed",
+            "response": "Hmm, sounds tough. Would you like to explore your options with me? I'll be here to listen",
+            "priority": 15
       },
       "I feel ugly": {
             "exemplars": [
@@ -227,8 +238,9 @@
                   "I don't like how I look"
             ],
             "threshold": 0.8,
-            "already_used": "helpResponseAlreadyUsed",
-            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+            "already_used": "iHateHowILookResponseAlreadyUsed",
+            "response": "Sometimes issues like image and appearance can make us feel bad or cause self-esteem issues. That's really sad.",
+            "priority": 16
       },
       "Lonely": {
             "exemplars": [
@@ -248,8 +260,9 @@
                   "I feel terribly alone"
             ],
             "threshold": 0.75,
-            "already_used": "helpResponseAlreadyUsed",
-            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+            "already_used": "feelingLonelyResponseAlreadyUsed",
+            "response": "It's sad whenever anyone is lonely or is missing the connections to other people that are so important",
+            "priority": 11
       },
       "Lost": {
             "exemplars": [
@@ -257,8 +270,9 @@
                   "I'm feeling forlorn"
             ],
             "threshold": 0.85,
-            "already_used": "helpResponseAlreadyUsed",
-            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+            "already_used": "feelLostResponseAlreadyUsed",
+            "response": "I'm getting the sense of a lost, almost forlorn feeling from what you're saying",
+            "priority": 12
       },
       "Overwhelmed": {
             "exemplars": [
@@ -275,8 +289,9 @@
                   "Im not handling the stress in my life"
             ],
             "threshold": 0.85,
-            "already_used": "helpResponseAlreadyUsed",
-            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+            "already_used": "feelOverwhelmedResponseAlreadyUsed",
+            "response": "I'm sensing a certain level of feeling a bit overwhelmed, perhaps?",
+            "priority": 14
       },
       "Self-harm": {
             "exemplars": [
@@ -293,8 +308,9 @@
                   "I dont want to actually hurt myself."
             ],
             "threshold": 0.6,
-            "already_used": "helpResponseAlreadyUsed",
-            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+            "already_used": "makesMeWantToSelfHarmResponseAlreadyUsed",
+            "response": "I'm sorry that things have got so had that you feel that way",
+            "priority": 1
       },
       "Suicidal": {
             "exemplars": [
@@ -324,8 +340,9 @@
                   "idk if i want to live anymore"
             ],
             "threshold": 0.75,
-            "already_used": "helpResponseAlreadyUsed",
-            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+            "already_used": "imFeelingSuicidalResponseAlreadyUsed",
+            "response": "Whenever someone has suicidal thoughts, that's always sad.",
+            "priority": 0
       },
       "Upset": {
             "exemplars": [
@@ -348,8 +365,9 @@
                   "I wish I wasnt so sad all the time...\""
             ],
             "threshold": 0.65,
-            "already_used": "helpResponseAlreadyUsed",
-            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+            "already_used": "imUpsetResponseAlreadyUsed",
+            "response": "I'm sorry to hear about any sadness or upset that you might be having at the moment",
+            "priority": 10
       },
       "Useless/Worthless/Failure": {
             "exemplars": [
@@ -370,7 +388,8 @@
                   "I can't believe how much of a failure I am"
             ],
             "threshold": 0.55,
-            "already_used": "helpResponseAlreadyUsed",
-            "response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+            "already_used": "imUselessResponseAlreadyUsed",
+            "response": "I hope you don't me mentioning that everyone has value, everyone has worth.",
+            "priority": 9
       }
 }
