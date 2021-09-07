@@ -2968,13 +2968,8 @@ def choose_bot_wordy_response(message, clientId):
         shortResponseAlreadyUsed = [conversationId,True]
 
     elif len(guse_cat) != 0: # just for test purposes
-        check, response_guse = se.guse_response(guse_cat)
         try:
-            if globals()[check] != [conversationId,True]:
-                response = response_guse
-                globals()[check] = [conversationId,True]
-            else:
-                response = selectRandomResponse()
+                response = se.guse_response(guse_cat)
         except:
             response = selectRandomResponse()
     else:

@@ -80,8 +80,7 @@ class SentenceEncoder:
         out_cat = min(priority,key=priority.get)
         
         self.repeat.append(out_cat)
-        print(self.repeat)
-        return self.dataset[str(out_cat)]['already_used'],self.dataset[str(out_cat)]['response']
+        return self.dataset[str(out_cat)]['response']
 
 
 
