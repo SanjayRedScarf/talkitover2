@@ -15,8 +15,9 @@ class SentenceEncoder:
         my_file = os.path.join(THIS_FOLDER, 'aidata.json')
         with open(my_file) as f:
             self.dataset = json.load(f)
-        module_url = "https://tfhub.dev/google/universal-sentence-encoder/4"
-        self.model = hub.load(module_url)
+        #module_url = "https://tfhub.dev/google/universal-sentence-encoder/4"
+        module_path = os.path.join(THIS_FOLDER,'universal-sentence-encoder_4')
+        self.model = hub.load(module_path)
         #self.dataset = pd.read_csv(my_file)
         self.response = []
         self.repeat = []
