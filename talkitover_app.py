@@ -2025,7 +2025,14 @@ def choose_bot_wordy_response(message, clientId):
         response = encouragingNoises[randomlyChosenIndex]
         return response
 
-    guse_cat = se.get_cat(message)['max_over_thresh']
+    print('\nbefore trying ai\n')
+    try:
+        guse_cat = se.get_cat(message)['max_over_thresh']
+        print(guse_cat)
+    except:
+        print("\nai not working\n")
+
+    print('\nafter trying ai\n')
 
     if msgSaysIWantToKillMyself == True and iWantToKillMyselfResponseAlreadyUsed != [conversationId,True]:
         # if the user's message contains some variant of "I want to kill myself"
@@ -3075,7 +3082,9 @@ def choose_bot_wordy_response(message, clientId):
     elif len(guse_cat) != 0: # just for test purposes
         try:
                 response = se.guse_response(guse_cat)
+                print('got it!!!!!')
         except:
+            print('there was some issue')
             response = selectRandomResponse()
     else:
         response = selectRandomResponse()

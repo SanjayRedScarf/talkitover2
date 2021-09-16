@@ -1,6 +1,6 @@
 import flask
-import tensorflow as tf
-import tensorflow_hub as hub
+#import tensorflow as tf
+#import tensorflow_hub as hub
 import seaborn as sns
 import pandas as pd
 import numpy as np
@@ -8,16 +8,23 @@ import csv
 import operator
 import os
 import json 
+from keras import backend as K
+from sentence_transformers import SentenceTransformer
+import torch
 
 class SentenceEncoder:
     def __init__(self):
+        #tf.config.threading.set_intra_op_parallelism_threads(1)
+        #os.environ['KERAS_BACKEND'] = 'theano'
+        torch.set_num_threads(1)
         THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
         my_file = os.path.join(THIS_FOLDER, 'aidata.json')
         with open(my_file) as f:
             self.dataset = json.load(f)
         #module_url = "https://tfhub.dev/google/universal-sentence-encoder/4"
-        module_path = os.path.join(THIS_FOLDER,'universal-sentence-encoder_4')
-        self.model = hub.load(module_path)
+        #module_path = os.path.join(THIS_FOLDER,'../model/','universal-sentence-encoder_4')
+        #self.model = hub.KerasLayer(module_path,trainable=False)
+        self.model = SentenceTransformer("all-MiniLM-L6-v2")
         #self.dataset = pd.read_csv(my_file)
         self.response = []
         self.repeat = []
@@ -25,7 +32,8 @@ class SentenceEncoder:
         #self.priority = dict(zip(self.dataset.keys(),[self.dataset[x]['priority'] for x in self.dataset.keys()]))
 
     def embed(self,sentences):
-        return self.model(sentences)
+        #return self.model(sentences) # for the tf model
+        return self.model.encode(sentences, convert_to_tensor = True) # used for the pytorch version
 
     def cut_up_msg3(self,msg,cut_string):
         msg = msg.split()
