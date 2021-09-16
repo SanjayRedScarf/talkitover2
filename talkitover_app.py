@@ -5,6 +5,8 @@ from datetime import datetime
 import json
 import time
 import os
+import ast
+import traceback
 
 from guse import SentenceEncoder
 #from textblob import TextBlob # was using this, but it doesn't seem to be working on Sanjay's machine
@@ -2029,8 +2031,9 @@ def choose_bot_wordy_response(message, clientId):
     try:
         guse_cat = se.get_cat(message)['max_over_thresh']
         print(guse_cat)
-    except:
+    except Exception as e:
         print("\nai not working\n")
+        print(e)
 
     print('\nafter trying ai\n')
 
@@ -2061,7 +2064,7 @@ def choose_bot_wordy_response(message, clientId):
         iWillDieTodayResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysIWantToDieBut == True and iWantToDieButResponseAlreadyUsed != [conversationId,True]:
-        respone = "It's sad that you want to die, but I'm glad you're still staying alive"
+        response = "It's sad that you want to die, but I'm glad you're still staying alive"
         iWantToDieButResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysIWantToDie == True and iWantToDieResponseAlreadyUsed != [conversationId,True]:
@@ -3081,10 +3084,18 @@ def choose_bot_wordy_response(message, clientId):
 
     elif len(guse_cat) != 0: # just for test purposes
         try:
-                response = se.guse_response(guse_cat)
+                out_cat, response = se.guse_response(guse_cat)
+                print('outcat in tio_app:',out_cat)
+                print('response in tio_app:',response)
+                if out_cat == 'Abuse':
+                    response = ast.literal_eval(response)
+                elif out_cat == None:
+                    print('outcat == none')
+                    response = selectRandomResponse()
                 print('got it!!!!!')
-        except:
-            print('there was some issue')
+        except Exception as e:
+            print(e)
+            traceback.print_exc()
             response = selectRandomResponse()
     else:
         response = selectRandomResponse()

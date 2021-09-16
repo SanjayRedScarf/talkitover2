@@ -22,9 +22,9 @@ class SentenceEncoder:
         with open(my_file) as f:
             self.dataset = json.load(f)
         #module_url = "https://tfhub.dev/google/universal-sentence-encoder/4"
-        #module_path = os.path.join(THIS_FOLDER,'../model/','universal-sentence-encoder_4')
+        #module_path = os.path.join(THIS_FOLDER,'../all_datasets_v3_mpnet-base/')
         #self.model = hub.KerasLayer(module_path,trainable=False)
-        self.model = SentenceTransformer("all-MiniLM-L6-v2")
+        self.model = SentenceTransformer('all-MiniLM-L6-v2')
         #self.dataset = pd.read_csv(my_file)
         self.response = []
         self.repeat = []
@@ -86,10 +86,13 @@ class SentenceEncoder:
         
         compare = [item for item in cat.keys() if item not in self.repeat]
         priority = dict(zip(compare,[self.dataset[x]['priority'] for x in compare]))
-        out_cat = min(priority,key=priority.get)
-        
-        self.repeat.append(out_cat)
-        return self.dataset[str(out_cat)]['response']
+        if len(priority) != 0:
+            out_cat = min(priority,key=priority.get)
+            print('out_cat:',out_cat)
+            self.repeat.append(out_cat)
+            return out_cat, self.dataset[str(out_cat)]['response']
+        else:
+            return None, None
 
 
 
