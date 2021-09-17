@@ -383,168 +383,6 @@ def initialiseResponseAlreadyUsedVariables():
     ## note the structure of the variables: it includes the conversationId; this is to ensure that
     ## the app doesn't get confused when two users are using the bot concurrently (or, indeed, one after the other?)
     global conversationId
-    iWantToKillMyselfResponseAlreadyUsed = [conversationId,False]
-    imGoingToKillMyselfResponseAlreadyUsed = [conversationId,False]
-    iWillDieTodayResponseAlreadyUsed = [conversationId,False]
-    iWantToDieResponseAlreadyUsed = [conversationId,False]
-    imFeelingSuicidalResponseAlreadyUsed = [conversationId,False]
-    iveBecomeSuicidalResponseAlreadyUsed = [conversationId,False]
-    #feelingQuiteSuicidalResponseAlreadyUsed : this varirable isn't being used
-    suicidalThoughtsResponseAlreadyUsed = [conversationId,False]
-    contemplatedSuicideButResponseAlreadyUsed = [conversationId,False]
-    iWishIWasDeadResponseAlreadyUsed = [conversationId,False]
-    betterOffDeadResponseAlreadyUsed = [conversationId,False]
-    iDontWantToLiveResponseAlreadyUsed = [conversationId,False]
-    iHateBeingAliveResponseAlreadyUsed = [conversationId,False]
-    sleepForeverResponseAlreadyUsed = [conversationId,False]
-    shouldIEndItResponseAlreadyUsed = [conversationId,False]
-    shouldIKillMyselfResponseAlreadyUsed = [conversationId,False]
-    suicideIsOnlyOptionResponseAlreadyUsed = [conversationId,False]
-    feelLikeEndingItResponseAlreadyUsed = [conversationId,False]
-    iWasRapedResponseAlreadyUsed = [conversationId,False]
-    cryingResponseAlreadyUsed = [conversationId,False]
-    iWantToCryResponseAlreadyUsed = [conversationId,False]
-    nothingToLiveForResponseAlreadyUsed = [conversationId,False]
-    singleWordDepressionResponseAlreadyUsed = [conversationId,False]
-    feelingDepressedResponseAlreadyUsed = [conversationId,False]
-    treatDepressionResponseAlreadyUsed = [conversationId,False]
-    iHaveDepressionResponseAlreadyUsed = [conversationId,False]
-    iMightHaveDepressionResponseAlreadyUsed = [conversationId,False]
-    iHaveNoWayOutResponseAlreadyUsed = [conversationId,False]
-    hadEnoughOfLifeResponseAlreadyUsed = [conversationId,False]
-    iWantToGiveUpOnLifeResponseAlreadyUsed = [conversationId,False]
-    nothingToLookForwardToResponseAlreadyUsed = [conversationId,False]
-    imUselessResponseAlreadyUsed = [conversationId,False]
-    imWorthlessResponseAlreadyUsed = [conversationId,False]
-    imNotLovedResponseAlreadyUsed = [conversationId,False]
-    imNotSpecialToAnyoneResponseAlreadyUsed = [conversationId,False]
-    iWantSomeoneToLoveMeResponseAlreadyUsed = [conversationId,False]
-    feelingLonelyResponseAlreadyUsed = [conversationId,False]
-    nobodyUnderstandsMeResponseAlreadyUsed = [conversationId,False]
-    imSickOfLockdownResponseAlreadyUsed = [conversationId,False]
-    iDontSleepResponseAlreadyUsed = [conversationId,False]
-    dontHaveAnyoneICanTalkToResponseAlreadyUsed = [conversationId,False]
-    iHateHowILookResponseAlreadyUsed = [conversationId,False]
-    loseWeightResponseAlreadyUsed = [conversationId, False]
-    feelOverwhelmedResponseAlreadyUsed = [conversationId,False]
-    aLotOnMyMindResponseAlreadyUsed = [conversationId,False]
-    feelingAwfulResponseAlreadyUsed = [conversationId,False]
-    feelLikeCryingResponseAlreadyUsed = [conversationId,False]
-    imAFailureResponseAlreadyUsed = [conversationId,False]
-    imALetdownResponseAlreadyUsed = [conversationId,False]
-    letMyselfDownResponseAlreadyUsed = [conversationId,False]
-    hardLifeResponseAlreadyUsed = [conversationId,False]
-    iHaveRegretsResponseAlreadyUsed = [conversationId,False]
-    underAchievedResponseAlreadyUsed = [conversationId,False]
-    hurtsMyFeelingsResponseAlreadyUsed = [conversationId,False]
-    hurtsToKnowThatResponseAlreadyUsed = [conversationId,False]
-    feelOutOfControlResponseAlreadyUsed = [conversationId,False]
-    feelLostResponseAlreadyUsed = [conversationId,False]
-    feelEmptyResponseAlreadyUsed = [conversationId,False]
-    inABadPlaceResponseAlreadyUsed = [conversationId,False]
-    imTrappedResponseAlreadyUsed = [conversationId,False]
-    nobodyCaresResponseAlreadyUsed = [conversationId,False]
-    noOneCaresAboutMeResponseAlreadyUsed = [conversationId,False]
-    deserveResponseAlreadyUsed = [conversationId,False]
-    iHateHowIFeelResponseAlreadyUsed = [conversationId,False]
-    imSadResponseAlreadyUsed = [conversationId,False]
-    feelingLowDownTerribleResponseAlreadyUsed = [conversationId,False]
-    iWantThisFeelingToGoAwayResponseAlreadyUsed = [conversationId,False]
-    imUpsetResponseAlreadyUsed = [conversationId,False]
-    hurtFeelingsResponseAlreadyUsed = [conversationId,False]
-    beingBulliedResponseAlreadyUsed = [conversationId,False]
-    iFeelHelplessResponseAlreadyUsed = [conversationId,False]
-    imAddictedResponseAlreadyUsed = [conversationId,False]
-    iHateCoronavirusResponseAlreadyUsed = [conversationId,False]
-    feelingRubbishResponseAlreadyUsed = [conversationId,False]
-    panicAttacksResponseAlreadyUsed = [conversationId,False]
-    iHaveAnxietyResponseAlreadyUsed = [conversationId,False]
-    imAnxiousResponseAlreadyUsed = [conversationId,False]
-    initial_imWorriedResponseAlreadyUsed = [conversationId,False]
-    second_imWorriedResponseAlreadyUsed = [conversationId,False]
-    iDontKnowWhatToDoResponseAlreadyUsed = [conversationId,False]
-    whatToDoWithMyselfResponseAlreadyUsed = [conversationId,False]
-    initial_iDontKnowWhatToSayResponseAlreadyUsed = [conversationId, False]
-    second_iDontKnowWhatToSayResponseAlreadyUsed = [conversationId, False]
-    personalHygieneResponseAlreadyUsed = [conversationId, False]
-    iSmellResponseAlreadyUsed = [conversationId, False] # not being used -- we're using the personalHygieneResponseAlreadyUsed variable instead
-    wantToBeHappyResponseAlreadyUsed = [conversationId, False]
-    imNotHappyResponseAlreadyUsed = [conversationId,False]
-    iFeelNumbResponseAlreadyUsed = [conversationId,False]
-    iFeelStuckResponseAlreadyUsed = [conversationId, False]
-    imNotHappyResponseAlreadyUsed = [conversationId,False]
-    imNotSureWhereToTurnResponseAlreadyUsed = [conversationId,False]
-    iHateMyselfResponseAlreadyUsed = [conversationId,False]
-    abandonedMeResponseAlreadyUsed = [conversationId,False]
-    imStuckAtHomeResponseAlreadyUsed = [conversationId,False]
-    waitingToSeeIfPoliceAreGoingToChargeMeWithAnOffenceResponseAlreadyUsed = [conversationId,False]
-    imHomelessResponseAlreadyUsed = [conversationId,False]
-    iHaventSeenMyKidsResponseAlreadyUsed = [conversationId,False]
-    difficultDayResponseAlreadyUsed = [conversationId,False]
-    # stressingMeOutResponseAlreadyUsed = [conversationId,False]
-    familyProblemsResponseAlreadyUsed = [conversationId,False]
-    gotDumpedResponseAlreadyUsed = [conversationId,False]
-    brokeUpWithPartnerResponseAlreadyUsed = [conversationId,False]
-    canYouHelpResponseAlreadyUsed = [conversationId,False]
-    feelLostResponseAlreadyUsed = [conversationId,False]
-    iWantFreedomResponseAlreadyUsed = [conversationId,False]
-    whoCanITalkToResponseAlreadyUsed = [conversationId,False]
-    howAreYouResponseAlreadyUsed = [conversationId,False]
-    whatDoYouThinkResponseAlreadyUsed = [conversationId,False]
-    imPregnantResponseAlreadyUsed = [conversationId,False]
-    imBeingTakenForGrantedResponseAlreadyUsed = [conversationId,False]
-    itsStressingMeOutResponseAlreadyUsed = [conversationId,False]
-    familyProblemsResponseAlreadyUsed = [conversationId,False]
-    fallOutResponseAlreadyUsed = [conversationId,False]
-    abuseResponseAlreadyUsed = [conversationId,False]
-    heartBreakResponseAlreadyUsed = [conversationId,False]
-    iWantAFriendResponseAlreadyUsed = [conversationId,False]
-    iDontSeeManyPeopleResponseAlreadyUsed = [conversationId,False]
-    feelLostResponseAlreadyUsed = [conversationId,False]
-    helpResponseAlreadyUsed = [conversationId,False]
-    # iWantFreedomResponseAlreadyUsed = [conversationId,False]
-    # whoCanITalkToResponseAlreadyUsed = [conversationId,False]
-    howAreYouResponseAlreadyUsed = [conversationId,False]
-    doYouGiveAdviceResponseAlreadyUsed = [conversationId,False]
-    dontKnowResponseAlreadyUsed = [conversationId,False]
-    whatDoYouThinkResponseAlreadyUsed = [conversationId,False]
-    imGoingToGoNowResponseAlreadyUsed = [conversationId,False]
-    areYouReadingResponseAlreadyUsed = [conversationId,False]
-    lettingMeGetMyThoughtsOutOfMyHeadResponseAlreadyUsed = [conversationId,False]
-    idkWhatElseToSayToYouResponseAlreadyUsed = [conversationId,False]
-    thankYouResponseAlreadyUsed = [conversationId, False]
-    shortResponseAlreadyUsed = [conversationId,False]
-    areYouABotResponseAlreadyUsed = [conversationId,False]
-    willYouConverseWithMeResponseAlreadyUsed = [conversationId,False]
-    thisBotIsBadResponseAlreadyUsed = [conversationId,False]
-    parentsFightingResponseAlreadyUsed = [conversationId, False]
-    iWantSomeoneToTalkToResponseAlreadyUsed = [conversationId, False]
-    degradingMeResponseAlreadyUsed = [conversationId, False]
-    feelingPanickyResponseAlreadyUsed = [conversationId, False]
-    shouldIContactDoctorResponseAlreadyUsed = [conversationId, False]
-    strugglingWithSchoolResponseAlreadyUsed = [conversationId, False]
-    notFunctioningDueToDepressionResponseAlreadyUsed = [conversationId, False]
-    iDontTrustAnyoneResponseAlreadyUsed = [conversationId,False]
-    theOnlyReasonIHaventKilledMyselfResponseAlreadyUsed = [conversationId,False]
-    iFeelStupidForHavingTheseFeelingsResponseAlreadyUsed = [conversationId,False]
-    imFeelingFatResponseAlreadyUsed = [conversationId,False]
-    nooneHelpsMeFeelBetterResponseAlreadyUsed = [conversationId,False]
-    iHaveLostMyFriendsResponseAlreadyUsed = [conversationId,False]
-    makesMeWantToSelfHarmResponseAlreadyUsed = [conversationId,False]
-    iHaventSelfHarmedResponseAlreadyUsed = [conversationId,False]
-    iDontHaveMotivationResponseAlreadyUsed = [conversationId,False]
-    myLifeIsBoringResponseAlreadyUsed = [conversationId,False]
-    iStruggleToBeHappyResponseAlreadyUsed = [conversationId,False]
-    iStruggleToMakeConversationResponseAlreadyUsed = [conversationId,False]
-    iDontHaveGoodRelationshipsWithAnybodyResponseAlreadyUsed = [conversationId,False]
-    physicallyHurtMyselfResponseAlreadyUsed = [conversationId,False]
-    speakToAProfessionalResponseAlreadyUsed = [conversationId,False]
-    imTiredResponseAlreadyUsed = [conversationId,False]
-    iHaveBeenDepresedResponseAlreadyUsed = [conversationId,False]
-    boyfriendsLeftMeResponseAlreadyUsed = [conversationId,False]
-    iKeepGettingHorribleThoughtsResponseAlreadyUsed = [conversationId,False]
-    imMakingPeopleUpsetResponseAlreadyUsed = [conversationId,False]
-    iWantToDieButResponseAlreadyUsed = [conversationId,False]
 
 
 def write_data(anonymous, conversationId, message, response, section, clientId):
@@ -640,70 +478,6 @@ def choose_bot_wordy_response(message, clientId):
     There are specific bot responses to give for each keyword.
     If no keyword is found, a randomly generated encouraging phrase is chosen
     """
-
-    ## KEYWORDS
-
-    # iWantToKillMyself
-    # iWantToDie
-    # feelingSuicidal
-    # feelingQuiteSuicidal
-    # suicidalThoughts
-    # contemplatedSuicideBut
-    # crying
-    # nothingToLiveFor
-    # singleWordDepression
-    # feelingDepressed
-    # treatDepression
-    # iHaveNoWayOut
-    # hadEnoughOfLife
-    # nothingToLookForwardTo
-    # imUseless
-    # imWorthless
-    # feelingLonely
-    # nobodyUnderstandsMe
-    # dontHaveAnyoneICanTalkTo
-    # iHateHowILook
-    # loseWeight
-    # feelOverwhelmed
-    # aLotOnMyMind
-    # feelingAwful
-    # feelLikeCrying
-    # letMyselfDown
-    # feelOutOfControl
-    # feelLost
-    # inABadPlace
-    # imTrapped
-    # nobodyCares
-    # deserve
-    # imSad
-    # feelingLowDownTerrible
-    # imUpset
-    # hurtFeelings
-    # beingBullied
-    # imAddicted
-    # feelingRubbish
-    # panicAttacks
-    # iDontKnowWhatToSay
-    # personalHygiene
-    # iSmell
-    # WantToBeHappy
-    # imNotHappy
-    #iFeelNumb
-    # iHateMyself
-    # difficultDay
-    # stressingMeOut
-    # familyProblems
-    # gotDumped
-    # brokeUpWithPartner
-    # canYouHelp
-    # feelLost
-    # iWantFreedom
-    # whoCanITalkTo
-    # howAreYou
-    # whatDoYouThink
-    # doYouGiveAdvice
-
-
 
     global USER_CHARACTER_COUNT
 
@@ -2036,7 +1810,7 @@ def choose_bot_wordy_response(message, clientId):
         print(e)
 
     print('\nafter trying ai\n')
-
+    print('convo id: ',conversationId)
     if msgSaysIWantToKillMyself == True and iWantToKillMyselfResponseAlreadyUsed != [conversationId,True]:
         # if the user's message contains some variant of "I want to kill myself"
         response = "Things must be pretty grim if you've got to the stage where you're talking about ending your life like this."
@@ -3357,7 +3131,7 @@ def bot_processing(inputs_dict):
     elif section==3:
         if message.lower() == "yes":
             response = "Feeling this way often sounds pretty rubbish. I'm sorry about that. How long have been like this?"
-            next_section = 35
+            next_section = 4
             noOfResponseFragments = no_of_fragments_in_str_or_list(response)
             nextUserOptions = [""] # n/a because next user input type is not buttons
             nextUserInput = nextUserInputFreeText
@@ -3368,7 +3142,7 @@ def bot_processing(inputs_dict):
             nextUserOptions = ["Yes, tell me how this bot works"] # this is the option that the user can select
             nextUserInput = next_user_input_one(nextUserOptions,clientId) # this puts a string of html around it
             nextUserInputType = "userInputButton"
-            next_section = 4
+            next_section = 5
             if message.lower() != "no":
                 print("ERROR ERROR ERROR ERROR ERROR ERROR ERROR: in section==3, we're expecting the message to be yes or no, but it's coming through as something else")
 
@@ -3379,20 +3153,20 @@ def bot_processing(inputs_dict):
 
     # 35 might seem like an odd choice of section number
     # we were previously using 3.5, but using a non-integer-typed number caused errors in the guided track bot on the other side of the API
-    elif section==35:
+    elif section==4:
         response = "I'd like to hear more about that. Before we do that, I'd like to quickly explain how this chatbot works, if that's OK?"
         noOfResponseFragments = no_of_fragments_in_str_or_list(response)
         nextUserOptions = ["Yes, tell me how this bot works"] # this is the option that the user can select
         nextUserInput = next_user_input_one(nextUserOptions,clientId) # this puts a string of html around it
         nextUserInputType = "userInputButton"
-        next_section = 4
+        next_section = section+1
         responseForWriteData = ""
 
         for responseIndex in range(0,noOfResponseFragments):
             responseForWriteData = responseForWriteData + response[responseIndex]
         write_data(anonymous, conversationId, message, responseForWriteData, section, clientId)
 
-    elif section==4:
+    elif section==5:
         response = ["I'm actually a very simple little bot. So please feel free to talk to me, \
         and sorry in advance if I don't always do a good job of understanding you. ",
         "Instead think of this as being more like writing a journal, but as you keep writing, \
@@ -3409,7 +3183,7 @@ def bot_processing(inputs_dict):
             responseForWriteData = responseForWriteData + response[responseIndex]
         write_data(anonymous, conversationId, message, responseForWriteData, section, clientId)
 
-    elif section==5:
+    elif section==6:
 
         response = "So given that I can't track you down, and also because I'm a very simple bot, \
         if you told me about an emergency/crisis situation, I wouldn't \
@@ -3422,7 +3196,7 @@ def bot_processing(inputs_dict):
 
         write_data(anonymous, conversationId, message, response, section, clientId)
 
-    elif section==6:
+    elif section==7:
 
         response = "Next I'm going to give you the choice whether you want to use this on a confidential \
         or anonymous basis. When I say anonymous, I mean that our boffins may see your text to help \
@@ -3435,7 +3209,7 @@ def bot_processing(inputs_dict):
 
         write_data(anonymous, conversationId, message, response, section, clientId)
 
-    elif section==7:
+    elif section==8:
 
         response = "And when I say confidential, I mean that your text won't be \
         stored at all, and no human will see what you write."
@@ -3447,7 +3221,7 @@ def bot_processing(inputs_dict):
 
         write_data(anonymous, conversationId, message, response, section, clientId)
 
-    elif section==8:
+    elif section==9:
 
         response = "Would you like this service to be anonymous or confidential?"
         next_section = section + 1
@@ -3458,7 +3232,7 @@ def bot_processing(inputs_dict):
 
         write_data(anonymous, conversationId, message, response, section, clientId)
 
-    elif section==9:
+    elif section==10:
 
         anonymous = "true" if message.split()[0].lower()=="anonymous" else "false"
         response = "Thanks! One last thing: You remember saying how you felt on a scale from 1 to 10 \
@@ -3471,7 +3245,7 @@ def bot_processing(inputs_dict):
 
         write_data(anonymous, conversationId, message, response, section, clientId)
 
-    elif section==10:
+    elif section==11:
 
         if clientId == "originalJavascriptClient":
             response = ["When you're finished using the bot, please click the stop button on the right \
@@ -3502,7 +3276,7 @@ def bot_processing(inputs_dict):
         write_data(anonymous, conversationId, message, responseForWriteData, section, clientId)
 
 
-    elif section==11:
+    elif section==12:
 
         responseFragmentBasedOnScore =""
 
@@ -3529,7 +3303,7 @@ def bot_processing(inputs_dict):
 
 
 
-    elif section > 11:
+    elif section > 12:
 
         USER_CHARACTER_COUNT += len(message)
 
