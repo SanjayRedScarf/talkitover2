@@ -24,16 +24,21 @@ class SentenceEncoder:
         #module_url = "https://tfhub.dev/google/universal-sentence-encoder/4"
         #module_path = os.path.join(THIS_FOLDER,'../all_datasets_v3_mpnet-base/')
         #self.model = hub.KerasLayer(module_path,trainable=False)
-        self.model = SentenceTransformer("paraphrase-MiniLM-L3-v2")
+        self.model = SentenceTransformer("all-MiniLM-L6-v2")
         #self.dataset = pd.read_csv(my_file)
         self.response = []
         self.repeat = []
         self.threshold = dict(zip(self.dataset.keys(),[self.dataset[x]['threshold'] for x in self.dataset.keys()]))
         #self.priority = dict(zip(self.dataset.keys(),[self.dataset[x]['priority'] for x in self.dataset.keys()]))
-
+        self.cat_embed ={}
+    
     def embed(self,sentences):
         #return self.model(sentences) # for the tf model
         return self.model.encode(sentences, convert_to_tensor = True) # used for the pytorch version
+
+    def make_cat_embed(self):
+            for category in self.dataset.keys():
+                self.cat_embed[category]=self.embed(self.dataset[category]['exemplars'])
 
     def cut_up_msg3(self,msg,cut_string):
         msg = msg.split()
@@ -48,39 +53,39 @@ class SentenceEncoder:
             return [" ".join(msg)]
 
     def get_cat(self,message):
-        #threshold = dict(zip(self.dataset.keys(),[self.dataset[x]['threshold'] for x in self.dataset.keys()]))
-    
         all_info = {}
-        average_dot_products_per_category = {}
         max_dot_per_cat = {}
 
-        for category in self.dataset.keys():
+        max_dot_substring_dot =0
+        max_dot_substring = ''
+        max_dot_exemplar = ''
+        for category in self.dataset.keys(): # for every category, taken from aidata json
             dot_products = []
-            #dfWithoutNaNs = self.dataset.dropna(subset=[str(category)], inplace=False)
-            #category_message_embeddings = self.embed(dfWithoutNaNs[str(category)].tolist())
-            category_message_embeddings = self.embed(self.dataset[category]['exemplars'])
-            for x,toy in enumerate(self.dataset[category]['exemplars']):
-                embeded_msgs = self.embed(self.cut_up_msg3(message,toy))
-                dot_products.append(np.max(np.inner(embeded_msgs,category_message_embeddings[x])))
-        
-            average_dot_products_per_category[str(category)] = np.average(dot_products)
+            for x,toy in enumerate(self.dataset[category]['exemplars']): # for every exemplar sentence in each category 
+                cut_up_msg = self.cut_up_msg3(message,toy)
+                embeded_msgs = self.embed(cut_up_msg)
+                dots = np.inner(embeded_msgs,self.cat_embed[category][x])
+                max_loc = np.argmax(dots)
+                dot_products.append(dots[max_loc]) # append max for one exemplar out of all the cut ups of user msgs
+                if dot_products[-1] > max_dot_substring_dot:
+                    max_dot_substring_dot = dot_products[-1]
+                    max_dot_substring = cut_up_msg[max_loc]
+                    max_dot_exemplar = toy
             max_dot_per_cat[str(category)] = max(dot_products)
 
         max_compare_thresh = {x:max_dot_per_cat[x] for x in max_dot_per_cat.keys() & self.threshold.keys() if max_dot_per_cat[x] > self.threshold[x]}
-        avg_compare_thresh = {x:average_dot_products_per_category[x] for x in average_dot_products_per_category.keys() & self.threshold.keys() if average_dot_products_per_category[x] > self.threshold[x]}    
-        
-        highest_average_score_category = max(average_dot_products_per_category, key=average_dot_products_per_category.get)
+
         highest_max_score_category = max(max_dot_per_cat,key=max_dot_per_cat.get)
 
-        all_info ={"user_msg":message,"max_over_thresh":max_compare_thresh,'avg_over_thresh':avg_compare_thresh,
+        all_info={"user_msg":message,"max_over_thresh":max_compare_thresh,
                     "max_dot_per_cat":max_dot_per_cat,
-                    "average_dot_products_per_category":average_dot_products_per_category,
-                    'highest_average_score_category':highest_average_score_category,
-                    'highest_avg_cat_dot': average_dot_products_per_category[highest_average_score_category],
                     'highest_max_score_category':highest_max_score_category,
-                    'highest_max_cat_dot':max_dot_per_cat[highest_max_score_category]}
-
+                    'highest_max_cat_dot':max_dot_per_cat[highest_max_score_category],
+                    'exemplar_for_max_cat': max_dot_exemplar,
+                    'substring_for_max_cat': max_dot_substring}
+        print(all_info)
         return all_info
+
 
     def guse_response(self,cat):
         print('repeat_early:',self.repeat)
@@ -99,6 +104,7 @@ class SentenceEncoder:
 
 if __name__ == '__main__':
     se = SentenceEncoder()
+    se.make_cat_embed()
     cat = se.get_cat('my girlfriend hit me and im being abused and im depressed and also Upset. You fucking suck')['max_over_thresh']
     print(cat)
     print(se.guse_response(cat))

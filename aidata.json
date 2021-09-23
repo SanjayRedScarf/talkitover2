@@ -309,7 +309,7 @@
             ],
             "threshold": 0.6,
             "already_used": "makesMeWantToSelfHarmResponseAlreadyUsed",
-            "response": "I'm sorry that things have got so had that you feel that way",
+            "response": "I'm sorry that things have got so hard that you feel that way",
             "priority": 1
       },
       "Suicidal": {

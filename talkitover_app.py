@@ -20,6 +20,7 @@ app = Flask(__name__)
 # the below encouragingNoises are things the bot might say to the user
 
 se = SentenceEncoder()
+se.make_cat_embed()
 
 
 encouragingNoises = ["I'm listening…", 
@@ -385,7 +386,7 @@ def initialiseResponseAlreadyUsedVariables():
     global conversationId
 
 
-def write_data(anonymous, conversationId, message, response, section, clientId):
+def write_data(anonymous, conversationId, message, response, section, clientId, ai_data={}):
     """
     Stores the messages to file, if the user agrees, or if it's something inoffensive
     More precisely, if the anonymous variable is set to true (i.e. the user has given permission not to be totally confidential)...
@@ -399,9 +400,9 @@ def write_data(anonymous, conversationId, message, response, section, clientId):
     if anonymous=="true" or section <= 10:  # note: this is bad practice; shouldn't hardcode the number of sections; should probably refactor this at some point
         message = message.replace(",", "¬")
         response = response.replace(",", "¬")
-
+    
         with open('storedData.csv', 'a') as f:
-            dataToStore = [str(conversationId), "User says:", str(message), "Chatbot says:", str(response), clientId, "Campaign: " + str(campaign or ''), "Group: " + str(group or ''), "Geo: " + str(geo or ''), "Device: " + str(device or ''), "Timestamp: "+ str(datetime.now())]
+            dataToStore = [str(conversationId), "User says:", str(message), "Chatbot says:", str(response),'Ai_data:',str(ai_data), clientId, "Campaign: " + str(campaign or ''), "Group: " + str(group or ''), "Geo: " + str(geo or ''), "Device: " + str(device or ''), "Timestamp: "+ str(datetime.now())]
             f.write("\n" + str(dataToStore))
     return None
 
@@ -1800,10 +1801,11 @@ def choose_bot_wordy_response(message, clientId):
         randomlyChosenIndex = random.randint(0,noOfEncouragingNoises-1)
         response = encouragingNoises[randomlyChosenIndex]
         return response
-
+    ai_data = {}
     print('\nbefore trying ai\n')
     try:
-        guse_cat = se.get_cat(message)['max_over_thresh']
+        ai_data = se.get_cat(message)
+        guse_cat = ai_data['max_over_thresh']
         print(guse_cat)
     except Exception as e:
         print("\nai not working\n")
@@ -2874,7 +2876,7 @@ def choose_bot_wordy_response(message, clientId):
     else:
         response = selectRandomResponse()
  
-    return response
+    return response, ai_data
 
 
 @app.route('/')
@@ -3306,7 +3308,7 @@ def bot_processing(inputs_dict):
     elif section > 12:
 
         USER_CHARACTER_COUNT += len(message)
-
+        all_data = {}
         if(message.lower()=="stop"):
             response = "Thank you for using this bot. Please rate how you feel on a scale \
             from 1 to 10, where 1 is terrible and 10 is great. As a reminder, the score you \
@@ -3317,7 +3319,7 @@ def bot_processing(inputs_dict):
             nextUserInput = nextUserInputFinalHappinessSurvey
             nextUserInputType = "finalHappinessSurvey"
         else:
-            response = choose_bot_wordy_response(message, clientId)
+            response, all_data = choose_bot_wordy_response(message, clientId)
             next_section = section + 1
             noOfResponseFragments = no_of_fragments_in_str_or_list(response)
             nextUserOptions = [""] # n/a because next user input type is not buttons
@@ -3333,7 +3335,7 @@ def bot_processing(inputs_dict):
         #     for responseIndex in range(0,noOfResponseFragments):
         #         responseForWriteData = responseForWriteData + response[responseIndex]
 
-        write_data(anonymous, conversationId, message, responseForWriteData, section, clientId)
+        write_data(anonymous, conversationId, message, responseForWriteData, section, clientId, all_data)
 
 
     elif section == -1: # this is the "end" (i.e. user has entered "stop") section
