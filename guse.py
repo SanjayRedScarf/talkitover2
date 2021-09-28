@@ -7,7 +7,7 @@ import numpy as np
 import csv
 import operator
 import os
-import json 
+import json
 from keras import backend as K
 from sentence_transformers import SentenceTransformer
 import torch
@@ -22,16 +22,18 @@ class SentenceEncoder:
         with open(my_file) as f:
             self.dataset = json.load(f)
         #module_url = "https://tfhub.dev/google/universal-sentence-encoder/4"
-        #module_path = os.path.join(THIS_FOLDER,'../all_datasets_v3_mpnet-base/')
+        model_path = os.path.join(THIS_FOLDER,'../model/all-MiniLM-L6-v2/')
         #self.model = hub.KerasLayer(module_path,trainable=False)
-        self.model = SentenceTransformer("all-MiniLM-L6-v2")
+        self.model = SentenceTransformer(model_path)
         #self.dataset = pd.read_csv(my_file)
         self.response = []
         self.repeat = []
         self.threshold = dict(zip(self.dataset.keys(),[self.dataset[x]['threshold'] for x in self.dataset.keys()]))
         #self.priority = dict(zip(self.dataset.keys(),[self.dataset[x]['priority'] for x in self.dataset.keys()]))
         self.cat_embed ={}
-    
+        print('Hi Im new')
+        print(self.repeat)
+
     def embed(self,sentences):
         #return self.model(sentences) # for the tf model
         return self.model.encode(sentences, convert_to_tensor = True) # used for the pytorch version
@@ -61,7 +63,7 @@ class SentenceEncoder:
         max_dot_exemplar = ''
         for category in self.dataset.keys(): # for every category, taken from aidata json
             dot_products = []
-            for x,toy in enumerate(self.dataset[category]['exemplars']): # for every exemplar sentence in each category 
+            for x,toy in enumerate(self.dataset[category]['exemplars']): # for every exemplar sentence in each category
                 cut_up_msg = self.cut_up_msg3(message,toy)
                 embeded_msgs = self.embed(cut_up_msg)
                 dots = np.inner(embeded_msgs,self.cat_embed[category][x])
