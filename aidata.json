@@ -51,6 +51,17 @@
             "response": "If there's anything more about stress/anxiety/fear you want to explore, feel free to say more about that here",
             "priority": 6
       },
+      "Bullied": {
+            "exemplars": [
+                  "Im being bullied",
+                  "im being cyberbullied",
+                  "bullying me"
+            ],
+            "threshold": 0.99,
+            "already_used": "beingBulliedResponseAlreadyUsed",
+            "response": "It's sad if people have been treating others badly",
+            "priority": 19
+      },
       "Complaining about using the bot": {
             "exemplars": [
                   "this bot is bad",
@@ -111,7 +122,7 @@
                   "ARE YOU FUCKING DONE??!?!!'",
                   "you just said that a thousand times"
             ],
-            "threshold": 0.5,
+            "threshold": 0.6,
             "already_used": "thisBotIsBadResponseAlreadyUsed",
             "response": "I'm a simple bot, trying my best to listen and help. I won't always get it right (sorry about that) but I'm still here to listen",
             "priority": 18
@@ -124,7 +135,7 @@
                   "coronavirus",
                   "lockdown"
             ],
-            "threshold": 0.9,
+            "threshold": 8.5,
             "already_used": "iHateCoronavirusResponseAlreadyUsed",
             "response": "I don't know much about coronavirus or pandemics, but I can be here for you while you talk about it if that might help",
             "priority": 17
@@ -137,7 +148,7 @@
                   "I suffer from depression",
                   "I have depression"
             ],
-            "threshold": 0.7,
+            "threshold": 0.6,
             "already_used": "iHaveDepressionResponseAlreadyUsed",
             "response": "I think it's sad whenever anyone feels depression or anything like that",
             "priority": 2
@@ -151,7 +162,7 @@
             ],
             "threshold": 0.8,
             "already_used": "feelEmptyResponseAlreadyUsed",
-            "response": "I just wanted to pick up on the idea of emptiness. Feel free to say anything more about that?",
+            "response": "I just wanted to pick up on the idea of emptiness or numbness. Feel free to say anything more about that?",
             "priority": 8
       },
       "Family & Relationships": {
@@ -179,9 +190,9 @@
                   "My grandfather",
                   "My grandmother"
             ],
-            "threshold": 0.55,
+            "threshold": 0.61,
             "already_used": "familyProblemsResponseAlreadyUsed",
-            "response": "Do keep telling me more. I'm definitely no expert on family or relationships or anything like that, but I hope talking about it is helping.",
+            "response": "Do keep telling me more. I'm definitely no expert on family, relationships, loss or anything like that, but I hope talking about it is helping.",
             "priority": 13
       },
       "Hate myself": {
@@ -200,9 +211,9 @@
                   "I don't deserve affection",
                   "Nobody likes me"
             ],
-            "threshold": 0.7,
+            "threshold": 0.72,
             "already_used": "iHateMyselfResponseAlreadyUsed",
-            "response": "I'm sensing some negativity towards yourself, and that's really sad",
+            "response": "I'm sensing the negativity in what you're saying, which is sad. Please remember you're a valuable person.",
             "priority": 4
       },
       "Help": {
@@ -211,7 +222,7 @@
                   "can you help?",
                   "help me please"
             ],
-            "threshold": 0.8,
+            "threshold": 0.6,
             "already_used": "helpResponseAlreadyUsed",
             "response": "If you're needing help, I can try to be useful by being a place for you to talk through what's on your mind",
             "priority": 7
@@ -221,7 +232,7 @@
                   "I don't know what to do",
                   "I just am not sure what to do"
             ],
-            "threshold": 0.9,
+            "threshold": 0.55,
             "already_used": "iDontKnowWhatToDoResponseAlreadyUsed",
             "response": "Hmm, sounds tough. Would you like to explore your options with me? I'll be here to listen",
             "priority": 15
@@ -237,7 +248,7 @@
                   "I don't like my appearance",
                   "I don't like how I look"
             ],
-            "threshold": 0.8,
+            "threshold": 0.7,
             "already_used": "iHateHowILookResponseAlreadyUsed",
             "response": "Sometimes issues like image and appearance can make us feel bad or cause self-esteem issues. That's really sad.",
             "priority": 16
@@ -259,7 +270,7 @@
                   "I'm missing human contact",
                   "I feel terribly alone"
             ],
-            "threshold": 0.75,
+            "threshold": 0.65,
             "already_used": "feelingLonelyResponseAlreadyUsed",
             "response": "It's sad whenever anyone is lonely or is missing the connections to other people that are so important",
             "priority": 11
@@ -269,7 +280,7 @@
                   "I'm feeling lost",
                   "I'm feeling forlorn"
             ],
-            "threshold": 0.85,
+            "threshold": 0.75,
             "already_used": "feelLostResponseAlreadyUsed",
             "response": "I'm getting the sense of a lost, almost forlorn feeling from what you're saying",
             "priority": 12
@@ -288,7 +299,7 @@
                   "I'm barely managing",
                   "Im not handling the stress in my life"
             ],
-            "threshold": 0.85,
+            "threshold": 0.76,
             "already_used": "feelOverwhelmedResponseAlreadyUsed",
             "response": "I'm sensing a certain level of feeling a bit overwhelmed, perhaps?",
             "priority": 14
@@ -307,9 +318,9 @@
                   "How can I stop myself from self-harming?",
                   "I dont want to actually hurt myself."
             ],
-            "threshold": 0.6,
+            "threshold": 0.55,
             "already_used": "makesMeWantToSelfHarmResponseAlreadyUsed",
-            "response": "I'm sorry that things have got so hard that you feel that way",
+            "response": "I'm sorry that things have got so bad that you feel that way",
             "priority": 1
       },
       "Suicidal": {
@@ -339,9 +350,9 @@
                   "i dont see life worth living anymore",
                   "idk if i want to live anymore"
             ],
-            "threshold": 0.75,
+            "threshold": 0.7,
             "already_used": "imFeelingSuicidalResponseAlreadyUsed",
-            "response": "Whenever someone has suicidal thoughts, that's always sad.",
+            "response": "Whenever someone has any kind of suicidal thoughts, that's always sad.",
             "priority": 0
       },
       "Upset": {
@@ -364,7 +375,7 @@
                   "I am so sad",
                   "I wish I wasnt so sad all the time...\""
             ],
-            "threshold": 0.65,
+            "threshold": 0.7,
             "already_used": "imUpsetResponseAlreadyUsed",
             "response": "I'm sorry to hear about any sadness or upset that you might be having at the moment",
             "priority": 10
@@ -389,7 +400,7 @@
             ],
             "threshold": 0.55,
             "already_used": "imUselessResponseAlreadyUsed",
-            "response": "I hope you don't me mentioning that everyone has value, everyone has worth.",
+            "response": "I'd just like to mention that everyone is a valuable person. Including you.",
             "priority": 9
       }
 }
