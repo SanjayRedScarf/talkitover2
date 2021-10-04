@@ -2881,7 +2881,7 @@ def choose_bot_wordy_response(message, clientId):
 
 @app.route('/')
 def home():
-    homepage_name = random.choice(["home - bootstrap 2020m05.html"])#, "home - original pre-2020m05.html"])
+    homepage_name = random.choice(["home - original pre-2020m05.html", "home - bootstrap 2020m05.html"])
     get_google_ads_data()
     return render_template(homepage_name)
 
