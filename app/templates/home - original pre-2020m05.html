@@ -254,10 +254,10 @@
 
           clientId = "originalJavascriptClient"
 
-          $.get("/get", { msg: JSON.stringify([userText, sectionNumber, output, initialHappinessValueSent, finalHappinessValueSent, anonymous, conversationId, clientId]) }).done(function(data) {
+          $.get("/get", { msg: JSON.stringify([userText, sectionNumber, output, sentiment, initialHappinessValueSent, finalHappinessValueSent, anonymous, conversationId, clientId]) }).done(function(data) {
 
           // The next two lines pick up a thinking/typing ellipsis (three dots) and place them in the chatbox
-          var botThinkingHtml = '<img class="botText" src="/static/typing_dots_cropped.gif" style="width:90px;height:40px;"/>'; //
+          var botThinkingHtml = '<img class="botText" src="https://raw.githubusercontent.com/SanjayRedScarf/talkitover2/SanjayRedScarf-new/typing_dots_cropped.gif" style="width:90px;height:40px;"/>'; //
           $("#chatbox").append(botThinkingHtml);
 
           // Remove the user input button / field / whatever once the user has used it and submitted
@@ -274,10 +274,11 @@
           if (noOfResponseFragments == 1) {botResponseText = JSON.parse(data)[0];}
           else {var botResponseTextArray = JSON.parse(data)[0]; }
           sectionNumber = JSON.parse(data)[2];
-          nextUserInput = JSON.parse(data)[3];
-          currentUserInputType = JSON.parse(data)[4];
-          anonymous = JSON.parse(data)[5]
-          conversationId = JSON.parse(data)[6]
+          sentiment = JSON.parse(data)[3];
+          nextUserInput = JSON.parse(data)[4];
+          currentUserInputType = JSON.parse(data)[5];
+          anonymous = JSON.parse(data)[6]
+          conversationId = JSON.parse(data)[7]
 
           // This section generates the html for the things the bot says
           if (noOfResponseFragments == 1){
