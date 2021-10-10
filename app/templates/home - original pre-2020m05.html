@@ -207,12 +207,14 @@
       var botThinkingTime = 450;
       var userText = "";
 
+      var async_elipsis = undefined;
+
       $( document ).ready(function() {
         window.history.replaceState({}, document.title, "/" + "");
       });
 
       function getBotResponse() {
-
+        
         // This block of if statements sets the value of userText, which stores the text produced by the user
         console.log("currentUserInputType = "+currentUserInputType);
         if (currentUserInputType=="freeText") {
@@ -254,10 +256,14 @@
 
           clientId = "originalJavascriptClient"
 
-          $.get("/get", { msg: JSON.stringify([userText, sectionNumber, output, sentiment, initialHappinessValueSent, finalHappinessValueSent, anonymous, conversationId, clientId]) }).done(function(data) {
-
+          $.get("/get", { msg: JSON.stringify([userText, sectionNumber, output, initialHappinessValueSent, finalHappinessValueSent, anonymous, conversationId, clientId]) }).done(function(data) {          
+          
+            if (async_elipsis != undefined){
+            async_elipsis.parentNode.removeChild(async_elipsis);
+            
+          }
           // The next two lines pick up a thinking/typing ellipsis (three dots) and place them in the chatbox
-          var botThinkingHtml = '<img class="botText" src="https://raw.githubusercontent.com/SanjayRedScarf/talkitover2/SanjayRedScarf-new/typing_dots_cropped.gif" style="width:90px;height:40px;"/>'; //
+          var botThinkingHtml = '<img class="botText" src="/static/typing_dots_cropped.gif" style="width:90px;height:40px;"/>'; //
           $("#chatbox").append(botThinkingHtml);
 
           // Remove the user input button / field / whatever once the user has used it and submitted
@@ -274,11 +280,10 @@
           if (noOfResponseFragments == 1) {botResponseText = JSON.parse(data)[0];}
           else {var botResponseTextArray = JSON.parse(data)[0]; }
           sectionNumber = JSON.parse(data)[2];
-          sentiment = JSON.parse(data)[3];
-          nextUserInput = JSON.parse(data)[4];
-          currentUserInputType = JSON.parse(data)[5];
-          anonymous = JSON.parse(data)[6]
-          conversationId = JSON.parse(data)[7]
+          nextUserInput = JSON.parse(data)[3];
+          currentUserInputType = JSON.parse(data)[4];
+          anonymous = JSON.parse(data)[5]
+          conversationId = JSON.parse(data)[6]
 
           // This section generates the html for the things the bot says
           if (noOfResponseFragments == 1){
@@ -377,11 +382,39 @@
         getBotResponse();
       }
 
+      function addElipsis(){
+        
+        var botThinkingHtml = '<img class="botText" src="https://raw.githubusercontent.com/SanjayRedScarf/talkitover2/SanjayRedScarf-new/typing_dots_cropped.gif" style="width:90px;height:40px;"/>'; //
+        $("#chatbox").append(botThinkingHtml);
 
+          // Remove the user input button / field / whatever once the user has used it and submitted
+        document.getElementById("userInputDiv").innerHTML = ""
+
+          // We're going to need the next two variables to identify that ellipsis whcih we just put in the chatbox (this will help us remove it)
+        var indexOfLastBotTextElement = document.getElementsByClassName('botText').length-1;
+        async_elipsis = document.getElementsByClassName('botText')[indexOfLastBotTextElement];
+      }
+      function botPromise(){
+        return new Promise((resolve,reject)=>{
+          resolve(getBotResponse())
+          reject(console.log('promise broken'))
+        })
+      }
+      async function asyncBotResponse(){
+        try{
+          //addElipsis()
+          await botPromise()
+          //.then(()=>{ellipsisElement.parentNode.removeChild(ellipsisElement);})
+          addElipsis()
+          
+        }
+        catch{console.log('async catch')}
+        finally{console.log('async finally')}
+      }
       $('body').on("keypress", '#textInput', function(e) {
           console.log("this is inside the keypress thingy");
         if (e.which == 13) {
-          getBotResponse();
+          asyncBotResponse();
         }
       });
 </script>

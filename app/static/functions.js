@@ -88,7 +88,7 @@
   addBotThinking = function(time=0){
     var image;
     //var botThinkingHtml = '<img class="botText" src="https://raw.githubusercontent.com/SanjayRedScarf/talkitover2/SanjayRedScarf-new/typing_dots_cropped.gif" style="width:90px; height:40px; margin-bottom: 10px;"/>'
-    var botThinkingHtml = '<img class="botText" src="https://raw.githubusercontent.com/SanjayRedScarf/talkitover2/SanjayRedScarf-new/typing_dots_cropped_roundedcorners.gif" style="width:90px; height:50px; margin-bottom: 10px;"/>'
+    var botThinkingHtml = '<img class="botText" src="/static/typing_dots_cropped.gif" style="width:90px; height:50px; margin-bottom: 10px;"/>'
     var bot
     setTimeout(function(){
       $('.messages').append(botThinkingHtml);
@@ -155,8 +155,7 @@
 
     clientId = "bootstrapJavascriptClient"
 
-    $.get("/get", { msg: JSON.stringify([userText, sectionNumber, output, sentiment, initialHappinessValueSent, finalHappinessValueSent, anonymous, conversationId, clientId]) }).done(function(data) {
-
+    $.get("/get", { msg: JSON.stringify([userText, sectionNumber, output, initialHappinessValueSent, finalHappinessValueSent, anonymous, conversationId, clientId]) }).done(function(data) {
       var noOfResponseFragments = JSON.parse(data)[1];
       if (noOfResponseFragments == 1) {
         botResponseText = JSON.parse(data)[0];}
@@ -164,11 +163,10 @@
         var botResponseTextArray = JSON.parse(data)[0];
       }
       sectionNumber = JSON.parse(data)[2];
-      sentiment = JSON.parse(data)[3];
-      nextUserInput = JSON.parse(data)[4];
-      currentUserInputType = JSON.parse(data)[5];
-      anonymous = JSON.parse(data)[6]
-      conversationId = JSON.parse(data)[7]
+      nextUserInput = JSON.parse(data)[3];
+      currentUserInputType = JSON.parse(data)[4];
+      anonymous = JSON.parse(data)[5]
+      conversationId = JSON.parse(data)[6]
 
       // This section generates the html for the things the bot says
       var botHtmlArray = [];
@@ -191,7 +189,7 @@
         appendStopButton();
       };
       //delayPrint(botHtmlArray[0], botThinkingTime)
-      addBotThinking(200);
+      //addBotThinking(200);
       if (botHtmlArray.length>1){
         place_html_bind_functions(botHtmlArray[0], botThinkingTime);
         addBotThinking(botThinkingTime+200);
@@ -242,7 +240,32 @@
   getMessageText = function () {
       return $('.message_input').val();
   };
+  function async_elipsis(){
+    var image;
+    //var botThinkingHtml = '<img class="botText" src="https://raw.githubusercontent.com/SanjayRedScarf/talkitover2/SanjayRedScarf-new/typing_dots_cropped.gif" style="width:90px; height:40px; margin-bottom: 10px;"/>'
+    var botThinkingHtml = '<img class="botText" src="https://raw.githubusercontent.com/SanjayRedScarf/talkitover2/SanjayRedScarf-new/typing_dots_cropped_roundedcorners.gif" style="width:90px; height:50px; margin-bottom: 10px;"/>'
+    var bot
+    
+    $('.messages').append(botThinkingHtml);
+    $('.messages').animate({ scrollTop: $('.messages').prop('scrollHeight') }, 300);
+    
+  }
+  let bot_promise = (message)=>{
+    return new Promise((resolve,reject)=>{
+      resolve(botMessage(message))
+      reject(console.log('hello'))
+    })
+  }
+  async function async_bot(message) {
+    try{
+      //async_elipsis();
+      await bot_promise(message);
+      async_elipsis();
+    }
+    catch{console.log('hello')}
+    finally{console.log('hello')}
 
+  }
   // When the user hits send message then this funtion gets called
   mainFunction = function (){
     if ($(".message_input").val().replace(/\s/g, "").length > 0){
@@ -253,7 +276,8 @@
       if (message=="stop"){
         initiateStopSection();
       } else {
-        response = botMessage(message);
+        //async_elipsis();
+        response = async_bot(message);
       };
     };
   };
