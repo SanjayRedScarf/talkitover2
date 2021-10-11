@@ -6,7 +6,7 @@ from models import user_inputs, tio_outputs
 
 class BotProcessingService:
 
-    def process_user_input(self, conversation_input_data):
+    def process_user_input(self, conversation_input_data, _sentence_encoder):
 
         _response_fragments_helper = response_fragments_helper.ResponseFragmentsHelper()
         _html_helper = html_helper.HtmlHelper()
@@ -55,7 +55,7 @@ class BotProcessingService:
                 output_data = _conversation_end_service.get_initial_conversation_end_output_data(conversation_input_data.initial_happiness_score)            
             
             else:
-                output_data = _main_conversation_service.get_main_conversation_output_data(conversation_input_data, user_character_count)
+                output_data = _main_conversation_service.get_main_conversation_output_data(conversation_input_data, user_character_count,_sentence_encoder)
 
             number_of_response_fragments = _response_fragments_helper.get_response_fragments_count(output_data.response)
 

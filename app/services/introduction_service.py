@@ -105,7 +105,7 @@ class IntroductionService:
         """
        
         if user_message.lower() == "yes":
-            response = "Feeling this way often sounds pretty rubbish. I'm sorry about that. How long have been like this?"
+            response = "Feeling this way often sounds pretty rubbish. I'm sorry about that. How long has it been like this?"
             
             next_user_options = [""] # n/a because next user input type is not buttons
 
