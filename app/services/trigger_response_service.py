@@ -76,7 +76,7 @@ class TriggerResponseService:
         elif trigger == "contemplatedSuicideBut":
             response = "It's sad that you've had thoughts of suicide, but I'm glad that you're continuing to stay alive."
 
-        elif trigger == "iwishIWasDead":
+        elif trigger == "iWishIWasDead":
             response = "So you're saying you wish you were dead. Which is a pretty drastic thing to wish for."
 
         elif trigger == "betterOffDead":
