@@ -554,7 +554,7 @@ class TriggerResponseService:
         elif " feeling " in user_message.lower():
             response = "Thank you for sharing this. Could you tell me more about your feelings please?"
 
-        elif trigger == "stop":
+        elif trigger == "stopSynonyms":
             possible_responses = ["Sorry I'm such a simple bot and I'm not understanding you very well, but \
                 are you saying you want to stop using this bot? If so, would you mind clicking on the stop button on the side or typing 'stop' into the text field?",\
                 "Thank you. I think you're telling me you want to stop this conversation (sorry if I misunderstood!) If so, could \
@@ -565,7 +565,7 @@ class TriggerResponseService:
                 you want to stop now (but I could be \
                 wrong because I'm a very simple bot). If that's right, could you click the stop button or type 'stop' into the text field?"]
             
-            response = random.choice[possible_responses]
+            response = random.choice(possible_responses)
 
         elif trigger == "areYouABot":
             response = "Yes, I'm a bot! Sorry, I should have explained that better earlier. I hope you don't mind. \
