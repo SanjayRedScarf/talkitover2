@@ -576,7 +576,7 @@ class TriggerResponseService:
                         Please feel free to keep talking to me and I'll try to listen as best I can.\
                         And sorry that I'm only a simple bot"
 
-        elif trigger == "thisBotIsBad":
+        elif trigger == "thisBotIsBadloose":
             if user_message.isupper(): #if the message is all caps
                 messagePrefix = "I'm sensing your frustration. "
             else:
