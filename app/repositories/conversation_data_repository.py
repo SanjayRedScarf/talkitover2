@@ -16,7 +16,7 @@ class ConversationDataRepository:
         """
         google_ads_data = current_app.config['GOOGLE_ADS_DATA']
 
-        if user_inputs.anonymous=="true" or user_inputs.section <= 10:  
+        if user_inputs.anonymous=="true" or user_inputs.section <= 11:  
             message = user_inputs.message.replace(",", "¬")
             response = user_inputs.response.replace(",", "¬")
 
