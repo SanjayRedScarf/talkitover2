@@ -1,3 +1,4 @@
+from flask import session
 from datetime import datetime
 from services import introduction_service, end_of_conversation_service, main_conversation_service
 from utilities import response_fragments_helper, html_helper, data_preparation_helper
@@ -22,8 +23,9 @@ class BotProcessingService:
 
         number_of_response_fragments = ""
 
-        conversation_id = str(datetime.now())
-
+        #conversation_id = str(datetime.now())
+        conversation_id = session['uid']
+        
         if ((conversation_input_data.section > 0) and (conversation_input_data.section <= 11)):
             
             # user_inputs_data = ""
@@ -48,8 +50,9 @@ class BotProcessingService:
 
         elif conversation_input_data.section > 11:
 
-            user_character_count = 0
-            user_character_count += len(conversation_input_data.message)
+            session['user_character_count'] += len(conversation_input_data.message)
+            user_character_count = session['user_character_count']
+            
 
             if(conversation_input_data.message.lower()=="stop"):
                 output_data = _conversation_end_service.get_initial_conversation_end_output_data(conversation_input_data.initial_happiness_score)            

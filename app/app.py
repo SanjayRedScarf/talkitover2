@@ -28,10 +28,10 @@ def home():
 
     app.config['TRIGGERS_DICT'] = _triggers_repository.get_triggers_dictionary()
     
-    session['uid'] = random.randint(0,100)
+    session['uid'] = random.randint(0,100) # unique user id, later used for data analysis
     session['user_character_count'] = 0
-    session['ai_repeat'] = []
-    session['response_modifier'] = []
+    session['ai_repeat'] = [] # tracks which triggers have already been triggered by sentence encoder
+    session['response_modifier'] = [] # tracks if user is suicidal, upset, etc which can change response used
 
     return render_template(homepage_name)
 
@@ -41,6 +41,8 @@ def main():
     Processes the user's message.
     """
     print('this is the uid from app.py in main: {}'.format(session['uid']))
+    print('this is the character count, in app.py in main: {}'.format(session['user_character_count']))
+    print('this is the ai_repeat in app.py in main: {}'.format(session['ai_repeat']))
 
     conversation_input_data = _conversation_data_service.get_conversation_input_data_from_front_end()
 
