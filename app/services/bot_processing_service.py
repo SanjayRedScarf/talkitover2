@@ -44,7 +44,7 @@ class BotProcessingService:
 
             # Specific logic to set anonymous boolean in section 9 of the introduction
             if conversation_input_data.section == 9:
-                conversation_input_data.anonymous == "true" if conversation_input_data.message.split()[0].lower()=="anonymous" else "false"
+                conversation_input_data.anonymous = "true" if conversation_input_data.message.split()[0].lower()=="anonymous" else "false"
 
             _conversation_data_repository.insert_data(user_inputs_data)
 

@@ -4,6 +4,7 @@ from json import dumps
 import random
 from services import google_ads_service, conversation_data_service, bot_processing_service, sentence_encoder_service
 from repositories import triggers_repository
+import datetime
 
 app = Flask(__name__)
 
@@ -22,13 +23,13 @@ Session(app)
 
 @app.route('/')
 def home():
-    homepage_name = random.choice(["home - bootstrap 2020m05.html", "home - original pre-2020m05.html"])
+    homepage_name = random.choice(["home - bootstrap 2020m05.html"])#, "home - original pre-2020m05.html"]) only use bootstrap home for now
 
     app.config['GOOGLE_ADS_DATA'] = _google_ads_service.get_google_ads_data_from_url()
 
     app.config['TRIGGERS_DICT'] = _triggers_repository.get_triggers_dictionary()
     
-    session['uid'] = random.randint(0,100) # unique user id, later used for data analysis
+    session['uid'] = datetime.datetime.now().strftime('%Y%m%d%H%M%S%f') # unique user id, later used for data analysis
     session['user_character_count'] = 0
     session['ai_repeat'] = [] # tracks which triggers have already been triggered by sentence encoder
     session['response_modifier'] = [] # tracks if user is suicidal, upset, etc which can change response used
