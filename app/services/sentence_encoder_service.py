@@ -1,12 +1,8 @@
 import flask
-import seaborn as sns
 import pandas as pd
 import numpy as np
-import csv
-import operator
 import os
 import json
-from keras import backend as K
 from sentence_transformers import SentenceTransformer
 import torch
 
@@ -79,15 +75,15 @@ class SentenceEncoder:
         return all_info
 
 
-    def guse_response(self,cat):
-        print('repeat_early:',self.repeat)
-        compare = [item for item in cat.keys() if item not in self.repeat]
+    def guse_response(self,cat,repeat):
+        print('repeat_early:',repeat)
+        compare = [item for item in cat.keys() if item not in repeat]
         priority = dict(zip(compare,[self.dataset[x]['priority'] for x in compare]))
         if len(priority) != 0:
             out_cat = min(priority,key=priority.get)
             print('out_cat:',out_cat)
-            self.repeat.append(out_cat)
-            print('repeat:',self.repeat)
+            repeat.append(out_cat)
+            print('repeat:',repeat)
             return out_cat, self.dataset[str(out_cat)]['response']
         else:
             return None, None

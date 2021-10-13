@@ -1,3 +1,4 @@
+from flask import session
 from services import string_cleansing_service, trigger_check_service, trigger_response_service
 from repositories import triggers_repository
 from threading import Thread
@@ -21,11 +22,12 @@ class MainConversationService:
         trigger = _trigger_check_service.get_trigger(cleaned_message)
         response = _trigger_response_service.get_response_for_trigger(cleaned_message, trigger, user_character_count)            
 
+        print('this is the uid from main_conversation_service.py in get_main_conversation_output_data(): {}'.format(session['uid']))
         if trigger == 'encouragingNoises':
             try:
                 ai_data = sentence_encoder.get_cat(cleaned_message)
                 trigger = ai_data['max_over_thresh']
-                out_cat, response = sentence_encoder.guse_response(trigger)
+                out_cat, response = sentence_encoder.guse_response(trigger,session['ai_repeat'])
                 #if out_cat not in ai_repeat:
                 if out_cat == 'Abuse':
                     response = ast.literal_eval(response)
