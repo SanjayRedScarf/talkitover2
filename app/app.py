@@ -32,7 +32,7 @@ def home():
     session['uid'] = datetime.datetime.now().strftime('%Y%m%d%H%M%S%f') # unique user id, later used for data analysis
     session['user_character_count'] = 0
     session['ai_repeat'] = [] # tracks which triggers have already been triggered by sentence encoder
-    session['response_modifier'] = [] # tracks if user is suicidal, upset, etc which can change response used
+    session['response_modifier'] = {'suicidal':False,'lonely':False,'hate_looks':False} # tracks if user is suicidal, upset, etc which can change response used
 
     return render_template(homepage_name)
 

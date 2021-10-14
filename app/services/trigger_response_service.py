@@ -1,5 +1,6 @@
 import random
 from repositories import triggers_repository
+from flask import session
 
 class TriggerResponseService:
 
@@ -21,7 +22,16 @@ class TriggerResponseService:
         """
         Finds the response for a given trigger.
         """
-        user_is_suicidal = self.__is_user_suicidal(trigger)
+        if not session['response_modifier']['suicidal']:
+            session['response_modifier']['suicidal'] = self.__is_user_suicidal(trigger)
+
+        if not session['response_modifier']['lonely']:
+            session['response_modifier']['lonely'] = self.__is_user_lonely(trigger)
+
+        if not session['response_modifier']['hate_looks']:
+            session['response_modifier']['hate_looks'] = self.__is_user_hates_looks(trigger)
+ 
+
 
         response = ""
 
@@ -35,7 +45,7 @@ class TriggerResponseService:
             # However if it's not accompanied by suicidal language, then it's not so clear, e.g. some users have said things like
             # "i'm going to kill myself with all the alcohol i'm consuming"
 
-            if user_is_suicidal:
+            if session['response_modifier']['suicidal']:
                 response = "You say that you're going to kill yourself. I'm saddened to hear that. Could you say more about death and what it means for you?"
             else:
                 response = "It sounds pretty stark to hear you say that you will kill yourself."
@@ -59,7 +69,7 @@ class TriggerResponseService:
         elif trigger == "iveBecomeSuicidal":
             if user_character_count < 1000:
                 response = "I'm sorry to hear you mention these suicidal thoughts. Could you say more about this?"
-            elif user_is_suicidal == False:
+            elif session['response_modifier']['suicidal'] == False:
                 response = "I'm sensing there's a lot going on for you, and I'm sorry that it's got to the stage where you've started to feel suicidal."
             else:
                 response = "I'm sensing there's a lot going on for you, and I'm sorry to hear about these suicidal feelings you've been mentioning."
@@ -83,14 +93,14 @@ class TriggerResponseService:
             response = "So you're saying you wish you were dead. Which is a pretty drastic thing to wish for."
 
         elif trigger == "betterOffDead":
-            if user_is_suicidal:
+            if session['response_modifier']['suicidal']:
                 response = "I'm sorry to hear you indicate that you would be better off if you weren't alive."
             else:
                 response = ["I'm sorry to hear you indicate that you would be better off if you weren't alive. Could you say more about that?", \
                 "And also, if you're feeling suicidal, this is a safe space to share your thoughts about this. And remember that I'm only a simple bot, so I wouldn't be able to get help for you."]
 
         elif trigger == "iDontWantToLive":
-            if user_is_suicidal:
+            if session['response_modifier']['suicidal']:
                 if user_character_count < 300:
                     response = "I'm hearing loud and clear that you don't want to be alive, and it's really sad that it's got to this. Could you say any more about what's making you feel this way?"
                 else:
@@ -102,7 +112,7 @@ class TriggerResponseService:
                     response = "It's so sad that it's got to the stage where you feel that way about your life."
 
         elif trigger == "iHateBeingAlive":
-            if user_is_suicidal:
+            if session['response_modifier']['suicidal']:
                 if user_character_count < 300:
                     response = "That's so sad. I'm sorry that you hate being alive and you want your life to end. Could you say any more about what's making you feel this way?"
                 else:
@@ -115,7 +125,7 @@ class TriggerResponseService:
                     response = "I like it when I hear about people loving their lives, and when someone says that they don't like being alive, that's always sad. All the more so since people who say that can often be suicidal..."
 
         elif trigger == "shouldIEndIt":
-            if user_is_suicidal:
+            if session['response_modifier']['suicidal']:
                 response = "when you say 'end it', I guess you mean ending your life? In which case, I very much hope you stay alive."
             else:
                 response = "when you say 'end it', what would ending it mean to you?"
@@ -156,7 +166,7 @@ class TriggerResponseService:
             response = "I guess a good old cry can make you feel better sometimes, but I'm sorry you're in a place where it feels this way for you"
 
         elif trigger == "nothingToLiveFor":
-            if user_is_suicidal:
+            if session['response_modifier']['suicidal']:
                 response = "It sounds bleak to hear you say you have nothing to live for, and I find it sad that you've been expressing suicidal thoughts."
             else:
                 response = "I'm sorry to hear you say that you have nothing to live for. You saying that makes me worry about \
@@ -202,7 +212,7 @@ class TriggerResponseService:
             response = "I heard you mentioned that you feel you have no way out. Do you feel trapped?"
 
         elif trigger == "hadEnoughOfLife":
-            if user_is_suicidal:
+            if session['response_modifier']['suicidal']:
                 response = "So I've heard you say that you're feeling suicidal, and you're saying that you've had enough of life. I'm sorry it's got to the stage where you're feeling this way."
             else:
                 response = "I'm sorry to hear you say that you've had enough of life. Sometimes when people say that they are also having suicidal thoughts..."
@@ -244,7 +254,10 @@ class TriggerResponseService:
             response = "That's sad. Everyone should feel like they're special to someone"
 
         elif trigger == "imMakingPeopleUpset":
-            response = "It sounds difficult and maybe also lonely, knowing that you've caused hurt to others"
+            if session['response_modifier']['lonely']:
+                response = "It sounds difficult and lonely, knowing that you've caused hurt to others"
+            else:
+                response = "It sounds difficult and maybe also lonely, knowing that you've caused hurt to others"
 
         elif trigger == "iWantSomeoneToLoveMe":
             response = "Feeling loved is important, and I'm sure it's something that everyone wants."
@@ -286,7 +299,7 @@ class TriggerResponseService:
             response = "Would you like to tell me more about feeling fat?"
 
         elif trigger == "loseWeight":
-            if trigger == "iHateHowILook":
+            if session['response_modifier']['hate_looks']:
                 response = "I would love it if we lived in a world where being larger didn't make people judge you, \
                             and I'm sorry that your size is making you feel bad"
             elif user_character_count < 700:
@@ -689,4 +702,23 @@ class TriggerResponseService:
         if trigger in is_suicidal_triggers_list:
             return True
         
+        return False
+    def __is_user_lonely(self,trigger):
+        '''
+        Checks if the user is lonely
+        '''
+        lonely_list = ['feelingLonely']
+
+        if trigger in lonely_list:
+            return True
+        False
+        
+    def __is_user_hates_looks(self,trigger):
+        '''
+        Checks if the user hates their looks/feels ugly
+        '''
+        hate_looks_list = ['iHateHowILook']
+
+        if trigger in hate_looks_list:
+            return True
         return False
