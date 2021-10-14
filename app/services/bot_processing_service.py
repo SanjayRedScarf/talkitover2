@@ -52,19 +52,19 @@ class BotProcessingService:
 
             session['user_character_count'] += len(conversation_input_data.message)
             user_character_count = session['user_character_count']
-            
+            ai_data = {}
 
             if(conversation_input_data.message.lower()=="stop"):
                 output_data = _conversation_end_service.get_initial_conversation_end_output_data(conversation_input_data.initial_happiness_score)            
             
             else:
-                output_data = _main_conversation_service.get_main_conversation_output_data(conversation_input_data, user_character_count,_sentence_encoder)
+                output_data, ai_data = _main_conversation_service.get_main_conversation_output_data(conversation_input_data, user_character_count,_sentence_encoder)
 
             number_of_response_fragments = _response_fragments_helper.get_response_fragments_count(output_data.response)
 
             prepared_response = _data_preparation_helper.prepare_response_for_data_store(output_data.response, number_of_response_fragments)            
 
-            user_inputs_data = user_inputs.UserInputs(conversation_input_data.anonymous, conversation_id, conversation_input_data.message, prepared_response, conversation_input_data.section, conversation_input_data.client_id)
+            user_inputs_data = user_inputs.UserInputs(conversation_input_data.anonymous, conversation_id, conversation_input_data.message, prepared_response, conversation_input_data.section, conversation_input_data.client_id,ai_data)
 
             _conversation_data_repository.insert_data(user_inputs_data)
 

@@ -23,6 +23,7 @@ class MainConversationService:
         response = _trigger_response_service.get_response_for_trigger(cleaned_message, trigger, user_character_count)            
 
         print('this is the uid from main_conversation_service.py in get_main_conversation_output_data(): {}'.format(session['uid']))
+        ai_data ={}
         if trigger == 'encouragingNoises':
             try:
                 ai_data = sentence_encoder.get_cat(cleaned_message)
@@ -44,6 +45,6 @@ class MainConversationService:
 
         next_user_input = self.next_user_input_option_types.next_user_input_free_text
 
-        return output_data.OutputData(response, conversation_input_data.section, [""], next_user_input, "freeText")
+        return output_data.OutputData(response, conversation_input_data.section, [""], next_user_input, "freeText"), ai_data
 
         
