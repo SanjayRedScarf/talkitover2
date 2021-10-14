@@ -651,7 +651,7 @@ class TriggerResponseService:
                         Please feel free to keep talking to me and I'll try to listen as best I can.\
                         And sorry that I'm only a simple bot"
 
-        elif trigger == "thisBotIsBadloose":
+        elif trigger == "thisBotIsBadloose" or trigger == "thisBotIsBadtight":
             if user_message.isupper(): #if the message is all caps
                 messagePrefix = "I'm sensing your frustration. "
             else:
@@ -662,7 +662,16 @@ class TriggerResponseService:
                 do that. ", "But if that doesn't work for you, you're welcome to try to make this conversation work, by \
                 using this as a space to talk. And sorry I'm only a very simple bot. If you choose not to do this, please \
                 press the stop button or type 'stop' into the text field and provide feedback so we can make this better for others"]
+        
+        elif trigger == "msgIsQuestion":
+            possible_responses =  ["I might not always do a good job of answering your questions, but I'm happy to be here to listen", 
+            "Sorry if I don't always know answers to things -- I'm a pretty simple bot. However if you want to keep on talking to me, please feel free.", 
+            "Thanks for posing your question, and sorry -- I'm terrible at coming up with good answers. I'm just here to listen, so feel free to use me as a space to explore your feelings.", 
+            "I'm here to listen, so feel free to continuing discussing things with me. Sorry I'm not great at answering questions.", 
+            "I'm quite a simple little bot, so please forgive me if I don't always give clever answers to questions; I'm here to listen, so please keep talking to me if it helps"] 
 
+            response = random.choice(possible_responses)
+        
         elif (" " not in user_message or len(user_message) < 10):
             ### If it's the user's first written response and they've given  (essentially) a one-word message, or maybe something without spaces (e.g. typing gibberish like usanvoiudvuvufdsiudsbca)
             ### When I say one-word message, I mean that either it is short, or something that might be longer but has no space characters (this includes someone typing gibberish)

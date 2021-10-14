@@ -5,6 +5,8 @@ from threading import Thread
 from models import output_data
 import ast
 
+triggers_that_can_be_repeated = ["msgIsQuestion"]
+
 class MainConversationService:
 
     def __init__(self, next_user_input_option_types):
@@ -19,7 +21,7 @@ class MainConversationService:
 
         cleaned_message = _string_cleansing_service.clean_string(conversation_input_data.message)
 
-        trigger = _trigger_check_service.get_trigger(cleaned_message)
+        trigger = _trigger_check_service.get_trigger(cleaned_message, conversation_input_data.message)
         response = _trigger_response_service.get_response_for_trigger(cleaned_message, trigger, user_character_count)            
 
         print('this is the uid from main_conversation_service.py in get_main_conversation_output_data(): {}'.format(session['uid']))
@@ -40,7 +42,7 @@ class MainConversationService:
                 response = _trigger_response_service.get_response_for_trigger(cleaned_message, trigger, user_character_count)
 
         # Remove from dictionary as response has now been used and we do not want it to be repeated.
-        if type(trigger) != dict:
+        if (type(trigger) != dict) & (trigger not in triggers_that_can_be_repeated):
             Thread(target=_trigger_repository.remove_used_trigger(trigger)).start()
 
         next_user_input = self.next_user_input_option_types.next_user_input_free_text

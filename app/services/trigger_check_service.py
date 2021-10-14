@@ -6,14 +6,14 @@ class TriggerCheckService:
         self.triggers_dictionary = current_app.config['TRIGGERS_DICT']
         print(len(self.triggers_dictionary))
         # The exclusion list below is for arrays that don't need to be checked as they are for other functionality or have their own specific checking function
-        self.exclusion_list = ["encouragingNoises", "itsNotThat", "leadString", "thisBotIsBadtight", "hello"] 
+        self.exclusion_list = ["encouragingNoises", "itsNotThat", "leadString", "thisBotIsBadtight", "hello", "msgIsQuestion", "help","stopSynonyms"] 
         # The exclusion list below is for arrays that don't need the lead string check
         self.lead_string_exclusion_list = ["imUseless", "imWorthless"]
         # The exclusion list below is for arrays that have a different way of checking the negating string
         self.negating_string_exclusion_list = ["letMyselfDown", "abandonedMe"]
         self._string_cleansing_service = string_cleansing_service.StringCleansingService()
 
-    def get_trigger(self, message):
+    def get_trigger(self, message, uncleaned_message):
         """
         Determines the trigger for the user's message.
         """
@@ -30,7 +30,16 @@ class TriggerCheckService:
                 for item in self.triggers_dictionary["hello"]:
                     if item == message:
                         has_triggered = True
-
+            elif key == "help":
+                for item in self.triggers_dictionary["help"]:
+                    if item == message:
+                        has_triggered = True
+            elif key == "stopSynonyms":
+                for item in self.triggers_dictionary["stopSynonyms"]:
+                    if item == message:
+                        has_triggered = True
+            elif key == "msgIsQuestion":
+                has_triggered = self.__check_message_is_question(uncleaned_message, has_triggered)
             if has_triggered:
                 trigger = key
                 break
@@ -51,6 +60,7 @@ class TriggerCheckService:
             has_triggered = self.__check_negating_string(trigger_name, has_triggered, message, clean_string)
             
             has_triggered = self.__check_lead_string(trigger_name, has_triggered, message, clean_string, trigger_synonyms_array)
+
 
             if has_triggered:
                 break
@@ -111,6 +121,11 @@ class TriggerCheckService:
             if cleaned_message.lower().startswith(string.lower()):
                 has_triggered = True
 
+        return has_triggered
+
+    def __check_message_is_question(self, message, has_triggered):
+        if message[-1] == '?':
+            has_triggered = True
         return has_triggered
 
     def __remove_extra_words(self, message):
