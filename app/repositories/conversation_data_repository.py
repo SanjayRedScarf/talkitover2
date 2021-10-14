@@ -32,9 +32,9 @@ class ConversationDataRepository:
                 dataToStore = [str(user_inputs.conversation_id), "User says:", str(user_inputs.message), "Chatbot says:", str(user_inputs.response), user_inputs.client_id, "Campaign: " + str(google_ads_data.campaign or ''), "Group: " + str(google_ads_data.group or ''), "Geo: " + str(google_ads_data.geo or ''), "Device: " + str(google_ads_data.device or ''), "Timestamp: "+ str(datetime.now())]
                 f.write("\n" + str(dataToStore))
 
-            with open(file2,'w',newline ='') as f:
+            with open(file2,'a',newline ='') as f:
                 writer = csv.DictWriter(f,fieldnames=field_names)
-                writer.writeheader() # not sure if I need this
+                #writer.writeheader() # not sure if I need this
                 if user_inputs.ai_data != {}:
                     data = [{'user_id':user_inputs.conversation_id, "user_says": str(user_inputs.message), "chatbot_says": str(user_inputs.response), 'frontend':user_inputs.client_id, "campaign": str(google_ads_data.campaign or ''), "group":  str(google_ads_data.group or ''), "geo": str(google_ads_data.geo or ''), "device": str(google_ads_data.device or ''), "timestamp":str(datetime.now()), 'ai_data':user_inputs.ai_data,
                     'over_threshold':user_inputs.ai_data['max_over_thresh'],'highest_score_category':user_inputs.ai_data['highest_max_score_category'],'highest_score_exemplar':user_inputs.ai_data['exemplar_for_max_cat'],

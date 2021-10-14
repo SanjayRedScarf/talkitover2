@@ -29,7 +29,7 @@ class TriggerResponseService:
             # if the user's message contains some variant of "I want to kill myself"
             response = "Things must be pretty grim if you've got to the stage where you're talking about ending your life like this."
 
-        elif trigger == "imGoingtToKillMyself":
+        elif trigger == "imGoingToKillMyself":
             # if the user's message contains some variant of "I'm going to kill myself", then if the user has indicated that they are feeling suicidal
             # then treat the users statement that they will kill themself as a statement of serious suicidal intent.
             # However if it's not accompanied by suicidal language, then it's not so clear, e.g. some users have said things like
@@ -45,6 +45,9 @@ class TriggerResponseService:
 
         elif trigger == "iWantToDie":
             response = "I'm sorry to hear you say that you want to die."
+
+        elif trigger == "iWantToDieBut":
+            response = "It's sad that you want to die, but I'm glad you're still staying alive"
 
         elif trigger == "imFeelingSuicidal" or trigger == "iveBeenFeelingSuicidal":
             if user_character_count < 1000:
@@ -137,6 +140,15 @@ class TriggerResponseService:
                         "I don't want to interrupt our conversation, but I need you to know that I'm a very simple bot. If you tell me that you're still unsafe, I might not be able to identify that, \
                         and I definitely won't be able to track you down or get help for you, so I'll need you to get help for yourself. But I'm still here to listen..."]
 
+        elif trigger == "physicallyHurtMyself":
+            response = "Do you know why you do that"
+
+        elif trigger == "makesMeWantToSelfHarm":
+            response = "I'm sorry to hear about these urges to self-harm. What you're going through sounds tough."
+
+        elif trigger == "iHaventSelfHarmed":
+            response = "I'm glad you've managed to not self-harm"
+
         elif trigger == "imCrying":
             response = "I'm sorry to hear that you're feeling this way, and that it's making you cry. That sounds so sad."
 
@@ -180,6 +192,12 @@ class TriggerResponseService:
             else:
                 response = " If it feels like you might have depression, things are probably tough for you. Sorry about that."
 
+        elif trigger == "iHaveBeenDepressed":
+            if user_character_count < 300:
+                response = "I'm sorry to hear about the depressed feelings you've been having. Would you like to say more about those?"
+            else:
+                response = "So I'm hearing you have been depressed and I'm guessing you still are depressed now. I'm sorry to hear that."
+
         elif trigger == "iHaveNoWayOut":
             response = "I heard you mentioned that you feel you have no way out. Do you feel trapped?"
 
@@ -194,6 +212,18 @@ class TriggerResponseService:
 
         elif trigger == "nothingToLookForwardTo":
             response = "It sounds quite bleak to hear you say that you have nothing to look forward to"
+
+        elif trigger == "theOnlyReasonIHaventKilledMyself":
+            response = "I'm sensing how close you are to being suicidal"
+
+        elif trigger == "iKeepGettingHorribleThoughts":
+            if user_character_count < 300:
+                response = "Those thoughts sound unpleasant. Would you like to say more about those?"
+            else:
+                response = "I'm sorry to hear about the horrible thoughts"
+
+        elif trigger == "iDontTrustAnyone":
+            response = "Not being able to trust anyone sounds tough. And lonely..."
 
         elif trigger == "imUseless":
             if user_character_count < 1000:
@@ -213,8 +243,14 @@ class TriggerResponseService:
         elif trigger == "imNotSpecialToAnyone":
             response = "That's sad. Everyone should feel like they're special to someone"
 
+        elif trigger == "imMakingPeopleUpset":
+            response = "It sounds difficult and maybe also lonely, knowing that you've caused hurt to others"
+
         elif trigger == "iWantSomeoneToLoveMe":
             response = "Feeling loved is important, and I'm sure it's something that everyone wants."
+
+        elif trigger == "iFeelStupidForHavingTheseFeelings":
+            response = "It's a shame you feel that way about your feelings -- I think you're entitled to feel whatever you're feeling"
 
         elif trigger == "feelingLonely":
             feeling_lonely_response_ending = ""
@@ -237,8 +273,17 @@ class TriggerResponseService:
         elif trigger == "dontHaveAnyoneICanTalkTo":
             response = "It's a shame that you feel you don't have anyone you can talk to. It sounds really isolating."
 
+        elif trigger == "iDontHaveGoodRelationshipsWithAnybody":
+            response = "Not having good relationships with anyone sounds hard. And lonely."
+
+        elif trigger == "iStruggleToMakeConversation":
+            response = "Is there anything more you'd like to tell me about conversations?"
+
         elif trigger == "iHateHowILook":
             response = "That sounds really tough. Could you say more about your thoughts on your looks?"
+
+        elif trigger == "imFeelingFat":
+            response = "Would you like to tell me more about feeling fat?"
 
         elif trigger == "loseWeight":
             if trigger == "iHateHowILook":
@@ -257,6 +302,12 @@ class TriggerResponseService:
                 response = "That sounds like a lot to deal with. I'm sorry it's got to the stage where it's making you feel overwhelmed."
             else: # by this stage (i.e. for a user_character_cout this high) the user has probably explained a lot of what's happened to make them feel overwhelemed
                 response = "That all sounds like a lot to deal with. "
+
+        elif trigger == "imTired":
+            if user_character_count < 300:
+                response = "Sorry to hear you're feeling tired. Would you like to tell me more about what's making you feel this way?"
+            else:
+                response = "Sorry to hear you're feeling tired."
 
         elif trigger == "aLotOnMyMind":
             if user_character_count < 1000:  # if it's early in hte conversation
@@ -287,6 +338,9 @@ class TriggerResponseService:
 
         elif trigger == "underAchieved":
             response = "Hmm. So you don't feel your achievements live up to the expectations you have of yourself?"
+
+        elif trigger == "iDontHaveMotivation":
+            response = "Sounds tough, feeling like you don't have enough motivation or drive"
 
         elif trigger == "hurtsMyFeelings":
             response = "That sounds painful for you."
@@ -320,6 +374,9 @@ class TriggerResponseService:
 
         elif trigger == "noOneCaresAboutMe":
             response = "It sounds like you feel like no one cares. I am sorry. I am here to listen."
+
+        elif trigger == "nooneHelpsMeFeelBetter":
+            response = "If there were someone who could help you feel better, what would they do?"
 
         elif (" i deserve" in user_message.lower() or user_message.lower()[:9] == "i deserve"):
             ### This is a bit of a risky one. However at time of writing, whenever I've seen a user write "i deserve",
@@ -396,7 +453,7 @@ class TriggerResponseService:
             else:   # if it's not that early in the conversation
                 response = "I'm sorry to hear about these worries you're experiencing"
 
-        elif trigger == "msgSaysIDontKnowWhatToDo":
+        elif trigger == "iDontKnowWhatToDo":
             response = "So you said you're not sure what to do. Can you think of any options that you would like to explore with me?"
 
         elif trigger == "whatToDoWithMyself":
@@ -427,6 +484,9 @@ class TriggerResponseService:
 
         elif trigger == "imNotHappy":
             response = "You said that you're not feeling happy. That's sad. "
+
+        elif trigger == "iStruggleToBeHappy":
+            response = "Happiness is so important. I'm sorry to hear happiness seems elusive for you."
 
         elif trigger == "iFeelNumb":
             response = "Well done for acknowledging how you are feeling - even if you are not feeling anything or are feeling numb."
@@ -467,8 +527,11 @@ class TriggerResponseService:
         elif trigger == "familyProblems":
             response = "Could you tell me more about these family difficulties?"
 
-        elif trigger == "fallenOut":
+        elif trigger == "fallOut":
             response = "You say you have fallen out? It sounds like this is upsetting you?"
+
+        elif trigger == "iHaveLostMyFriends":
+            response = "Losing your friends sounds tough"
 
         elif trigger == "abuse":
             response = ["You mention abuse. That sounds awful.", "Just so you know, I’m a very simple bot, and if you’re being harmed or abused, \
@@ -484,6 +547,9 @@ class TriggerResponseService:
         elif trigger == "iDontSeeManyPeople":
             response = "That sounds lonely."
 
+        elif trigger == "myLifeIsBoring":
+            response = "Sorry to hear you're not sounding excited about your life. I'd be happy to hear you say more about your feelings about your life?"
+
         elif trigger == "help":
             response = "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
 
@@ -492,6 +558,12 @@ class TriggerResponseService:
 
         elif trigger == "brokeUpWithPartner":
             response = "How are you feeling now?"
+
+        elif trigger == "boyfriendsLeftMe":
+            if user_character_count < 300:
+                response = "Relationships are complex. I'm a pretty simple bot, but if you want to tell me more about it, I'm here to be a space for you to discuss this further."
+            else:
+                response = "I'm sorry to hear about the end of your relationship."
 
         elif trigger == "canYouHelp":
             response = "I am trying to help by giving you the space to talk through what's going on for you - I am still a simple little bot."
@@ -526,6 +598,9 @@ class TriggerResponseService:
             you like to talk about what's on your mind?"], "This bot isn't about me advising you; it's about you talking and finding your own way through things. You're welcome to continue talking if that would help?"]
             
             response = random.choice(possible_responses)
+
+        elif trigger == "speakToAProfessional":
+            response = "What sort of help do you need"
 
         elif trigger == "dontKnow":
             response = "You have said you don't know - I hope that by talking things through you will be able to work out a next step."
