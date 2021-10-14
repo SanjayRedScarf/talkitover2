@@ -1,9 +1,9 @@
-from flask import current_app
+from flask import current_app,session
 from services import string_cleansing_service
 
 class TriggerCheckService:
     def __init__(self):
-        self.triggers_dictionary = current_app.config['TRIGGERS_DICT']
+        self.triggers_dictionary = session['TRIGGERS_DICT']
         print(len(self.triggers_dictionary))
         # The exclusion list below is for arrays that don't need to be checked as they are for other functionality or have their own specific checking function
         self.exclusion_list = ["encouragingNoises", "itsNotThat", "leadString", "thisBotIsBadtight", "hello", "msgIsQuestion", "help","stopSynonyms"] 

@@ -25,9 +25,9 @@ Session(app)
 def home():
     homepage_name = random.choice(["home - bootstrap 2020m05.html"])#, "home - original pre-2020m05.html"]) only use bootstrap home for now
 
-    app.config['GOOGLE_ADS_DATA'] = _google_ads_service.get_google_ads_data_from_url()
+    session['GOOGLE_ADS_DATA'] = _google_ads_service.get_google_ads_data_from_url()
 
-    app.config['TRIGGERS_DICT'] = _triggers_repository.get_triggers_dictionary()
+    session['TRIGGERS_DICT'] = _triggers_repository.get_triggers_dictionary()
     
     session['uid'] = datetime.datetime.now().strftime('%Y%m%d%H%M%S%f') # unique user id, later used for data analysis
     session['user_character_count'] = 0

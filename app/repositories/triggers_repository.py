@@ -1,6 +1,7 @@
 import os, json
-from flask import current_app
+from flask import current_app, session
 import random
+
 
 class TriggersRepository:
 
@@ -23,7 +24,7 @@ class TriggersRepository:
         """
         Gets a random response from the encouraging noises array.
         """
-        triggers_dict = current_app.config['TRIGGERS_DICT']
+        triggers_dict = session['TRIGGERS_DICT']
 
         encouraging_noises_array = triggers_dict["encouragingNoises"]
 
@@ -33,12 +34,13 @@ class TriggersRepository:
         """
         Removes a given trigger from the trigger dictionary so that it is not repeated.
         """
-        triggers_dict = current_app.config['TRIGGERS_DICT']
+        triggers_dict = session['TRIGGERS_DICT']
 
         # The below list exists as some of the triggers should not be removed due to the importance of them or because they have common everyday responses.
         removal_exclusion_list = ["iWantToKillMyself", "iWantToDie", "imFeelingSuicidal", "imFeelingQuiteSuicidal", "suicidalThoughts", "iveBecomeSuicidal", "iDontKnowWhatToSay", "yourNice", "dontKnow", "whatDoYouThink", "imGoingToGoNow", "thankYou", "encouragingNoises"]
 
         if trigger not in removal_exclusion_list:
             del triggers_dict[trigger]
-
+            session['TRIGGERS_DICT'] = triggers_dict
+        
         return None

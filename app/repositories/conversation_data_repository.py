@@ -1,6 +1,6 @@
 from datetime import datetime
 import os
-from flask import current_app
+from flask import current_app, session
 import csv
 
 class ConversationDataRepository:
@@ -15,7 +15,7 @@ class ConversationDataRepository:
         This is because in the future we might have dropdowns or buttons occurring during the body of the conversation.
         And those might be more sensitive.
         """
-        google_ads_data = current_app.config['GOOGLE_ADS_DATA']
+        google_ads_data = session['GOOGLE_ADS_DATA']
         field_names = ['user_id','user_says','chatbot_says','frontend','campaign','group','geo','device','timestamp','ai_data',
         'over_threshold','highest_score_category','highest_score_exemplar','highest_score_substring']
 
