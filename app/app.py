@@ -29,6 +29,8 @@ def home():
 
     session['TRIGGERS_DICT'] = _triggers_repository.get_triggers_dictionary()
     
+    session['version'] = 14.1 # make sure to change this number whenever changing versions
+
     session['uid'] = datetime.datetime.now().strftime('%Y%m%d%H%M%S%f') # unique user id, later used for data analysis
     session['user_character_count'] = 0
     session['ai_repeat'] = [] # tracks which triggers have already been triggered by sentence encoder

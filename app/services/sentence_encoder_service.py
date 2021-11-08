@@ -83,7 +83,7 @@ class SentenceEncoder:
         max_dot_exemplar = ''
         embeded_msg = self.embed(message)
         for category in self.dataset.keys(): # for every category, taken from aidata json
-            dot_products = [] #probably not needed 
+            dot_products = [] #probably not needed, though maybe for the sentence encoder 250 word limit
             dots = np.inner(embeded_msg,self.cat_embed[category])
             max_loc = np.argmax(dots)
             dot_products.append(dots[max_loc]) # append max for one exemplar out of all the cut ups of user msgs
