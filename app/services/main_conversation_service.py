@@ -28,7 +28,8 @@ class MainConversationService:
         ai_data ={}
         if trigger == 'encouragingNoises':
             try:
-                ai_data = sentence_encoder.get_cat(cleaned_message)
+                #ai_data = sentence_encoder.get_cat(cleaned_message) # should this be cleaned?
+                ai_data = sentence_encoder.get_cat_no_cut(conversation_input_data.message)
                 trigger = ai_data['max_over_thresh']
                 out_cat, response = sentence_encoder.guse_response(trigger,session['ai_repeat'])
                 if out_cat == 'Abuse':

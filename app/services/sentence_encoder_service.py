@@ -73,7 +73,34 @@ class SentenceEncoder:
                     'substring_for_max_cat': max_dot_substring}
         print(all_info)
         return all_info
+    
+    def get_cat_no_cut(self,message):
+        all_info = {}
+        max_dot_per_cat = {}
 
+        max_dot_substring_dot =0
+        max_dot_substring = ''
+        max_dot_exemplar = ''
+        embeded_msg = self.embed(message)
+        for category in self.dataset.keys(): # for every category, taken from aidata json
+            dot_products = [] #probably not needed 
+            dots = np.inner(embeded_msg,self.cat_embed[category])
+            max_loc = np.argmax(dots)
+            dot_products.append(dots[max_loc]) # append max for one exemplar out of all the cut ups of user msgs
+            max_dot_per_cat[str(category)] = max(dot_products) # I think there is only one max in here 
+
+        max_compare_thresh = {x:max_dot_per_cat[x] for x in max_dot_per_cat.keys() & self.threshold.keys() if max_dot_per_cat[x] > self.threshold[x]}
+
+        highest_max_score_category = max(max_dot_per_cat,key=max_dot_per_cat.get)
+
+        all_info={"user_msg":message,"max_over_thresh":max_compare_thresh,
+                    "max_dot_per_cat":max_dot_per_cat,
+                    'highest_max_score_category':highest_max_score_category,
+                    'highest_max_cat_dot':max_dot_per_cat[highest_max_score_category],
+                    'exemplar_for_max_cat': max_dot_exemplar,
+                    'substring_for_max_cat': max_dot_substring}
+        print(all_info)
+        return all_info
 
     def guse_response(self,cat,repeat):
         print('repeat_early:',repeat)
@@ -93,6 +120,6 @@ class SentenceEncoder:
 if __name__ == '__main__':
     se = SentenceEncoder()
     se.make_cat_embed()
-    cat = se.get_cat('my girlfriend hit me and im being abused and im depressed and also Upset. You fucking suck')['max_over_thresh']
+    cat = se.get_cat_no_cut('my girlfriend hit me and im being abused and im depressed and also Upset. You fucking suck')['max_over_thresh']
     print(cat)
-    print(se.guse_response(cat))
+    print(se.guse_response(cat,se.repeat))
