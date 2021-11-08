@@ -685,11 +685,11 @@ class TriggerResponseService:
 
             response = random.choice(possible_responses)
         
-        elif (" " not in user_message or len(user_message) < 10):
+        elif (" " not in user_message or len(user_message) < 10) and (user_character_count < 40 or session['short_msg_count']<2):
             ### If it's the user's first written response and they've given  (essentially) a one-word message, or maybe something without spaces (e.g. typing gibberish like usanvoiudvuvufdsiudsbca)
             ### When I say one-word message, I mean that either it is short, or something that might be longer but has no space characters (this includes someone typing gibberish)
             response = "I see you've said something very short there, which is cool :-). But feel free to type full sentences if you want. Just write about whatever's on your mind -- I'm here to listen."
-
+            session['short_msg_count'] += 1
         return response
 
     def __is_user_suicidal(self, trigger):
