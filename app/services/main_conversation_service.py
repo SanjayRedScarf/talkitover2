@@ -26,7 +26,7 @@ class MainConversationService:
 
         print('this is the uid from main_conversation_service.py in get_main_conversation_output_data(): {}'.format(session['uid']))
         ai_data ={}
-        if trigger == 'encouragingNoises':
+        if response in session['TRIGGERS_DICT']["encouragingNoises"]:
             try:
                 #ai_data = sentence_encoder.get_cat(cleaned_message) # should this be cleaned?
                 ai_data = sentence_encoder.get_cat_no_cut(conversation_input_data.message)

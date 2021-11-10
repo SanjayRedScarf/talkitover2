@@ -16,7 +16,7 @@ class SentenceEncoder:
         model_path = os.path.join(THIS_FOLDER,'../../..','model/all-MiniLM-L6-v2/')
         self.model = SentenceTransformer(model_path)
         self.response = []
-        self.repeat = []
+        self.repeat = [] # not used anymore, replaced with session['ai_repeat']. Kept for testing reasons
         self.threshold = dict(zip(self.dataset.keys(),[self.dataset[x]['threshold'] for x in self.dataset.keys()]))
         #self.priority = dict(zip(self.dataset.keys(),[self.dataset[x]['priority'] for x in self.dataset.keys()]))
         self.cat_embed ={}
