@@ -84,7 +84,7 @@ class SentenceEncoder:
 
         max_dot_substring_dot =0
         max_dot_substring = ''
-        max_dot_exemplar = ''
+        max_dot_exemplar = {}
         if len(message.split())>250:
             embeded_msg = self.embed(self.cut_250_word(message.split()))
         else:
@@ -96,7 +96,7 @@ class SentenceEncoder:
             max_loc = np.argmax(dots)
             dot_products.append(dots[max_loc]) # append max for one exemplar out of all the cut ups of user msgs
             max_dot_per_cat[str(category)] = max(dot_products) # I think there is only one max in here 
-
+            max_dot_exemplar[str(category)] = self.dataset[category]['exemplars'][max_loc]
         max_compare_thresh = {x:max_dot_per_cat[x] for x in max_dot_per_cat.keys() & self.threshold.keys() if max_dot_per_cat[x] > self.threshold[x]}
 
         highest_max_score_category = max(max_dot_per_cat,key=max_dot_per_cat.get)
@@ -105,7 +105,7 @@ class SentenceEncoder:
                     "max_dot_per_cat":max_dot_per_cat,
                     'highest_max_score_category':highest_max_score_category,
                     'highest_max_cat_dot':max_dot_per_cat[highest_max_score_category],
-                    'exemplar_for_max_cat': max_dot_exemplar,
+                    'exemplar_for_max_cat': max_dot_exemplar[highest_max_score_category],
                     'substring_for_max_cat': max_dot_substring}
         print(all_info)
         return all_info
