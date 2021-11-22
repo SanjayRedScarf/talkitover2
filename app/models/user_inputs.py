@@ -1,5 +1,5 @@
 class UserInputs:
-    def __init__(self, anonymous, conversation_id, message, response, section, client_id,ai_data ={}):
+    def __init__(self, anonymous, conversation_id, message, response, section, client_id,ai_data ={},response_type=None):
         self.anonymous = anonymous
         self.conversation_id = conversation_id
         self.message = message
@@ -7,3 +7,4 @@ class UserInputs:
         self.section = section
         self.client_id = client_id
         self.ai_data = ai_data
+        self.response_type = response_type

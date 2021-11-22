@@ -23,31 +23,34 @@ class MainConversationService:
 
         trigger = _trigger_check_service.get_trigger(cleaned_message, conversation_input_data.message)
         response = _trigger_response_service.get_response_for_trigger(cleaned_message, trigger, user_character_count)            
-
-        print('this is the uid from main_conversation_service.py in get_main_conversation_output_data(): {}'.format(session['uid']))
-        ai_data ={}
+        #session['response_type'] = trigger
+        ai_data ={} # look into getting rid of this if possible, maybe in ouptup_data.py
         if response in session['TRIGGERS_DICT']["encouragingNoises"]:
             try:
                 #ai_data = sentence_encoder.get_cat(cleaned_message) # should this be cleaned?
                 ai_data = sentence_encoder.get_cat_no_cut(conversation_input_data.message)
-                trigger = ai_data['max_over_thresh']
-                out_cat, response = sentence_encoder.guse_response(trigger,session['ai_repeat'])
-                if out_cat == 'Abuse':
+                in_cats = ai_data['max_over_thresh']
+                trigger, response = sentence_encoder.guse_response(in_cats,session['ai_repeat'])
+                if trigger == 'Abuse':
                     response = ast.literal_eval(response)
-                elif out_cat == None:
-                    trigger == 'encouragingNoises'
+                elif trigger == None:
+                    trigger = 'encouragingNoises'
+                    #session['response_type'] = trigger
                     response = _trigger_response_service.get_response_for_trigger(cleaned_message, trigger, user_character_count)
+                if trigger != 'encouragingNoises':
+                    trigger += '_ai'
             except Exception as e:
                 print(e)
-                trigger == 'encouragingNoises'
+                trigger = 'encouragingNoises'
+                #session['response_type'] = trigger
                 response = _trigger_response_service.get_response_for_trigger(cleaned_message, trigger, user_character_count)
 
         # Remove from dictionary as response has now been used and we do not want it to be repeated.
-        if (type(trigger) != dict) & (trigger not in triggers_that_can_be_repeated):
+        if (type(trigger) != dict) & (trigger not in triggers_that_can_be_repeated)&(trigger[-3:] != "_ai"):
             Thread(target=_trigger_repository.remove_used_trigger(trigger)).start()
 
         next_user_input = self.next_user_input_option_types.next_user_input_free_text
 
-        return output_data.OutputData(response, conversation_input_data.section, [""], next_user_input, "freeText"), ai_data
+        return output_data.OutputData(response, conversation_input_data.section, [""], next_user_input, "freeText",ai_data,trigger)
 
         

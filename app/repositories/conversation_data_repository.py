@@ -16,10 +16,13 @@ class ConversationDataRepository:
         And those might be more sensitive.
         """
         google_ads_data = session['GOOGLE_ADS_DATA']
-        field_names = ['user_id','user_says','chatbot_says','version','frontend','campaign','group','geo','device','timestamp','ai_data',
-        'over_threshold','highest_score_category','highest_score_exemplar','highest_score_substring']
+        field_names = ['user_id','user_says','chatbot_says','version','frontend','campaign','group','geo','device','timestamp','section','response_type' ,
+        'ai_data','over_threshold','highest_score_category','highest_score_exemplar','highest_score_substring']
 
         version = session['version']
+        if user_inputs.section != 12:
+            user_inputs.response_type = None
+        response_type = str(user_inputs.response_type)
         if user_inputs.anonymous=="true" or user_inputs.section <= 11:  
 
             current_directory = os.path.dirname(os.path.realpath('__file__'))
@@ -31,10 +34,12 @@ class ConversationDataRepository:
                 if f.tell() == 0: # if the file doesnt already exist, write the field names as a header
                     writer.writeheader()  
                 if user_inputs.ai_data != {}:
-                    data = [{'user_id':user_inputs.conversation_id, "user_says": str(user_inputs.message), "chatbot_says": str(user_inputs.response),'version':version, 'frontend':user_inputs.client_id, "campaign": str(google_ads_data.campaign or ''), "group":  str(google_ads_data.group or ''), "geo": str(google_ads_data.geo or ''), "device": str(google_ads_data.device or ''), "timestamp":str(datetime.now()), 'ai_data':user_inputs.ai_data,
+                    data = [{'user_id':user_inputs.conversation_id, "user_says": str(user_inputs.message), "chatbot_says": str(user_inputs.response),'version':version, 'frontend':user_inputs.client_id, "campaign": str(google_ads_data.campaign or ''), "group":  str(google_ads_data.group or ''), "geo": str(google_ads_data.geo or ''), "device": str(google_ads_data.device or ''), 
+                    "timestamp":str(datetime.now()),'section':(user_inputs.section) ,'response_type':response_type,'ai_data':user_inputs.ai_data,
                     'over_threshold':user_inputs.ai_data['max_over_thresh'],'highest_score_category':user_inputs.ai_data['highest_max_score_category'],'highest_score_exemplar':user_inputs.ai_data['exemplar_for_max_cat'],
                     'highest_score_substring':user_inputs.ai_data['substring_for_max_cat']}]
                 else:
-                    data = [{'user_id':user_inputs.conversation_id, "user_says": str(user_inputs.message), "chatbot_says": str(user_inputs.response),'version':version,'frontend':user_inputs.client_id, "campaign": str(google_ads_data.campaign or ''), "group":  str(google_ads_data.group or ''), "geo": str(google_ads_data.geo or ''), "device": str(google_ads_data.device or ''), "timestamp":str(datetime.now()), 'ai_data':user_inputs.ai_data}]
+                    data = [{'user_id':user_inputs.conversation_id, "user_says": str(user_inputs.message), "chatbot_says": str(user_inputs.response),'version':version,'frontend':user_inputs.client_id, "campaign": str(google_ads_data.campaign or ''), "group":  str(google_ads_data.group or ''), "geo": str(google_ads_data.geo or ''), "device": str(google_ads_data.device or ''),
+                    "timestamp":str(datetime.now()),'section':(user_inputs.section),'response_type':response_type,'ai_data':user_inputs.ai_data}]
                 writer.writerows(data)
         return None
