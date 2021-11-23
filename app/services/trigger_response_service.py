@@ -555,7 +555,7 @@ class TriggerResponseService:
             response = "I am sorry to hear about the heartbreak, do you want to talk more about that"
 
         elif trigger == "iWantAFriend":
-            response = "Having a friend is important. I imagine you might be feeling lonely? Please tell me more about it…"
+            response = "Having a friend is important. I imagine you might be feeling lonely? Please tell me more about it..."
 
         elif trigger == "iDontSeeManyPeople":
             response = "That sounds lonely."
@@ -590,7 +590,7 @@ class TriggerResponseService:
         elif trigger == "whoCanITalkTo":
             possible_responses = ["You can talk to me if you like, I am Tio, a chatbot.",\
                         "You can talk to me if you would like - I am a bot though. That means I can'give you space and won't judge ( I don't know how to!). \
-                        It also means I won't pick up every human nuance. I am still learning….."]
+                        It also means I won't pick up every human nuance. I am still learning..."]
 
             response = random.choice(possible_responses)
 
