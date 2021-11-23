@@ -88,7 +88,7 @@
   addBotThinking = function(time=0){
     var image;
     //var botThinkingHtml = '<img class="botText" src="https://raw.githubusercontent.com/SanjayRedScarf/talkitover2/SanjayRedScarf-new/typing_dots_cropped.gif" style="width:90px; height:40px; margin-bottom: 10px;"/>'
-    var botThinkingHtml = '<img class="botText" src="/static/typing_dots_cropped.gif" style="width:90px; height:50px; margin-bottom: 10px;"/>'
+    var botThinkingHtml = '<img class="botText" src="/static/typing_dots_cropped_roundedcorners.gif" style="width:90px; height:50px; margin-bottom: 10px;"/>'
     var bot
     setTimeout(function(){
       $('.messages').append(botThinkingHtml);
