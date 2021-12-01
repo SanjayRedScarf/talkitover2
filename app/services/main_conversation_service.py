@@ -50,7 +50,10 @@ class MainConversationService:
             Thread(target=_trigger_repository.remove_used_trigger(trigger)).start()
 
         next_user_input = self.next_user_input_option_types.next_user_input_free_text
-
+        
+        if trigger == 'encouragingNoises' and response not in session['TRIGGERS_DICT']["encouragingNoises"]:
+            trigger = 'specialCase'
+        
         return output_data.OutputData(response, conversation_input_data.section, [""], next_user_input, "freeText",ai_data,trigger)
 
         
