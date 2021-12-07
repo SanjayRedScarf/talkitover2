@@ -694,6 +694,10 @@ class TriggerResponseService:
             print('short_msg_count:',session['short_msg_count'])
             
             session['short_msg_count'] += 1
+        
+        if session["heavy_q"]:
+            response = 'THIS IS SUCH A HEAVY Q BABY???????'
+        
         return response
 
     def __is_user_suicidal(self, trigger):
