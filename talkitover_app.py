@@ -1804,7 +1804,7 @@ def choose_bot_wordy_response(message, clientId):
     ai_data = {}
     print('\nbefore trying ai\n')
     try:
-        ai_data = se.get_cat(message)
+        ai_data = se.get_cat_no_cut(message)
         guse_cat = ai_data['max_over_thresh']
         print(guse_cat)
     except Exception as e:
@@ -3118,7 +3118,7 @@ def bot_processing(inputs_dict):
             response = "I'd love to hear you say more about that. Before we do that, would you like me to explain about how this chatbot works?"
             nextUserOptions = ["Yes"] # this is the option that the user can select
             nextUserInput = next_user_input_one(nextUserOptions,clientId) # this puts a string of html around it
-            next_section = section + 2
+            next_section = section + 3
         else:
             response = "Do you feel this way often?"
             nextUserOptions = ["Yes", "No"] # this is the option that the user can select
