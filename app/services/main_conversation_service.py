@@ -51,6 +51,7 @@ class MainConversationService:
 
         next_user_input = self.next_user_input_option_types.next_user_input_free_text
         
+        # this is here so that information is written accuratly in the stored data, has no effect on the response outputted 
         if trigger == 'encouragingNoises' and response not in session['TRIGGERS_DICT']["encouragingNoises"]:
             trigger = 'specialCase'
         

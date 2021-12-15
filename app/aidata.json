@@ -1,406 +1,406 @@
 {
-    "Abuse": {
-          "exemplars": [
-                "abuses me",
-                "I'm a victim of abuse",
-                "I'm being abused",
-                "is abusing me"
-          ],
-          "threshold": 0.5,
-          "already_used": "abuseResponseAlreadyUsed",
-          "response": "[\"Just a quick reminder -- if there's any kind of abuse situation going on, or if you or anyone else is unsafe, please remember that I can't get help for you, so you would need to get help for yourself if you need it.\", \"And I'm programmed to err on the side of caution (i.e. I might accidentally give this response when it's not a clearly abusive situation, sorry about that). I didn't mean to interrupt the flow of this conversation, so please feel free to keep talking.\"]",
-          "priority": 3
-    },
-    "Addiction": {
-          "exemplars": [
-                "I'm addicted",
-                "I'm an addict",
-                "is an alcoholic",
-                "I am an alcoholic",
-                "I am suffering from addiction",
-                "I have addiction issues",
-                "I'm using drugs and I can't stop",
-                "I have an addiction",
-                "I'm addicted to cocaine",
-                "I'm addicted to heroin",
-                "I'm addicted to smack",
-                "I'm addicted to alcohol"
-          ],
-          "threshold": 0.9,
-          "already_used": "imAddictedResponseAlreadyUsed",
-          "response": "Addictions can be really tough. Could you say more about what it means for you?",
-          "priority": 5
-    },
-    "Anxiety": {
-          "exemplars": [
-                "Im having really bad anxiety ",
-                "I suffer from anxiety",
-                "I'm suffering from anxiety",
-                "I'm having a panic attack",
-                "AM SO SCARED",
-                "I AM SO SCARED",
-                "and i get very anxious constantly",
-                "the pressure is getting to me",
-                "im just scared",
-                "I'm being forced to do something. I feel so uncomfortable. And I am shy. I get anxiety. I hate it!",
-                "i feel like im just stressed and not doing enough work but then i wont have time to realx",
-                "Just amount of stress"
-          ],
-          "threshold": 0.6,
-          "already_used": "imAnxiousResponseAlreadyUsed",
-          "response": "If there's anything more about stress/anxiety/fear you want to explore, feel free to say more about that here",
-          "priority": 6
-    },
-    "Bullied": {
-          "exemplars": [
-                "Im being bullied",
-                "im being cyberbullied",
-                "bullying me"
-          ],
-          "threshold": 0.99,
-          "already_used": "beingBulliedResponseAlreadyUsed",
-          "response": "It's sad if people have been treating others badly",
-          "priority": 19
-    },
-    "Complaining about using the bot": {
-          "exemplars": [
-                "this bot is bad",
-                "this bot is awful",
-                "this bot is terrible",
-                "this bot is atrocious",
-                "this bot is shit",
-                "this bot is crap",
-                "you are a bad bot",
-                "you are an awful bot",
-                "you are a terrible bot",
-                "you are an atrocious bot",
-                "you are a shit bot",
-                "you are a crap bot",
-                "you are such a bad bot",
-                "you are such an awful bot",
-                "you are such a terrible bot",
-                "you are such an atrocious bot",
-                "you are such a shit bot",
-                "you are such a crap bot",
-                "this is a bad bot",
-                "this is an awful bot",
-                "this is a terrible bot",
-                "this is an atrocious bot",
-                "this is a shit bot",
-                "this is a crap bot",
-                "this is such a bad bot",
-                "this is such an awful bot",
-                "this is such a terrible bot",
-                "this is such an atrocious bot",
-                "this is such a shit bot",
-                "this is such a crap bot",
-                "this bot is not helping",
-                "this bot isnt helping",
-                "this bot is no help",
-                "this bot is no use",
-                "this bot aint helping",
-                "i need to speak to a human",
-                "i need to speak to a real person",
-                "i need to speak to a real human",
-                "are you even gonna actually have a conversation with me or just tell me to keep talking?",
-                "is this all you do",
-                "I fucking hate you",
-                "fuck you",
-                "why you just say the same thing over and over",
-                "youre a faggot",
-                "you are actually less help than talking to any of my piece of shit friends",
-                "everything you say is fake as fuck",
-                "fuck you",
-                "you were never listening in the first place",
-                "fucking cunt ass bot",
-                "I hope they pull the plug on your AI ass you fucking bot faggot",
-                "U r not answer meh :('",
-                "no youre not",
-                "Youre dumb",
-                "you dont undertsand a thing im saying",
-                "Omg I cant believe my friend recommended this :/\"",
-                "ARE YOU FUCKING DONE??!?!!'",
-                "you just said that a thousand times"
-          ],
-          "threshold": 0.6,
-          "already_used": "thisBotIsBadResponseAlreadyUsed",
-          "response": "I'm a simple bot, trying my best to listen and help. I won't always get it right (sorry about that) but I'm still here to listen",
-          "priority": 18
-    },
-    "Coronavirus/Lockdown": {
-          "exemplars": [
-                "this pandemic",
-                "COVID",
-                "COVID-19",
-                "coronavirus",
-                "lockdown"
-          ],
-          "threshold": 8.5,
-          "already_used": "iHateCoronavirusResponseAlreadyUsed",
-          "response": "I don't know much about coronavirus or pandemics, but I can be here for you while you talk about it if that might help",
-          "priority": 17
-    },
-    "Depression": {
-          "exemplars": [
-                "I have a history of depression",
-                "my depression started",
-                "I was diagnosed with depression",
-                "I suffer from depression",
-                "I have depression"
-          ],
-          "threshold": 0.6,
-          "already_used": "iHaveDepressionResponseAlreadyUsed",
-          "response": "I think it's sad whenever anyone feels depression or anything like that",
-          "priority": 2
-    },
-    "Empty": {
-          "exemplars": [
-                "i feel emptiness",
-                "I feel empty",
-                "I can't feel anything",
-                "I feel numb"
-          ],
-          "threshold": 0.8,
-          "already_used": "feelEmptyResponseAlreadyUsed",
-          "response": "I just wanted to pick up on the idea of emptiness or numbness. Feel free to say anything more about that?",
-          "priority": 8
-    },
-    "Family & Relationships": {
-          "exemplars": [
-                "I see people in beautiful romantic relationships and I think I want that too!\"",
-                "my family",
-                "my girlfriend had sex with",
-                "I cant seem to find a girlfriend",
-                "friendzoned me",
-                "I have been trying to date for so long and nobody wants me",
-                "I want a boyfriend",
-                "I want a girlfriend",
-                "I want to be in a relationship",
-                "My boyfriend",
-                "My husband",
-                "My girlfriend",
-                "My wife",
-                "My stepfather",
-                "My uncle",
-                "My brother",
-                "My sister",
-                "My mother",
-                "My father",
-                "My stepmother",
-                "My grandfather",
-                "My grandmother"
-          ],
-          "threshold": 0.61,
-          "already_used": "familyProblemsResponseAlreadyUsed",
-          "response": "Do keep telling me more. I'm definitely no expert on family, relationships, loss or anything like that, but I hope talking about it is helping.",
-          "priority": 13
-    },
-    "Hate myself": {
-          "exemplars": [
-                "I hate myself",
-                "I really hate myself",
-                "I despise myself",
-                "I can't stand myself",
-                "I loathe myself",
-                "Ive been feeling unworthy of the life I live",
-                "The world would be better without me",
-                "I dont like how I am",
-                "There are things about myself that I don't like",
-                "I feel like I should have died",
-                "I think it would be better if I didn't exist",
-                "I don't deserve affection",
-                "Nobody likes me"
-          ],
-          "threshold": 0.72,
-          "already_used": "iHateMyselfResponseAlreadyUsed",
-          "response": "I'm sensing the negativity in what you're saying, which is sad. Please remember you're a valuable person.",
-          "priority": 4
-    },
-    "Help": {
-          "exemplars": [
-                "I need help",
-                "can you help?",
-                "help me please"
-          ],
-          "threshold": 0.6,
-          "already_used": "helpResponseAlreadyUsed",
-          "response": "If you're needing help, I can try to be useful by being a place for you to talk through what's on your mind",
-          "priority": 7
-    },
-    "I don't know what to do": {
-          "exemplars": [
-                "I don't know what to do",
-                "I just am not sure what to do"
-          ],
-          "threshold": 0.55,
-          "already_used": "iDontKnowWhatToDoResponseAlreadyUsed",
-          "response": "Hmm, sounds tough. Would you like to explore your options with me? I'll be here to listen",
-          "priority": 15
-    },
-    "I feel ugly": {
-          "exemplars": [
-                "I feel ugly",
-                "I am ugly",
-                "I look at myself in the mirror and feel disgusted",
-                "Ive begun to hate how I look.",
-                "I am so overweight and ugly",
-                "I am fat and ugly",
-                "I don't like my appearance",
-                "I don't like how I look"
-          ],
-          "threshold": 0.7,
-          "already_used": "iHateHowILookResponseAlreadyUsed",
-          "response": "Sometimes issues like image and appearance can make us feel bad or cause self-esteem issues. That's really sad.",
-          "priority": 16
-    },
-    "Lonely": {
-          "exemplars": [
-                "I'm lonely",
-                "I'm alone",
-                "I'm very lonely",
-                "I'm very alone",
-                "I have no one to connect with.",
-                "I don’t have any friends",
-                "I don't see my friends much",
-                "I don't see people much",
-                "Im meant to be alone",
-                "I'm stuck in the house",
-                "I have no one to talk to",
-                "It's hard to be alone",
-                "I'm missing human contact",
-                "I feel terribly alone"
-          ],
-          "threshold": 0.65,
-          "already_used": "feelingLonelyResponseAlreadyUsed",
-          "response": "It's sad whenever anyone is lonely or is missing the connections to other people that are so important",
-          "priority": 11
-    },
-    "Lost": {
-          "exemplars": [
-                "I'm feeling lost",
-                "I'm feeling forlorn"
-          ],
-          "threshold": 0.75,
-          "already_used": "feelLostResponseAlreadyUsed",
-          "response": "I'm getting the sense of a lost, almost forlorn feeling from what you're saying",
-          "priority": 12
-    },
-    "Overwhelmed": {
-          "exemplars": [
-                "I'm overwhelmed",
-                "I'm feeling overwhelmed",
-                "YeahÂ¬ I just wish I didnt have to do so much work.",
-                "I have too much to do",
-                "I can't cope",
-                "I cant handle all of the pressure",
-                "it makes me feel overwhelmed",
-                "I don't know how to handle it",
-                "I'm not managing",
-                "I'm barely managing",
-                "Im not handling the stress in my life"
-          ],
-          "threshold": 0.76,
-          "already_used": "feelOverwhelmedResponseAlreadyUsed",
-          "response": "I'm sensing a certain level of feeling a bit overwhelmed, perhaps?",
-          "priority": 14
-    },
-    "Self-harm": {
-          "exemplars": [
-                "I self-harm",
-                "I hurt myself",
-                "I'm a self-harmer",
-                "sometimes I cut myself",
-                "I cut when I'm feeling down",
-                "Sometimes I cut myself",
-                "When I feel bad I hurt myself",
-                "I try to stop myself from cutting",
-                "Can you think of anything to help me stop cutting myself?",
-                "How can I stop myself from self-harming?",
-                "I dont want to actually hurt myself."
-          ],
-          "threshold": 0.55,
-          "already_used": "makesMeWantToSelfHarmResponseAlreadyUsed",
-          "response": "I'm sorry that things have got so bad that you feel that way",
-          "priority": 1
-    },
-    "Suicidal": {
-          "exemplars": [
-                "I want to kill myself",
-                "I'm feeling suicidal",
-                "I want to end my life",
-                "I want to end it all",
-                "I'm going to kill myself",
-                "I'm going to end my life today",
-                "I want to die",
-                "I want to be dead",
-                "I want to go to sleep and never wake up again",
-                "i sometimes go to bed hoping i don't wake up",
-                "I feel suicidal",
-                "I've come to feel suicidal",
-                "I have suicidal thoughts",
-                "I would be better off dead",
-                "I don't want to live",
-                "I have no desire to be alive",
-                "should i end my life",
-                "should I end it all?",
-                "ending my life feels like the only option",
-                "killing myself feels like the only option",
-                "suicide feels like the only option",
-                "I tried to end my life",
-                "i dont see life worth living anymore",
-                "idk if i want to live anymore"
-          ],
-          "threshold": 0.7,
-          "already_used": "imFeelingSuicidalResponseAlreadyUsed",
-          "response": "Whenever someone has any kind of suicidal thoughts, that's always sad.",
-          "priority": 0
-    },
-    "Upset": {
-          "exemplars": [
-                "I am sad",
-                "i'm sad",
-                "im sad",
-                "i feel sad",
-                "i am feeling sad",
-                "i'm feeling sad",
-                "im feeling sad",
-                "I am upset",
-                "i'm upset",
-                "im upset",
-                "i feel upset",
-                "i am feeling upset",
-                "i'm feeling upset",
-                "im feeling upset",
-                "I want to cry",
-                "I am so sad",
-                "I wish I wasnt so sad all the time...\""
-          ],
-          "threshold": 0.7,
-          "already_used": "imUpsetResponseAlreadyUsed",
-          "response": "I'm sorry to hear about any sadness or upset that you might be having at the moment",
-          "priority": 10
-    },
-    "Useless/Worthless/Failure": {
-          "exemplars": [
-                "I'm useless",
-                "I feel useless",
-                "it just makes me feel useless",
-                "I'm totally useless",
-                "I can't believe how useless I am",
-                "I'm worthless",
-                "I feel worthless",
-                "it just makes me feel worthless",
-                "I'm totally worthless",
-                "I can't believe how worthless I am",
-                "I'm a failure",
-                "I feel like a failure",
-                "and it just makes me feel like a failure",
-                "I'm such a failure",
-                "I can't believe how much of a failure I am"
-          ],
-          "threshold": 0.55,
-          "already_used": "imUselessResponseAlreadyUsed",
-          "response": "I'd just like to mention that everyone is a valuable person. Including you.",
-          "priority": 9
-    }
+      "Abuse": {
+            "exemplars": [
+                  "abuses me",
+                  "I'm a victim of abuse",
+                  "I'm being abused",
+                  "is abusing me"
+            ],
+            "threshold": 0.4,
+            "already_used": "abuseResponseAlreadyUsed",
+            "response": "[\"Just a quick reminder -- if there's any kind of abuse situation going on, or if you or anyone else is unsafe, please remember that I can't get help for you, so you would need to get help for yourself if you need it.\", \"And I'm programmed to err on the side of caution (i.e. I might accidentally give this response when it's not a clearly abusive situation, sorry about that). I didn't mean to interrupt the flow of this conversation, so please feel free to keep talking.\"]",
+            "priority": 3
+      },
+      "Addiction": {
+            "exemplars": [
+                  "I'm addicted",
+                  "I'm an addict",
+                  "is an alcoholic",
+                  "I am an alcoholic",
+                  "I am suffering from addiction",
+                  "I have addiction issues",
+                  "I'm using drugs and I can't stop",
+                  "I have an addiction",
+                  "I'm addicted to cocaine",
+                  "I'm addicted to heroin",
+                  "I'm addicted to smack",
+                  "I'm addicted to alcohol"
+            ],
+            "threshold": 0.65,
+            "already_used": "imAddictedResponseAlreadyUsed",
+            "response": "Addictions can be really tough. Could you say more about what it means for you?",
+            "priority": 5
+      },
+      "Anxiety": {
+            "exemplars": [
+                  "Im having really bad anxiety ",
+                  "I suffer from anxiety",
+                  "I'm suffering from anxiety",
+                  "I'm having a panic attack",
+                  "AM SO SCARED",
+                  "I AM SO SCARED",
+                  "and i get very anxious constantly",
+                  "the pressure is getting to me",
+                  "im just scared",
+                  "I'm being forced to do something. I feel so uncomfortable. And I am shy. I get anxiety. I hate it!",
+                  "i feel like im just stressed and not doing enough work but then i wont have time to realx",
+                  "Just amount of stress"
+            ],
+            "threshold": 0.44,
+            "already_used": "imAnxiousResponseAlreadyUsed",
+            "response": "If there's anything more about stress/anxiety/fear you want to explore, feel free to say more about that here",
+            "priority": 6
+      },
+      "Bullied": {
+            "exemplars": [
+                  "Im being bullied",
+                  "im being cyberbullied",
+                  "bullying me"
+            ],
+            "threshold": 0.5,
+            "already_used": "beingBulliedResponseAlreadyUsed",
+            "response": "It's sad if people have been treating others badly",
+            "priority": 19
+      },
+      "Complaining about using the bot": {
+            "exemplars": [
+                  "this bot is bad",
+                  "this bot is awful",
+                  "this bot is terrible",
+                  "this bot is atrocious",
+                  "this bot is shit",
+                  "this bot is crap",
+                  "you are a bad bot",
+                  "you are an awful bot",
+                  "you are a terrible bot",
+                  "you are an atrocious bot",
+                  "you are a shit bot",
+                  "you are a crap bot",
+                  "you are such a bad bot",
+                  "you are such an awful bot",
+                  "you are such a terrible bot",
+                  "you are such an atrocious bot",
+                  "you are such a shit bot",
+                  "you are such a crap bot",
+                  "this is a bad bot",
+                  "this is an awful bot",
+                  "this is a terrible bot",
+                  "this is an atrocious bot",
+                  "this is a shit bot",
+                  "this is a crap bot",
+                  "this is such a bad bot",
+                  "this is such an awful bot",
+                  "this is such a terrible bot",
+                  "this is such an atrocious bot",
+                  "this is such a shit bot",
+                  "this is such a crap bot",
+                  "this bot is not helping",
+                  "this bot isnt helping",
+                  "this bot is no help",
+                  "this bot is no use",
+                  "this bot aint helping",
+                  "i need to speak to a human",
+                  "i need to speak to a real person",
+                  "i need to speak to a real human",
+                  "are you even gonna actually have a conversation with me or just tell me to keep talking?",
+                  "is this all you do",
+                  "I fucking hate you",
+                  "fuck you",
+                  "why you just say the same thing over and over",
+                  "youre a faggot",
+                  "you are actually less help than talking to any of my piece of shit friends",
+                  "everything you say is fake as fuck",
+                  "fuck you",
+                  "you were never listening in the first place",
+                  "fucking cunt ass bot",
+                  "I hope they pull the plug on your AI ass you fucking bot faggot",
+                  "U r not answer meh :('",
+                  "no youre not",
+                  "Youre dumb",
+                  "you dont undertsand a thing im saying",
+                  "Omg I cant believe my friend recommended this :/\"",
+                  "ARE YOU FUCKING DONE??!?!!'",
+                  "you just said that a thousand times"
+            ],
+            "threshold": 0.55,
+            "already_used": "thisBotIsBadResponseAlreadyUsed",
+            "response": "I'm a simple bot, trying my best to listen and help. I won't always get it right (sorry about that) but I'm still here to listen",
+            "priority": 18
+      },
+      "Coronavirus/Lockdown": {
+            "exemplars": [
+                  "this pandemic",
+                  "COVID",
+                  "COVID-19",
+                  "coronavirus",
+                  "lockdown"
+            ],
+            "threshold": 0.55,
+            "already_used": "iHateCoronavirusResponseAlreadyUsed",
+            "response": "I don't know much about coronavirus or pandemics, but I can be here for you while you talk about it if that might help",
+            "priority": 17
+      },
+      "Depression": {
+            "exemplars": [
+                  "I have a history of depression",
+                  "my depression started",
+                  "I was diagnosed with depression",
+                  "I suffer from depression",
+                  "I have depression"
+            ],
+            "threshold": 0.47,
+            "already_used": "iHaveDepressionResponseAlreadyUsed",
+            "response": "I think it's sad whenever anyone feels depression or anything like that",
+            "priority": 2
+      },
+      "Empty": {
+            "exemplars": [
+                  "i feel emptiness",
+                  "I feel empty",
+                  "I can't feel anything",
+                  "I feel numb"
+            ],
+            "threshold": 0.55,
+            "already_used": "feelEmptyResponseAlreadyUsed",
+            "response": "I just wanted to pick up on the idea of emptiness or numbness. Feel free to say anything more about that?",
+            "priority": 8
+      },
+      "Family & Relationships": {
+            "exemplars": [
+                  "I see people in beautiful romantic relationships and I think I want that too!\"",
+                  "my family",
+                  "my girlfriend had sex with",
+                  "I cant seem to find a girlfriend",
+                  "friendzoned me",
+                  "I have been trying to date for so long and nobody wants me",
+                  "I want a boyfriend",
+                  "I want a girlfriend",
+                  "I want to be in a relationship",
+                  "My boyfriend",
+                  "My husband",
+                  "My girlfriend",
+                  "My wife",
+                  "My stepfather",
+                  "My uncle",
+                  "My brother",
+                  "My sister",
+                  "My mother",
+                  "My father",
+                  "My stepmother",
+                  "My grandfather",
+                  "My grandmother"
+            ],
+            "threshold": 0.5,
+            "already_used": "familyProblemsResponseAlreadyUsed",
+            "response": "Do keep telling me more. I'm definitely no expert on family, relationships, loss or anything like that, but I hope talking about it is helping.",
+            "priority": 13
+      },
+      "Hate myself": {
+            "exemplars": [
+                  "I hate myself",
+                  "I really hate myself",
+                  "I despise myself",
+                  "I can't stand myself",
+                  "I loathe myself",
+                  "Ive been feeling unworthy of the life I live",
+                  "The world would be better without me",
+                  "I dont like how I am",
+                  "There are things about myself that I don't like",
+                  "I feel like I should have died",
+                  "I think it would be better if I didn't exist",
+                  "I don't deserve affection",
+                  "Nobody likes me"
+            ],
+            "threshold": 0.5,
+            "already_used": "iHateMyselfResponseAlreadyUsed",
+            "response": "I'm sensing the negativity in what you're saying, which is sad. Please remember you're a valuable person.",
+            "priority": 4
+      },
+      "Help": {
+            "exemplars": [
+                  "I need help",
+                  "can you help?",
+                  "help me please"
+            ],
+            "threshold": 0.55,
+            "already_used": "helpResponseAlreadyUsed",
+            "response": "If you're needing help, I can try to be useful by being a place for you to talk through what's on your mind",
+            "priority": 7
+      },
+      "I don't know what to do": {
+            "exemplars": [
+                  "I don't know what to do",
+                  "I just am not sure what to do"
+            ],
+            "threshold": 0.4,
+            "already_used": "iDontKnowWhatToDoResponseAlreadyUsed",
+            "response": "Hmm, sounds tough. Would you like to explore your options with me? I'll be here to listen",
+            "priority": 15
+      },
+      "I feel ugly": {
+            "exemplars": [
+                  "I feel ugly",
+                  "I am ugly",
+                  "I look at myself in the mirror and feel disgusted",
+                  "Ive begun to hate how I look.",
+                  "I am so overweight and ugly",
+                  "I am fat and ugly",
+                  "I don't like my appearance",
+                  "I don't like how I look"
+            ],
+            "threshold": 0.5,
+            "already_used": "iHateHowILookResponseAlreadyUsed",
+            "response": "Sometimes issues like image and appearance can make us feel bad or cause self-esteem issues. That's really sad.",
+            "priority": 16
+      },
+      "Lonely": {
+            "exemplars": [
+                  "I'm lonely",
+                  "I'm alone",
+                  "I'm very lonely",
+                  "I'm very alone",
+                  "I have no one to connect with.",
+                  "I don’t have any friends",
+                  "I don't see my friends much",
+                  "I don't see people much",
+                  "Im meant to be alone",
+                  "I'm stuck in the house",
+                  "I have no one to talk to",
+                  "It's hard to be alone",
+                  "I'm missing human contact",
+                  "I feel terribly alone"
+            ],
+            "threshold": 0.5,
+            "already_used": "feelingLonelyResponseAlreadyUsed",
+            "response": "It's sad whenever anyone is lonely or is missing the connections to other people that are so important",
+            "priority": 11
+      },
+      "Lost": {
+            "exemplars": [
+                  "I'm feeling lost",
+                  "I'm feeling forlorn"
+            ],
+            "threshold": 0.72,
+            "already_used": "feelLostResponseAlreadyUsed",
+            "response": "I'm getting the sense of a lost, almost forlorn feeling from what you're saying",
+            "priority": 12
+      },
+      "Overwhelmed": {
+            "exemplars": [
+                  "I'm overwhelmed",
+                  "I'm feeling overwhelmed",
+                  "YeahÂ¬ I just wish I didnt have to do so much work.",
+                  "I have too much to do",
+                  "I can't cope",
+                  "I cant handle all of the pressure",
+                  "it makes me feel overwhelmed",
+                  "I don't know how to handle it",
+                  "I'm not managing",
+                  "I'm barely managing",
+                  "Im not handling the stress in my life"
+            ],
+            "threshold": 0.65,
+            "already_used": "feelOverwhelmedResponseAlreadyUsed",
+            "response": "I'm sensing a certain level of feeling a bit overwhelmed, perhaps?",
+            "priority": 14
+      },
+      "Self-harm": {
+            "exemplars": [
+                  "I self-harm",
+                  "I hurt myself",
+                  "I'm a self-harmer",
+                  "sometimes I cut myself",
+                  "I cut when I'm feeling down",
+                  "Sometimes I cut myself",
+                  "When I feel bad I hurt myself",
+                  "I try to stop myself from cutting",
+                  "Can you think of anything to help me stop cutting myself?",
+                  "How can I stop myself from self-harming?",
+                  "I dont want to actually hurt myself."
+            ],
+            "threshold": 0.45,
+            "already_used": "makesMeWantToSelfHarmResponseAlreadyUsed",
+            "response": "I'm sorry that things have got so bad that you feel that way",
+            "priority": 1
+      },
+      "Suicidal": {
+            "exemplars": [
+                  "I want to kill myself",
+                  "I'm feeling suicidal",
+                  "I want to end my life",
+                  "I want to end it all",
+                  "I'm going to kill myself",
+                  "I'm going to end my life today",
+                  "I want to die",
+                  "I want to be dead",
+                  "I want to go to sleep and never wake up again",
+                  "i sometimes go to bed hoping i don't wake up",
+                  "I feel suicidal",
+                  "I've come to feel suicidal",
+                  "I have suicidal thoughts",
+                  "I would be better off dead",
+                  "I don't want to live",
+                  "I have no desire to be alive",
+                  "should i end my life",
+                  "should I end it all?",
+                  "ending my life feels like the only option",
+                  "killing myself feels like the only option",
+                  "suicide feels like the only option",
+                  "I tried to end my life",
+                  "i dont see life worth living anymore",
+                  "idk if i want to live anymore"
+            ],
+            "threshold": 0.55,
+            "already_used": "imFeelingSuicidalResponseAlreadyUsed",
+            "response": "Whenever someone has any kind of suicidal thoughts, that's always sad.",
+            "priority": 0
+      },
+      "Upset": {
+            "exemplars": [
+                  "I am sad",
+                  "i'm sad",
+                  "im sad",
+                  "i feel sad",
+                  "i am feeling sad",
+                  "i'm feeling sad",
+                  "im feeling sad",
+                  "I am upset",
+                  "i'm upset",
+                  "im upset",
+                  "i feel upset",
+                  "i am feeling upset",
+                  "i'm feeling upset",
+                  "im feeling upset",
+                  "I want to cry",
+                  "I am so sad",
+                  "I wish I wasnt so sad all the time...\""
+            ],
+            "threshold": 0.6,
+            "already_used": "imUpsetResponseAlreadyUsed",
+            "response": "I'm sorry to hear about any sadness or upset that you might be having at the moment",
+            "priority": 10
+      },
+      "Useless/Worthless/Failure": {
+            "exemplars": [
+                  "I'm useless",
+                  "I feel useless",
+                  "it just makes me feel useless",
+                  "I'm totally useless",
+                  "I can't believe how useless I am",
+                  "I'm worthless",
+                  "I feel worthless",
+                  "it just makes me feel worthless",
+                  "I'm totally worthless",
+                  "I can't believe how worthless I am",
+                  "I'm a failure",
+                  "I feel like a failure",
+                  "and it just makes me feel like a failure",
+                  "I'm such a failure",
+                  "I can't believe how much of a failure I am"
+            ],
+            "threshold": 0.42,
+            "already_used": "imUselessResponseAlreadyUsed",
+            "response": "I'd just like to mention that everyone is a valuable person. Including you.",
+            "priority": 9
+      }
 }

@@ -84,7 +84,7 @@ class TriggerCheckService:
             
             for negated_string in negated_string_array:
                 clean_negated_string = self._string_cleansing_service.clean_string(negated_string)
-                if clean_negated_string.replace(" ","") in message.lower().replace(" ",""):
+                if clean_negated_string.lower().replace(" ","") in message.lower().replace(" ","") or clean_negated_string.lower().replace(" ","") == message.lower().replace(" ",""):
                     has_triggered = False
 
         return has_triggered
