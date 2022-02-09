@@ -282,6 +282,63 @@
     };
   };
 
+  const show = () => {
+    const element = document.querySelector("#popup")
+    element.style.visibility = "visible"
+    element.style.opacity = "1"
+    element.style.transform = "scale(1)"
+    element.style.transition = "0.4s, opacity 0.4s"
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("mouseout", (event) => {
+      if (!event.toElement && !event.relatedTarget) {
+        setTimeout(() => {
+          show()
+        }, 1000)
+      }
+    })
+  })
+
+  const hide = () => {
+    const element = document.querySelector("#popup")
+    element.style.visibility = "hidden"
+    element.style.opacity = "0"
+    element.style.transform = "scale(0.5)"
+    element.style.transition = "0.2s, opacity 0.2s, visibility 0s 0.2s"
+  }
+  
+  document.addEventListener("DOMContentLoaded", () => {
+    document.onkeydown = event => {
+      event = event || window.event
+      if (event.keyCode === 27) {
+        hide()
+      }
+    }
+  })
+  
+  let eventListener
+
+  //inside show()
+  eventListener = document.addEventListener("click", function (clickEvent) {
+    let el = clickEvent.target
+    let inPopup = false
+    if (el.id === 'popup') {
+      inPopup = true
+    }
+    while (el = el.parentNode) { 
+      if (el.id == "popup") {
+        inPopup = true
+      }
+    }
+    if (!inPopup) hide()
+  })
+  
+  //inside hide()
+  if (eventListener) {
+    document.removeEventListener(eventListener)
+  }
+
 (function () {
   $(function () {
     printMessage("Hi! I'm the Talk It Over chatbot and I am here for you to talk about whatever is on your mind. Thanks for trying this early prototype! I'm not a very clever piece of software and I might not understand everything you say, but if you think that talking things through in a safe confidential space might help, let's chat!", "left");
