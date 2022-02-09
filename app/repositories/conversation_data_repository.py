@@ -27,7 +27,7 @@ class ConversationDataRepository:
 
             current_directory = os.path.dirname(os.path.realpath('__file__'))
 
-            file2 = os.path.join(current_directory,'app/storedData_v2.csv')
+            file2 = os.path.join(current_directory,'app/storedData_heavyq.csv')
 
             with open(file2,'a',newline ='',encoding='utf-8') as f:
                 writer = csv.DictWriter(f,fieldnames=field_names)
