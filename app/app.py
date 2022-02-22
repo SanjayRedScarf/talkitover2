@@ -29,7 +29,7 @@ def home():
 
     session['TRIGGERS_DICT'] = _triggers_repository.get_triggers_dictionary()
     
-    session['version'] = 14.1 # make sure to change this number whenever changing versions
+    session['version'] = 17 # make sure to change this number whenever changing versions
 
     session['heavy_q'] = random.choice([True,False])
     session['uid'] = datetime.datetime.now().strftime('%Y%m%d%H%M%S%f') # unique user id, later used for data analysis
