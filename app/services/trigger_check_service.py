@@ -20,22 +20,23 @@ class TriggerCheckService:
         # if nothing is triggered, encouraging noises array will be used by default
         trigger = "encouragingNoises"
         has_triggered = False
-
+        if session['last_trigger'] not in ['dontKnow','iDontKnowWhatToDo','iDontKnowWhatToSay']:
+            self.triggers_dictionary = dict(filter(lambda elem:elem[1]['multi'] == False,self.triggers_dictionary.items()))
         for (key, value) in self.triggers_dictionary.items():
             if key not in self.exclusion_list:
-                has_triggered = self.__check_user_message(key, value, message, has_triggered)
+                has_triggered = self.__check_user_message(key, value['triggers'], message, has_triggered)
             elif key == "thisBotIsBadtight":
                 has_triggered = self.__check_this_bot_is_bad_tight(message, has_triggered)
             elif key == "hello":
-                for item in self.triggers_dictionary["hello"]:
+                for item in self.triggers_dictionary["hello"]['triggers']:
                     if item == message:
                         has_triggered = True
             elif key == "help":
-                for item in self.triggers_dictionary["help"]:
+                for item in self.triggers_dictionary["help"]['triggers']:
                     if item == message:
                         has_triggered = True
             elif key == "stopSynonyms":
-                for item in self.triggers_dictionary["stopSynonyms"]:
+                for item in self.triggers_dictionary["stopSynonyms"]['triggers']:
                     if item == message:
                         has_triggered = True
             elif key == "msgIsQuestion":
@@ -108,7 +109,7 @@ class TriggerCheckService:
         """
         Checks the user's message against the thisBotIsBadTight array.
         """
-        this_bot_is_bad_tight_array = self.triggers_dictionary['thisBotIsBadtight']
+        this_bot_is_bad_tight_array = self.triggers_dictionary['thisBotIsBadtight']['triggers']
 
         cleaned_message = self.__remove_extra_words(message)
 

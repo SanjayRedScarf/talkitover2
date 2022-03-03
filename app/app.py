@@ -37,6 +37,7 @@ def home():
     session['response_modifier'] = {'suicidal':False,'lonely':False,'hate_looks':False} # tracks if user is suicidal, upset, etc which can change response used
     session['short_msg_count'] = 0
 
+    session['last_trigger'] = ""
     
     return render_template(homepage_name)
 

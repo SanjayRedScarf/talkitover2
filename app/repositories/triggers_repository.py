@@ -10,7 +10,7 @@ class TriggersRepository:
         Creates a dictionary of triggers.
         """
         current_directory = os.path.dirname(os.path.realpath('__file__'))
-        filename = os.path.join(current_directory, 'app/triggers.json')
+        filename = os.path.join(current_directory, 'app/multi_triggers.json')
 
         triggers = ""
 
@@ -26,7 +26,7 @@ class TriggersRepository:
         """
         triggers_dict = session['TRIGGERS_DICT']
 
-        encouraging_noises_array = triggers_dict["encouragingNoises"]
+        encouraging_noises_array = triggers_dict["encouragingNoises"]['triggers']
 
         return random.choice(encouraging_noises_array)
         
