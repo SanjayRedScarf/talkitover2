@@ -24,6 +24,7 @@
   var message_side = "left";
   var sendDisabled = true;
 
+
   $( document ).ready(function() {
     window.history.replaceState({}, document.title, "/" + "");
   });
@@ -132,13 +133,15 @@
     } else if (currentUserInputType == "initialHappinessSurvey"){
       //initialHappinessValue = $("#initialHappinessSurvey").val();
       initialHappinessValue = parseInt(userText, 10);
+      document.addEventListener('mouseout', mouseEvent);
     } else if (currentUserInputType == "finalHappinessSurvey"){
       //finalHappinessValue = $("#finalHappinessSurvey").val();
       finalHappinessValue = parseInt(userText, 10);
     } else if (currentUserInputType == "userInputButton"){
     } else if (currentUserInputType == "stopButton"){
       sectionNumber = 100; // the server will do the right thing if the section number is > 10, 100 is a randomly chosen number > 10
-      userText = "stop";} // the server will do the right thing if the user text is 'stop'
+      userText = "stop";
+      document.removeEventListener('mouseout', mouseEvent);} // the server will do the right thing if the user text is 'stop'
     console.log("userText has just been set as "+userText);
     $('.message_input').val('');
 
@@ -266,24 +269,6 @@
     finally{console.log('hello')}
 
   }
-  // When the user hits send message then this funtion gets called
-  mainFunction = function (){
-    if ($(".message_input").val().replace(/\s/g, "").length > 0){
-      unbindAll(true); // unbind all functions
-      message = getMessageText();  // retrieve the users message text
-      $(".message_input_wrapper").html("");
-      printMessage(message, "right"); // display there message on the screen
-      if (message=="stop"){
-        initiateStopSection();
-        document.removeEventListener('mouseout', mouseEvent);
-      } else {
-        //async_elipsis();
-        response = async_bot(message);
-      };
-    };
-  };
-
-
 
   let eventListener;
 
@@ -328,15 +313,27 @@
         e.clientY < 10;
 
     if (shouldShowExitIntent) {
-        //document.removeEventListener('mouseout', mouseEvent);
-        
+        document.removeEventListener('mouseout', mouseEvent);
         show();
     }
 };
 
-setTimeout(() => {
-  document.addEventListener('mouseout', mouseEvent);
-}, 10_000);
+  // When the user hits send message then this funtion gets called
+  mainFunction = function (){
+    if ($(".message_input").val().replace(/\s/g, "").length > 0){
+      unbindAll(true); // unbind all functions
+      message = getMessageText();  // retrieve the users message text
+      $(".message_input_wrapper").html("");
+      printMessage(message, "right"); // display there message on the screen
+      if (message =="stop"){
+        
+        initiateStopSection();
+      } else {
+        //async_elipsis();
+        response = async_bot(message);
+      };
+    };
+  };
 
 (function () {
   $(function () {
