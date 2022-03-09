@@ -9,6 +9,21 @@ body {
   font-family: "Calibri", "Roboto", sans-serif;
 }
 
+#close {
+  float:center;
+  display:inline-block;
+  padding:2px 5px;
+  background:#ccc;
+}
+
+#close:hover {
+  float:center;
+  display:inline-block;
+  padding:2px 5px;
+  background:#ccc;
+  color:#ccc;
+}
+
 #popup {
   position: fixed;
   width: 100%;
