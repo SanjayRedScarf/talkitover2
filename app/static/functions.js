@@ -133,7 +133,7 @@
     } else if (currentUserInputType == "initialHappinessSurvey"){
       //initialHappinessValue = $("#initialHappinessSurvey").val();
       initialHappinessValue = parseInt(userText, 10);
-      document.addEventListener('mouseout', mouseEvent);
+      //document.addEventListener('mouseout', mouseEvent);
     } else if (currentUserInputType == "finalHappinessSurvey"){
       //finalHappinessValue = $("#finalHappinessSurvey").val();
       finalHappinessValue = parseInt(userText, 10);
@@ -188,6 +188,9 @@
       }
 
       botThinkingTimeBeforeSecondFragment = Math.min(1000+botHtmlArray[0].length*60,5000) // This website suggested that the formula should be timeToRead=1300+(chars∗65); (I made it a bit shorter than that)  https://psychology.stackexchange.com/questions/1147/how-long-does-it-take-to-read-a-sentence-with-x-number-of-characters
+      if (sectionNumber == 12){
+        document.addEventListener('mouseout', mouseEvent);
+      };
       if (sectionNumber == 10){
         appendStopButton();
       };
