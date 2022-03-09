@@ -37,7 +37,7 @@ class TriggersRepository:
         triggers_dict = session['TRIGGERS_DICT']
 
         # The below list exists as some of the triggers should not be removed due to the importance of them or because they have common everyday responses.
-        removal_exclusion_list = ["iWantToKillMyself", "iWantToDie", "imFeelingSuicidal", "imFeelingQuiteSuicidal", "suicidalThoughts", "iveBecomeSuicidal", "iDontKnowWhatToSay", "yourNice", "dontKnow", "whatDoYouThink", "imGoingToGoNow", "thankYou", "encouragingNoises"]
+        removal_exclusion_list = ["encouragingNoises"]
 
         if trigger not in removal_exclusion_list:
             del triggers_dict[trigger]

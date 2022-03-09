@@ -485,7 +485,8 @@ class TriggerResponseService:
                 response = ["Thank you for having shared the things you've shared thus far. Perhaps let's just pause for a moment \
                     and think about how you're feeling right now. ", "Having thought about that for a moment, can you think of anything \
                     that's on your mind that would be useful to discuss, and that you haven't already said? If not, perhaps just say 'stop' and provide your feedback?"]
-
+        elif trigger == "iStillDontKnow":
+            response = "This is a test response for iStillDontKnow"
         elif trigger == "personalHygiene" or trigger == "iSmell":
             response = "I understand this hygiene stuff is a thing for humans, I am just a little bot. What are your thoughts on how to respond to this?"
 

@@ -20,7 +20,7 @@ class TriggerCheckService:
         # if nothing is triggered, encouraging noises array will be used by default
         trigger = "encouragingNoises"
         has_triggered = False
-        if session['last_trigger'] not in ['dontKnow','iDontKnowWhatToDo','iDontKnowWhatToSay']:
+        if ((session['last_trigger'] not in ['dontKnow','iDontKnowWhatToDo','iDontKnowWhatToSay']) and (session['multi'])) or (not session['multi']):
             self.triggers_dictionary = dict(filter(lambda elem:elem[1]['multi'] == False,self.triggers_dictionary.items()))
         for (key, value) in self.triggers_dictionary.items():
             if key not in self.exclusion_list:
