@@ -9,7 +9,8 @@
                   "im feeling ",
                   "i'm "
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "encouragingNoises": {
             "triggers": [
@@ -181,7 +182,8 @@
                   "I'm following you as you speak. Thank you for sharing...",
                   "I'm following you as you speak. I'm with you in this conversation."
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "itsNotThat": {
             "triggers": [
@@ -218,7 +220,8 @@
                   "i wouldn't necessarily say that",
                   "i would not necessarily say that"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iWantToKillMyself": {
             "triggers": [
@@ -302,7 +305,8 @@
                   "i want to end it all",
                   "i want to commit suic"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "imGoingToKillMyself": {
             "triggers": [
@@ -318,7 +322,8 @@
                   "i am going to end it all",
                   "i will end it all"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iWillDieToday": {
             "triggers": [
@@ -326,7 +331,8 @@
                   "i'll die today",
                   "i am going to die today"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iWantToDie": {
             "triggers": [
@@ -334,7 +340,8 @@
                   "i wanna die",
                   "i would like to die"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "imFeelingSuicidal": {
             "triggers": [
@@ -383,14 +390,16 @@
                   "i am feeling extremely suicidal",
                   "im feeling extremely suic"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iveBecomeSuicidal": {
             "triggers": [
                   "i have become suic",
                   "ive become suic"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "imFeelingQuiteSuicidal": {
             "triggers": [
@@ -419,7 +428,8 @@
                   "i'm still just feeling quite sucid",
                   "im still just feeling quite sucid"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iveBeenFeelingSuicidal": {
             "triggers": [
@@ -432,7 +442,8 @@
                   "i have been feeling pretty suic",
                   "i have been feeling pretty sucid"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "suicidalThoughts": {
             "triggers": [
@@ -455,7 +466,8 @@
                   "ive had thoughts of shooting myself",
                   "ive had some thoughts of shooting myself"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "contemplatedSuicideBut": {
             "triggers": [
@@ -484,7 +496,8 @@
                   "I keep having thoughts about suicide, though",
                   "I keep contemplating suicide, though"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iWishIWasDead": {
             "triggers": [
@@ -492,7 +505,8 @@
                   "i wish i was dead",
                   "i wish i could be dead"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "betterOffDead": {
             "triggers": [
@@ -500,7 +514,8 @@
                   "id be better off dead",
                   "better off if I weren't alive"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iDontWantToLive": {
             "triggers": [
@@ -523,7 +538,8 @@
                   "i no longer want to stay alive",
                   "i dont wanna stay alive"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iHateBeingAlive": {
             "triggers": [
@@ -540,7 +556,8 @@
                   "im hating living",
                   "im hating the fact that im living"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "sleepForever": {
             "triggers": [
@@ -551,13 +568,15 @@
                   "i sometimes go to bed hoping i won't wake up",
                   "i sometimes go to bed hoping i don't wake up"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "shouldIEndIt": {
             "triggers": [
                   "should i end it"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "shouldIKillMyself": {
             "triggers": [
@@ -566,7 +585,8 @@
                   "should i end my life",
                   "should i end it all"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "suicideIsOnlyOption": {
             "triggers": [
@@ -583,13 +603,15 @@
                   "killing myself seems like the only way forward",
                   "suicide seems like the only way forward"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "feelLikeEndingIt": {
             "triggers": [
                   "i feel like ending it"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iWasRaped": {
             "triggers": [
@@ -598,7 +620,8 @@
                   "i have been raped",
                   "i was raped"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "imCrying": {
             "triggers": [
@@ -614,14 +637,16 @@
                   "making me wanna cry",
                   "i cry myself"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iWantToCry": {
             "triggers": [
                   "i want to cry",
                   "i wanna cry"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "nothingToLiveFor": {
             "triggers": [
@@ -680,7 +705,8 @@
                   "there isn't any reason for me to be alive",
                   "i don't have any reason to be alive"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iHateMyself": {
             "triggers": [
@@ -689,7 +715,8 @@
                   " hate my sefl",
                   " hate mysefl"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "feelingDepressed": {
             "triggers": [
@@ -721,7 +748,8 @@
                   "i'm more depressed than ever",
                   "i developed depression"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "treatDepression": {
             "triggers": [
@@ -735,14 +763,16 @@
                   "how can I best treat my depression",
                   "whats the best treatment for depression"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iHaveDepression": {
             "triggers": [
                   "i have depression",
                   "i have bad depression"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iMightHaveDepression": {
             "triggers": [
@@ -750,13 +780,15 @@
                   "i may have depression",
                   "i possibly have depression"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iHaveBeenDepressed": {
             "triggers": [
                   "i have been depressed"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "singleWordDepressionMessage": {
             "triggers": [
@@ -767,7 +799,8 @@
                   "dperessed",
                   "dperession"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iHaveNoWayOut": {
             "triggers": [
@@ -786,7 +819,8 @@
                   "i don't have any way out",
                   "i dont have any way out"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "hadEnoughOfLife": {
             "triggers": [
@@ -795,7 +829,8 @@
                   "i have had enough of life",
                   "i had enough of life"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iWantToGiveUpOnLife": {
             "triggers": [
@@ -811,7 +846,8 @@
                   "there is no reason for me to live",
                   "theres no reason for me to live"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "nothingToLookForwardTo": {
             "triggers": [
@@ -826,7 +862,8 @@
                   "i've just got nothing to look forward to",
                   "i've literally just got nothing to look forward to"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "imUseless": {
             "triggers": [
@@ -891,7 +928,8 @@
                   "im just usless",
                   "i'm just usless"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "imWorthless": {
             "triggers": [
@@ -940,7 +978,8 @@
                   "im just utterly worthlses",
                   "i'm just utterly worthlses"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "imNotLoved": {
             "triggers": [
@@ -951,7 +990,8 @@
                   "im an unloved person",
                   "i feel unloved"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "imNotSpecialToAnyone": {
             "triggers": [
@@ -959,14 +999,16 @@
                   "im not special for anyone",
                   "there isn't anyone for whom im special"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iWantSomeoneToLoveMe": {
             "triggers": [
                   "i want someone to love me",
                   "i want to be loved"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "feelingLonely": {
             "triggers": [
@@ -1095,7 +1137,8 @@
                   "makes me sad and isolated",
                   "makes me sad and isolated"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "nobodyUnderstandsMe": {
             "triggers": [
@@ -1111,7 +1154,8 @@
                   "there is nobody who understands me",
                   "there is no one who understands me"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "imSickOfLockdown": {
             "triggers": [
@@ -1124,7 +1168,8 @@
                   "im bored of lockdown",
                   "i am bored of lockdown"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iDontSleep": {
             "triggers": [
@@ -1137,7 +1182,8 @@
                   "i struggle to sleep",
                   "i cant sleep"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "dontHaveAnyoneICanTalkTo": {
             "triggers": [
@@ -1194,7 +1240,8 @@
                   "i don't have anyone i can talk to",
                   "i don't have anyone i can chat to"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iHateHowILook": {
             "triggers": [
@@ -1230,7 +1277,8 @@
                   "i am humiliated that i look like this",
                   "i feel humiliated that i look like this"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "loseWeight": {
             "triggers": [
@@ -1249,7 +1297,8 @@
                   "fat-shamed me",
                   "fatshamed me"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "feelOverwhelmed": {
             "triggers": [
@@ -1286,7 +1335,8 @@
                   "i am overwhelmed",
                   "im overwhelmed"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "aLotOnMyMind": {
             "triggers": [
@@ -1295,7 +1345,8 @@
                   "ive got a lot on my mind",
                   "i have got a lot on my mind"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "feelingAwful": {
             "triggers": [
@@ -1318,7 +1369,8 @@
                   "i'm just feeling really awful",
                   "im just feeling really awful"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "feelLikeCrying": {
             "triggers": [
@@ -1327,7 +1379,8 @@
                   "feel like crying all the time",
                   "im crying all the time"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "imAFailure": {
             "triggers": [
@@ -1379,7 +1432,8 @@
                   "i feel myself to be such a failure",
                   "im not going to make it in life"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "imALetdown": {
             "triggers": [
@@ -1462,7 +1516,8 @@
                   "i feel such a letdown",
                   "i feel myself to be such a letdown"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "letMyselfDown": {
             "triggers": [
@@ -1471,7 +1526,8 @@
                   "let mysefl down",
                   "let my sefl down"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "hardLife": {
             "triggers": [
@@ -1482,7 +1538,8 @@
                   "i have had a bad life",
                   "i have had a hard and bad life"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iHaveRegrets": {
             "triggers": [
@@ -1492,7 +1549,8 @@
                   "my life is full of regrets",
                   "i am full of regret"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "underAchieved": {
             "triggers": [
@@ -1501,14 +1559,16 @@
                   "i havent accomplished anything",
                   "i havent achieved anything"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "hurtsMyFeelings": {
             "triggers": [
                   "hurts my feelings",
                   "continues to hurt my feelings"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "hurtsToKnowThat": {
             "triggers": [
@@ -1517,7 +1577,8 @@
                   "it hurts knowing that",
                   "i feel the pain of knowing that"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "feelOutOfControl": {
             "triggers": [
@@ -1546,7 +1607,8 @@
                   "i'm just feeling totally out of control",
                   "im just feeling totally out of control"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "feelLost": {
             "triggers": [
@@ -1587,7 +1649,8 @@
                   "i'm just feeling very lost",
                   "im just feeling very lost"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "feelEmpty": {
             "triggers": [
@@ -1595,7 +1658,8 @@
                   "i feel empty",
                   "i feel a sense of emptiness"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "inABadPlace": {
             "triggers": [
@@ -1612,7 +1676,8 @@
                   "i'm at such a bad place",
                   "im at such a bad place"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "imTrapped": {
             "triggers": [
@@ -1620,7 +1685,8 @@
                   "i feel trapped",
                   "im trapped"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "nobodyCares": {
             "triggers": [
@@ -1628,7 +1694,8 @@
                   "noone cares about me",
                   "no one cares for me"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "noOneCaresAboutMe": {
             "triggers": [
@@ -1645,7 +1712,8 @@
                   "nobody gives a fuck about me",
                   "nobody gives a fuck for me"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "feelingLowDownTerrible": {
             "triggers": [
@@ -1666,7 +1734,8 @@
                   "im feeling horrible",
                   "i am feeling horrible"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iWantThisFeelingToGoAway": {
             "triggers": [
@@ -1675,7 +1744,8 @@
                   "i wish i didnt feel like this",
                   "i dont want to feel like this"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iHateHowIFeel": {
             "triggers": [
@@ -1683,7 +1753,8 @@
                   "hate how im feeling",
                   "hate my feelings"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "imSad": {
             "triggers": [
@@ -1695,7 +1766,8 @@
                   "i'm feeling sad",
                   "im feeling sad"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "imUpset": {
             "triggers": [
@@ -1718,14 +1790,16 @@
                   "i feel really upset",
                   "i feel really upset"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "hurtFeelings": {
             "triggers": [
                   "hurts my feelings",
                   "hurt my feelings"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "beingBullied": {
             "triggers": [
@@ -1735,21 +1809,24 @@
                   "bullied me",
                   "bullying me"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iFeelHelpless": {
             "triggers": [
                   "I feel helpless",
                   "im feeling helpless"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "imAddicted": {
             "triggers": [
                   "im addicted",
                   "i'm addicted"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iHateCoronavirus": {
             "triggers": [
@@ -1770,7 +1847,8 @@
                   "i loathe covid",
                   "i loathe covid19"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "feelingRubbish": {
             "triggers": [
@@ -1801,7 +1879,8 @@
                   "i don't feel right",
                   "am not feeling right"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "panicAttacks": {
             "triggers": [
@@ -1811,7 +1890,8 @@
                   "the panic attacks come back",
                   "i get panic attacks over and overi continually get panic attacks"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "imAnxious": {
             "triggers": [
@@ -1827,14 +1907,16 @@
                   "i am experiencing extreme anxiety",
                   "i am experiencing severe anxiety"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iHaveAnxiety": {
             "triggers": [
                   "i have anxiety",
                   "i suffer from anxiety"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "imWorried": {
             "triggers": [
@@ -1846,14 +1928,16 @@
                   "leaves me feeling worried",
                   " i have so much to worry "
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iFeelStuck": {
             "triggers": [
                   "i feel stuck",
                   "im feeling stuck"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "imNotHappy": {
             "triggers": [
@@ -1864,7 +1948,8 @@
                   "im really not happy",
                   "i'm really not happy"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iFeelNumb": {
             "triggers": [
@@ -1876,7 +1961,8 @@
                   "i don't feel anything",
                   "im not feeling anything"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "imNotSureWhereToTurn": {
             "triggers": [
@@ -1885,7 +1971,8 @@
                   "i have no idea where to turn",
                   "i havent a clue where to turn"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "abandonedMe": {
             "triggers": [
@@ -1902,7 +1989,8 @@
                   "husbands abandoned me",
                   "husband abandoned me"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "imStuckAtHome": {
             "triggers": [
@@ -1938,13 +2026,15 @@
                   "i cant leave the house",
                   "i cant leave the flat"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "waitingToSeeIfPoliceAreGoingToChargeMeWithAnOffence": {
             "triggers": [
                   "waiting to see if police are going to charge me with an offence"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "imHomeless": {
             "triggers": [
@@ -1953,7 +2043,8 @@
                   "ive been homeless",
                   "i have been homeless"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iHaventSeenMyKids": {
             "triggers": [
@@ -1962,7 +2053,8 @@
                   "i havent seen my children",
                   "i havent seen the children"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "difficultDay": {
             "triggers": [
@@ -1975,14 +2067,16 @@
                   "i've had a difficult day",
                   "ive had a difficult day"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "imPregnant": {
             "triggers": [
                   "i am pregnant",
                   "im pregnant"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "imBeingTakenForGranted": {
             "triggers": [
@@ -1993,7 +2087,8 @@
                   "doesn't appreciate me",
                   "don't appreciate me"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "itsStressingMeOut": {
             "triggers": [
@@ -2003,7 +2098,8 @@
                   "i feel stressed",
                   "im feeling stressed"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "familyProblems": {
             "triggers": [
@@ -2042,7 +2138,8 @@
                   "im having worries with my family",
                   "ive got worries with my family"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "gotDumped": {
             "triggers": [
@@ -2065,7 +2162,8 @@
                   "my wife broke up with me",
                   "my wife dumped me"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "brokeUpWithPartner": {
             "triggers": [
@@ -2076,7 +2174,8 @@
                   "i broke up with my wife",
                   "i broke up with my partner"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "canYouHelp": {
             "triggers": [
@@ -2085,14 +2184,16 @@
                   "can you help me",
                   "help me please"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "fallOut": {
             "triggers": [
                   "and i have fallen out",
                   "we have fallen out"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "abuse": {
             "triggers": [
@@ -2102,7 +2203,8 @@
                   "abuses me",
                   "abusing me"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "heartBreak": {
             "triggers": [
@@ -2116,7 +2218,8 @@
                   "im heartbroken",
                   "i feel heartbroken"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iWantAFriend": {
             "triggers": [
@@ -2127,7 +2230,8 @@
                   "i havent got any friends",
                   "ive got no friendsi don't have friends"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iDontSeeManyPeople": {
             "triggers": [
@@ -2143,7 +2247,8 @@
                   "I hardly have any contact with any people",
                   "I hardly have any contact with any other people"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "help": {
             "triggers": [
@@ -2152,7 +2257,8 @@
                   "i need help",
                   "need help"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iDontKnowWhatToDo": {
             "triggers": [
@@ -2176,13 +2282,15 @@
                   "what can i do",
                   "what do i do"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "whatToDoWithMyself": {
             "triggers": [
                   "i don't know what to do with myself"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iDontKnowWhatToSay": {
             "triggers": [
@@ -2262,59 +2370,8 @@
                   "dont really know what more to say now",
                   "don't really know what more to say now"
             ],
-            "multi": false
-      },
-      "iStillDontKnow": {
-            "triggers": [
-                  "I dont know",
-                  "i dont know what else to say",
-                  "i dont have anything else on my mind",
-                  "i came to this app because i dont want to tell my friends incase they judge me on it",
-                  "i have nothing else to say",
-                  "i just need advice",
-                  "I dont know what to do to stop me feeling like this",
-                  "Im so fed up of everything",
-                  "I cant talk to friends or family. They wouldnt understand",
-                  "And I dont know what to do",
-                  "I just dont know",
-                  "Im stressed out",
-                  "And I just cant take it",
-                  "What do I do ?",
-                  "I really dont know what to do anymore I dont want to feel like this i am so tired of it all",
-                  "I dont know",
-                  "I dont know who to talk to. It scared me",
-                  "I feel its so hard to get any help from anyone at the moment",
-                  "I just dont want to be that person who cant do thing because of the way I am feeling",
-                  "I got to the point where I dont want to do things I normally do and this upsets me",
-                  "I dont understand why I am feeling this way",
-                  "i really dont know how to stop this",
-                  "I am so scared and tired and tearfull all the time",
-                  "not sure where to get any help",
-                  "I cant cope with it it is really getting me down",
-                  "everything is so stressful at the moment I feel I am wasting peoples time",
-                  "I dont know what to do anymore",
-                  "I feel awful all the time",
-                  "No one to help it is a different time for me",
-                  "I need someone to turn to for help",
-                  "I just need someone to talk to",
-                  "I need someone to offer me advice ",
-                  "I need someone to help me",
-                  "i really dont know what to do or say anymore",
-                  "its to hard",
-                  "i dont know how",
-                  "I am tired a and worried .",
-                  "Who can help me",
-                  "i dont know who to turn to for advice",
-                  "please can someone just be there",
-                  "I just need some advice to be honest",
-                  "I just feel usless",
-                  "i need advice",
-                  "i dont know",
-                  "Feeling a bit lost",
-                  "Im not sure what to do",
-                  "I dont know how to make things better"
-            ],
-            "multi": true
+            "multi": false,
+            "conditions": false
       },
       "personalHygiene": {
             "triggers": [
@@ -2322,20 +2379,23 @@
                   "my personal hygiene isn't great",
                   "i haven't showered in days"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iSmell": {
             "triggers": [
                   "i smell"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "wantToBeHappy": {
             "triggers": [
                   "i want to be happy again",
                   "i wish i could be happy again"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "hello": {
             "triggers": [
@@ -2349,7 +2409,8 @@
                   "hi?",
                   "hey?"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iWantFreedom": {
             "triggers": [
@@ -2357,7 +2418,8 @@
                   "set me free",
                   "let me be free"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "whoCanITalkTo": {
             "triggers": [
@@ -2365,14 +2427,16 @@
                   "is there anyone i can talk to",
                   "is there someone i can talk to"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "whatDoYouThink": {
             "triggers": [
                   "what do you think",
                   "what do u think"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "howAreYou": {
             "triggers": [
@@ -2382,7 +2446,8 @@
                   "how are you doing",
                   "how r u doing"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "doYouGiveAdvice": {
             "triggers": [
@@ -2432,7 +2497,8 @@
                   "are you going to advise",
                   "what can i do"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "dontKnow": {
             "triggers": [
@@ -2441,21 +2507,24 @@
                   "i dunno",
                   "idk"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "imGoingToGoNow": {
             "triggers": [
                   "im going to go now",
                   "im going now"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "yourNice": {
             "triggers": [
                   "youre nice",
                   "you are nice"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "areYouReading": {
             "triggers": [
@@ -2466,7 +2535,8 @@
                   "are you listening",
                   "is anyone there"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "lettingMeGetMyThoughtsOutOfMyHead": {
             "triggers": [
@@ -2484,7 +2554,8 @@
                   "This app is a space for someone to speak",
                   "This bot is a space for someone to speak"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "idkWhatElseToSayToYou": {
             "triggers": [
@@ -2497,14 +2568,16 @@
                   "i dont know what more to say to you",
                   "i dont know what more to tell you"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "thankYou": {
             "triggers": [
                   "thank you",
                   "thanks"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "stopSynonyms": {
             "triggers": [
@@ -2533,7 +2606,8 @@
                   "i think ive got nothing else to say",
                   "i dont want to talk any more"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "areYouABot": {
             "triggers": [
@@ -2541,7 +2615,8 @@
                   "is this a bot",
                   "what is this a bot"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "willYouConverseWithMe": {
             "triggers": [
@@ -2551,7 +2626,8 @@
                   "are you going to tell me to keep talking",
                   "are you gonna tell me to keep talking"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "thisBotIsBadloose": {
             "triggers": [
@@ -2599,7 +2675,8 @@
                   "is this all you do",
                   "online chat"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "thisBotIsBadtight": {
             "triggers": [
@@ -2669,7 +2746,8 @@
                   "bye, you are useless",
                   "I need a human"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iDontTrustAnyone": {
             "triggers": [
@@ -2682,7 +2760,8 @@
                   "i trust noone",
                   "i trust nobody"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "theOnlyReasonIHaventKilledMyself": {
             "triggers": [
@@ -2693,7 +2772,8 @@
                   "the only reason I havent ended myself",
                   "the only reason I havent finished myself off"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iFeelStupidForHavingTheseFeelings": {
             "triggers": [
@@ -2719,7 +2799,8 @@
                   "im such an idiot for feeling like this",
                   "im an idiot to have these feelings"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "imFeelingFat": {
             "triggers": [
@@ -2728,7 +2809,8 @@
                   "makes me feel fat",
                   "i feel fat"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "nooneHelpsMeFeelBetter": {
             "triggers": [
@@ -2744,7 +2826,8 @@
                   "there is noone who helps me feel better",
                   "there is no one who helps me feel better"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iHaveLostMyFriends": {
             "triggers": [
@@ -2765,7 +2848,8 @@
                   "i have managed to scare off most of my friends",
                   "ive managed to scare off most of my friends"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "makesMeWantToSelfHarm": {
             "triggers": [
@@ -2782,7 +2866,8 @@
                   "makes me think i want to self-harm",
                   "makes me think i want to selfharm"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iHaventSelfHarmed": {
             "triggers": [
@@ -2796,7 +2881,8 @@
                   "i have managed not to self harm",
                   "i have managed not to selfharm"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iDontHaveMotivation": {
             "triggers": [
@@ -2847,7 +2933,8 @@
                   "i no longer have any drive",
                   "ive no longer got any drive"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "myLifeIsBoring": {
             "triggers": [
@@ -2858,7 +2945,8 @@
                   "life is dull for me",
                   " life is tedious for me"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iStruggleToBeHappy": {
             "triggers": [
@@ -2866,7 +2954,8 @@
                   "i find it hard to be happy",
                   "i find it difficult to be happy"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iStruggleToMakeConversation": {
             "triggers": [
@@ -2878,7 +2967,8 @@
                   "making conversation is hard for me",
                   "making conversation is difficult for me"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iDontHaveGoodRelationshipsWithAnybody": {
             "triggers": [
@@ -2886,19 +2976,22 @@
                   "i dont have any good relationships with anybody",
                   "i have no good relationships with anybody"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "physicallyHurtMyself": {
             "triggers": [
                   "physically hurt myself"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "speakToAProfessional": {
             "triggers": [
                   "speak to a professional"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "imTired": {
             "triggers": [
@@ -2911,7 +3004,8 @@
                   "im worn out",
                   "i am worn out"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "boyfriendsLeftMe": {
             "triggers": [
@@ -2928,7 +3022,8 @@
                   "husbands left me",
                   "husband left me"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iKeepGettingHorribleThoughts": {
             "triggers": [
@@ -2943,7 +3038,8 @@
                   "i get horrific thoughts",
                   "i get unpleasant thoughts"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "imMakingPeopleUpset": {
             "triggers": [
@@ -2962,7 +3058,8 @@
                   "im causing harm for people",
                   "people are getting harmed and im the cause"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "iWantToDieBut": {
             "triggers": [
@@ -2970,12 +3067,292 @@
                   "i wanna die, but",
                   "i would like to die, but"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
       },
       "msgIsQuestion": {
             "triggers": [
                   "?"
             ],
-            "multi": false
+            "multi": false,
+            "conditions": false
+      },
+      "stillDontKnowNo": {
+            "triggers": [
+                  [
+                        "no",
+                        "equals"
+                  ]
+            ],
+            "multi": "iDontKnowWhatToDo",
+            "conditions": true
+      },
+      "stillDontKnowYes": {
+            "triggers": [
+                  [
+                        "Yes",
+                        "equals"
+                  ]
+            ],
+            "multi": "iDontKnowWhatToDo",
+            "conditions": true
+      },
+      "stillDontKnowQuestion": {
+            "triggers": [
+                  [
+                        "?",
+                        "ends with"
+                  ]
+            ],
+            "multi": "iDontKnowWhatToDo",
+            "conditions": true
+      },
+      "stillDontKnowAdvice": {
+            "triggers": [
+                  [
+                        "i just need advice",
+                        "starts with"
+                  ],
+                  [
+                        "i need advice",
+                        "starts with"
+                  ],
+                  [
+                        "I need some advice",
+                        "starts with"
+                  ],
+                  [
+                        "I just need some advice",
+                        "starts with"
+                  ]
+            ],
+            "multi": "iDontKnowWhatToDo",
+            "conditions": true
+      },
+      "stillDontKnowDie": {
+            "triggers": [
+                  [
+                        "Death",
+                        "starts with"
+                  ],
+                  [
+                        "Die",
+                        "equals"
+                  ]
+            ],
+            "multi": "iDontKnowWhatToDo",
+            "conditions": true
+      },
+      "stillDontKnowSuicide": {
+            "triggers": [
+                  [
+                        "suicide",
+                        "starts with"
+                  ],
+                  [
+                        "Ending my life",
+                        "starts with"
+                  ],
+                  [
+                        "Ending it all",
+                        "starts with"
+                  ],
+                  [
+                        "Committing suic",
+                        "starts with"
+                  ],
+                  [
+                        "Comitting suic",
+                        "starts with"
+                  ],
+                  [
+                        "Commiting suic",
+                        "starts with"
+                  ],
+                  [
+                        "Commit suic",
+                        "starts with"
+                  ],
+                  [
+                        "Committ suic",
+                        "starts with"
+                  ],
+                  [
+                        "Killing myself",
+                        "starts with"
+                  ],
+                  [
+                        "Kill myself",
+                        "starts with"
+                  ],
+                  [
+                        "I want to die",
+                        "starts with"
+                  ],
+                  [
+                        "I wanna die",
+                        "starts with"
+                  ],
+                  [
+                        "I would like to die",
+                        "starts with"
+                  ]
+            ],
+            "multi": "iDontKnowWhatToDo",
+            "conditions": true
+      },
+      "stillDontKnowFamily": {
+            "triggers": [
+                  [
+                        "I cant talk to friends or family",
+                        "contains"
+                  ],
+                  [
+                        "I cant talk to family or friends",
+                        "contains"
+                  ]
+            ],
+            "multi": "iDontKnowWhatToDo",
+            "conditions": true
+      },
+      "stillDontKnow": {
+            "triggers": [
+                  [
+                        "i dont know what to do",
+                        "contains"
+                  ],
+                  [
+                        "i dunno what to do",
+                        "contains"
+                  ],
+                  [
+                        "i have no idea what to do",
+                        "contains"
+                  ],
+                  [
+                        "ive no idea what to do",
+                        "contains"
+                  ],
+                  [
+                        "i hvaent a clue what to do",
+                        "contains"
+                  ],
+                  [
+                        "i havent a clue what to do",
+                        "contains"
+                  ],
+                  [
+                        "i havent any idea what to do",
+                        "contains"
+                  ],
+                  [
+                        "i dont have any idea what to do",
+                        "contains"
+                  ],
+                  [
+                        "im not sure what to do",
+                        "contains"
+                  ],
+                  [
+                        "im not all that sure what to do",
+                        "contains"
+                  ],
+                  [
+                        "i am not sure what to do",
+                        "contains"
+                  ],
+                  [
+                        "im not at all sure what to do",
+                        "contains"
+                  ],
+                  [
+                        "what do you think i should do",
+                        "contains"
+                  ],
+                  [
+                        "what do you think i shuld do",
+                        "contains"
+                  ],
+                  [
+                        "what do u think i should do",
+                        "contains"
+                  ],
+                  [
+                        "wat do you think i should do",
+                        "contains"
+                  ],
+                  [
+                        "what should i do",
+                        "contains"
+                  ],
+                  [
+                        "what can i do",
+                        "contains"
+                  ],
+                  [
+                        "what do i do",
+                        "contains"
+                  ],
+                  [
+                        "I have no options left",
+                        "contains"
+                  ],
+                  [
+                        "I dont know",
+                        "equals"
+                  ],
+                  [
+                        "i dont know what else to say",
+                        "contains"
+                  ],
+                  [
+                        "i dont have anything else on my mind",
+                        "contains"
+                  ],
+                  [
+                        "i have nothing else to say",
+                        "contains"
+                  ],
+                  [
+                        "I can't think",
+                        "equals"
+                  ],
+                  [
+                        "I can't think, I'm sorry",
+                        "equals"
+                  ],
+                  [
+                        "I have no options",
+                        "equals"
+                  ],
+                  [
+                        "I feel like I have no options",
+                        "equals"
+                  ],
+                  [
+                        "Sorry, I have no options",
+                        "equals"
+                  ],
+                  [
+                        "I have no options, sorry",
+                        "equals"
+                  ],
+                  [
+                        "No options",
+                        "equals"
+                  ]
+            ],
+            "multi": "iDontKnowWhatToDo",
+            "conditions": true
+      },
+      "stillDontKnowTired": {
+            "triggers": [
+                  [
+                        "Im so fed up of everything",
+                        "contains"
+                  ]
+            ],
+            "multi": "iDontKnowWhatToDo",
+            "conditions": true
       }
 }

@@ -11,6 +11,7 @@ class TriggerCheckService:
         self.lead_string_exclusion_list = ["imUseless", "imWorthless"]
         # The exclusion list below is for arrays that have a different way of checking the negating string
         self.negating_string_exclusion_list = ["letMyselfDown", "abandonedMe"]
+        self.multi_response_list = ["iDontKnowWhatToDo"]
         self._string_cleansing_service = string_cleansing_service.StringCleansingService()
 
     def get_trigger(self, message, uncleaned_message):
@@ -20,11 +21,18 @@ class TriggerCheckService:
         # if nothing is triggered, encouraging noises array will be used by default
         trigger = "encouragingNoises"
         has_triggered = False
-        if ((session['last_trigger'] not in ['dontKnow','iDontKnowWhatToDo','iDontKnowWhatToSay']) and (session['multi'])) or (not session['multi']):
-            self.triggers_dictionary = dict(filter(lambda elem:elem[1]['multi'] == False,self.triggers_dictionary.items()))
+        if not session['multi'] or (session['last_trigger'] not in self.multi_response_list):
+            self.triggers_dictionary = dict(filter(lambda elem:elem[1]['multi'] == False, self.triggers_dictionary.items()))
+        
+        elif ((session['last_trigger'] in self.multi_response_list) and (session['multi'])):
+            self.triggers_dictionary = dict(filter(lambda elem:(elem[1]['multi'] == False or elem[1]['multi'] == session['last_trigger']),self.triggers_dictionary.items()))
+            
         for (key, value) in self.triggers_dictionary.items():
             if key not in self.exclusion_list:
-                has_triggered = self.__check_user_message(key, value['triggers'], message, has_triggered)
+                if not value['conditions']:
+                    has_triggered = self.__check_user_message(key, value['triggers'], message, has_triggered)
+                else:
+                    has_triggered = self.__check_user_message_contains(key, value['triggers'], message, has_triggered)
             elif key == "thisBotIsBadtight":
                 has_triggered = self.__check_this_bot_is_bad_tight(message, has_triggered)
             elif key == "hello":
@@ -47,6 +55,31 @@ class TriggerCheckService:
 
         return trigger
     
+    def __check_user_message_contains(self, trigger_name, trigger_synonyms_array, message, has_triggered):
+        """
+        Checks the user's message against the given trigger array.
+        """
+        for string in trigger_synonyms_array:
+            clean_string = self._string_cleansing_service.clean_string(string[0])
+
+            if string[1] == 'contains' and clean_string.lower().replace(" ","") in message.lower().replace(" ","") :
+                has_triggered = True
+            elif string[1] == 'equals' and clean_string.lower().replace(" ","") == message.lower().replace(" ",""):
+                has_triggered = True
+            elif string[1] == 'starts with' and clean_string.lower().replace(" ","") in message.lower().replace(" ",""):
+                has_triggered = True
+            elif string[1] == 'endswith' and clean_string.lower().replace(" ","") in message.lower().replace(" ",""):
+                has_triggered = True
+
+            has_triggered = self.__check_negating_string(trigger_name, has_triggered, message, clean_string)
+            
+            has_triggered = self.__check_lead_string(trigger_name, has_triggered, message, clean_string, trigger_synonyms_array)
+
+
+            if has_triggered:
+                break
+            
+        return has_triggered
 
     def __check_user_message(self, trigger_name, trigger_synonyms_array, message, has_triggered):
         """
@@ -72,7 +105,7 @@ class TriggerCheckService:
         """
         Checks if the string has "it's not that" or something similar before it.
         """
-        its_not_that_array = self.triggers_dictionary['itsNotThat']
+        its_not_that_array = self.triggers_dictionary['itsNotThat']['triggers']
 
         for negating_string in its_not_that_array:
 
@@ -95,7 +128,7 @@ class TriggerCheckService:
         If the trigger is hit even when a lead string (like "I'm") is omitted, then that still counts
         """
         if trigger_name not in self.lead_string_exclusion_list:
-            lead_string_array = self.triggers_dictionary['leadString']
+            lead_string_array = self.triggers_dictionary['leadString']['triggers']
 
             for lead_string in lead_string_array:
                 if string.startswith(lead_string.lower()):
