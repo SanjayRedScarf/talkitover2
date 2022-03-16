@@ -26,7 +26,7 @@ class TriggerCheckService:
         
         elif ((session['last_trigger'] in self.multi_response_list) and (session['multi'])):
             self.triggers_dictionary = dict(filter(lambda elem:(elem[1]['multi'] == False or elem[1]['multi'] == session['last_trigger']),self.triggers_dictionary.items()))
-            
+
         for (key, value) in self.triggers_dictionary.items():
             if key not in self.exclusion_list:
                 if not value['conditions']:
@@ -66,9 +66,9 @@ class TriggerCheckService:
                 has_triggered = True
             elif string[1] == 'equals' and clean_string.lower().replace(" ","") == message.lower().replace(" ",""):
                 has_triggered = True
-            elif string[1] == 'starts with' and clean_string.lower().replace(" ","") in message.lower().replace(" ",""):
+            elif string[1] == 'starts with' and clean_string.lower().replace(" ","") == message.lower().replace(" ","")[:len(clean_string.lower().replace(" ",""))]:
                 has_triggered = True
-            elif string[1] == 'endswith' and clean_string.lower().replace(" ","") in message.lower().replace(" ",""):
+            elif string[1] == 'ends with' and clean_string.lower().replace(" ","") == message.lower().replace(" ","")[-len(clean_string.lower().replace(" ","")):]:
                 has_triggered = True
 
             has_triggered = self.__check_negating_string(trigger_name, has_triggered, message, clean_string)
