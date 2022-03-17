@@ -2285,6 +2285,284 @@
             "multi": false,
             "conditions": false
       },
+      "stillDontKnowSuicide": {
+            "triggers": [
+                  [
+                        "suicide",
+                        "starts with"
+                  ],
+                  [
+                        "Ending my life",
+                        "starts with"
+                  ],
+                  [
+                        "Ending it all",
+                        "starts with"
+                  ],
+                  [
+                        "Committing suic",
+                        "starts with"
+                  ],
+                  [
+                        "Comitting suic",
+                        "starts with"
+                  ],
+                  [
+                        "Commiting suic",
+                        "starts with"
+                  ],
+                  [
+                        "Commit suic",
+                        "starts with"
+                  ],
+                  [
+                        "Committ suic",
+                        "starts with"
+                  ],
+                  [
+                        "Killing myself",
+                        "starts with"
+                  ],
+                  [
+                        "Kill myself",
+                        "starts with"
+                  ],
+                  [
+                        "I want to die",
+                        "starts with"
+                  ],
+                  [
+                        "I wanna die",
+                        "starts with"
+                  ],
+                  [
+                        "I would like to die",
+                        "starts with"
+                  ]
+            ],
+            "multi": "iDontKnowWhatToDo",
+            "conditions": true
+      },
+      "stillDontKnowDie": {
+            "triggers": [
+                  [
+                        "Death",
+                        "starts with"
+                  ],
+                  [
+                        "Die",
+                        "equals"
+                  ]
+            ],
+            "multi": "iDontKnowWhatToDo",
+            "conditions": true
+      },
+      "stillDontKnowNo": {
+            "triggers": [
+                  [
+                        "no",
+                        "equals"
+                  ]
+            ],
+            "multi": "iDontKnowWhatToDo",
+            "conditions": true
+      },
+      "stillDontKnowYes": {
+            "triggers": [
+                  [
+                        "Yes",
+                        "equals"
+                  ]
+            ],
+            "multi": "iDontKnowWhatToDo",
+            "conditions": true
+      },
+      "stillDontKnowQuestion": {
+            "triggers": [
+                  [
+                        "?",
+                        "ends with"
+                  ]
+            ],
+            "multi": "iDontKnowWhatToDo",
+            "conditions": true
+      },
+      "stillDontKnowAdvice": {
+            "triggers": [
+                  [
+                        "i just need advice",
+                        "starts with"
+                  ],
+                  [
+                        "i need advice",
+                        "starts with"
+                  ],
+                  [
+                        "I need some advice",
+                        "starts with"
+                  ],
+                  [
+                        "I just need some advice",
+                        "starts with"
+                  ]
+            ],
+            "multi": "iDontKnowWhatToDo",
+            "conditions": true
+      },
+      "stillDontKnowFamily": {
+            "triggers": [
+                  [
+                        "I cant talk to friends or family",
+                        "contains"
+                  ],
+                  [
+                        "I cant talk to family or friends",
+                        "contains"
+                  ]
+            ],
+            "multi": "iDontKnowWhatToDo",
+            "conditions": true
+      },
+      "stillDontKnow": {
+            "triggers": [
+                  [
+                        "i dont know what to do",
+                        "contains"
+                  ],
+                  [
+                        "i dunno what to do",
+                        "contains"
+                  ],
+                  [
+                        "i have no idea what to do",
+                        "contains"
+                  ],
+                  [
+                        "ive no idea what to do",
+                        "contains"
+                  ],
+                  [
+                        "i hvaent a clue what to do",
+                        "contains"
+                  ],
+                  [
+                        "i havent a clue what to do",
+                        "contains"
+                  ],
+                  [
+                        "i havent any idea what to do",
+                        "contains"
+                  ],
+                  [
+                        "i dont have any idea what to do",
+                        "contains"
+                  ],
+                  [
+                        "im not sure what to do",
+                        "contains"
+                  ],
+                  [
+                        "im not all that sure what to do",
+                        "contains"
+                  ],
+                  [
+                        "i am not sure what to do",
+                        "contains"
+                  ],
+                  [
+                        "im not at all sure what to do",
+                        "contains"
+                  ],
+                  [
+                        "what do you think i should do",
+                        "contains"
+                  ],
+                  [
+                        "what do you think i shuld do",
+                        "contains"
+                  ],
+                  [
+                        "what do u think i should do",
+                        "contains"
+                  ],
+                  [
+                        "wat do you think i should do",
+                        "contains"
+                  ],
+                  [
+                        "what should i do",
+                        "contains"
+                  ],
+                  [
+                        "what can i do",
+                        "contains"
+                  ],
+                  [
+                        "what do i do",
+                        "contains"
+                  ],
+                  [
+                        "I have no options left",
+                        "contains"
+                  ],
+                  [
+                        "I dont know",
+                        "equals"
+                  ],
+                  [
+                        "i dont know what else to say",
+                        "contains"
+                  ],
+                  [
+                        "i dont have anything else on my mind",
+                        "contains"
+                  ],
+                  [
+                        "i have nothing else to say",
+                        "contains"
+                  ],
+                  [
+                        "I can't think",
+                        "equals"
+                  ],
+                  [
+                        "I can't think, I'm sorry",
+                        "equals"
+                  ],
+                  [
+                        "I have no options",
+                        "equals"
+                  ],
+                  [
+                        "I feel like I have no options",
+                        "equals"
+                  ],
+                  [
+                        "Sorry, I have no options",
+                        "equals"
+                  ],
+                  [
+                        "I have no options, sorry",
+                        "equals"
+                  ],
+                  [
+                        "No options",
+                        "equals"
+                  ]
+            ],
+            "multi": "iDontKnowWhatToDo",
+            "conditions": true
+      },
+      "stillDontKnowTired": {
+            "triggers": [
+                  [
+                        "Im so fed up of everything",
+                        "contains"
+                  ]
+            ],
+            "multi": "iDontKnowWhatToDo",
+            "conditions": true
+      },
       "whatToDoWithMyself": {
             "triggers": [
                   "i don't know what to do with myself"
@@ -3076,283 +3354,5 @@
             ],
             "multi": false,
             "conditions": false
-      },
-      "stillDontKnowNo": {
-            "triggers": [
-                  [
-                        "no",
-                        "equals"
-                  ]
-            ],
-            "multi": "iDontKnowWhatToDo",
-            "conditions": true
-      },
-      "stillDontKnowYes": {
-            "triggers": [
-                  [
-                        "Yes",
-                        "equals"
-                  ]
-            ],
-            "multi": "iDontKnowWhatToDo",
-            "conditions": true
-      },
-      "stillDontKnowQuestion": {
-            "triggers": [
-                  [
-                        "?",
-                        "ends with"
-                  ]
-            ],
-            "multi": "iDontKnowWhatToDo",
-            "conditions": true
-      },
-      "stillDontKnowAdvice": {
-            "triggers": [
-                  [
-                        "i just need advice",
-                        "starts with"
-                  ],
-                  [
-                        "i need advice",
-                        "starts with"
-                  ],
-                  [
-                        "I need some advice",
-                        "starts with"
-                  ],
-                  [
-                        "I just need some advice",
-                        "starts with"
-                  ]
-            ],
-            "multi": "iDontKnowWhatToDo",
-            "conditions": true
-      },
-      "stillDontKnowDie": {
-            "triggers": [
-                  [
-                        "Death",
-                        "starts with"
-                  ],
-                  [
-                        "Die",
-                        "equals"
-                  ]
-            ],
-            "multi": "iDontKnowWhatToDo",
-            "conditions": true
-      },
-      "stillDontKnowSuicide": {
-            "triggers": [
-                  [
-                        "suicide",
-                        "starts with"
-                  ],
-                  [
-                        "Ending my life",
-                        "starts with"
-                  ],
-                  [
-                        "Ending it all",
-                        "starts with"
-                  ],
-                  [
-                        "Committing suic",
-                        "starts with"
-                  ],
-                  [
-                        "Comitting suic",
-                        "starts with"
-                  ],
-                  [
-                        "Commiting suic",
-                        "starts with"
-                  ],
-                  [
-                        "Commit suic",
-                        "starts with"
-                  ],
-                  [
-                        "Committ suic",
-                        "starts with"
-                  ],
-                  [
-                        "Killing myself",
-                        "starts with"
-                  ],
-                  [
-                        "Kill myself",
-                        "starts with"
-                  ],
-                  [
-                        "I want to die",
-                        "starts with"
-                  ],
-                  [
-                        "I wanna die",
-                        "starts with"
-                  ],
-                  [
-                        "I would like to die",
-                        "starts with"
-                  ]
-            ],
-            "multi": "iDontKnowWhatToDo",
-            "conditions": true
-      },
-      "stillDontKnowFamily": {
-            "triggers": [
-                  [
-                        "I cant talk to friends or family",
-                        "contains"
-                  ],
-                  [
-                        "I cant talk to family or friends",
-                        "contains"
-                  ]
-            ],
-            "multi": "iDontKnowWhatToDo",
-            "conditions": true
-      },
-      "stillDontKnow": {
-            "triggers": [
-                  [
-                        "i dont know what to do",
-                        "contains"
-                  ],
-                  [
-                        "i dunno what to do",
-                        "contains"
-                  ],
-                  [
-                        "i have no idea what to do",
-                        "contains"
-                  ],
-                  [
-                        "ive no idea what to do",
-                        "contains"
-                  ],
-                  [
-                        "i hvaent a clue what to do",
-                        "contains"
-                  ],
-                  [
-                        "i havent a clue what to do",
-                        "contains"
-                  ],
-                  [
-                        "i havent any idea what to do",
-                        "contains"
-                  ],
-                  [
-                        "i dont have any idea what to do",
-                        "contains"
-                  ],
-                  [
-                        "im not sure what to do",
-                        "contains"
-                  ],
-                  [
-                        "im not all that sure what to do",
-                        "contains"
-                  ],
-                  [
-                        "i am not sure what to do",
-                        "contains"
-                  ],
-                  [
-                        "im not at all sure what to do",
-                        "contains"
-                  ],
-                  [
-                        "what do you think i should do",
-                        "contains"
-                  ],
-                  [
-                        "what do you think i shuld do",
-                        "contains"
-                  ],
-                  [
-                        "what do u think i should do",
-                        "contains"
-                  ],
-                  [
-                        "wat do you think i should do",
-                        "contains"
-                  ],
-                  [
-                        "what should i do",
-                        "contains"
-                  ],
-                  [
-                        "what can i do",
-                        "contains"
-                  ],
-                  [
-                        "what do i do",
-                        "contains"
-                  ],
-                  [
-                        "I have no options left",
-                        "contains"
-                  ],
-                  [
-                        "I dont know",
-                        "equals"
-                  ],
-                  [
-                        "i dont know what else to say",
-                        "contains"
-                  ],
-                  [
-                        "i dont have anything else on my mind",
-                        "contains"
-                  ],
-                  [
-                        "i have nothing else to say",
-                        "contains"
-                  ],
-                  [
-                        "I can't think",
-                        "equals"
-                  ],
-                  [
-                        "I can't think, I'm sorry",
-                        "equals"
-                  ],
-                  [
-                        "I have no options",
-                        "equals"
-                  ],
-                  [
-                        "I feel like I have no options",
-                        "equals"
-                  ],
-                  [
-                        "Sorry, I have no options",
-                        "equals"
-                  ],
-                  [
-                        "I have no options, sorry",
-                        "equals"
-                  ],
-                  [
-                        "No options",
-                        "equals"
-                  ]
-            ],
-            "multi": "iDontKnowWhatToDo",
-            "conditions": true
-      },
-      "stillDontKnowTired": {
-            "triggers": [
-                  [
-                        "Im so fed up of everything",
-                        "contains"
-                  ]
-            ],
-            "multi": "iDontKnowWhatToDo",
-            "conditions": true
       }
 }

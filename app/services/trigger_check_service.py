@@ -32,7 +32,7 @@ class TriggerCheckService:
                 if not value['conditions']:
                     has_triggered = self.__check_user_message(key, value['triggers'], message, has_triggered)
                 else:
-                    has_triggered = self.__check_user_message_contains(key, value['triggers'], message, has_triggered)
+                    has_triggered = self.__check_user_message_contains(key, value['triggers'], message, has_triggered,uncleaned_message)
             elif key == "thisBotIsBadtight":
                 has_triggered = self.__check_this_bot_is_bad_tight(message, has_triggered)
             elif key == "hello":
@@ -55,7 +55,7 @@ class TriggerCheckService:
 
         return trigger
     
-    def __check_user_message_contains(self, trigger_name, trigger_synonyms_array, message, has_triggered):
+    def __check_user_message_contains(self, trigger_name, trigger_synonyms_array, message, has_triggered,unclean_msg):
         """
         Checks the user's message against the given trigger array.
         """
@@ -71,14 +71,16 @@ class TriggerCheckService:
             elif string[1] == 'ends with' and clean_string.lower().replace(" ","") == message.lower().replace(" ","")[-len(clean_string.lower().replace(" ","")):]:
                 has_triggered = True
 
+            if trigger_name == 'stillDontKnowQuestion' and (unclean_msg[-1]=="?"):
+                has_triggered = True
+            
             has_triggered = self.__check_negating_string(trigger_name, has_triggered, message, clean_string)
             
             has_triggered = self.__check_lead_string(trigger_name, has_triggered, message, clean_string, trigger_synonyms_array)
 
-
             if has_triggered:
                 break
-            
+        
         return has_triggered
 
     def __check_user_message(self, trigger_name, trigger_synonyms_array, message, has_triggered):
