@@ -141,7 +141,7 @@
     } else if (currentUserInputType == "stopButton"){
       sectionNumber = 100; // the server will do the right thing if the section number is > 10, 100 is a randomly chosen number > 10
       userText = "stop";
-      document.removeEventListener('mouseout', mouseEvent);} // the server will do the right thing if the user text is 'stop'
+      } // the server will do the right thing if the user text is 'stop'
     console.log("userText has just been set as "+userText);
     $('.message_input').val('');
 
@@ -153,7 +153,8 @@
     else {initialHappinessValueSent = -1;}                // otherwise just give it a random value -- in this case -1 -- (otherwise it throws up an error about the int() function in python not accepting a nonetype)
 
     if (finalHappinessValue>0){                         // if the finalHappinessValue has a value (i.e. if it's the first section)
-      finalHappinessValueSent = finalHappinessValue;}   // then the variable which sends the finalHappinessValue to the server (which we're calling finalHappinessValueSent) is set equal to that value
+      finalHappinessValueSent = finalHappinessValue;
+      document.removeEventListener('mouseout', mouseEvent);}   // then the variable which sends the finalHappinessValue to the server (which we're calling finalHappinessValueSent) is set equal to that value
     else {finalHappinessValueSent = -1;}
 
     clientId = "bootstrapJavascriptClient"
