@@ -25,7 +25,7 @@ class MainConversationService:
         response = _trigger_response_service.get_response_for_trigger(cleaned_message, trigger, user_character_count)            
         #session['response_type'] = trigger
         ai_data ={} # look into getting rid of this if possible, maybe in ouptup_data.py
-        if response in session['TRIGGERS_DICT']["encouragingNoises"]:
+        if response in session['TRIGGERS_DICT']["encouragingNoises"]['triggers']:
             try:
                 #ai_data = sentence_encoder.get_cat(cleaned_message) # should this be cleaned?
                 ai_data = sentence_encoder.get_cat_no_cut(conversation_input_data.message)
@@ -50,7 +50,12 @@ class MainConversationService:
             Thread(target=_trigger_repository.remove_used_trigger(trigger)).start()
 
         next_user_input = self.next_user_input_option_types.next_user_input_free_text
-
+        
+        # this is here so that information is written accuratly in the stored data, has no effect on the response outputted 
+        if trigger == 'encouragingNoises' and response not in session['TRIGGERS_DICT']["encouragingNoises"]['triggers']:
+            trigger = 'specialCase'
+        
+        session['last_trigger'] = trigger
         return output_data.OutputData(response, conversation_input_data.section, [""], next_user_input, "freeText",ai_data,trigger)
 
         

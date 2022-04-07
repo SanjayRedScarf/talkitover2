@@ -612,7 +612,31 @@ class TriggerResponseService:
                 response = ["Thank you for having shared the things you've shared thus far. Perhaps let's just pause for a moment \
                     and think about how you're feeling right now. ", "Having thought about that for a moment, can you think of anything \
                     that's on your mind that would be useful to discuss, and that you haven't already said? If not, perhaps just say 'stop' and provide your feedback?"]
-
+      
+        elif trigger == "stillDontKnowNo":
+            response = "Ah. It's tricky when there's no clear way forward. My role isn't to come up with new ideas for you,\
+                     but if you want to do some brainstorming to help you see a way forward, I'm here to help."
+        elif trigger == "stillDontKnowYes":
+            response = "Great, would you like to start talking me through those options?"
+        elif trigger == "stillDontKnowQuestion":
+            response = "If you're asking me a question about what you should do, then I think I should turn the question back to you.\
+                     My role is about supporting you to find your own way through this, not for me to come up with new ideas -- after all, \
+                     I don't know your situation any better than you do."
+        elif trigger == "stillDontKnowAdvice":
+            response = "I'm sensing this is a situation where it's hard to know what to do, and where you're looking for advice.\
+                 Imagine that a friend told you they were in the situation you've just described. What would you advise them?"
+        elif trigger == "stillDontKnowDie":
+            response = "It's really sad if you think you would rather be dead than alive."
+        elif trigger == "stillDontKnowSuicide":
+            response = "This is sad. If you're even thinking about suicide then this is really really sad, and I'm sorry. I would like to \
+                tell you that there are better options for you, but I'm not a very clever bot, and I can't come up with answers that you can't think of for yourself."
+        elif trigger == "stillDontKnowFamily":
+            response = "This sounds like a tough situation. And it sounds isolating."
+        elif trigger == "stillDontKnow":
+            response = "This sounds like a tough situation. It can be hard to see a good way forward in a situation like this."
+        elif trigger == "stillDontKnowTired":
+            response = "This sounds like an awful, exhausting situation."
+      
         elif trigger == "personalHygiene" or trigger == "iSmell":
             response = "I understand this hygiene stuff is a thing for humans, I am just a little bot. What are your thoughts on how to respond to this?"
             if session['heavy_q']:
