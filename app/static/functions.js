@@ -24,6 +24,7 @@
   var message_side = "left";
   var sendDisabled = true;
 
+
   $( document ).ready(function() {
     window.history.replaceState({}, document.title, "/" + "");
   });
@@ -132,13 +133,15 @@
     } else if (currentUserInputType == "initialHappinessSurvey"){
       //initialHappinessValue = $("#initialHappinessSurvey").val();
       initialHappinessValue = parseInt(userText, 10);
+      //document.addEventListener('mouseout', mouseEvent);
     } else if (currentUserInputType == "finalHappinessSurvey"){
       //finalHappinessValue = $("#finalHappinessSurvey").val();
       finalHappinessValue = parseInt(userText, 10);
     } else if (currentUserInputType == "userInputButton"){
     } else if (currentUserInputType == "stopButton"){
       sectionNumber = 100; // the server will do the right thing if the section number is > 10, 100 is a randomly chosen number > 10
-      userText = "stop";} // the server will do the right thing if the user text is 'stop'
+      userText = "stop";
+      } // the server will do the right thing if the user text is 'stop'
     console.log("userText has just been set as "+userText);
     $('.message_input').val('');
 
@@ -150,7 +153,8 @@
     else {initialHappinessValueSent = -1;}                // otherwise just give it a random value -- in this case -1 -- (otherwise it throws up an error about the int() function in python not accepting a nonetype)
 
     if (finalHappinessValue>0){                         // if the finalHappinessValue has a value (i.e. if it's the first section)
-      finalHappinessValueSent = finalHappinessValue;}   // then the variable which sends the finalHappinessValue to the server (which we're calling finalHappinessValueSent) is set equal to that value
+      finalHappinessValueSent = finalHappinessValue;
+      document.removeEventListener('mouseout', mouseEvent);}   // then the variable which sends the finalHappinessValue to the server (which we're calling finalHappinessValueSent) is set equal to that value
     else {finalHappinessValueSent = -1;}
 
     clientId = "bootstrapJavascriptClient"
@@ -185,6 +189,9 @@
       }
 
       botThinkingTimeBeforeSecondFragment = Math.min(1000+botHtmlArray[0].length*60,5000) // This website suggested that the formula should be timeToRead=1300+(chars∗65); (I made it a bit shorter than that)  https://psychology.stackexchange.com/questions/1147/how-long-does-it-take-to-read-a-sentence-with-x-number-of-characters
+      if (sectionNumber == 12){
+        document.addEventListener('mouseout', mouseEvent);
+      };
       if (sectionNumber == 10){
         appendStopButton();
       };
@@ -266,6 +273,55 @@
     finally{console.log('hello')}
 
   }
+
+  let eventListener;
+
+  const show = () => {
+    const element = document.querySelector("#popup");
+    element.style.visibility = "visible";
+    element.style.opacity = "1";
+    element.style.transform = "scale(1)";
+    element.style.transition = "0.4s, opacity 0.4s";
+  
+    eventListener = document.addEventListener("click", function (clickEvent) {
+      let el = clickEvent.target;
+      let inPopup = false;
+      if (el.id === "popup") {
+        inPopup = true;
+      }
+      while ((el = el.parentNode)) {
+        if (el.id == "popup") {
+          inPopup = true;
+        }
+      }
+      if (!inPopup) hide();
+    });
+  };
+  
+  const hide = () => {
+    const element = document.querySelector("#popup");
+    element.style.visibility = "hidden";
+    element.style.opacity = "0";
+    element.style.transform = "scale(0.5)";
+    element.style.transition = "0.2s, opacity 0.2s, visibility 0s 0.2s";
+  
+    if (eventListener) {
+      document.removeEventListener(eventListener);
+    }
+  };
+  
+  const mouseEvent = e => {
+    const shouldShowExitIntent = 
+        !e.toElement && 
+        !e.relatedTarget &&
+        e.clientY < 10;
+
+    if (shouldShowExitIntent) {
+        document.removeEventListener('mouseout', mouseEvent);
+        show();
+    }
+};
+
   // When the user hits send message then this funtion gets called
   mainFunction = function (){
     if ($(".message_input").val().replace(/\s/g, "").length > 0){
@@ -273,7 +329,8 @@
       message = getMessageText();  // retrieve the users message text
       $(".message_input_wrapper").html("");
       printMessage(message, "right"); // display there message on the screen
-      if (message=="stop"){
+      if (message =="stop"){
+        
         initiateStopSection();
       } else {
         //async_elipsis();
