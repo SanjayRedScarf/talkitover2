@@ -1,4 +1,9 @@
+from http.client import ResponseNotReady
+from pydoc import resolve
 import random
+from sklearn.model_selection import StratifiedShuffleSplit
+
+from torch import heaviside
 from repositories import triggers_repository
 from flask import session
 
@@ -38,6 +43,8 @@ class TriggerResponseService:
         if trigger == "iWantToKillMyself":
             # if the user's message contains some variant of "I want to kill myself"
             response = "Things must be pretty grim if you've got to the stage where you're talking about ending your life like this."
+            if session['heavy_q']:
+                response = response + " Have you made plans as to how you wish to end your life"
 
         elif trigger == "imGoingToKillMyself":
             # if the user's message contains some variant of "I'm going to kill myself", then if the user has indicated that they are feeling suicidal
@@ -46,29 +53,39 @@ class TriggerResponseService:
             # "i'm going to kill myself with all the alcohol i'm consuming"
 
             if session['response_modifier']['suicidal']:
-                response = "You say that you're going to kill yourself. I'm saddened to hear that. Could you say more about death and what it means for you?"
+                response = "You say that you're going to kill yourself. I'm saddened to hear that."
+                if session['heavy_q']:
+                    response = response + " Could you say more about death and what it means for you?"
             else:
                 response = "It sounds pretty stark to hear you say that you will kill yourself."
 
         elif trigger == "iWillDieToday":
-            response = "You say you will die today - how do you feel about that?"
+            response = "You say you will die today. I'm sorry to hear that."
+            if session['heavy_q']:
+                response = "You say you will die today - how do you feel about that?"
 
         elif trigger == "iWantToDie":
             response = "I'm sorry to hear you say that you want to die."
-
+            if session['heavy_q']:
+                response = response + " Have you made plans as to how you wish to end your life?"
+        
         elif trigger == "iWantToDieBut":
             response = "It's sad that you want to die, but I'm glad you're still staying alive"
 
         elif trigger == "imFeelingSuicidal" or trigger == "iveBeenFeelingSuicidal":
             if user_character_count < 1000:
-                response = "I'm sorry to hear you mention that you're feeling suicidal. Could we perhaps explore that a bit more?"
+                response = "I'm sorry to hear you mention that you're feeling suicidal."
+                if session['heavy_q']:
+                    response = response + " Could we perhaps explore that a bit more?"
             else:
                 response = ["I'm sensing you have a lot on your plate at the moment. I just want to pick up on the fact that you just mentioned that you were feeling suicidal. I'm sorry to hear that.",\
                 "I can’t stop you from ending your life -- I don’t know where you are and I can’t get help for you. But I can be here to listen to what’s on your mind. Could you tell me more about your feelings?"]
 
         elif trigger == "iveBecomeSuicidal":
             if user_character_count < 1000:
-                response = "I'm sorry to hear you mention these suicidal thoughts. Could you say more about this?"
+                response = "I'm sorry to hear you mention these suicidal thoughts."
+                if session['heavy_q']:
+                    response = response + " Could you say more about this?"
             elif session['response_modifier']['suicidal'] == False:
                 response = "I'm sensing there's a lot going on for you, and I'm sorry that it's got to the stage where you've started to feel suicidal."
             else:
@@ -82,19 +99,25 @@ class TriggerResponseService:
 
         elif trigger == "suicidalThoughts":
             if len(user_message) < 40:
-                response = "I'm sorry to hear that. Could you tell me more about these suicidal thoughts?"
+                response = "I'm sorry to hear about these suicidal thoughts."
+                if session['heavy_q']:
+                    response = "I'm sorry to hear that. Could you tell me more about these suicidal thoughts?"
             else:
                 response = "You just mentioned suicidal thoughts. If you have anything more to say about that, I'd be happy to hear?"
 
         elif trigger == "contemplatedSuicideBut":
             response = "It's sad that you've had thoughts of suicide, but I'm glad that you're continuing to stay alive."
-
+            if session['heavy_q']:
+                response = response + " How long have you had these thoughts?"
         elif trigger == "iWishIWasDead":
             response = "So you're saying you wish you were dead. Which is a pretty drastic thing to wish for."
-
+            if session['heavy_q']:
+                response = response + " Is there something that would make you no longer wish you were dead?"
         elif trigger == "betterOffDead":
             if session['response_modifier']['suicidal']:
                 response = "I'm sorry to hear you indicate that you would be better off if you weren't alive."
+                if session['heavy_q']:
+                    response = response + " Is there something that would make you feel like your life is woth living?"
             else:
                 response = ["I'm sorry to hear you indicate that you would be better off if you weren't alive. Could you say more about that?", \
                 "And also, if you're feeling suicidal, this is a safe space to share your thoughts about this. And remember that I'm only a simple bot, so I wouldn't be able to get help for you."]
@@ -102,7 +125,9 @@ class TriggerResponseService:
         elif trigger == "iDontWantToLive":
             if session['response_modifier']['suicidal']:
                 if user_character_count < 300:
-                    response = "I'm hearing loud and clear that you don't want to be alive, and it's really sad that it's got to this. Could you say any more about what's making you feel this way?"
+                    response = "I'm hearing loud and clear that you don't want to be alive, and it's really sad that it's got to this."
+                    if session['heavy_q']:
+                        response = response + " Could you say any more about what's making you feel this way?"
                 else:
                     response = "It's sad that you're feeling that you don't want to be alive any more, and that you want to die."
             else: # i.e. if we haven't picked up any other clear indications of suicidality
@@ -114,7 +139,9 @@ class TriggerResponseService:
         elif trigger == "iHateBeingAlive":
             if session['response_modifier']['suicidal']:
                 if user_character_count < 300:
-                    response = "That's so sad. I'm sorry that you hate being alive and you want your life to end. Could you say any more about what's making you feel this way?"
+                    response = "That's so sad. I'm sorry that you hate being alive and you want your life to end."
+                    if session['heavy_q']:
+                        response = response + " Could you say any more about what's making you feel this way?"
                 else:
                     response = ["I like it when I hear about people loving their lives, and when someone says that they don't like being alive, that's always sad.",\
                     "I'm not in a position to stop you from ending your life -- I don't know where you are and can't get help for you -- but I'm happy to be a space for you to talk about whatever's on your mind."]
@@ -132,18 +159,26 @@ class TriggerResponseService:
 
         elif trigger == "sleepForever":
             response = "From the things you're saying, I can hear the desire to not be alive any more. And I think that's sad."
+            if session['heavy_q']:
+                response = response + " Is there anything that would make you more willing to be alive?"
 
         elif trigger == "shouldIKillMyself":
             if user_character_count < 300:
-                response = "The fact that you are asking this question means that things must be really bad for you. I'm sorry that you're feeling this way. Can you say more about how you're feeling?"
+                response = "The fact that you are asking this question means that things must be really bad for you. I'm sorry that you're feeling this way."
+                if session['heavy_q']:
+                    response = response + " Can you say more about how you're feeling?"
             else: 
                 response = "If anyone even thinks about ending their life, then things must be really bad. I'm sorry for your suffering. Can you say more about what you think you should do?"
 
         elif trigger == "suicideIsOnlyOption":
             response = "It's sad that you seem to think you have no option but to end your life."
+            if session['heavy_q']:
+                response = response + " Is there something that would make you feel like your life is worth living?"
 
         elif trigger == "feelLikeEndingIt":
             response = "If you decided to end your life, that would be very sad."
+            if session['heavy_q']:
+                response = response + " Is there something that would make you feel like your life is worth living?"
 
         elif trigger == "iWasRaped":
             response = ["I'm so sorry you were raped. I can't imagine how you must be feeling now",\
@@ -151,7 +186,7 @@ class TriggerResponseService:
                         and I definitely won't be able to track you down or get help for you, so I'll need you to get help for yourself. But I'm still here to listen..."]
 
         elif trigger == "physicallyHurtMyself":
-            response = "Do you know why you do that"
+            response = "Do you know why you do that?"
 
         elif trigger == "makesMeWantToSelfHarm":
             response = "I'm sorry to hear about these urges to self-harm. What you're going through sounds tough."
@@ -161,36 +196,52 @@ class TriggerResponseService:
 
         elif trigger == "imCrying":
             response = "I'm sorry to hear that you're feeling this way, and that it's making you cry. That sounds so sad."
+            if session['heavy_q']:
+                response = response + " Do you find that crying helps release the feelings that you are experiencing?"
 
         elif trigger == "iWantToCry":
-            response = "I guess a good old cry can make you feel better sometimes, but I'm sorry you're in a place where it feels this way for you"
+            response = "I guess a good old cry can make you feel better sometimes, but I'm sorry you're in a place where it feels this way for you."
+            if session['heavy_q']:
+                response = response + " Do you find that crying helps release the feelings that you are experiencing?"
 
         elif trigger == "nothingToLiveFor":
             if session['response_modifier']['suicidal']:
                 response = "It sounds bleak to hear you say you have nothing to live for, and I find it sad that you've been expressing suicidal thoughts."
+                if session['heavy_q']:
+                    response = response + " Would it help to say more about how you are feeling?"
             else:
                 response = "I'm sorry to hear you say that you have nothing to live for. You saying that makes me worry about \
                 you, especially when people who say that so often have suicidal thoughts. Could you say more about what's on your mind?"
 
         elif trigger == "iHateMyself":
             if user_character_count < 1000:
-                response = "I think it's really sad to hear you say that you hate yourself. Could you say a bit more about why you have this low self-esteem?"
+                response = "I think it's really sad to hear you say that you hate yourself."
+                if session['heavy_q']:
+                    response = response + " Could you say a bit more about why you have this low self-esteem?"
             else:
                 response = "I think it's really sad to hear you say that you hate yourself."
 
         elif trigger == "singleWordDepressionMessage" and user_character_count < 40:
-            response = "OK, so I see you have depression on your mind. Are you feeling depressed? Maybe you could share a bit more about this with me?"
+            response = "OK, so I see you have depression on your mind."
+            if session['heavy_q']:
+                response = response + " Are you feeling depressed?"
 
         elif trigger == "feelingDepressed":
-            response = "Sorry to hear you're feeling depressed. Would you like to tell me more about that?"
+            response = "Sorry to hear you're feeling depressed."
+            if session['heavy_q']:
+                response = response + " Would you like to tell me more about that?"
 
         elif trigger == "treatDepression":
-            response =  ["It sounds like you might be suffering from depression - sorry to hear that, I'm happy to hear about how you're feeling if you like?",\
-                        "Before you go on I should mention that I'm a pretty simple bot -- don't expect me to be an expert on how to treat depression, but let's talk about it and maybe we can find a way forward together?"]
+            response =  ["It sounds like you might be suffering from depression - sorry to hear that.",
+                        "Before you go on I should mention that I'm a pretty simple bot -- don't expect me to be an expert on how to treat depression, but I'm here to listen."]
+            if session['heavy_q']:
+                response = "It sounds like you might be suffering from depression - sorry to hear that, I'm happy to hear about how you're feeling if you like?"
 
         elif trigger == "iHaveDepression":
             if len(user_message) > 200:
                 response = "Sorry about all that's going on for you, and about your depression."
+                if session['heavy_q']:
+                    response = response + " How long have you been feeling this way?"
             else:
                 response = "Sorry to hear that you have depression."
             if user_character_count < 1000:
@@ -198,18 +249,24 @@ class TriggerResponseService:
 
         elif trigger == "iMightHaveDepression":
             if user_character_count < 1000:
-                response = "If it feels like you might have depression, things are probably tough for you. Sorry about that. I'm no diagnosis bot, but talking it through with me might help?"
+                response = "If it feels like you might have depression, things are probably tough for you. Sorry about that. I'm no diagnosis bot, but I will listen in case that will help."
+                if session['heavy_q']:
+                    response = "If it feels like you might have depression, things are probably tough for you. Sorry about that. I'm no diagnosis bot, but talking it through with me might help?"
             else:
                 response = " If it feels like you might have depression, things are probably tough for you. Sorry about that."
 
         elif trigger == "iHaveBeenDepressed":
             if user_character_count < 300:
-                response = "I'm sorry to hear about the depressed feelings you've been having. Would you like to say more about those?"
+                response = "I'm sorry to hear about the depressed feelings you've been having."
+                if session['heavy_q']:
+                    response = response + " Would you like to say more about those?"
             else:
                 response = "So I'm hearing you have been depressed and I'm guessing you still are depressed now. I'm sorry to hear that."
 
         elif trigger == "iHaveNoWayOut":
-            response = "I heard you mentioned that you feel you have no way out. Do you feel trapped?"
+            response = "I heard you mentioned that you feel you have no way out."
+            if session['heavy_q']:
+                response = response + " Do you feel trapped?"
 
         elif trigger == "hadEnoughOfLife":
             if session['response_modifier']['suicidal']:
@@ -222,13 +279,17 @@ class TriggerResponseService:
 
         elif trigger == "nothingToLookForwardTo":
             response = "It sounds quite bleak to hear you say that you have nothing to look forward to"
+            if session['heavy_q']:
+                response = response + " Can you think of a time previously when you did have things to look forward to?"
 
         elif trigger == "theOnlyReasonIHaventKilledMyself":
             response = "I'm sensing how close you are to being suicidal"
 
         elif trigger == "iKeepGettingHorribleThoughts":
             if user_character_count < 300:
-                response = "Those thoughts sound unpleasant. Would you like to say more about those?"
+                response = "Those thoughts sound unpleasant. I'm sorry to hear that."
+                if session['heavy_q']:
+                    response = "Those thoughts sound unpleasant. Would you like to say more about those?"
             else:
                 response = "I'm sorry to hear about the horrible thoughts"
 
@@ -237,21 +298,29 @@ class TriggerResponseService:
 
         elif trigger == "imUseless":
             if user_character_count < 1000:
-                response = "I just heard you mention that you're useless. I'd just like to say that everyone is valuable, including you. Could you say more about what's making you say this?"
+                response = "I just heard you mention that you're useless. I'd just like to say that everyone is valuable, including you."
+                if session['heavy_q']:
+                    response = response + " Could you say more about what's making you say this?"
             else:
                 response = "I just heard you mention that you're useless. I'd just like to say that everyone is valuable, including you."
 
         elif trigger == "imWorthless":
             if user_character_count < 1000:
-                response = "I'm sorry to hear you say that you're worthless. Could you say more about what's on your mind?"
+                response = "I'm sorry to hear you say that you're worthless. I'd like to say I think that everyone is valuable, including you."
+                if session['heavy_q']:
+                    response = response + " Could you say more about what's on your mind?"
             else:
                 response = "I'm sorry to hear you say that you're worthless. You might want to place a bit less value on what I'm going to say now, because (a) I don't know you and (b) I'm really only a very unintelligent bot that doesn't understand everything, but I don't think you're worthless. For what it's worth."
 
         elif trigger == "imNotLoved":
             response = "Being loved is important for everyone. I'm sorry that's not happening for you now"
+            if session['heavy_q']:
+                response = response + " How does not being loved feel?"
 
         elif trigger == "imNotSpecialToAnyone":
             response = "That's sad. Everyone should feel like they're special to someone"
+            if session['heavy_q']:
+                response = response + " Would you like to talk more about this?"
 
         elif trigger == "imMakingPeopleUpset":
             if session['response_modifier']['lonely']:
@@ -261,27 +330,29 @@ class TriggerResponseService:
 
         elif trigger == "iWantSomeoneToLoveMe":
             response = "Feeling loved is important, and I'm sure it's something that everyone wants."
+            if session['heavy_q']:
+                response = response + " How does not being loved feel?"
 
         elif trigger == "iFeelStupidForHavingTheseFeelings":
             response = "It's a shame you feel that way about your feelings -- I think you're entitled to feel whatever you're feeling"
 
         elif trigger == "feelingLonely":
-            feeling_lonely_response_ending = ""
-
-            if user_character_count < 500:
-                feeling_lonely_response_ending = ". Can you tell me more about this?"
-            else:
-                feeling_lonely_response_ending = "."
-            response = "Feeling connected to other people is such a fundamental human need. It's sad to hear you talk about this loneliness" + feeling_lonely_response_ending
+            response = "Feeling connected to other people is such a fundamental human need. It's sad to hear you talk about this loneliness."
+            if session['heavy_q']:
+                response = response + " Would you like to talk more about this?"
 
         elif trigger == "nobodyUnderstandsMe":
             response = "It's not nice to feel misunderstood."
+            if session['heavy_q']:
+                response = response + " Would you like to talk more about this?"
 
         elif trigger == "imSickOfLockdown":
             response = "I'm not following the latest on coronavirus (I'm far too simple a bot for that!) but do feel free to tell me your feelings about lockdown."
 
         elif trigger == "iDontSleep":
-            response = "Sleep is important. How are you feeling now?"
+            response = "Sleep is important. I'm sorry if you are struggling with sleep."
+            if session['heavy_q']:
+                response = "Sleep is important. How are you feeling now?"
 
         elif trigger == "dontHaveAnyoneICanTalkTo":
             response = "It's a shame that you feel you don't have anyone you can talk to. It sounds really isolating."
@@ -290,13 +361,19 @@ class TriggerResponseService:
             response = "Not having good relationships with anyone sounds hard. And lonely."
 
         elif trigger == "iStruggleToMakeConversation":
-            response = "Is there anything more you'd like to tell me about conversations?"
+            response = "Struggling with conversations can be challenging to deal with."
+            if session['heavy_q']:
+                response = "Is there anything more you'd like to tell me about conversations?"
 
         elif trigger == "iHateHowILook":
-            response = "That sounds really tough. Could you say more about your thoughts on your looks?"
+            response = "If you dont feel positive about your looks: that sounds really tough and I'm sorry to hear that."
+            if session['heavy_q']:
+                response = "That sounds really tough. Could you say more about your thoughts on your looks?"
 
         elif trigger == "imFeelingFat":
-            response = "Would you like to tell me more about feeling fat?"
+            response = "Feeling fat can be a difficult experience."
+            if session['heavy_q']:
+                response = "Would you like to tell me more about feeling fat?"
 
         elif trigger == "loseWeight":
             if session['response_modifier']['hate_looks']:
@@ -310,7 +387,9 @@ class TriggerResponseService:
 
         elif trigger == "feelOverwhelmed":
             if user_character_count < 100:  # if it's early in hte conversation
-                response = "There must be a lot going on for you to be feeling overwhelmed like that. Would you like to tell me more?"
+                response = "There must be a lot going on for you to be feeling overwhelmed like that."
+                if session['heavy_q']:
+                    response = response + " Would you like to tell me more?"
             elif user_character_count < 500:
                 response = "That sounds like a lot to deal with. I'm sorry it's got to the stage where it's making you feel overwhelmed."
             else: # by this stage (i.e. for a user_character_cout this high) the user has probably explained a lot of what's happened to make them feel overwhelemed
@@ -318,39 +397,51 @@ class TriggerResponseService:
 
         elif trigger == "imTired":
             if user_character_count < 300:
-                response = "Sorry to hear you're feeling tired. Would you like to tell me more about what's making you feel this way?"
+                response = "Sorry to hear you're feeling tired."
+                if session['heavy_q']:
+                    response = response + " Would you like to tell me more about what's making you feel this way?"
             else:
                 response = "Sorry to hear you're feeling tired."
 
         elif trigger == "aLotOnMyMind":
             if user_character_count < 1000:  # if it's early in hte conversation
-                response = "I'm sensing you've got a lot on your plate, would you like to tell me more?"
+                response = "I'm sensing you've got a lot on your plate."
+                if session['heavy_q']:
+                    response = response + " Would you like to tell me more?"
             else: # by this stage (i.e. for a user_character_cout this high) the user has probably explained a lot of what's on their mind
                 response = "I see you've got a lot on your plate there"
 
         elif trigger == "feelingAwful":
-            response = "I'm sorry to hear you're feeling so awful. If you think sharing more about that with me might help you feel less awful, I'm here to be a space for you to talk."
+            response = "I'm sorry to hear you're feeling so awful. If you think sharing more about that with me might help you feel less awful."
 
         elif trigger == "feelLikeCrying":
-            response = "Sounds like this is really, really getting you down. Is there more you want to say about this?"
+            response = "Sounds like this is really, really getting you down. I'm sorry about that."
+            if session['heavy_q']:
+                response = "Sounds like this is really, really getting you down. Is there more you want to say about this?"
 
         elif trigger == "imAFailure":
             response = "It's sad to hear you say that about yourself. I'd love to tell you all the reasons why you're actually really awesome, but I don't know you (and I'm only a very simple bot) so I can't do that. But I do think everyone is valuable in their own way."
 
         elif trigger == "imALetdown":
             response = "Now I'm hearing you call yourself a letdown, and I think that's sad. I'm here to listen to you about that, without judging."
+            if session['heavy_q']:
+                response = response + " Would you like to say more?"
 
         elif trigger == "letMyselfDown":
             response = "You mentioned feeling that you had let yourself down. I hope you feel able to share with me some more thoughts about that, knowing that this is a place where you can talk without being judged."
 
         elif trigger == "hardLife":
             response = "I'm sorry life has been so unpleasant to you."
+            if session['heavy_q']:
+                response = response + " Would you like to say more about what's made your life be like this?"
 
         elif trigger == "iHaveRegrets":
             response = "That sounds sad."
 
         elif trigger == "underAchieved":
-            response = "Hmm. So you don't feel your achievements live up to the expectations you have of yourself?"
+            response = "Hmm. So you don't feel your achievements live up to the expectations you have, that could be tough."
+            if session['heavy_q']:
+                response = "Hmm. So you don't feel your achievements live up to the expectations you have of yourself?"
 
         elif trigger == "iDontHaveMotivation":
             response = "Sounds tough, feeling like you don't have enough motivation or drive"
@@ -362,34 +453,48 @@ class TriggerResponseService:
             response = "Thank you for sharing that pain with me. I'm sorry you have to experience it."
 
         elif trigger == "feelOutOfControl":
-            response = "Can you say a bit more about these out of control feelings?"
+            response = "If you have out of control feelings, that could be challenging."
+            if session['heavy_q']:
+                response = "Can you say a bit more about these out of control feelings?"
 
         elif trigger == "feelLost":
             if len(user_message) < 28: # if the message is about long enough to say "I'm feeling really lost", and not much longer than that:
-                response = "You're saying that you're feeling lost, can you say more about that?"
+                response = "If you're saying that you're feeling lost, I suppose that could be challenging to deal with."
+                if session['heavy_q']:
+                    response = "You're saying that you're feeling lost, can you say more about that?"
             else:
                 response = "That sounds like a very lost, forlorn feeling."
 
         elif trigger == "feelEmpty":
-            response = "Can you expand on that? What do you mean when you talk about this empty feeling?"
+            response = "If you're experiencing an empty feeling, that might be challenging."
+            if session['heavy_q']:
+                response = "Can you expand on that? What do you mean when you talk about this empty feeling?"
 
         elif trigger == "inABadPlace":
             if user_character_count < 500:
-                response = "You said you're in a bad place. Would you like to say more about that?"
+                response = "You said you're in a bad place, I can imagine that might be hard."
+                if session['heavy_q']:
+                    response = "You said you're in a bad place. Would you like to say more about that?"
             else:
                 response = "I'm sorry to hear you say you're in a bad place."
 
         elif trigger == "imTrapped":
-            response = "You say trapped, is there more to say about that?"
+            response = "If you're experiencing a feeling of being trapped, I guess that might be a struggle."
+            if session['heavy_q']:
+                response = "You say trapped, is there more to say about that?"
 
         elif trigger == "nobodyCares":
             response = "It sounds like you feel like no one cares. I am sorry. I am here to listen."
+            if session['heavy_q']:
+                response = response + " Would you like to talk more about this?"
 
         elif trigger == "noOneCaresAboutMe":
             response = "It sounds like you feel like no one cares. I am sorry. I am here to listen."
 
         elif trigger == "nooneHelpsMeFeelBetter":
-            response = "If there were someone who could help you feel better, what would they do?"
+            response = "I hope that you can feel better soon. I try my best to listen in case that helps."
+            if session['heavy_q']:
+                response = "If there were someone who could help you feel better, what would they do?"
 
         elif (" i deserve" in user_message.lower() or user_message.lower()[:9] == "i deserve"):
             ### This is a bit of a risky one. However at time of writing, whenever I've seen a user write "i deserve",
@@ -402,42 +507,60 @@ class TriggerResponseService:
 
         elif trigger == "iHateHowIFeel":
             if user_character_count < 300: # if it's early in the conversation
-                response = "I'm sorry to hear you say that you hate how you feel. Could you say more about these feelings?"
+                response = "I'm sorry to hear you say that you hate how you feel."
+                if session['heavy_q']:
+                    response = response + " Could you say more about these feelings?"
             else:
                 response = "I'm sorry to hear you say that you hate how you feel."
 
         elif trigger == "imSad":
             response = "Thank you for sharing with me the sadness you're experiencing."
+            if session['heavy_q']:
+                response = response + " If you think it would help to explore what might make you feel better, you can discuss that with me if you like?"
 
         elif trigger == "feelingLowDownTerrible":
             response = "Sorry to hear you're feeling low."
+            if session['heavy_q']:
+                response = response + " If you think it would help to explore what might make you feel better, you can discuss that with me if you like?"
 
         elif trigger == "iWantThisFeelingToGoAway":
             response = ":-( I wish you didn't have to feel like this either"
 
         elif trigger == "imUpset":
-            response = "Sorry that you're upset. Could you say a bit more about that?"
+            response = "Sorry that you're upset."
+            if session['heavy_q']:
+                response = response + " Could you say a bit more about that?"
 
         elif trigger == "hurtFeelings":
             response = "Sorry to hear about this, and sorry that it's been hurting your feelings."
 
         elif trigger == "beingBullied":
             response = "Sorry to hear about you being bullied, that can be really rough."
+            if session['heavy_q']:
+                response = response + " Would you like to say more about how long this has been going on?"
 
         elif trigger == "iFeelHelpless":
             response = "I'm sorry to hear about the helplessness you're experiencing"
+            if session['heavy_q']:
+                response = response + " Would you like to say more about this?"
 
         elif trigger == "imAddicted":
-            response = "Addictions can be really tough. Could you say more about what it means for you?"
+            response = "Addictions can be really tough."
+            if session['heavy_q']:
+                response = response + " Could you say more about what it means for you?"
 
         elif trigger == "iHateCoronavirus":
             response = "This nasty virus has caused so many problems."
 
         elif trigger == "feelingRubbish":
-            response = "Sorry that you're feeling rubbish. Could you say a bit more about that?"
+            response = "Sorry that you're feeling rubbish."
+            if session['heavy_q']:
+                response = response + " Could you say a bit more about that?"
 
         elif trigger == "panicAttacks":
-            response = "I am sorry to hear you keep getting panic attacks. How have you coped with them?"
+            response = "I am sorry to hear you've been getting panic attacks."
+            if session['heavy_q']:
+                response = "I am sorry to hear you keep getting panic attacks. How have you coped with them?"
 
     ### I WAS GOING TO INCLUDE SOME RULES FOR "i have anxiety" AND "I'm anxious" BUT ON SECOND THOUGHTS I'M LEAVING THIS BE FOR NOW
     ### LOOKING BACK AT PAST USER BEHAVIOUR, WHEN USERS SAYS THIS IT TENDS TO BE IN COMPLEX SITUATIONS WHERE THERE IS ALSO LOTS OF OTHER SUTFF GOING ON
@@ -462,7 +585,9 @@ class TriggerResponseService:
             ### so the if statement above just refers to second_imWorriedResponseAlreadyUsed only
 
             if user_character_count < 100: # if its early in the conversation
-                response = "Can you tell me more about what you're worried about?"
+                response = "If you're worried, I can see how that might be problematic" 
+                if session['heavy_q']:
+                    response = "Can you tell me more about what you're worried about?"
             else:   # if it's not that early in the conversation
                 response = "I'm sorry to hear about these worries you're experiencing"
 
@@ -471,6 +596,8 @@ class TriggerResponseService:
 
         elif trigger == "whatToDoWithMyself":
             response = "You don't know what to do with yourself? Can you think of anything you would like to do?"
+            if session['heavy_q']:
+                response = "You don't know what to do with yourself?"
 
         elif trigger == "iDontKnowWhatToSay":
             ### Note that if the user keeps on saying that they don't konw what to say, they risk getting a very repetitive response,
@@ -485,7 +612,7 @@ class TriggerResponseService:
                 response = ["Thank you for having shared the things you've shared thus far. Perhaps let's just pause for a moment \
                     and think about how you're feeling right now. ", "Having thought about that for a moment, can you think of anything \
                     that's on your mind that would be useful to discuss, and that you haven't already said? If not, perhaps just say 'stop' and provide your feedback?"]
-        
+      
         elif trigger == "stillDontKnowNo":
             response = "Ah. It's tricky when there's no clear way forward. My role isn't to come up with new ideas for you,\
                      but if you want to do some brainstorming to help you see a way forward, I'm here to help."
@@ -509,66 +636,100 @@ class TriggerResponseService:
             response = "This sounds like a tough situation. It can be hard to see a good way forward in a situation like this."
         elif trigger == "stillDontKnowTired":
             response = "This sounds like an awful, exhausting situation."
-        
+      
         elif trigger == "personalHygiene" or trigger == "iSmell":
             response = "I understand this hygiene stuff is a thing for humans, I am just a little bot. What are your thoughts on how to respond to this?"
+            if session['heavy_q']:
+                response = "I understand this hygiene stuff is a thing for humans, I am just a little bot. What are your thoughts on how to respond to this?"
 
         elif trigger == "wantToBeHappy":
-            response = "I would like you to feel happy again too. Can you share a bit about what would make you happy again?"
+            response = "I would like you to feel happy again too."
+            if session['heavy_q']:
+                response = response + " Can you share a bit about what would make you happy again?"
 
         elif trigger == "iFeelStuck":
-            response = "That sounds difficult for you. I'm sorry you're stuck just now"
+            response = "That sounds difficult for you. I'm sorry you're stuck just now."
+            if session['heavy_q']:
+                response = response + " Can you tell me anything more about this stuck feeling?"
 
         elif trigger == "imNotHappy":
             response = "You said that you're not feeling happy. That's sad. "
+            if session['heavy_q']:
+                response = response + " Can you say anything more about not being happy?"
 
         elif trigger == "iStruggleToBeHappy":
             response = "Happiness is so important. I'm sorry to hear happiness seems elusive for you."
+            if session['heavy_q']:
+                response = response + " Would you like to say anything more about happiness?"
 
         elif trigger == "iFeelNumb":
             response = "Well done for acknowledging how you are feeling - even if you are not feeling anything or are feeling numb."
+            if session['heavy_q']:
+                response = response + " Would you like to talk more about this?"
 
         elif trigger == "imNotSureWhereToTurn":
             response = "It can be hard when you don't know where to turn"
+            if session['heavy_q']:
+                response = response + " Would you like to explore any ideas you have about where to go from here?"
 
         elif trigger == "abandonedMe":
             if user_character_count < 1000: # if it's early in the conversation
-                response = "Can you say more about being abandoned?"
+                response = "Being abandoned sounds like it could be a tough experience."
+                if session['heavy_q']:
+                    response = "Can you say more about being abandoned?"
             else:
                 response = "Thank you for letting me know about this abandonment that you're experiencing"
 
         elif trigger == "imStuckAtHome":
             response = "Sorry to hear you're stuck at home."
+            if session['heavy_q']:
+                response = response + " Is there something that's making it particularly tough that you can describe?"
 
         elif trigger == "waitingToSeeIfPoliceAreGoingToChargeMeWithAnOffence":
             response = "Sounds like a tough time for you"
 
         elif trigger == "imHomeless":
             response = "Being homeless sounds tough"
+            if session['heavy_q']:
+                response = response + " Is there something that's making it particularly tough that you can describe?"
 
         elif trigger == "iHaventSeenMyKids":
-            response = "Tell me more about what it's like for you, not seeing your children"
+            response = "Not seeing your children sound like a hard experience."
+            if session['heavy_q']:
+                response = "Tell me more about what it's like for you, not seeing your children."
 
         elif trigger == "difficultDay":
-            response = "Could you tell me more about the difficult day you've been having?"
+            response = "Having a difficult day can cause difficulties."
+            if session['heavy_q']:
+                response = "Could you tell me more about the difficult day you've been having?"
 
         elif trigger == "imPregnant":
-            response = "Wow. That sounds like it's probably a pretty big deal. How are you feeling about that?"
+            response = "Wow. Pregnancy sounds like it's probably a pretty big deal."
+            if session['heavy_q']:
+                response = "Wow. That sounds like it's probably a pretty big deal. How are you feeling about that?"
 
         elif trigger == "imBeingTakenForGranted":
             response = "It's only fair for you to be appreciated and valued appropriately"
 
         elif trigger == "itsStressingMeOut":
-            response = "Has this sort of thing always stressed you out?"
+            response = "Being stressed out can be quite a challenge."
+            if session['heavy_q']:
+                response = "Has this sort of thing always stressed you out?"
 
         elif trigger == "familyProblems":
-            response = "Could you tell me more about these family difficulties?"
+            response = "Family difficulties are the kind of thing that can be tough."
+            if session['heavy_q']:
+                response = "Could you tell me more about these family difficulties?"
 
         elif trigger == "fallOut":
-            response = "You say you have fallen out? It sounds like this is upsetting you?"
+            response = "You say you have fallen out. It sounds like the sort of thing that could cause upset."
+            if session['heavy_q']:
+                response = "You say you have fallen out?"
 
         elif trigger == "iHaveLostMyFriends":
             response = "Losing your friends sounds tough"
+            if session['heavy_q']:
+                response = response + " Would you like to explore anything more about that with me?"
 
         elif trigger == "abuse":
             response = ["You mention abuse. That sounds awful.", "Just so you know, I’m a very simple bot, and if you’re being harmed or abused, \
@@ -576,25 +737,39 @@ class TriggerResponseService:
             if you would like to keep talking?"]
 
         elif trigger == "heartBreak":
-            response = "I am sorry to hear about the heartbreak, do you want to talk more about that"
+            response = "I am sorry to hear about the heartbreak. That sort of feeling is often hard."
+            if session['heavy_q']:
+                response = "I am sorry to hear about the heartbreak, do you want to talk more about that"
 
         elif trigger == "iWantAFriend":
-            response = "Having a friend is important. I imagine you might be feeling lonely? Please tell me more about it..."
+            response = "Having a friend is important. I hear you."
+            if session['heavy_q']:
+                response = "Having a friend is important. I imagine you might be feeling lonely?"
 
         elif trigger == "iDontSeeManyPeople":
             response = "That sounds lonely."
+            if session['heavy_q']:
+                response = response + " Would you like to say more about what it's like, not seeing people much?"
 
         elif trigger == "myLifeIsBoring":
-            response = "Sorry to hear you're not sounding excited about your life. I'd be happy to hear you say more about your feelings about your life?"
+            response = "Sorry to hear you're not sounding excited about your life."
+            if session['heavy_q']:
+                response = response + " I'd be happy to hear you say more about your feelings about your life?"
 
         elif trigger == "help":
             response = "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)"
+            if session['heavy_q']:
+                response = "What sort of help would you like?"
 
         elif trigger == "gotDumped":
             response = "Oh no, I'm sorry, it's really awful when a relationship ends."
+            if session['heavy_q']:
+                response = response + " How do you feel about it now?"
 
         elif trigger == "brokeUpWithPartner":
-            response = "How are you feeling now?"
+            response = "Breakups can be tough experiences."
+            if session['heavy_q']:
+                response = "How are you feeling now?"
 
         elif trigger == "boyfriendsLeftMe":
             if user_character_count < 300:
@@ -606,10 +781,14 @@ class TriggerResponseService:
             response = "I am trying to help by giving you the space to talk through what's going on for you - I am still a simple little bot."
 
         elif trigger == "hello":
-            response = "Hi! :-) I'm here to listen. Would you like to talk about what's on your mind?"
+            response = "Hi! :-) I'm here to listen. Feel free to say what's on your mind"
+            if session['heavy_q']:
+                response = "Hi! :-) I'm here to listen. Would you like to talk about what's on your mind?"
 
         elif trigger == "iWantFreedom":
-            response = "What does freedom or being free mean to you?"
+            response = "Freedom can be important."
+            if session['heavy_q']:
+                response = "What does freedom or being free mean to you?"
 
         elif trigger == "whoCanITalkTo":
             possible_responses = ["You can talk to me if you like, I am Tio, a chatbot.",\
@@ -619,14 +798,18 @@ class TriggerResponseService:
             response = random.choice(possible_responses)
 
         elif trigger == "howAreYou":
-            response = "I am ok thanks - let's talk about you, how are you?"
+            response = "I am ok thanks - feel free to talk about how you are."
+            if session['heavy_q']:
+                response = "I am ok thanks - let's talk about you, how are you?"
 
         elif trigger == "whatDoYouThink":
             response = "I am a little bot, to be honest, I don't really think in the way you are able to. \
                 I can give you space to explore how you are feeling without any judgement."
 
         elif trigger == "freedom":
-            response = "What does freedom or being free mean to you?"
+            response = "Freedom can be important."
+            if session['heavy_q']:
+                response = "What does freedom or being free mean to you?"
 
         elif trigger == "doYouGiveAdvice":
             possible_responses = [["This bot is a safe, non-judgemental space to explore what's on your mind. Giving advice isn't part of \
@@ -636,11 +819,19 @@ class TriggerResponseService:
             
             response = random.choice(possible_responses)
 
+            if session['heavy_q']:
+                response = ["This bot is a safe, non-judgemental space to explore what's on your mind. Giving advice isn't part of \
+                what I offer. ", "Some people prefer not to be advised -- being told what to do can be disempowering, and talking \
+                things through can help. But if advice is what you're after then I'm sorry not to be able to help. Would \
+                you like to talk about what's on your mind?"]
+
         elif trigger == "speakToAProfessional":
             response = "What sort of help do you need"
 
         elif trigger == "dontKnow":
             response = "You have said you don't know - I hope that by talking things through you will be able to work out a next step."
+            if session['heavy_q']:
+                response = response + " Have you thought about what options you may have?"
 
         elif trigger == "whatDoYouThink":
             response = "I am a little bot, to be honest, I don't really think in the way you are able to. I can give you space to explore how you are feeling without any judgement."
@@ -656,6 +847,8 @@ class TriggerResponseService:
 
         elif trigger == "lettingMeGetMyThoughtsOutOfMyHead":
             response = "Yes, this is a place where you can express your thoughts. Many people find it helps, and I hope it helps for you too."
+            if session['heavy_q']:
+                response = response + " Would you like to describe how you are feeling today?"
 
         elif trigger == "idkWhatElseToSayToYou":
             response = "This is a place where you can express whatever's on your mind, so if you have things on your minds that you'd like to share with me, I'm here for you"
@@ -678,6 +871,8 @@ class TriggerResponseService:
                 wrong because I'm a very simple bot). If that's right, could you click the stop button or type 'stop' into the text field?"]
             
             response = random.choice(possible_responses)
+            if session['heavy_q']:
+                response = "Sorry I'm such a simple bot and I'm not understanding you very well, but are you saying you want to stop using this bot?"
 
         elif trigger == "areYouABot":
             response = "Yes, I'm a bot! Sorry, I should have explained that better earlier. I hope you don't mind. \
@@ -718,6 +913,8 @@ class TriggerResponseService:
             print('short_msg_count:',session['short_msg_count'])
             
             session['short_msg_count'] += 1
+        
+        
         return response
 
     def __is_user_suicidal(self, trigger):

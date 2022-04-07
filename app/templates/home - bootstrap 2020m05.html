@@ -10,47 +10,56 @@
 </head>
 
 <body>
-<div class="chat_window">
-  <div class="top_menu">
-    <div class="buttons">
-      <div class="button close"></div>
-      <div class="button minimize"></div>
-      <div class="button maximize"></div>
-    </div>
-    <div class="title">Talk It Over</div>
+  
+  <div id="popup">    
+    <p>It seems like you've finished speaking with the bot? This is just a friendly request for you to press 'stop' and leave your final happiness score before you leave.
+      By doing that, you can help us to improve the bot. Thank you! </p>
+      <p></p>
+      <p>(If this popup appeared by accident, you can click the close button or anywhere within the site and it will go away.)
+    </p>
+    <button style="color: black;" onclick="this.parentNode.parentNode.removeChild(this.parentNode);">Close</button>
   </div>
-  <ul class="messages"></ul>
-  <div class="bottom_wrapper clearfix">
-    <div class="message_input_wrapper">
-      <!--<input class="message_input" placeholder="Type your message here..." />-->
-      <!--<select type='number' class="message_input" id='initialHappinessSurvey'>
-        <option selected disabled>Please select how you feel...</option>
-        <option name="initialHappinessValue" value=1>1</option>
-        <option name="initialHappinessValue" value=2>2</option>
-        <option name="initialHappinessValue" value=3>3</option>
-        <option name="initialHappinessValue" value=4>4</option>
-        <option name="initialHappinessValue" value=5>5</option>
-        <option name="initialHappinessValue" value=6>6</option>
-        <option name="initialHappinessValue" value=7>7</option>
-        <option name="initialHappinessValue" value=8>8</option>
-        <option name="initialHappinessValue" value=9>9</option>
-        <option name="initialHappinessValue" value=10>10</option>
-      </select>-->
+  <div class="chat_window">
+    <div class="top_menu">
+      <div class="buttons">
+        <div class="button close"></div>
+        <div class="button minimize"></div>
+        <div class="button maximize"></div>
+      </div>
+      <div class="title">Talk It Over</div>
     </div>
-    <div class="send_message">
-      <div class="icon"></div>
-      <div class="text">Send</div>
-    </div>
-    <div id=stopButtonholder>
+    <ul class="messages"></ul>
+    <div class="bottom_wrapper clearfix">
+      <div class="message_input_wrapper">
+        <!--<input class="message_input" placeholder="Type your message here..." />-->
+        <!--<select type='number' class="message_input" id='initialHappinessSurvey'>
+          <option selected disabled>Please select how you feel...</option>
+          <option name="initialHappinessValue" value=1>1</option>
+          <option name="initialHappinessValue" value=2>2</option>
+          <option name="initialHappinessValue" value=3>3</option>
+          <option name="initialHappinessValue" value=4>4</option>
+          <option name="initialHappinessValue" value=5>5</option>
+          <option name="initialHappinessValue" value=6>6</option>
+          <option name="initialHappinessValue" value=7>7</option>
+          <option name="initialHappinessValue" value=8>8</option>
+          <option name="initialHappinessValue" value=9>9</option>
+          <option name="initialHappinessValue" value=10>10</option>
+        </select>-->
+      </div>
+      <div class="send_message">
+        <div class="icon"></div>
+        <div class="text">Send</div>
+      </div>
+      <div id=stopButtonholder>
+      </div>
     </div>
   </div>
-</div>
-<div class="message_template">
-  <li class="message">
-    <div class="avatar"></div>
-    <div class="text_wrapper">
-      <div class="text"></div>
-    </div>
-  </li>
-</div>
+  <div class="message_template">
+    <li class="message">
+      <div class="avatar"></div>
+      <div class="text_wrapper">
+        <div class="text"></div>
+      </div>
+    </li>
+  </div>
 </body>

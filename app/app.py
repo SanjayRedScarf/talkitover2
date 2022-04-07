@@ -36,7 +36,8 @@ def home():
     session['ai_repeat'] = [] # tracks which triggers have already been triggered by sentence encoder
     session['response_modifier'] = {'suicidal':False,'lonely':False,'hate_looks':False} # tracks if user is suicidal, upset, etc which can change response used
     session['short_msg_count'] = 0
-
+    
+    session['heavy_q'] = random.choice([True,False])
     session['last_trigger'] = ""
     session['multi'] = random.choice([True,False])
     
