@@ -35,9 +35,29 @@ class TriggerResponseService:
 
         response = ""
 
+        flags = [k for k,v in session['response_modifier'].items() if v]
+        
     
         if trigger != 'encouragingNoises':
-            response = list(filter(lambda x:(x['char_count_condition'] == '<1000'),response_dict[trigger]))[0]['response']
+            trigger_flags = [response_dict[trigger][x]['flag'] for x in range(len(response_dict[trigger]))]
+
+            single_response_dict = list(filter(lambda x:(user_character_count in range(x['char_count'][0],x['char_count'][1])) and 
+            (len(user_message) in range(x['msg_len'][0],x['msg_len'][1])) and
+            (flags.get(x['flag'],False) if any(x in trigger_flags for x in flags) else x['flag'] == None ),response_dict[trigger]))[0]
+            
+            if session['qheavy']:
+                if session['no_char_count']:
+                    response = single_response_dict['qheavy_nochar_response']
+                else:
+                    response = single_response_dict['qheavy_response']
+            else:
+                if session['no_char_count']:
+                    response = single_response_dict['qlight_nochar_response']
+                else:
+                    response = single_response_dict['qlight_response']
+
+            if single_response_dict['random'] == 'random':
+                response = random.choice(response)
 
         elif (" " not in user_message or len(user_message) < 10) and (user_character_count < 40 and session['short_msg_count'] < 2):
             ### If it's the user's first written response and they've given  (essentially) a one-word message, or maybe something without spaces (e.g. typing gibberish like usanvoiudvuvufdsiudsbca)

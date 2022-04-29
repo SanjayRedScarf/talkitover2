@@ -25,7 +25,7 @@ class TriggersRepository:
         Creates a dictionary of triggers.
         """
         current_directory = os.path.dirname(os.path.realpath('__file__'))
-        filename = os.path.join(current_directory, 'app/test.json')
+        filename = os.path.join(current_directory, 'app/response.json')
 
         responses = ""
 

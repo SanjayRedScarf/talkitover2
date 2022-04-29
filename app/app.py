@@ -39,8 +39,10 @@ def home():
     session['short_msg_count'] = 0
 
     session['last_trigger'] = ""
+
+    session['qheavy']= random.choice([True,False])
     session['multi'] = random.choice([True,False])
-    
+    session['no_char_count'] = random.choice([True,False])
     return render_template(homepage_name)
 
 @app.route("/get")
