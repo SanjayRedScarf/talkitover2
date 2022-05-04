@@ -16,8 +16,10 @@ class ConversationDataRepository:
         And those might be more sensitive.
         """
         google_ads_data = session['GOOGLE_ADS_DATA']
-        field_names = ['user_id','user_says','chatbot_says','version','frontend','campaign','group','geo','device','timestamp','section','response_type' ,'multi',
+
+        field_names = ['user_id','user_says','chatbot_says','version','frontend','campaign','group','geo','device','timestamp','section','response_type' ,'multi','q_heavy',
         'no_char_count','ai_data','over_threshold','highest_score_category','highest_score_exemplar','highest_score_substring']
+
 
         version = session['version']
         multi = session['multi']
@@ -28,17 +30,21 @@ class ConversationDataRepository:
 
             current_directory = os.path.dirname(os.path.realpath('__file__'))
 
+
             file2 = os.path.join(current_directory,'app/storedData_v{}.csv'.format(version))
+
 
             with open(file2,'a',newline ='',encoding='utf-8') as f:
                 writer = csv.DictWriter(f,fieldnames=field_names)
                 if f.tell() == 0: # if the file doesnt already exist, write the field names as a header
                     writer.writeheader()  
+
              
                 data = [{'user_id':user_inputs.conversation_id, "user_says": str(user_inputs.message), "chatbot_says": str(user_inputs.response),'version':version, 'frontend':user_inputs.client_id, "campaign": str(google_ads_data.campaign or ''), "group":  str(google_ads_data.group or ''), "geo": str(google_ads_data.geo or ''), "device": str(google_ads_data.device or ''), 
-                "timestamp":str(datetime.now()),'section':(user_inputs.section) ,'response_type':response_type,'multi':multi,'no_char_count':session['no_char_count'],'ai_data':user_inputs.ai_data or {},
+                "timestamp":str(datetime.now()),'section':(user_inputs.section) ,'response_type':response_type,'multi':multi,'q_heavy':session['qheavy'],'no_char_count':session['no_char_count'],'ai_data':user_inputs.ai_data or {},
                 'over_threshold':user_inputs.ai_data.get('max_over_thresh', {}),'highest_score_category':user_inputs.ai_data.get('highest_max_score_category',{}),'highest_score_exemplar':user_inputs.ai_data.get('exemplar_for_max_cat',{}),
                 'highest_score_substring':user_inputs.ai_data.get('substring_for_max_cat',{})}]
 
                 writer.writerows(data)
+
         return None

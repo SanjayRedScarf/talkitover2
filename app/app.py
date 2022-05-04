@@ -28,16 +28,20 @@ def home():
     session['GOOGLE_ADS_DATA'] = _google_ads_service.get_google_ads_data_from_url()
 
     session['TRIGGERS_DICT'] = _triggers_repository.get_triggers_dictionary()
+
     session['RESPONSE_DICT']= _triggers_repository.get_response_dictionary()
 
     session['version'] = 18 # make sure to change this number whenever changing versions
+
+
+
 
     session['uid'] = datetime.datetime.now().strftime('%Y%m%d%H%M%S%f') # unique user id, later used for data analysis
     session['user_character_count'] = 0
     session['ai_repeat'] = [] # tracks which triggers have already been triggered by sentence encoder
     session['response_modifier'] = {'suicidal':False,'lonely':False,'hate_looks':False} # tracks if user is suicidal, upset, etc which can change response used
     session['short_msg_count'] = 0
-
+    
     session['last_trigger'] = ""
 
     session['qheavy']= random.choice([True,False])

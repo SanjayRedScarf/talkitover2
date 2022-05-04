@@ -1,4 +1,9 @@
+from http.client import ResponseNotReady
+from pydoc import resolve
 import random
+from sklearn.model_selection import StratifiedShuffleSplit
+
+from torch import heaviside
 from repositories import triggers_repository
 from flask import session
 
@@ -35,6 +40,7 @@ class TriggerResponseService:
 
         response = ""
 
+
         flags = [k for k,v in session['response_modifier'].items() if v]
         
     
@@ -68,6 +74,8 @@ class TriggerResponseService:
             print('short_msg_count:',session['short_msg_count'])
             
             session['short_msg_count'] += 1
+        
+        
         return response
 
     def __is_user_suicidal(self, trigger):
