@@ -28,8 +28,10 @@ def home():
     session['GOOGLE_ADS_DATA'] = _google_ads_service.get_google_ads_data_from_url()
 
     session['TRIGGERS_DICT'] = _triggers_repository.get_triggers_dictionary()
-    
+ 
     session['version'] = 17 # make sure to change this number whenever changing versions
+
+
 
     session['uid'] = datetime.datetime.now().strftime('%Y%m%d%H%M%S%f') # unique user id, later used for data analysis
     session['user_character_count'] = 0
