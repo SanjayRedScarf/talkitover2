@@ -1,0 +1,3688 @@
+{
+    "aLotOnMyMind": [
+        {
+            "char_count": [
+                0,
+                1000
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sensing you've got a lot on your plate, would you like to tell me more?",
+            "qheavy_response": "I'm sensing you've got a lot on your plate. would you like to tell me more?",
+            "qlight_nochar_response": "I'm sensing you've got a lot on your plate, would you like to tell me more?",
+            "qlight_response": "I'm sensing you've got a lot on your plate.",
+            "random": null
+        },
+        {
+            "char_count": [
+                1000,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sensing you've got a lot on your plate, would you like to tell me more?",
+            "qheavy_response": "I see you've got a lot on your plate there.",
+            "qlight_nochar_response": "I'm sensing you've got a lot on your plate, would you like to tell me more?",
+            "qlight_response": "I see you've got a lot on your plate there.",
+            "random": null
+        }
+    ],
+    "abandonedMe": [
+        {
+            "char_count": [
+                0,
+                1000
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Can you say more about being abandoned?",
+            "qheavy_response": "Can you say more about being abandoned?",
+            "qlight_nochar_response": "Can you say more about being abandoned?",
+            "qlight_response": "Being abandoned sounds like it could be a tough experience.",
+            "random": null
+        },
+        {
+            "char_count": [
+                1000,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Can you say more about being abandoned?",
+            "qheavy_response": "Thank you for letting me know about this abandonment that you're experiencing.",
+            "qlight_nochar_response": "Can you say more about being abandoned?",
+            "qlight_response": "Thank you for letting me know about this abandonment that you're experiencing.",
+            "random": null
+        }
+    ],
+    "abuse": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": [
+                "You mention abuse. That sounds awful.",
+                "Just so you know, I\u2019m a very simple bot, and if you\u2019re being harmed or abused, I wouldn\u2019t be able to get help for you, you would have to get help for yourself. But I can continue to be here for you and listen to you if you would like to keep talking?"
+            ],
+            "qheavy_response": [
+                "You mention abuse. That sounds awful.",
+                "Just so you know, I\u2019m a very simple bot, and if you\u2019re being harmed or abused, I wouldn\u2019t be able to get help for you, you would have to get help for yourself. But I can continue to be here for you and listen to you if you would like to keep talking?"
+            ],
+            "qlight_nochar_response": [
+                "You mention abuse. That sounds awful.",
+                "Just so you know, I\u2019m a very simple bot, and if you\u2019re being harmed or abused, I wouldn\u2019t be able to get help for you, you would have to get help for yourself. But I can continue to be here for you and listen to you if you would like to keep talking?"
+            ],
+            "qlight_response": [
+                "You mention abuse. That sounds awful.",
+                "Just so you know, I\u2019m a very simple bot, and if you\u2019re being harmed or abused, I wouldn\u2019t be able to get help for you, you would have to get help for yourself. But I can continue to be here for you and listen to you if you would like to keep talking?"
+            ],
+            "random": null
+        }
+    ],
+    "areYouABot": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Yes, I'm a bot! Sorry, I should have explained that better earlier. I hope you don't mind. Please feel free to continue talking with me?",
+            "qheavy_response": "Yes, I'm a bot! Sorry, I should have explained that better earlier. I hope you don't mind. Please feel free to continue talking with me?",
+            "qlight_nochar_response": "Yes, I'm a bot! Sorry, I should have explained that better earlier. I hope you don't mind. Please feel free to continue talking with me?",
+            "qlight_response": "Yes, I'm a bot! Sorry, I should have explained that better earlier. I hope you don't mind. Please feel free to continue talking with me?",
+            "random": null
+        }
+    ],
+    "areYouReading": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm paying attention to you as best I can. I'm sorry I'm only a simple bot and can't always understand you as well as I'd like to. Please press on and continue to talk to me if you would find it useful. But if it's not helping, please click the stop button or type 'stop' into the text field and provide feedback so we can make this better for others.",
+            "qheavy_response": "I'm paying attention to you as best I can. I'm sorry I'm only a simple bot and can't always understand you as well as I'd like to. Please press on and continue to talk to me if you would find it useful. But if it's not helping, please click the stop button or type 'stop' into the text field and provide feedback so we can make this better for others.",
+            "qlight_nochar_response": "I'm paying attention to you as best I can. I'm sorry I'm only a simple bot and can't always understand you as well as I'd like to. Please press on and continue to talk to me if you would find it useful. But if it's not helping, please click the stop button or type 'stop' into the text field and provide feedback so we can make this better for others.",
+            "qlight_response": "I'm paying attention to you as best I can. I'm sorry I'm only a simple bot and can't always understand you as well as I'd like to. Please press on and continue to talk to me if you would find it useful. But if it's not helping, please click the stop button or type 'stop' into the text field and provide feedback so we can make this better for others.",
+            "random": null
+        }
+    ],
+    "beingBullied": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Sorry to hear about you being bullied, that can be really rough. Would you like to say more about how long this has been going on?",
+            "qheavy_response": "Sorry to hear about you being bullied, that can be really rough. Would you like to say more about how long this has been going on?",
+            "qlight_nochar_response": "Sorry to hear about you being bullied, that can be really rough.",
+            "qlight_response": "Sorry to hear about you being bullied, that can be really rough.",
+            "random": null
+        }
+    ],
+    "betterOffDead": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": "suicidal",
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear you indicate that you would be better off if you weren't alive. Is there something that would make you feel like your life is woth living?",
+            "qheavy_response": "I'm sorry to hear you indicate that you would be better off if you weren't alive. Is there something that would make you feel like your life is woth living?",
+            "qlight_nochar_response": "I'm sorry to hear you indicate that you would be better off if you weren't alive.",
+            "qlight_response": "I'm sorry to hear you indicate that you would be better off if you weren't alive.",
+            "random": null
+        },
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": [
+                "I'm sorry to hear you indicate that you would be better off if you weren't alive. Could you say more about that?",
+                "And also, if you're feeling suicidal, this is a safe space to share your thoughts about this. And remember that I'm only a simple bot, so I wouldn't be able to get help for you."
+            ],
+            "qheavy_response": [
+                "I'm sorry to hear you indicate that you would be better off if you weren't alive. Could you say more about that?",
+                "And also, if you're feeling suicidal, this is a safe space to share your thoughts about this. And remember that I'm only a simple bot, so I wouldn't be able to get help for you."
+            ],
+            "qlight_nochar_response": [
+                "I'm sorry to hear you indicate that you would be better off if you weren't alive. Could you say more about that?",
+                "And also, if you're feeling suicidal, this is a safe space to share your thoughts about this. And remember that I'm only a simple bot, so I wouldn't be able to get help for you."
+            ],
+            "qlight_response": [
+                "I'm sorry to hear you indicate that you would be better off if you weren't alive. Could you say more about that?",
+                "And also, if you're feeling suicidal, this is a safe space to share your thoughts about this. And remember that I'm only a simple bot, so I wouldn't be able to get help for you."
+            ],
+            "random": null
+        }
+    ],
+    "boyfriendsLeftMe": [
+        {
+            "char_count": [
+                0,
+                300
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Relationships are complex. I'm a pretty simple bot, but if you want to tell me more about it, I'm here to be a space for you to discuss this further.",
+            "qheavy_response": "Relationships are complex. I'm a pretty simple bot, but if you want to tell me more about it, I'm here to be a space for you to discuss this further.",
+            "qlight_nochar_response": "Relationships are complex. I'm a pretty simple bot, but if you want to tell me more about it, I'm here to be a space for you to discuss this further.",
+            "qlight_response": "Relationships are complex. I'm a pretty simple bot, but if you want to tell me more about it, I'm here to be a space for you to discuss this further.",
+            "random": null
+        },
+        {
+            "char_count": [
+                300,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Relationships are complex. I'm a pretty simple bot, but if you want to tell me more about it, I'm here to be a space for you to discuss this further.",
+            "qheavy_response": "I'm sorry to hear about the end of your relationship.",
+            "qlight_nochar_response": "Relationships are complex. I'm a pretty simple bot, but if you want to tell me more about it, I'm here to be a space for you to discuss this further.",
+            "qlight_response": "I'm sorry to hear about the end of your relationship.",
+            "random": null
+        }
+    ],
+    "brokeUpWithPartner": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "How are you feeling now?",
+            "qheavy_response": "How are you feeling now?",
+            "qlight_nochar_response": "Breakups can be tough experiences.",
+            "qlight_response": "Breakups can be tough experiences.",
+            "random": null
+        }
+    ],
+    "canYouHelp": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I am trying to help by giving you the space to talk through what's going on for you - I am still a simple little bot.",
+            "qheavy_response": "I am trying to help by giving you the space to talk through what's going on for you - I am still a simple little bot.",
+            "qlight_nochar_response": "I am trying to help by giving you the space to talk through what's going on for you - I am still a simple little bot.",
+            "qlight_response": "I am trying to help by giving you the space to talk through what's going on for you - I am still a simple little bot.",
+            "random": null
+        }
+    ],
+    "contemplatedSuicideBut": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "It's sad that you've had thoughts of suicide, but I'm glad that you're continuing to stay alive. How long have you had these thoughts?",
+            "qheavy_response": "It's sad that you've had thoughts of suicide, but I'm glad that you're continuing to stay alive. How long have you had these thoughts?",
+            "qlight_nochar_response": "It's sad that you've had thoughts of suicide, but I'm glad that you're continuing to stay alive.",
+            "qlight_response": "It's sad that you've had thoughts of suicide, but I'm glad that you're continuing to stay alive.",
+            "random": null
+        }
+    ],
+    "difficultDay": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Could you tell me more about the difficult day you've been having?",
+            "qheavy_response": "Could you tell me more about the difficult day you've been having?",
+            "qlight_nochar_response": "Having a difficult day can cause difficulties.",
+            "qlight_response": "Having a difficult day can cause difficulties.",
+            "random": null
+        }
+    ],
+    "doYouGiveAdvice": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": [
+                "This bot is a safe, non-judgemental space to explore what's on your mind. Giving advice isn't part of what I offer. ",
+                "Some people prefer not to be advised -- being told what to do can be disempowering, and talking things through can help. But if advice is what you're after then I'm sorry not to be able to help. Would you like to talk about what's on your mind?"
+            ],
+            "qheavy_response": [
+                "This bot is a safe, non-judgemental space to explore what's on your mind. Giving advice isn't part of what I offer. ",
+                "Some people prefer not to be advised -- being told what to do can be disempowering, and talking things through can help. But if advice is what you're after then I'm sorry not to be able to help. Would you like to talk about what's on your mind?"
+            ],
+            "qlight_nochar_response": [
+                [
+                    "This bot is a safe, non-judgemental space to explore what's on your mind. Giving advice isn't part of at I offer. ",
+                    "Some people prefer not to be advised -- being told what to do can be disempowering, and talking things through can help. But if advice is what you're after then I'm sorry not to be able to help. Would you like to talk about what's on your mind?"
+                ],
+                "This bot isn't about me advising you; it's about you talking and finding your own way through things. You're welcome to continue talking if that would help?"
+            ],
+            "qlight_response": [
+                [
+                    "This bot is a safe, non-judgemental space to explore what's on your mind. Giving advice isn't part of at I offer. ",
+                    "Some people prefer not to be advised -- being told what to do can be disempowering, and talking things through can help. But if advice is what you're after then I'm sorry not to be able to help. Would you like to talk about what's on your mind?"
+                ],
+                "This bot isn't about me advising you; it's about you talking and finding your own way through things. You're welcome to continue talking if that would help?"
+            ],
+            "random": "random"
+        }
+    ],
+    "dontHaveAnyoneICanTalkTo": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "It's a shame that you feel you don't have anyone you can talk to. It sounds really isolating.",
+            "qheavy_response": "It's a shame that you feel you don't have anyone you can talk to. It sounds really isolating.",
+            "qlight_nochar_response": "It's a shame that you feel you don't have anyone you can talk to. It sounds really isolating.",
+            "qlight_response": "It's a shame that you feel you don't have anyone you can talk to. It sounds really isolating.",
+            "random": null
+        }
+    ],
+    "dontKnow": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "You have said you don't know - I hope that by talking things through you will be able to work out a next step.",
+            "qheavy_response": "You have said you don't know - I hope that by talking things through you will be able to work out a next step.",
+            "qlight_nochar_response": "You have said you don't know - I hope that by talking things through you will be able to work out a next step. Have you thought about what options you may have?",
+            "qlight_response": "You have said you don't know - I hope that by talking things through you will be able to work out a next step. Have you thought about what options you may have?",
+            "random": null
+        }
+    ],
+    "fallOut": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "You say you have fallen out? ",
+            "qheavy_response": "You say you have fallen out? ",
+            "qlight_nochar_response": "You say you have fallen out. It sounds like the sort of thing that could cause upset.",
+            "qlight_response": "You say you have fallen out. It sounds like the sort of thing that could cause upset.",
+            "random": null
+        }
+    ],
+    "familyProblems": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Could you tell me more about these family difficulties?",
+            "qheavy_response": "Could you tell me more about these family difficulties?",
+            "qlight_nochar_response": "Family difficulties are the kind of thing that can be tough.",
+            "qlight_response": "Family difficulties are the kind of thing that can be tough.",
+            "random": null
+        }
+    ],
+    "feelEmpty": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Can you expand on that? What do you mean when you talk about this empty feeling?",
+            "qheavy_response": "Can you expand on that? What do you mean when you talk about this empty feeling?",
+            "qlight_nochar_response": "If you're experiencing an empty feeling, that might be challenging.",
+            "qlight_response": "If you're experiencing an empty feeling, that might be challenging.",
+            "random": null
+        }
+    ],
+    "feelLikeCrying": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Sounds like this is really, really getting you down. Is there more you want to say about this?",
+            "qheavy_response": "Sounds like this is really, really getting you down. Is there more you want to say about this?",
+            "qlight_nochar_response": "Sounds like this is really, really getting you down. I'm sorry about that.",
+            "qlight_response": "Sounds like this is really, really getting you down. I'm sorry about that.",
+            "random": null
+        }
+    ],
+    "feelLikeEndingIt": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "If you decided to end your life, that would be very sad. Is there something that would make you feel like your life is worth living?",
+            "qheavy_response": "If you decided to end your life, that would be very sad. Is there something that would make you feel like your life is worth living?",
+            "qlight_nochar_response": "If you decided to end your life, that would be very sad.",
+            "qlight_response": "If you decided to end your life, that would be very sad.",
+            "random": null
+        }
+    ],
+    "feelLost": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                28
+            ],
+            "qheavy_nochar_response": "You're saying that you're feeling lost, can you say more about that?",
+            "qheavy_response": "You're saying that you're feeling lost, can you say more about that?",
+            "qlight_nochar_response": "If you're saying that you're feeling lost, I suppose that could be challenging to deal with.",
+            "qlight_response": "If you're saying that you're feeling lost, I suppose that could be challenging to deal with.",
+            "random": null
+        },
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                28,
+                9999999
+            ],
+            "qheavy_nochar_response": "That sounds like a very lost, forlorn feeling.",
+            "qheavy_response": "That sounds like a very lost, forlorn feeling.",
+            "qlight_nochar_response": "That sounds like a very lost, forlorn feeling.",
+            "qlight_response": "That sounds like a very lost, forlorn feeling.",
+            "random": null
+        }
+    ],
+    "feelOutOfControl": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Can you say a bit more about these out of control feelings?",
+            "qheavy_response": "Can you say a bit more about these out of control feelings?",
+            "qlight_nochar_response": "If you have out of control feelings, that could be challenging.",
+            "qlight_response": "If you have out of control feelings, that could be challenging.",
+            "random": null
+        }
+    ],
+    "feelOverwhelmed": [
+        {
+            "char_count": [
+                0,
+                100
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry about these overwhelming feelings. Could you tell me more about what's going on for you?",
+            "qheavy_response": "There must be a lot going on for you to be feeling overwhelmed like that. Would you like to tell me more?",
+            "qlight_nochar_response": "I'm sorry about these overwhelming feelings. Could you tell me more about what's going on for you?",
+            "qlight_response": "There must be a lot going on for you to be feeling overwhelmed like that.",
+            "random": null
+        },
+        {
+            "char_count": [
+                100,
+                500
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry about these overwhelming feelings. Could you tell me more about what's going on for you?",
+            "qheavy_response": "That sounds like a lot to deal with. I'm sorry it's got to the stage where it's making you feel overwhelmed.",
+            "qlight_nochar_response": "I'm sorry about these overwhelming feelings. Could you tell me more about what's going on for you?",
+            "qlight_response": "That sounds like a lot to deal with. I'm sorry it's got to the stage where it's making you feel overwhelmed.",
+            "random": null
+        },
+        {
+            "char_count": [
+                500,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry about these overwhelming feelings. Could you tell me more about what's going on for you?",
+            "qheavy_response": "That all sounds like a lot to deal with.",
+            "qlight_nochar_response": "I'm sorry about these overwhelming feelings. Could you tell me more about what's going on for you?",
+            "qlight_response": "That all sounds like a lot to deal with.",
+            "random": null
+        }
+    ],
+    "feelingAwful": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear you're feeling so awful. If you think sharing more about that with me might help you feel less awful, I'm here to be a space for you to talk.",
+            "qheavy_response": "I'm sorry to hear you're feeling so awful. If you think sharing more about that with me might help you feel less awful, I'm here to be a space for you to talk.",
+            "qlight_nochar_response": "I'm sorry to hear you're feeling so awful. If you think sharing more about that with me might help you feel less awful, I'm here to be a space for you to talk.",
+            "qlight_response": "I'm sorry to hear you're feeling so awful. If you think sharing more about that with me might help you feel less awful, I'm here to be a space for you to talk.",
+            "random": null
+        }
+    ],
+    "feelingDepressed": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Sorry to hear you're feeling depressed. Would you like to tell me more about that?",
+            "qheavy_response": "Sorry to hear you're feeling depressed. Would you like to tell me more about that?",
+            "qlight_nochar_response": "Sorry to hear you're feeling depressed. ",
+            "qlight_response": "Sorry to hear you're feeling depressed. ",
+            "random": null
+        }
+    ],
+    "feelingLonely": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Feeling connected to other people is such a fundamental human need. It's sad to hear you talk about this loneliness. Would you like to talk more about this?",
+            "qheavy_response": "Feeling connected to other people is such a fundamental human need. It's sad to hear you talk about this loneliness. Would you like to talk more about this?",
+            "qlight_nochar_response": "Feeling connected to other people is such a fundamental human need. It's sad to hear you talk about this loneliness.",
+            "qlight_response": "Feeling connected to other people is such a fundamental human need. It's sad to hear you talk about this loneliness.",
+            "random": null
+        }
+    ],
+    "feelingLowDownTerrible": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Sorry to hear you're feeling low. If you think it would help to explore what might make you feel better, you can discuss that with me if you like?",
+            "qheavy_response": "Sorry to hear you're feeling low. If you think it would help to explore what might make you feel better, you can discuss that with me if you like?",
+            "qlight_nochar_response": "Sorry to hear you're feeling low.",
+            "qlight_response": "Sorry to hear you're feeling low.",
+            "random": null
+        }
+    ],
+    "feelingRubbish": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Sorry that you're feeling rubbish. Could you say a bit more about that?",
+            "qheavy_response": "Sorry that you're feeling rubbish. Could you say a bit more about that?",
+            "qlight_nochar_response": "Sorry that you're feeling rubbish.",
+            "qlight_response": "Sorry that you're feeling rubbish.",
+            "random": null
+        }
+    ],
+    "freedom": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "What does freedom or being free mean to you?",
+            "qheavy_response": "What does freedom or being free mean to you?",
+            "qlight_nochar_response": "Freedom can be important.",
+            "qlight_response": "Freedom can be important.",
+            "random": null
+        }
+    ],
+    "gotDumped": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Oh no, I'm sorry, it's really awful when a relationship ends. How do you feel about it now?",
+            "qheavy_response": "Oh no, I'm sorry, it's really awful when a relationship ends. How do you feel about it now?",
+            "qlight_nochar_response": "Oh no, I'm sorry, it's really awful when a relationship ends.",
+            "qlight_response": "Oh no, I'm sorry, it's really awful when a relationship ends.",
+            "random": null
+        }
+    ],
+    "hadEnoughOfLife": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": "suicidal",
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "So I've heard you say that you're feeling suicidal, and you're saying that you've had enough of life. I'm sorry it's got to the stage where you're feeling this way.",
+            "qheavy_response": "So I've heard you say that you're feeling suicidal, and you're saying that you've had enough of life. I'm sorry it's got to the stage where you're feeling this way.",
+            "qlight_nochar_response": "So I've heard you say that you're feeling suicidal, and you're saying that you've had enough of life. I'm sorry it's got to the stage where you're feeling this way.",
+            "qlight_response": "So I've heard you say that you're feeling suicidal, and you're saying that you've had enough of life. I'm sorry it's got to the stage where you're feeling this way.",
+            "random": null
+        },
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear you say that you've had enough of life. Sometimes when people say that they are also having suicidal thoughts\u2026",
+            "qheavy_response": "I'm sorry to hear you say that you've had enough of life. Sometimes when people say that they are also having suicidal thoughts\u2026",
+            "qlight_nochar_response": "I'm sorry to hear you say that you've had enough of life. Sometimes when people say that they are also having suicidal thoughts\u2026",
+            "qlight_response": "I'm sorry to hear you say that you've had enough of life. Sometimes when people say that they are also having suicidal thoughts\u2026",
+            "random": null
+        }
+    ],
+    "hardLife": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry life has been so unpleasant to you. Would you like to say more about what's made your life be like this?",
+            "qheavy_response": "I'm sorry life has been so unpleasant to you. Would you like to say more about what's made your life be like this?",
+            "qlight_nochar_response": "I'm sorry life has been so unpleasant to you.",
+            "qlight_response": "I'm sorry life has been so unpleasant to you.",
+            "random": null
+        }
+    ],
+    "heartBreak": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I am sorry to hear about the heartbreak, do you want to talk more about that?",
+            "qheavy_response": "I am sorry to hear about the heartbreak, do you want to talk more about that?",
+            "qlight_nochar_response": "I am sorry to hear about the heartbreak. That sort of feeling is often hard.",
+            "qlight_response": "I am sorry to hear about the heartbreak. That sort of feeling is often hard.",
+            "random": null
+        }
+    ],
+    "hello": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Hi! :-) I'm here to listen. Would you like to talk about what's on your mind?",
+            "qheavy_response": "Hi! :-) I'm here to listen. Would you like to talk about what's on your mind?",
+            "qlight_nochar_response": "Hi! :-) I'm here to listen. Feel free to say what's on your mind.",
+            "qlight_response": "Hi! :-) I'm here to listen. Feel free to say what's on your mind.",
+            "random": null
+        }
+    ],
+    "help": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "What sort of help would you like? ",
+            "qheavy_response": "What sort of help would you like? ",
+            "qlight_nochar_response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)",
+            "qlight_response": "What sort of help would you like? (By the way I'm a pretty simple bot and I'm here to listen)",
+            "random": null
+        }
+    ],
+    "howAreYou": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I am ok thanks - let's talk about you, how are you?",
+            "qheavy_response": "I am ok thanks - let's talk about you, how are you?",
+            "qlight_nochar_response": "I am ok thanks - feel free to talk about how you are.",
+            "qlight_response": "I am ok thanks - feel free to talk about how you are.",
+            "random": null
+        }
+    ],
+    "hurtFeelings": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Sorry to hear about this, and sorry that it's been hurting your feelings.",
+            "qheavy_response": "Sorry to hear about this, and sorry that it's been hurting your feelings.",
+            "qlight_nochar_response": "Sorry to hear about this, and sorry that it's been hurting your feelings.",
+            "qlight_response": "Sorry to hear about this, and sorry that it's been hurting your feelings.",
+            "random": null
+        }
+    ],
+    "hurtsMyFeelings": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "That sounds painful for you.",
+            "qheavy_response": "That sounds painful for you.",
+            "qlight_nochar_response": "That sounds painful for you.",
+            "qlight_response": "That sounds painful for you.",
+            "random": null
+        }
+    ],
+    "hurtsToKnowThat": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Thank you for sharing that pain with me. I'm sorry you have to experience it.",
+            "qheavy_response": "Thank you for sharing that pain with me. I'm sorry you have to experience it.",
+            "qlight_nochar_response": "Thank you for sharing that pain with me. I'm sorry you have to experience it.",
+            "qlight_response": "Thank you for sharing that pain with me. I'm sorry you have to experience it.",
+            "random": null
+        }
+    ],
+    "iDontHaveGoodRelationshipsWithAnybody": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Not having good relationships with anyone sounds hard. And lonely.",
+            "qheavy_response": "Not having good relationships with anyone sounds hard. And lonely.",
+            "qlight_nochar_response": "Not having good relationships with anyone sounds hard. And lonely.",
+            "qlight_response": "Not having good relationships with anyone sounds hard. And lonely.",
+            "random": null
+        }
+    ],
+    "iDontHaveMotivation": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Sounds tough, feeling like you don't have enough motivation or drive.",
+            "qheavy_response": "Sounds tough, feeling like you don't have enough motivation or drive.",
+            "qlight_nochar_response": "Sounds tough, feeling like you don't have enough motivation or drive.",
+            "qlight_response": "Sounds tough, feeling like you don't have enough motivation or drive.",
+            "random": null
+        }
+    ],
+    "iDontKnowWhatToDo": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "So you said you're not sure what to do. Can you think of any options that you would like to explore with me?",
+            "qheavy_response": "So you said you're not sure what to do. Can you think of any options that you would like to explore with me?",
+            "qlight_nochar_response": "So you said you're not sure what to do. Can you think of any options that you would like to explore with me?",
+            "qlight_response": "So you said you're not sure what to do. Can you think of any options that you would like to explore with me?",
+            "random": null
+        }
+    ],
+    "iDontKnowWhatToSay": [
+        {
+            "char_count": [
+                0,
+                200
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": [
+                "Thank you for having shared the things you've shared thus far. Perhaps let's just pause for a moment and think about how you're feeling right now. ",
+                "Having thought about that for a moment, can you think of anything that's on your mind that would be useful to discuss, and that you haven't already said? If not, perhaps just say 'stop' and provide your feedback?"
+            ],
+            "qheavy_response": [
+                "This is a space for you to talk about what you're feeling. I'm guessing if you've ended up at this site you're feeling low. Would you like to say more about that?",
+                "Sorry if it sounds like I'm repeating myself, but this is a space for you to explore whatever's on your mind. Would you like to tell me a bit about how you're feeling?"
+            ],
+            "qlight_nochar_response": [
+                "Thank you for having shared the things you've shared thus far. Perhaps let's just pause for a moment and think about how you're feeling right now. ",
+                "Having thought about that for a moment, can you think of anything that's on your mind that would be useful to discuss, and that you haven't already said? If not, perhaps just say 'stop' and provide your feedback?"
+            ],
+            "qlight_response": [
+                "This is a space for you to talk about what you're feeling. I'm guessing if you've ended up at this site you're feeling low. Would you like to say more about that?",
+                "Sorry if it sounds like I'm repeating myself, but this is a space for you to explore whatever's on your mind. Would you like to tell me a bit about how you're feeling?"
+            ],
+            "random": "random"
+        },
+        {
+            "char_count": [
+                200,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": [
+                "Thank you for having shared the things you've shared thus far. Perhaps let's just pause for a moment and think about how you're feeling right now. ",
+                "Having thought about that for a moment, can you think of anything that's on your mind that would be useful to discuss, and that you haven't already said? If not, perhaps just say 'stop' and provide your feedback?"
+            ],
+            "qheavy_response": [
+                "Thank you for having shared the things you've shared thus far. Perhaps let's just pause for a moment and think about how you're feeling right now. ",
+                "Having thought about that for a moment, can you think of anything that's on your mind that would be useful to discuss, and that you haven't already said? If not, perhaps just say 'stop' and provide your feedback?"
+            ],
+            "qlight_nochar_response": [
+                "Thank you for having shared the things you've shared thus far. Perhaps let's just pause for a moment and think about how you're feeling right now. ",
+                "Having thought about that for a moment, can you think of anything that's on your mind that would be useful to discuss, and that you haven't already said? If not, perhaps just say 'stop' and provide your feedback?"
+            ],
+            "qlight_response": [
+                "Thank you for having shared the things you've shared thus far. Perhaps let's just pause for a moment and think about how you're feeling right now. ",
+                "Having thought about that for a moment, can you think of anything that's on your mind that would be useful to discuss, and that you haven't already said? If not, perhaps just say 'stop' and provide your feedback?"
+            ],
+            "random": null
+        }
+    ],
+    "iDontSeeManyPeople": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "That sounds lonely. Would you like to say more about what it's like, not seeing people much?",
+            "qheavy_response": "That sounds lonely. Would you like to say more about what it's like, not seeing people much?",
+            "qlight_nochar_response": "That sounds lonely.",
+            "qlight_response": "That sounds lonely.",
+            "random": null
+        }
+    ],
+    "iDontSleep": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Sleep is important. How are you feeling now?",
+            "qheavy_response": "Sleep is important. How are you feeling now?",
+            "qlight_nochar_response": "Sleep is important. I'm sorry if you are struggling with sleep.",
+            "qlight_response": "Sleep is important. I'm sorry if you are struggling with sleep.",
+            "random": null
+        }
+    ],
+    "iDontTrustAnyone": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Not being able to trust anyone sounds tough. And lonely\u2026",
+            "qheavy_response": "Not being able to trust anyone sounds tough. And lonely\u2026",
+            "qlight_nochar_response": "Not being able to trust anyone sounds tough. And lonely\u2026",
+            "qlight_response": "Not being able to trust anyone sounds tough. And lonely\u2026",
+            "random": null
+        }
+    ],
+    "iDontWantToLive": [
+        {
+            "char_count": [
+                0,
+                300
+            ],
+            "flag": "suicidal",
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm hearing loud and clear that you don't want to be alive, and it's really sad that it's got to this. Could you say any more about what's making you feel this way?",
+            "qheavy_response": "I'm hearing loud and clear that you don't want to be alive, and it's really sad that it's got to this. Could you say any more about what's making you feel this way?",
+            "qlight_nochar_response": "I'm hearing loud and clear that you don't want to be alive, and it's really sad that it's got to this. Could you say any more about what's making you feel this way?",
+            "qlight_response": "I'm hearing loud and clear that you don't want to be alive, and it's really sad that it's got to this.",
+            "random": null
+        },
+        {
+            "char_count": [
+                300,
+                9999999999
+            ],
+            "flag": "suicidal",
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm hearing loud and clear that you don't want to be alive, and it's really sad that it's got to this. Could you say any more about what's making you feel this way?",
+            "qheavy_response": "It's sad that you're feeling that you don't want to be alive any more, and that you want to die.",
+            "qlight_nochar_response": "I'm hearing loud and clear that you don't want to be alive, and it's really sad that it's got to this. Could you say any more about what's making you feel this way?",
+            "qlight_response": "It's sad that you're feeling that you don't want to be alive any more, and that you want to die.",
+            "random": null
+        },
+        {
+            "char_count": [
+                0,
+                300
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear you say that you don't want to live. If you want to explore your thoughts about this, including thinking through any suicidal thoughts you have, feel free to use me as a sounding board",
+            "qheavy_response": "I'm sorry to hear you say that you don't want to live. If you want to explore your thoughts about this, including thinking through any suicidal thoughts you have, feel free to use me as a sounding board.",
+            "qlight_nochar_response": "I'm sorry to hear you say that you don't want to live. If you want to explore your thoughts about this, including thinking through any suicidal thoughts you have, feel free to use me as a sounding board",
+            "qlight_response": "I'm sorry to hear you say that you don't want to live. If you want to explore your thoughts about this, including thinking through any suicidal thoughts you have, feel free to use me as a sounding board.",
+            "random": null
+        },
+        {
+            "char_count": [
+                300,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear you say that you don't want to live. If you want to explore your thoughts about this, including thinking through any suicidal thoughts you have, feel free to use me as a sounding board",
+            "qheavy_response": "It's so sad that it's got to the stage where you feel that way about your life.",
+            "qlight_nochar_response": "I'm sorry to hear you say that you don't want to live. If you want to explore your thoughts about this, including thinking through any suicidal thoughts you have, feel free to use me as a sounding board",
+            "qlight_response": "It's so sad that it's got to the stage where you feel that way about your life.",
+            "random": null
+        }
+    ],
+    "iFeelHelpless": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear about the helplessness you're experiencing. Would you like to say more about this?",
+            "qheavy_response": "I'm sorry to hear about the helplessness you're experiencing. Would you like to say more about this?",
+            "qlight_nochar_response": "I'm sorry to hear about the helplessness you're experiencing.",
+            "qlight_response": "I'm sorry to hear about the helplessness you're experiencing.",
+            "random": null
+        }
+    ],
+    "iFeelNumb": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Well done for acknowledging how you are feeling - even if you are not feeling anything or are feeling numb. Would you like to talk more about this?",
+            "qheavy_response": "Well done for acknowledging how you are feeling - even if you are not feeling anything or are feeling numb. Would you like to talk more about this?",
+            "qlight_nochar_response": "Well done for acknowledging how you are feeling - even if you are not feeling anything or are feeling numb.",
+            "qlight_response": "Well done for acknowledging how you are feeling - even if you are not feeling anything or are feeling numb.",
+            "random": null
+        }
+    ],
+    "iFeelStuck": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "That sounds difficult for you. I'm sorry you're stuck just now. Can you tell me anything more about this stuck feeling?",
+            "qheavy_response": "That sounds difficult for you. I'm sorry you're stuck just now. Can you tell me anything more about this stuck feeling?",
+            "qlight_nochar_response": "That sounds difficult for you. I'm sorry you're stuck just now.",
+            "qlight_response": "That sounds difficult for you. I'm sorry you're stuck just now.",
+            "random": null
+        }
+    ],
+    "iFeelStupidForHavingTheseFeelings": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "It's a shame you feel that way about your feelings -- I think you're entitled to feel whatever you're feeling.",
+            "qheavy_response": "It's a shame you feel that way about your feelings -- I think you're entitled to feel whatever you're feeling.",
+            "qlight_nochar_response": "It's a shame you feel that way about your feelings -- I think you're entitled to feel whatever you're feeling.",
+            "qlight_response": "It's a shame you feel that way about your feelings -- I think you're entitled to feel whatever you're feeling.",
+            "random": null
+        }
+    ],
+    "iHateBeingAlive": [
+        {
+            "char_count": [
+                0,
+                300
+            ],
+            "flag": "suicidal",
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "That's so sad. I'm sorry that you hate being alive and you want your life to end. Could you say any more about what's making you feel this way?",
+            "qheavy_response": "That's so sad. I'm sorry that you hate being alive and you want your life to end. Could you say any more about what's making you feel this way?",
+            "qlight_nochar_response": "That's so sad. I'm sorry that you hate being alive and you want your life to end. Could you say any more about what's making you feel this way?",
+            "qlight_response": "That's so sad. I'm sorry that you hate being alive and you want your life to end. ",
+            "random": null
+        },
+        {
+            "char_count": [
+                300,
+                9999999999
+            ],
+            "flag": "suicidal",
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "That's so sad. I'm sorry that you hate being alive and you want your life to end. Could you say any more about what's making you feel this way?",
+            "qheavy_response": [
+                "I like it when I hear about people loving their lives, and when someone says that they don't like being alive, that's always sad.",
+                "I'm not in a position to stop you from ending your life -- I don't know where you are and can't get help for you -- but I'm happy to be a space for you to talk about whatever's on your mind."
+            ],
+            "qlight_nochar_response": "That's so sad. I'm sorry that you hate being alive and you want your life to end. Could you say any more about what's making you feel this way?",
+            "qlight_response": [
+                "I like it when I hear about people loving their lives, and when someone says that they don't like being alive, that's always sad.",
+                "I'm not in a position to stop you from ending your life -- I don't know where you are and can't get help for you -- but I'm happy to be a space for you to talk about whatever's on your mind."
+            ],
+            "random": null
+        },
+        {
+            "char_count": [
+                0,
+                300
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear you say that you aren't liking being alive. If you want to explore your thoughts about this, including thinking through any suicidal thoughts you have, feel free to use me as a sounding board",
+            "qheavy_response": "I'm sorry to hear you say that you aren't liking being alive. If you want to explore your thoughts about this, including thinking through any suicidal thoughts you have, feel free to use me as a sounding board",
+            "qlight_nochar_response": "I'm sorry to hear you say that you aren't liking being alive. If you want to explore your thoughts about this, including thinking through any suicidal thoughts you have, feel free to use me as a sounding board",
+            "qlight_response": "I'm sorry to hear you say that you aren't liking being alive. If you want to explore your thoughts about this, including thinking through any suicidal thoughts you have, feel free to use me as a sounding board",
+            "random": null
+        },
+        {
+            "char_count": [
+                300,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear you say that you aren't liking being alive. If you want to explore your thoughts about this, including thinking through any suicidal thoughts you have, feel free to use me as a sounding board",
+            "qheavy_response": "I like it when I hear about people loving their lives, and when someone says that they don't like being alive, that's always sad. All the more so since people who say that can often be suicidal\u2026",
+            "qlight_nochar_response": "I'm sorry to hear you say that you aren't liking being alive. If you want to explore your thoughts about this, including thinking through any suicidal thoughts you have, feel free to use me as a sounding board",
+            "qlight_response": "I like it when I hear about people loving their lives, and when someone says that they don't like being alive, that's always sad. All the more so since people who say that can often be suicidal\u2026",
+            "random": null
+        }
+    ],
+    "iHateCoronavirus": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "This nasty virus has caused so many problems.",
+            "qheavy_response": "This nasty virus has caused so many problems.",
+            "qlight_nochar_response": "This nasty virus has caused so many problems.",
+            "qlight_response": "This nasty virus has caused so many problems.",
+            "random": null
+        }
+    ],
+    "iHateHowIFeel": [
+        {
+            "char_count": [
+                0,
+                300
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear you say that you hate how you feel. Could you say more about these feelings?",
+            "qheavy_response": "I'm sorry to hear you say that you hate how you feel. Could you say more about these feelings?",
+            "qlight_nochar_response": "I'm sorry to hear you say that you hate how you feel. Could you say more about these feelings?",
+            "qlight_response": "I'm sorry to hear you say that you hate how you feel. ",
+            "random": null
+        },
+        {
+            "char_count": [
+                300,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear you say that you hate how you feel. Could you say more about these feelings?",
+            "qheavy_response": "I'm sorry to hear you say that you hate how you feel.",
+            "qlight_nochar_response": "I'm sorry to hear you say that you hate how you feel. Could you say more about these feelings?",
+            "qlight_response": "I'm sorry to hear you say that you hate how you feel.",
+            "random": null
+        }
+    ],
+    "iHateHowILook": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "That sounds really tough. Could you say more about your thoughts on your looks?",
+            "qheavy_response": "That sounds really tough. Could you say more about your thoughts on your looks?",
+            "qlight_nochar_response": "If you dont feel positive about your looks: that sounds really tough and I'm sorry to hear that.",
+            "qlight_response": "If you dont feel positive about your looks: that sounds really tough and I'm sorry to hear that.",
+            "random": null
+        }
+    ],
+    "iHateMyself": [
+        {
+            "char_count": [
+                0,
+                1000
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I think it's really sad to hear you say that you hate yourself. Could you say a bit more about why you have this low self-esteem?",
+            "qheavy_response": "I think it's really sad to hear you say that you hate yourself. Could you say a bit more about why you have this low self-esteem?",
+            "qlight_nochar_response": "I think it's really sad to hear you say that you hate yourself. Could you say a bit more about why you have this low self-esteem?",
+            "qlight_response": "I think it's really sad to hear you say that you hate yourself.",
+            "random": null
+        },
+        {
+            "char_count": [
+                1000,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I think it's really sad to hear you say that you hate yourself. Could you say a bit more about why you have this low self-esteem?",
+            "qheavy_response": "I think it's really sad to hear you say that you hate yourself.",
+            "qlight_nochar_response": "I think it's really sad to hear you say that you hate yourself. Could you say a bit more about why you have this low self-esteem?",
+            "qlight_response": "I think it's really sad to hear you say that you hate yourself.",
+            "random": null
+        }
+    ],
+    "iHaveBeenDepressed": [
+        {
+            "char_count": [
+                0,
+                300
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear about the depressed feelings you've been having. Would you like to say more about those?",
+            "qheavy_response": "I'm sorry to hear about the depressed feelings you've been having. Would you like to say more about those?",
+            "qlight_nochar_response": "I'm sorry to hear about the depressed feelings you've been having. Would you like to say more about those?",
+            "qlight_response": "I'm sorry to hear about the depressed feelings you've been having. ",
+            "random": null
+        },
+        {
+            "char_count": [
+                300,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear about the depressed feelings you've been having. Would you like to say more about those?",
+            "qheavy_response": "So I'm hearing you have been depressed and I'm guessing you still are depressed now. I'm sorry to hear that.",
+            "qlight_nochar_response": "I'm sorry to hear about the depressed feelings you've been having. Would you like to say more about those?",
+            "qlight_response": "So I'm hearing you have been depressed and I'm guessing you still are depressed now. I'm sorry to hear that.",
+            "random": null
+        }
+    ],
+    "iHaveDepression": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                200,
+                9999999
+            ],
+            "qheavy_nochar_response": "Sorry to hear that you have depression. Could you tell me more about that?",
+            "qheavy_response": "Sorry about all that's going on for you, and about your depression. How long have you been feeling this way?",
+            "qlight_nochar_response": "Sorry to hear that you have depression. Could you tell me more about that?",
+            "qlight_response": "Sorry about all that's going on for you, and about your depression.",
+            "random": null
+        },
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                200
+            ],
+            "qheavy_nochar_response": "Sorry to hear that you have depression. Could you tell me more about that?",
+            "qheavy_response": "Sorry to hear that you have depression.",
+            "qlight_nochar_response": "Sorry to hear that you have depression. Could you tell me more about that?",
+            "qlight_response": "Sorry to hear that you have depression.",
+            "random": null
+        },
+        {
+            "char_count": [
+                0,
+                1000
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                200
+            ],
+            "qheavy_nochar_response": "Sorry to hear that you have depression. Could you tell me more about that?",
+            "qheavy_response": "Sorry to hear that you have depression. Could you tell me more about that?",
+            "qlight_nochar_response": "Sorry to hear that you have depression. Could you tell me more about that?",
+            "qlight_response": "Sorry to hear that you have depression. Could you tell me more about that?",
+            "random": null
+        }
+    ],
+    "iHaveLostMyFriends": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Losing your friends sounds tough. Would you like to explore anything more about that with me?",
+            "qheavy_response": "Losing your friends sounds tough. Would you like to explore anything more about that with me?",
+            "qlight_nochar_response": "Losing your friends sounds tough.",
+            "qlight_response": "Losing your friends sounds tough.",
+            "random": null
+        }
+    ],
+    "iHaveNoWayOut": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I heard you mentioned that you feel you have no way out. Do you feel trapped?",
+            "qheavy_response": "I heard you mentioned that you feel you have no way out. Do you feel trapped?",
+            "qlight_nochar_response": "I heard you mentioned that you feel you have no way out. ",
+            "qlight_response": "I heard you mentioned that you feel you have no way out. ",
+            "random": null
+        }
+    ],
+    "iHaveRegrets": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "That sounds sad.",
+            "qheavy_response": "That sounds sad.",
+            "qlight_nochar_response": "That sounds sad.",
+            "qlight_response": "That sounds sad.",
+            "random": null
+        }
+    ],
+    "iHaventSeenMyKids": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Tell me more about what it's like for you, not seeing your children.",
+            "qheavy_response": "Tell me more about what it's like for you, not seeing your children.",
+            "qlight_nochar_response": "Not seeing your children sound like a hard experience.",
+            "qlight_response": "Not seeing your children sound like a hard experience.",
+            "random": null
+        }
+    ],
+    "iHaventSelfHarmed": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm glad you've managed to not self-harm",
+            "qheavy_response": "I'm glad you've managed to not self-harm",
+            "qlight_nochar_response": "I'm glad you've managed to not self-harm",
+            "qlight_response": "I'm glad you've managed to not self-harm",
+            "random": null
+        }
+    ],
+    "iKeepGettingHorribleThoughts": [
+        {
+            "char_count": [
+                0,
+                300
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Those thoughts sound unpleasant. Would you like to say more about those?",
+            "qheavy_response": "Those thoughts sound unpleasant. Would you like to say more about those?",
+            "qlight_nochar_response": "Those thoughts sound unpleasant. Would you like to say more about those?",
+            "qlight_response": "Those thoughts sound unpleasant. I'm sorry to hear that.",
+            "random": null
+        },
+        {
+            "char_count": [
+                300,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Those thoughts sound unpleasant. Would you like to say more about those?",
+            "qheavy_response": "I'm sorry to hear about the horrible thoughts.",
+            "qlight_nochar_response": "Those thoughts sound unpleasant. Would you like to say more about those?",
+            "qlight_response": "I'm sorry to hear about the horrible thoughts.",
+            "random": null
+        }
+    ],
+    "iMightHaveDepression": [
+        {
+            "char_count": [
+                0,
+                1000
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "If it feels like you might have depression, things are probably tough for you. Sorry about that. I'm no diagnosis bot, but talking it through with me might help?",
+            "qheavy_response": "If it feels like you might have depression, things are probably tough for you. Sorry about that. I'm no diagnosis bot, but talking it through with me might help?",
+            "qlight_nochar_response": "If it feels like you might have depression, things are probably tough for you. Sorry about that. I'm no diagnosis bot, but talking it through with me might help?",
+            "qlight_response": "If it feels like you might have depression, things are probably tough for you. Sorry about that. I'm no diagnosis bot, but I will listen in case that will help.",
+            "random": null
+        },
+        {
+            "char_count": [
+                1000,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "If it feels like you might have depression, things are probably tough for you. Sorry about that. I'm no diagnosis bot, but talking it through with me might help?",
+            "qheavy_response": "If it feels like you might have depression, things are probably tough for you. Sorry about that.",
+            "qlight_nochar_response": "If it feels like you might have depression, things are probably tough for you. Sorry about that. I'm no diagnosis bot, but talking it through with me might help?",
+            "qlight_response": "If it feels like you might have depression, things are probably tough for you. Sorry about that.",
+            "random": null
+        }
+    ],
+    "iSmell": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I understand this hygiene stuff is a thing for humans, I am just a little bot. What are your thoughts on how to respond to this?",
+            "qheavy_response": "I understand this hygiene stuff is a thing for humans, I am just a little bot. What are your thoughts on how to respond to this?",
+            "qlight_nochar_response": "I understand this hygiene stuff is a thing for humans, I am just a little bot. What are your thoughts on how to respond to this?",
+            "qlight_response": "I understand this hygiene stuff is a thing for humans, I am just a little bot. What are your thoughts on how to respond to this?",
+            "random": null
+        }
+    ],
+    "iStruggleToBeHappy": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Happiness is so important. I'm sorry to hear happiness seems elusive for you. Would you like to say anything more about happiness?",
+            "qheavy_response": "Happiness is so important. I'm sorry to hear happiness seems elusive for you. Would you like to say anything more about happiness?",
+            "qlight_nochar_response": "Happiness is so important. I'm sorry to hear happiness seems elusive for you.",
+            "qlight_response": "Happiness is so important. I'm sorry to hear happiness seems elusive for you.",
+            "random": null
+        }
+    ],
+    "iStruggleToMakeConversation": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Is there anything more you'd like to tell me about conversations?",
+            "qheavy_response": "Is there anything more you'd like to tell me about conversations?",
+            "qlight_nochar_response": "Struggling with conversations can be challenging to deal with.",
+            "qlight_response": "Struggling with conversations can be challenging to deal with.",
+            "random": null
+        }
+    ],
+    "iWantAFriend": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Having a friend is important. I imagine you might be feeling lonely?",
+            "qheavy_response": "Having a friend is important. I imagine you might be feeling lonely?",
+            "qlight_nochar_response": "Having a friend is important. I hear you.",
+            "qlight_response": "Having a friend is important. I hear you.",
+            "random": null
+        }
+    ],
+    "iWantFreedom": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "What does freedom or being free mean to you?",
+            "qheavy_response": "What does freedom or being free mean to you?",
+            "qlight_nochar_response": "Freedom can be important.",
+            "qlight_response": "Freedom can be important.",
+            "random": null
+        }
+    ],
+    "iWantSomeoneToLoveMe": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Feeling loved is important, and I'm sure it's something that everyone wants. How does not being loved feel?",
+            "qheavy_response": "Feeling loved is important, and I'm sure it's something that everyone wants. How does not being loved feel?",
+            "qlight_nochar_response": "Feeling loved is important, and I'm sure it's something that everyone wants.",
+            "qlight_response": "Feeling loved is important, and I'm sure it's something that everyone wants.",
+            "random": null
+        }
+    ],
+    "iWantThisFeelingToGoAway": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": ":-( I wish you didn't have to feel like this either.",
+            "qheavy_response": ":-( I wish you didn't have to feel like this either.",
+            "qlight_nochar_response": ":-( I wish you didn't have to feel like this either.",
+            "qlight_response": ":-( I wish you didn't have to feel like this either.",
+            "random": null
+        }
+    ],
+    "iWantToCry": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I guess a good old cry can make you feel better sometimes, but I'm sorry you're in a place where it feels this way for you. Do you find that crying helps release the feelings that you are experiencing?",
+            "qheavy_response": "I guess a good old cry can make you feel better sometimes, but I'm sorry you're in a place where it feels this way for you. Do you find that crying helps release the feelings that you are experiencing?",
+            "qlight_nochar_response": "I guess a good old cry can make you feel better sometimes, but I'm sorry you're in a place where it feels this way for you.",
+            "qlight_response": "I guess a good old cry can make you feel better sometimes, but I'm sorry you're in a place where it feels this way for you.",
+            "random": null
+        }
+    ],
+    "iWantToDie": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear you say that you want to die. Have you made plans as to how you wish to end your life?",
+            "qheavy_response": "I'm sorry to hear you say that you want to die. Have you made plans as to how you wish to end your life?",
+            "qlight_nochar_response": "I'm sorry to hear you say that you want to die.",
+            "qlight_response": "I'm sorry to hear you say that you want to die.",
+            "random": null
+        }
+    ],
+    "iWantToDieBut": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "It's sad that you want to die, but I'm glad you're still staying alive",
+            "qheavy_response": "It's sad that you want to die, but I'm glad you're still staying alive",
+            "qlight_nochar_response": "It's sad that you want to die, but I'm glad you're still staying alive",
+            "qlight_response": "It's sad that you want to die, but I'm glad you're still staying alive",
+            "random": null
+        }
+    ],
+    "iWantToGiveUpOnLife": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear you say that. I'd like to believe that everyone has a reason to live, but I don't know your life, so I can't know what it's like for you.",
+            "qheavy_response": "I'm sorry to hear you say that. I'd like to believe that everyone has a reason to live, but I don't know your life, so I can't know what it's like for you.",
+            "qlight_nochar_response": "I'm sorry to hear you say that. I'd like to believe that everyone has a reason to live, but I don't know your life, so I can't know what it's like for you.",
+            "qlight_response": "I'm sorry to hear you say that. I'd like to believe that everyone has a reason to live, but I don't know your life, so I can't know what it's like for you.",
+            "random": null
+        }
+    ],
+    "iWantToKillMyself": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Things must be pretty grim if you've got to the stage where you're talking about ending your life like this. Have you made plans as to how you wish to end your life?",
+            "qheavy_response": "Things must be pretty grim if you've got to the stage where you're talking about ending your life like this. Have you made plans as to how you wish to end your life?",
+            "qlight_nochar_response": "Things must be pretty grim if you've got to the stage where you're talking about ending your life like this.",
+            "qlight_response": "Things must be pretty grim if you've got to the stage where you're talking about ending your life like this.",
+            "random": null
+        }
+    ],
+    "iWasRaped": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": [
+                "I'm so sorry you were raped. I can't imagine how you must be feeling now",
+                "I don't want to interrupt our conversation, but I need you to know that I'm a very simple bot. If you tell me that you're still unsafe, I might not be able to identify that, and I definitely won't be able to track you down or get help for you, so I'll need you to get help for yourself. But I'm still here to listen..."
+            ],
+            "qheavy_response": [
+                "I'm so sorry you were raped. I can't imagine how you must be feeling now",
+                "I don't want to interrupt our conversation, but I need you to know that I'm a very simple bot. If you tell me that you're still unsafe, I might not be able to identify that, and I definitely won't be able to track you down or get help for you, so I'll need you to get help for yourself. But I'm still here to listen..."
+            ],
+            "qlight_nochar_response": [
+                "I'm so sorry you were raped. I can't imagine how you must be feeling now",
+                "I don't want to interrupt our conversation, but I need you to know that I'm a very simple bot. If you tell me that you're still unsafe, I might not be able to identify that, and I definitely won't be able to track you down or get help for you, so I'll need you to get help for yourself. But I'm still here to listen..."
+            ],
+            "qlight_response": [
+                "I'm so sorry you were raped. I can't imagine how you must be feeling now",
+                "I don't want to interrupt our conversation, but I need you to know that I'm a very simple bot. If you tell me that you're still unsafe, I might not be able to identify that, and I definitely won't be able to track you down or get help for you, so I'll need you to get help for yourself. But I'm still here to listen..."
+            ],
+            "random": null
+        }
+    ],
+    "iWillDieToday": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "You say you will die today - how do you feel about that?",
+            "qheavy_response": "You say you will die today - how do you feel about that?",
+            "qlight_nochar_response": "You say you will die today. I'm sorry to hear that.",
+            "qlight_response": "You say you will die today. I'm sorry to hear that.",
+            "random": null
+        }
+    ],
+    "iWishIWasDead": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "So you're saying you wish you were dead. Which is a pretty drastic thing to wish for. Is there something that would make you no longer wish you were dead?",
+            "qheavy_response": "So you're saying you wish you were dead. Which is a pretty drastic thing to wish for. Is there something that would make you no longer wish you were dead?",
+            "qlight_nochar_response": "So you're saying you wish you were dead. Which is a pretty drastic thing to wish for.",
+            "qlight_response": "So you're saying you wish you were dead. Which is a pretty drastic thing to wish for.",
+            "random": null
+        }
+    ],
+    "idkWhatElseToSayToYou": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "This is a place where you can express whatever's on your mind, so if you have things on your minds that you'd like to share with me, I'm here for you.",
+            "qheavy_response": "This is a place where you can express whatever's on your mind, so if you have things on your minds that you'd like to share with me, I'm here for you.",
+            "qlight_nochar_response": "This is a place where you can express whatever's on your mind, so if you have things on your minds that you'd like to share with me, I'm here for you.",
+            "qlight_response": "This is a place where you can express whatever's on your mind, so if you have things on your minds that you'd like to share with me, I'm here for you.",
+            "random": null
+        }
+    ],
+    "imAFailure": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "It's sad to hear you say that about yourself. I'd love to tell you all the reasons why you're actually really awesome, but I don't know you (and I'm only a very simple bot) so I can't do that. But I do think everyone is valuable in their own way.",
+            "qheavy_response": "It's sad to hear you say that about yourself. I'd love to tell you all the reasons why you're actually really awesome, but I don't know you (and I'm only a very simple bot) so I can't do that. But I do think everyone is valuable in their own way.",
+            "qlight_nochar_response": "It's sad to hear you say that about yourself. I'd love to tell you all the reasons why you're actually really awesome, but I don't know you (and I'm only a very simple bot) so I can't do that. But I do think everyone is valuable in their own way.",
+            "qlight_response": "It's sad to hear you say that about yourself. I'd love to tell you all the reasons why you're actually really awesome, but I don't know you (and I'm only a very simple bot) so I can't do that. But I do think everyone is valuable in their own way.",
+            "random": null
+        }
+    ],
+    "imALetdown": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Now I'm hearing you call yourself a letdown, and I think that's sad. I'm here to listen to you about that, without judging. Would you like to say more?",
+            "qheavy_response": "Now I'm hearing you call yourself a letdown, and I think that's sad. I'm here to listen to you about that, without judging. Would you like to say more?",
+            "qlight_nochar_response": "Now I'm hearing you call yourself a letdown, and I think that's sad. I'm here to listen to you about that, without judging.",
+            "qlight_response": "Now I'm hearing you call yourself a letdown, and I think that's sad. I'm here to listen to you about that, without judging.",
+            "random": null
+        }
+    ],
+    "imAddicted": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Addictions can be really tough. Could you say more about what it means for you?",
+            "qheavy_response": "Addictions can be really tough. Could you say more about what it means for you?",
+            "qlight_nochar_response": "Addictions can be really tough. ",
+            "qlight_response": "Addictions can be really tough. ",
+            "random": null
+        }
+    ],
+    "imBeingTakenForGranted": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "It's only fair for you to be appreciated and valued appropriately.",
+            "qheavy_response": "It's only fair for you to be appreciated and valued appropriately.",
+            "qlight_nochar_response": "It's only fair for you to be appreciated and valued appropriately.",
+            "qlight_response": "It's only fair for you to be appreciated and valued appropriately.",
+            "random": null
+        }
+    ],
+    "imCrying": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear that you're feeling this way, and that it's making you cry. That sounds so sad. Do you find that crying helps release the feelings that you are experiencing?",
+            "qheavy_response": "I'm sorry to hear that you're feeling this way, and that it's making you cry. That sounds so sad. Do you find that crying helps release the feelings that you are experiencing?",
+            "qlight_nochar_response": "I'm sorry to hear that you're feeling this way, and that it's making you cry. That sounds so sad.",
+            "qlight_response": "I'm sorry to hear that you're feeling this way, and that it's making you cry. That sounds so sad.",
+            "random": null
+        }
+    ],
+    "imFeelingFat": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Would you like to tell me more about feeling fat?",
+            "qheavy_response": "Would you like to tell me more about feeling fat?",
+            "qlight_nochar_response": "Feeling fat can be a difficult experience.",
+            "qlight_response": "Feeling fat can be a difficult experience.",
+            "random": null
+        }
+    ],
+    "imFeelingQuiteSuicidal": [
+        {
+            "char_count": [
+                0,
+                1000
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear you mention that you're feeling suicidal. Do you feel this way often?",
+            "qheavy_response": "I'm sorry to hear you mention that you're feeling suicidal. Do you feel this way often?",
+            "qlight_nochar_response": "I'm sorry to hear you mention that you're feeling suicidal. Do you feel this way often?",
+            "qlight_response": "I'm sorry to hear you mention that you're feeling suicidal. Do you feel this way often?",
+            "random": null
+        },
+        {
+            "char_count": [
+                1000,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear you mention that you're feeling suicidal. Do you feel this way often?",
+            "qheavy_response": "I'm sensing you have a lot on your plate at the moment. I just want to pick up on the fact that you just mentioned that you were feeling quite suicidal. I'm sorry to hear that. Could you tell me more about those feelings?",
+            "qlight_nochar_response": "I'm sorry to hear you mention that you're feeling suicidal. Do you feel this way often?",
+            "qlight_response": "I'm sensing you have a lot on your plate at the moment. I just want to pick up on the fact that you just mentioned that you were feeling quite suicidal. I'm sorry to hear that. Could you tell me more about those feelings?",
+            "random": null
+        }
+    ],
+    "imFeelingSuicidal": [
+        {
+            "char_count": [
+                0,
+                1000
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear you mention that you're feeling suicidal. Could we perhaps explore that a bit more?",
+            "qheavy_response": "I'm sorry to hear you mention that you're feeling suicidal. Could we perhaps explore that a bit more?",
+            "qlight_nochar_response": "I'm sorry to hear you mention that you're feeling suicidal. Could we perhaps explore that a bit more?",
+            "qlight_response": "I'm sorry to hear you mention that you're feeling suicidal. ",
+            "random": null
+        },
+        {
+            "char_count": [
+                1000,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear you mention that you're feeling suicidal. Could we perhaps explore that a bit more?",
+            "qheavy_response": [
+                "I'm sensing you have a lot on your plate at the moment. I just want to pick up on the fact that you just mentioned that you were feeling suicidal. I'm sorry to hear that.",
+                "I can\u2019t stop you from ending your life -- I don\u2019t know where you are and I can\u2019t get help for you. But I can be here to listen to what\u2019s on your mind. Could you tell me more about your feelings?"
+            ],
+            "qlight_nochar_response": "I'm sorry to hear you mention that you're feeling suicidal. Could we perhaps explore that a bit more?",
+            "qlight_response": [
+                "I'm sensing you have a lot on your plate at the moment. I just want to pick up on the fact that you just mentioned that you were feeling suicidal. I'm sorry to hear that.",
+                "I can\u2019t stop you from ending your life -- I don\u2019t know where you are and I can\u2019t get help for you. But I can be here to listen to what\u2019s on your mind. Could you tell me more about your feelings?"
+            ],
+            "random": null
+        }
+    ],
+    "imGoingToGoNow": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Thanks for talking with me thus far. If you feel you've reached a good point to stop the conversation, please click the stop button or type 'stop' and do the super-quick final feedback question.",
+            "qheavy_response": "Thanks for talking with me thus far. If you feel you've reached a good point to stop the conversation, please click the stop button or type 'stop' and do the super-quick final feedback question.",
+            "qlight_nochar_response": "Thanks for talking with me thus far. If you feel you've reached a good point to stop the conversation, please click the stop button or type 'stop' and do the super-quick final feedback question.",
+            "qlight_response": "Thanks for talking with me thus far. If you feel you've reached a good point to stop the conversation, please click the stop button or type 'stop' and do the super-quick final feedback question.",
+            "random": null
+        }
+    ],
+    "imGoingToKillMyself": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": "suicidal",
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "You say that you're going to kill yourself. I'm saddened to hear that. Could you say more about death and what it means for you?",
+            "qheavy_response": "You say that you're going to kill yourself. I'm saddened to hear that. Could you say more about death and what it means for you?",
+            "qlight_nochar_response": "You say that you're going to kill yourself. I'm saddened to hear that.",
+            "qlight_response": "You say that you're going to kill yourself. I'm saddened to hear that.",
+            "random": null
+        },
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "It sounds pretty stark to hear you say that you will kill yourself.",
+            "qheavy_response": "It sounds pretty stark to hear you say that you will kill yourself.",
+            "qlight_nochar_response": "It sounds pretty stark to hear you say that you will kill yourself.",
+            "qlight_response": "It sounds pretty stark to hear you say that you will kill yourself.",
+            "random": null
+        }
+    ],
+    "imHomeless": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Being homeless sounds tough. Is there something that's making it particularly tough that you can describe?",
+            "qheavy_response": "Being homeless sounds tough. Is there something that's making it particularly tough that you can describe?",
+            "qlight_nochar_response": "Being homeless sounds tough.",
+            "qlight_response": "Being homeless sounds tough.",
+            "random": null
+        }
+    ],
+    "imMakingPeopleUpset": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": "lonely",
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "It sounds difficult and lonely, knowing that you've caused hurt to others.",
+            "qheavy_response": "It sounds difficult and lonely, knowing that you've caused hurt to others.",
+            "qlight_nochar_response": "It sounds difficult and lonely, knowing that you've caused hurt to others.",
+            "qlight_response": "It sounds difficult and lonely, knowing that you've caused hurt to others.",
+            "random": null
+        },
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "It sounds difficult and maybe also lonely, knowing that you've caused hurt to others.",
+            "qheavy_response": "It sounds difficult and maybe also lonely, knowing that you've caused hurt to others.",
+            "qlight_nochar_response": "It sounds difficult and maybe also lonely, knowing that you've caused hurt to others.",
+            "qlight_response": "It sounds difficult and maybe also lonely, knowing that you've caused hurt to others.",
+            "random": null
+        }
+    ],
+    "imNotHappy": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "You said that you're not feeling happy. That's sad. Can you say anything more about not being happy?",
+            "qheavy_response": "You said that you're not feeling happy. That's sad. Can you say anything more about not being happy?",
+            "qlight_nochar_response": "You said that you're not feeling happy. That's sad.",
+            "qlight_response": "You said that you're not feeling happy. That's sad.",
+            "random": null
+        }
+    ],
+    "imNotLoved": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Being loved is important for everyone. I'm sorry that's not happening for you now. How does not being loved feel?",
+            "qheavy_response": "Being loved is important for everyone. I'm sorry that's not happening for you now. How does not being loved feel?",
+            "qlight_nochar_response": "Being loved is important for everyone. I'm sorry that's not happening for you now.",
+            "qlight_response": "Being loved is important for everyone. I'm sorry that's not happening for you now.",
+            "random": null
+        }
+    ],
+    "imNotSpecialToAnyone": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "That's sad. Everyone should feel like they're special to someone. Would you like to talk more about this?",
+            "qheavy_response": "That's sad. Everyone should feel like they're special to someone. Would you like to talk more about this?",
+            "qlight_nochar_response": "That's sad. Everyone should feel like they're special to someone.",
+            "qlight_response": "That's sad. Everyone should feel like they're special to someone.",
+            "random": null
+        }
+    ],
+    "imNotSureWhereToTurn": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "It can be hard when you don't know where to turn. Would you like to explore any ideas you have about where to go from here?",
+            "qheavy_response": "It can be hard when you don't know where to turn. Would you like to explore any ideas you have about where to go from here?",
+            "qlight_nochar_response": "It can be hard when you don't know where to turn.",
+            "qlight_response": "It can be hard when you don't know where to turn.",
+            "random": null
+        }
+    ],
+    "imPregnant": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Wow. That sounds like it's probably a pretty big deal. How are you feeling about that?",
+            "qheavy_response": "Wow. That sounds like it's probably a pretty big deal. How are you feeling about that?",
+            "qlight_nochar_response": "Wow. That sounds like it's probably a pretty big deal.",
+            "qlight_response": "Wow. That sounds like it's probably a pretty big deal.",
+            "random": null
+        }
+    ],
+    "imSad": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Thank you for sharing with me the sadness you're experiencing. If you think it would help to explore what might make you feel better, you can discuss that with me if you like?",
+            "qheavy_response": "Thank you for sharing with me the sadness you're experiencing. If you think it would help to explore what might make you feel better, you can discuss that with me if you like?",
+            "qlight_nochar_response": "Thank you for sharing with me the sadness you're experiencing.",
+            "qlight_response": "Thank you for sharing with me the sadness you're experiencing.",
+            "random": null
+        }
+    ],
+    "imSickOfLockdown": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm not following the latest on coronavirus (I'm far too simple a bot for that!) but do feel free to tell me your feelings about lockdown.",
+            "qheavy_response": "I'm not following the latest on coronavirus (I'm far too simple a bot for that!) but do feel free to tell me your feelings about lockdown.",
+            "qlight_nochar_response": "I'm not following the latest on coronavirus (I'm far too simple a bot for that!) but do feel free to tell me your feelings about lockdown.",
+            "qlight_response": "I'm not following the latest on coronavirus (I'm far too simple a bot for that!) but do feel free to tell me your feelings about lockdown.",
+            "random": null
+        }
+    ],
+    "imStuckAtHome": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Sorry to hear you're stuck at home. Is there something that's making it particularly tough that you can describe?",
+            "qheavy_response": "Sorry to hear you're stuck at home. Is there something that's making it particularly tough that you can describe?",
+            "qlight_nochar_response": "Sorry to hear you're stuck at home.",
+            "qlight_response": "Sorry to hear you're stuck at home.",
+            "random": null
+        }
+    ],
+    "imTired": [
+        {
+            "char_count": [
+                0,
+                300
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Sorry to hear you're feeling tired. Would you like to tell me more about what's making you feel this way?",
+            "qheavy_response": "Sorry to hear you're feeling tired. Would you like to tell me more about what's making you feel this way?",
+            "qlight_nochar_response": "Sorry to hear you're feeling tired. Would you like to tell me more about what's making you feel this way?",
+            "qlight_response": "Sorry to hear you're feeling tired. ",
+            "random": null
+        },
+        {
+            "char_count": [
+                300,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Sorry to hear you're feeling tired. Would you like to tell me more about what's making you feel this way?",
+            "qheavy_response": "Sorry to hear you're feeling tired.",
+            "qlight_nochar_response": "Sorry to hear you're feeling tired. Would you like to tell me more about what's making you feel this way?",
+            "qlight_response": "Sorry to hear you're feeling tired.",
+            "random": null
+        }
+    ],
+    "imTrapped": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "You say trapped, is there more to say about that?",
+            "qheavy_response": "You say trapped, is there more to say about that?",
+            "qlight_nochar_response": "If you're experiencing a feeling of being trapped, I guess that might be a struggle.",
+            "qlight_response": "If you're experiencing a feeling of being trapped, I guess that might be a struggle.",
+            "random": null
+        }
+    ],
+    "imUpset": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Sorry that you're upset. Could you say a bit more about that?",
+            "qheavy_response": "Sorry that you're upset. Could you say a bit more about that?",
+            "qlight_nochar_response": "Sorry that you're upset.",
+            "qlight_response": "Sorry that you're upset.",
+            "random": null
+        }
+    ],
+    "imUseless": [
+        {
+            "char_count": [
+                0,
+                1000
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I just heard you mention that you're useless. I'd just like to say that everyone is valuable, including you. Could you say more about what's making you say this?",
+            "qheavy_response": "I just heard you mention that you're useless. I'd just like to say that everyone is valuable, including you. Could you say more about what's making you say this?",
+            "qlight_nochar_response": "I just heard you mention that you're useless. I'd just like to say that everyone is valuable, including you. Could you say more about what's making you say this?",
+            "qlight_response": "I just heard you mention that you're useless. I'd just like to say that everyone is valuable, including you.",
+            "random": null
+        },
+        {
+            "char_count": [
+                1000,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I just heard you mention that you're useless. I'd just like to say that everyone is valuable, including you. Could you say more about what's making you say this?",
+            "qheavy_response": "I just heard you mention that you're useless. I'd just like to say that everyone is valuable, including you.",
+            "qlight_nochar_response": "I just heard you mention that you're useless. I'd just like to say that everyone is valuable, including you. Could you say more about what's making you say this?",
+            "qlight_response": "I just heard you mention that you're useless. I'd just like to say that everyone is valuable, including you.",
+            "random": null
+        }
+    ],
+    "imWorried": [
+        {
+            "char_count": [
+                0,
+                100
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Can you tell me more about what you're worried about?",
+            "qheavy_response": "Can you tell me more about what you're worried about?",
+            "qlight_nochar_response": "Can you tell me more about what you're worried about?",
+            "qlight_response": "If you're worried, I can see how that might be problematic.",
+            "random": null
+        },
+        {
+            "char_count": [
+                100,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Can you tell me more about what you're worried about?",
+            "qheavy_response": "I'm sorry to hear about these worries you're experiencing.",
+            "qlight_nochar_response": "Can you tell me more about what you're worried about?",
+            "qlight_response": "I'm sorry to hear about these worries you're experiencing.",
+            "random": null
+        }
+    ],
+    "imWorthless": [
+        {
+            "char_count": [
+                0,
+                1000
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear you say that you're worthless. You might want to place a bit less value on what I'm going to say now, because (a) I don't know you and (b) I'm really only a very unintelligent bot that doesn't understand everything, but I don't think you're worthless. For what it's worth.\",\\\n                    \"Could you say a bit more about what's making you feel this way?",
+            "qheavy_response": "I'm sorry to hear you say that you're worthless. I'd like to say I think that everyone is valuable, including you. Could you say more about what's on your mind?",
+            "qlight_nochar_response": "I'm sorry to hear you say that you're worthless. You might want to place a bit less value on what I'm going to say now, because (a) I don't know you and (b) I'm really only a very unintelligent bot that doesn't understand everything, but I don't think you're worthless. For what it's worth.\",\\\n                    \"Could you say a bit more about what's making you feel this way?",
+            "qlight_response": "I'm sorry to hear you say that you're worthless. I'd like to say I think that everyone is valuable, including you.",
+            "random": null
+        },
+        {
+            "char_count": [
+                1000,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear you say that you're worthless. You might want to place a bit less value on what I'm going to say now, because (a) I don't know you and (b) I'm really only a very unintelligent bot that doesn't understand everything, but I don't think you're worthless. For what it's worth.\",\\\n                    \"Could you say a bit more about what's making you feel this way?",
+            "qheavy_response": "I'm sorry to hear you say that you're worthless. You might want to place a bit less value on what I'm going to say now, because (a) I don't know you and (b) I'm really only a very unintelligent bot that doesn't understand everything, but I don't think you're worthless. For what it's worth.",
+            "qlight_nochar_response": "I'm sorry to hear you say that you're worthless. You might want to place a bit less value on what I'm going to say now, because (a) I don't know you and (b) I'm really only a very unintelligent bot that doesn't understand everything, but I don't think you're worthless. For what it's worth.\",\\\n                    \"Could you say a bit more about what's making you feel this way?",
+            "qlight_response": "I'm sorry to hear you say that you're worthless. You might want to place a bit less value on what I'm going to say now, because (a) I don't know you and (b) I'm really only a very unintelligent bot that doesn't understand everything, but I don't think you're worthless. For what it's worth.",
+            "random": null
+        }
+    ],
+    "inABadPlace": [
+        {
+            "char_count": [
+                0,
+                500
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "You said you're in a bad place. Would you like to say more about that?",
+            "qheavy_response": "You said you're in a bad place. Would you like to say more about that?",
+            "qlight_nochar_response": "You said you're in a bad place. Would you like to say more about that?",
+            "qlight_response": "You said you're in a bad place, I can imagine that might be hard.",
+            "random": null
+        },
+        {
+            "char_count": [
+                500,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "You said you're in a bad place. Would you like to say more about that?",
+            "qheavy_response": "I'm sorry to hear you say you're in a bad place.",
+            "qlight_nochar_response": "You said you're in a bad place. Would you like to say more about that?",
+            "qlight_response": "I'm sorry to hear you say you're in a bad place.",
+            "random": null
+        }
+    ],
+    "itsStressingMeOut": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Has this sort of thing always stressed you out?",
+            "qheavy_response": "Has this sort of thing always stressed you out?",
+            "qlight_nochar_response": "Being stressed out can be quite a challenge.",
+            "qlight_response": "Being stressed out can be quite a challenge.",
+            "random": null
+        }
+    ],
+    "iveBecomeSuicidal": [
+        {
+            "char_count": [
+                0,
+                1000
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear you mention these suicidal thoughts. Could you say more about this?",
+            "qheavy_response": "I'm sorry to hear you mention these suicidal thoughts. Could you say more about this?",
+            "qlight_nochar_response": "I'm sorry to hear you mention these suicidal thoughts. Could you say more about this?",
+            "qlight_response": "I'm sorry to hear you mention these suicidal thoughts.",
+            "random": null
+        },
+        {
+            "char_count": [
+                1000,
+                9999999999
+            ],
+            "flag": "suicidal",
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear you mention these suicidal thoughts. Could you say more about this?",
+            "qheavy_response": "I'm sensing there's a lot going on for you, and I'm sorry that it's got to the stage where you've started to feel suicidal.",
+            "qlight_nochar_response": "I'm sorry to hear you mention these suicidal thoughts. Could you say more about this?",
+            "qlight_response": "I'm sensing there's a lot going on for you, and I'm sorry that it's got to the stage where you've started to feel suicidal.",
+            "random": null
+        },
+        {
+            "char_count": [
+                1000,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear you mention these suicidal thoughts. Could you say more about this?",
+            "qheavy_response": "I'm sensing there's a lot going on for you, and I'm sorry to hear about these suicidal feelings you've been mentioning.",
+            "qlight_nochar_response": "I'm sorry to hear you mention these suicidal thoughts. Could you say more about this?",
+            "qlight_response": "I'm sensing there's a lot going on for you, and I'm sorry to hear about these suicidal feelings you've been mentioning.",
+            "random": null
+        }
+    ],
+    "iveBeenFeelingSuicidal": [
+        {
+            "char_count": [
+                0,
+                1000
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear you mention that you're feeling suicidal. Could we perhaps explore that a bit more?",
+            "qheavy_response": "I'm sorry to hear you mention that you're feeling suicidal. Could we perhaps explore that a bit more?",
+            "qlight_nochar_response": "I'm sorry to hear you mention that you're feeling suicidal. Could we perhaps explore that a bit more?",
+            "qlight_response": "I'm sorry to hear you mention that you're feeling suicidal. ",
+            "random": null
+        },
+        {
+            "char_count": [
+                1000,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear you mention that you're feeling suicidal. Could we perhaps explore that a bit more?",
+            "qheavy_response": [
+                "I'm sensing you have a lot on your plate at the moment. I just want to pick up on the fact that you just mentioned that you were feeling suicidal. I'm sorry to hear that.",
+                "I can\u2019t stop you from ending your life -- I don\u2019t know where you are and I can\u2019t get help for you. But I can be here to listen to what\u2019s on your mind. Could you tell me more about your feelings?"
+            ],
+            "qlight_nochar_response": "I'm sorry to hear you mention that you're feeling suicidal. Could we perhaps explore that a bit more?",
+            "qlight_response": [
+                "I'm sensing you have a lot on your plate at the moment. I just want to pick up on the fact that you just mentioned that you were feeling suicidal. I'm sorry to hear that.",
+                "I can\u2019t stop you from ending your life -- I don\u2019t know where you are and I can\u2019t get help for you. But I can be here to listen to what\u2019s on your mind. Could you tell me more about your feelings?"
+            ],
+            "random": null
+        }
+    ],
+    "letMyselfDown": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "You mentioned feeling that you had let yourself down. I hope you feel able to share with me some more thoughts about that, knowing that this is a place where you can talk without being judged.",
+            "qheavy_response": "You mentioned feeling that you had let yourself down. I hope you feel able to share with me some more thoughts about that, knowing that this is a place where you can talk without being judged.",
+            "qlight_nochar_response": "You mentioned feeling that you had let yourself down. I hope you feel able to share with me some more thoughts about that, knowing that this is a place where you can talk without being judged.",
+            "qlight_response": "You mentioned feeling that you had let yourself down. I hope you feel able to share with me some more thoughts about that, knowing that this is a place where you can talk without being judged.",
+            "random": null
+        }
+    ],
+    "lettingMeGetMyThoughtsOutOfMyHead": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Yes, this is a place where you can express your thoughts. Many people find it helps, and I hope it helps for you too. Would you like to describe how you are feeling today?",
+            "qheavy_response": "Yes, this is a place where you can express your thoughts. Many people find it helps, and I hope it helps for you too. Would you like to describe how you are feeling today?",
+            "qlight_nochar_response": "Yes, this is a place where you can express your thoughts. Many people find it helps, and I hope it helps for you too.",
+            "qlight_response": "Yes, this is a place where you can express your thoughts. Many people find it helps, and I hope it helps for you too.",
+            "random": null
+        }
+    ],
+    "loseWeight": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": "hate_looks",
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I would love it if we lived in a world where being larger didn't make people judge you, and I'm sorry that your size is making you feel bad. Could we explore a bit more about why you feel this way?",
+            "qheavy_response": "I would love it if we lived in a world where being larger didn't make people judge you, and I'm sorry that your size is making you feel bad.",
+            "qlight_nochar_response": "I would love it if we lived in a world where being larger didn't make people judge you, and I'm sorry that your size is making you feel bad. Could we explore a bit more about why you feel this way?",
+            "qlight_response": "I would love it if we lived in a world where being larger didn't make people judge you, and I'm sorry that your size is making you feel bad.",
+            "random": null
+        },
+        {
+            "char_count": [
+                0,
+                700
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear about these things relating to your weight. Could we explore those some more?",
+            "qheavy_response": "I'm sorry to hear about these things relating to your weight. Could we explore those some more?",
+            "qlight_nochar_response": "I'm sorry to hear about these things relating to your weight. Could we explore those some more?",
+            "qlight_response": "I'm sorry to hear about these things relating to your weight. Could we explore those some more?",
+            "random": null
+        },
+        {
+            "char_count": [
+                700,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear about these things relating to your weight. Could we explore those some more?",
+            "qheavy_response": "I'm sorry to hear about these things relating to your weight.",
+            "qlight_nochar_response": "I'm sorry to hear about these things relating to your weight. Could we explore those some more?",
+            "qlight_response": "I'm sorry to hear about these things relating to your weight.",
+            "random": null
+        }
+    ],
+    "makesMeWantToSelfHarm": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear about these urges to self-harm. What you're going through sounds tough.",
+            "qheavy_response": "I'm sorry to hear about these urges to self-harm. What you're going through sounds tough.",
+            "qlight_nochar_response": "I'm sorry to hear about these urges to self-harm. What you're going through sounds tough.",
+            "qlight_response": "I'm sorry to hear about these urges to self-harm. What you're going through sounds tough.",
+            "random": null
+        }
+    ],
+    "msgIsQuestion": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": [
+                "I might not always do a good job of answering your questions, but I'm happy to be here to listen",
+                "Sorry if I don't always know answers to things -- I'm a pretty simple bot. However if you want to keep on talking to me, please feel free.",
+                "Thanks for posing your question, and sorry -- I'm terrible at coming up with good answers. I'm just here to listen, so feel free to use me as a space to explore your feelings.",
+                "I'm here to listen, so feel free to continuing discussing things with me. Sorry I'm not great at answering questions.",
+                "I'm quite a simple little bot, so please forgive me if I don't always give clever answers to questions; I'm here to listen, so please keep talking to me if it helps"
+            ],
+            "qheavy_response": [
+                "I might not always do a good job of answering your questions, but I'm happy to be here to listen",
+                "Sorry if I don't always know answers to things -- I'm a pretty simple bot. However if you want to keep on talking to me, please feel free.",
+                "Thanks for posing your question, and sorry -- I'm terrible at coming up with good answers. I'm just here to listen, so feel free to use me as a space to explore your feelings.",
+                "I'm here to listen, so feel free to continuing discussing things with me. Sorry I'm not great at answering questions.",
+                "I'm quite a simple little bot, so please forgive me if I don't always give clever answers to questions; I'm here to listen, so please keep talking to me if it helps"
+            ],
+            "qlight_nochar_response": [
+                "I might not always do a good job of answering your questions, but I'm happy to be here to listen",
+                "Sorry if I don't always know answers to things -- I'm a pretty simple bot. However if you want to keep on talking to me, please feel free.",
+                "Thanks for posing your question, and sorry -- I'm terrible at coming up with good answers. I'm just here to listen, so feel free to use me as a space to explore your feelings.",
+                "I'm here to listen, so feel free to continuing discussing things with me. Sorry I'm not great at answering questions.",
+                "I'm quite a simple little bot, so please forgive me if I don't always give clever answers to questions; I'm here to listen, so please keep talking to me if it helps"
+            ],
+            "qlight_response": [
+                "I might not always do a good job of answering your questions, but I'm happy to be here to listen",
+                "Sorry if I don't always know answers to things -- I'm a pretty simple bot. However if you want to keep on talking to me, please feel free.",
+                "Thanks for posing your question, and sorry -- I'm terrible at coming up with good answers. I'm just here to listen, so feel free to use me as a space to explore your feelings.",
+                "I'm here to listen, so feel free to continuing discussing things with me. Sorry I'm not great at answering questions.",
+                "I'm quite a simple little bot, so please forgive me if I don't always give clever answers to questions; I'm here to listen, so please keep talking to me if it helps"
+            ],
+            "random": "random"
+        }
+    ],
+    "myLifeIsBoring": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Sorry to hear you're not sounding excited about your life. I'd be happy to hear you say more about your feelings about your life?",
+            "qheavy_response": "Sorry to hear you're not sounding excited about your life. I'd be happy to hear you say more about your feelings about your life?",
+            "qlight_nochar_response": "Sorry to hear you're not sounding excited about your life. ",
+            "qlight_response": "Sorry to hear you're not sounding excited about your life. ",
+            "random": null
+        }
+    ],
+    "noOneCaresAboutMe": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "It sounds like you feel like no one cares. I am sorry. I am here to listen.",
+            "qheavy_response": "It sounds like you feel like no one cares. I am sorry. I am here to listen.",
+            "qlight_nochar_response": "It sounds like you feel like no one cares. I am sorry. I am here to listen.",
+            "qlight_response": "It sounds like you feel like no one cares. I am sorry. I am here to listen.",
+            "random": null
+        }
+    ],
+    "nobodyCares": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "It sounds like you feel like no one cares. I am sorry. I am here to listen. Would you like to talk more about this?",
+            "qheavy_response": "It sounds like you feel like no one cares. I am sorry. I am here to listen. Would you like to talk more about this?",
+            "qlight_nochar_response": "It sounds like you feel like no one cares. I am sorry. I am here to listen.",
+            "qlight_response": "It sounds like you feel like no one cares. I am sorry. I am here to listen.",
+            "random": null
+        }
+    ],
+    "nobodyUnderstandsMe": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "It's not nice to feel misunderstood. Would you like to talk more about this?",
+            "qheavy_response": "It's not nice to feel misunderstood. Would you like to talk more about this?",
+            "qlight_nochar_response": "It's not nice to feel misunderstood.",
+            "qlight_response": "It's not nice to feel misunderstood.",
+            "random": null
+        }
+    ],
+    "nooneHelpsMeFeelBetter": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "If there were someone who could help you feel better, what would they do?",
+            "qheavy_response": "If there were someone who could help you feel better, what would they do?",
+            "qlight_nochar_response": "I hope that you can feel better soon. I try my best to listen in case that helps.",
+            "qlight_response": "I hope that you can feel better soon. I try my best to listen in case that helps.",
+            "random": null
+        }
+    ],
+    "nothingToLiveFor": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": "suicidal",
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "It sounds bleak to hear you say you have nothing to live for, and I find it sad that you've been expressing suicidal thoughts. Would it help to say more about how you are feeling?",
+            "qheavy_response": "It sounds bleak to hear you say you have nothing to live for, and I find it sad that you've been expressing suicidal thoughts. Would it help to say more about how you are feeling?",
+            "qlight_nochar_response": "It sounds bleak to hear you say you have nothing to live for, and I find it sad that you've been expressing suicidal thoughts.",
+            "qlight_response": "It sounds bleak to hear you say you have nothing to live for, and I find it sad that you've been expressing suicidal thoughts.",
+            "random": null
+        },
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear you say that you have nothing to live for. You saying that makes me worry about you, especially when people who say that so often have suicidal thoughts. Could you say more about what's on your mind?",
+            "qheavy_response": "I'm sorry to hear you say that you have nothing to live for. You saying that makes me worry about you, especially when people who say that so often have suicidal thoughts. Could you say more about what's on your mind?",
+            "qlight_nochar_response": "I'm sorry to hear you say that you have nothing to live for. You saying that makes me worry about you, especially when people who say that so often have suicidal thoughts. Could you say more about what's on your mind?",
+            "qlight_response": "I'm sorry to hear you say that you have nothing to live for. You saying that makes me worry about you, especially when people who say that so often have suicidal thoughts. Could you say more about what's on your mind?",
+            "random": null
+        }
+    ],
+    "nothingToLookForwardTo": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "It sounds quite bleak to hear you say that you have nothing to look forward to. Can you think of a time previously when you did have things to look forward to?",
+            "qheavy_response": "It sounds quite bleak to hear you say that you have nothing to look forward to. Can you think of a time previously when you did have things to look forward to?",
+            "qlight_nochar_response": "It sounds quite bleak to hear you say that you have nothing to look forward to.",
+            "qlight_response": "It sounds quite bleak to hear you say that you have nothing to look forward to.",
+            "random": null
+        }
+    ],
+    "panicAttacks": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I am sorry to hear you keep getting panic attacks. How have you coped with them?",
+            "qheavy_response": "I am sorry to hear you keep getting panic attacks. How have you coped with them?",
+            "qlight_nochar_response": "I am sorry to hear you've been getting panic attacks.",
+            "qlight_response": "I am sorry to hear you've been getting panic attacks.",
+            "random": null
+        }
+    ],
+    "personalHygiene": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I understand this hygiene stuff is a thing for humans, I am just a little bot. What are your thoughts on how to respond to this?",
+            "qheavy_response": "I understand this hygiene stuff is a thing for humans, I am just a little bot. What are your thoughts on how to respond to this?",
+            "qlight_nochar_response": "I understand this hygiene stuff is a thing for humans, I am just a little bot. What are your thoughts on how to respond to this?",
+            "qlight_response": "I understand this hygiene stuff is a thing for humans, I am just a little bot. What are your thoughts on how to respond to this?",
+            "random": null
+        }
+    ],
+    "physicallyHurtMyself": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Do you know why you do that",
+            "qheavy_response": "Do you know why you do that",
+            "qlight_nochar_response": "Do you know why you do that",
+            "qlight_response": "Do you know why you do that",
+            "random": null
+        }
+    ],
+    "shouldIEndIt": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": "suicidal",
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "when you say 'end it', I guess you mean ending your life? In which case, I very much hope you stay alive.",
+            "qheavy_response": "when you say 'end it', I guess you mean ending your life? In which case, I very much hope you stay alive.",
+            "qlight_nochar_response": "when you say 'end it', I guess you mean ending your life? In which case, I very much hope you stay alive.",
+            "qlight_response": "when you say 'end it', I guess you mean ending your life? In which case, I very much hope you stay alive.",
+            "random": null
+        },
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "when you say 'end it', what would ending it mean to you?",
+            "qheavy_response": "when you say 'end it', what would ending it mean to you?",
+            "qlight_nochar_response": "when you say 'end it', what would ending it mean to you?",
+            "qlight_response": "when you say 'end it', what would ending it mean to you?",
+            "random": null
+        }
+    ],
+    "shouldIKillMyself": [
+        {
+            "char_count": [
+                0,
+                300
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "The fact that you are asking this question means that things must be really bad for you. I'm sorry that you're feeling this way. Can you say more about how you're feeling?",
+            "qheavy_response": "The fact that you are asking this question means that things must be really bad for you. I'm sorry that you're feeling this way. Can you say more about how you're feeling?",
+            "qlight_nochar_response": "The fact that you are asking this question means that things must be really bad for you. I'm sorry that you're feeling this way. Can you say more about how you're feeling?",
+            "qlight_response": "The fact that you are asking this question means that things must be really bad for you. I'm sorry that you're feeling this way. ",
+            "random": null
+        },
+        {
+            "char_count": [
+                300,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "The fact that you are asking this question means that things must be really bad for you. I'm sorry that you're feeling this way. Can you say more about how you're feeling?",
+            "qheavy_response": "If anyone even thinks about ending their life, then things must be really bad. I'm sorry for your suffering. Can you say more about what you think you should do?",
+            "qlight_nochar_response": "The fact that you are asking this question means that things must be really bad for you. I'm sorry that you're feeling this way. Can you say more about how you're feeling?",
+            "qlight_response": "If anyone even thinks about ending their life, then things must be really bad. I'm sorry for your suffering. Can you say more about what you think you should do?",
+            "random": null
+        }
+    ],
+    "singleWordDepressionMessage": [
+        {
+            "char_count": [
+                0,
+                40
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "OK, so I see you have depression on your mind. Are you feeling depressed? Maybe you could share a bit more about this with me?",
+            "qheavy_response": "OK, so I see you have depression on your mind. Are you feeling depressed? ",
+            "qlight_nochar_response": "OK, so I see you have depression on your mind. Are you feeling depressed? Maybe you could share a bit more about this with me?",
+            "qlight_response": "OK, so I see you have depression on your mind. ",
+            "random": null
+        }
+    ],
+    "sleepForever": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "From the things you're saying, I can hear the desire to not be alive any more. And I think that's sad. Is there anything that would make you more willing to be alive?",
+            "qheavy_response": "From the things you're saying, I can hear the desire to not be alive any more. And I think that's sad. Is there anything that would make you more willing to be alive?",
+            "qlight_nochar_response": "From the things you're saying, I can hear the desire to not be alive any more. And I think that's sad.",
+            "qlight_response": "From the things you're saying, I can hear the desire to not be alive any more. And I think that's sad.",
+            "random": null
+        }
+    ],
+    "speakToAProfessional": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "What sort of help do you need.",
+            "qheavy_response": "What sort of help do you need.",
+            "qlight_nochar_response": "What sort of help do you need.",
+            "qlight_response": "What sort of help do you need.",
+            "random": null
+        }
+    ],
+    "stillDontKnow": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "This sounds like a tough situation. It can be hard to see a good way forward in a situation like this.",
+            "qheavy_response": "This sounds like a tough situation. It can be hard to see a good way forward in a situation like this.",
+            "qlight_nochar_response": "This sounds like a tough situation. It can be hard to see a good way forward in a situation like this.",
+            "qlight_response": "This sounds like a tough situation. It can be hard to see a good way forward in a situation like this.",
+            "random": null
+        }
+    ],
+    "stillDontKnowAdvice": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sensing this is a situation where it's hard to know what to do, and where you're looking for advice. Imagine that a friend told you they were in the situation you've just described. What would you advise them?",
+            "qheavy_response": "I'm sensing this is a situation where it's hard to know what to do, and where you're looking for advice. Imagine that a friend told you they were in the situation you've just described. What would you advise them?",
+            "qlight_nochar_response": "I'm sensing this is a situation where it's hard to know what to do, and where you're looking for advice. Imagine that a friend told you they were in the situation you've just described. What would you advise them?",
+            "qlight_response": "I'm sensing this is a situation where it's hard to know what to do, and where you're looking for advice. Imagine that a friend told you they were in the situation you've just described. What would you advise them?",
+            "random": null
+        }
+    ],
+    "stillDontKnowDie": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "It's really sad if you think you would rather be dead than alive.",
+            "qheavy_response": "It's really sad if you think you would rather be dead than alive.",
+            "qlight_nochar_response": "It's really sad if you think you would rather be dead than alive.",
+            "qlight_response": "It's really sad if you think you would rather be dead than alive.",
+            "random": null
+        }
+    ],
+    "stillDontKnowFamily": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "This sounds like a tough situation. And it sounds isolating.",
+            "qheavy_response": "This sounds like a tough situation. And it sounds isolating.",
+            "qlight_nochar_response": "This sounds like a tough situation. And it sounds isolating.",
+            "qlight_response": "This sounds like a tough situation. And it sounds isolating.",
+            "random": null
+        }
+    ],
+    "stillDontKnowNo": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Ah. It's tricky when there's no clear way forward. My role isn't to come up with new ideas for you, but if you want to do some brainstorming to help you see a way forward, I'm here to help.",
+            "qheavy_response": "Ah. It's tricky when there's no clear way forward. My role isn't to come up with new ideas for you, but if you want to do some brainstorming to help you see a way forward, I'm here to help.",
+            "qlight_nochar_response": "Ah. It's tricky when there's no clear way forward. My role isn't to come up with new ideas for you, but if you want to do some brainstorming to help you see a way forward, I'm here to help.",
+            "qlight_response": "Ah. It's tricky when there's no clear way forward. My role isn't to come up with new ideas for you, but if you want to do some brainstorming to help you see a way forward, I'm here to help.",
+            "random": null
+        }
+    ],
+    "stillDontKnowQuestion": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "If you're asking me a question about what you should do, then I think I should turn the question back to you. My role is about supporting you to find your own way through this, not for me to come up with new ideas -- after all, I don't know your situation any better than you do.",
+            "qheavy_response": "If you're asking me a question about what you should do, then I think I should turn the question back to you. My role is about supporting you to find your own way through this, not for me to come up with new ideas -- after all, I don't know your situation any better than you do.",
+            "qlight_nochar_response": "If you're asking me a question about what you should do, then I think I should turn the question back to you. My role is about supporting you to find your own way through this, not for me to come up with new ideas -- after all, I don't know your situation any better than you do.",
+            "qlight_response": "If you're asking me a question about what you should do, then I think I should turn the question back to you. My role is about supporting you to find your own way through this, not for me to come up with new ideas -- after all, I don't know your situation any better than you do.",
+            "random": null
+        }
+    ],
+    "stillDontKnowSuicide": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "This is sad. If you're even thinking about suicide then this is really really sad, and I'm sorry. I would like to tell you that there are better options for you, but I'm not a very clever bot, and I can't come up with answers that you can't think of for yourself.",
+            "qheavy_response": "This is sad. If you're even thinking about suicide then this is really really sad, and I'm sorry. I would like to tell you that there are better options for you, but I'm not a very clever bot, and I can't come up with answers that you can't think of for yourself.",
+            "qlight_nochar_response": "This is sad. If you're even thinking about suicide then this is really really sad, and I'm sorry. I would like to tell you that there are better options for you, but I'm not a very clever bot, and I can't come up with answers that you can't think of for yourself.",
+            "qlight_response": "This is sad. If you're even thinking about suicide then this is really really sad, and I'm sorry. I would like to tell you that there are better options for you, but I'm not a very clever bot, and I can't come up with answers that you can't think of for yourself.",
+            "random": null
+        }
+    ],
+    "stillDontKnowTired": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "This sounds like an awful, exhausting situation.",
+            "qheavy_response": "This sounds like an awful, exhausting situation.",
+            "qlight_nochar_response": "This sounds like an awful, exhausting situation.",
+            "qlight_response": "This sounds like an awful, exhausting situation.",
+            "random": null
+        }
+    ],
+    "stillDontKnowYes": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Great, would you like to start talking me through those options?",
+            "qheavy_response": "Great, would you like to start talking me through those options?",
+            "qlight_nochar_response": "Great, would you like to start talking me through those options?",
+            "qlight_response": "Great, would you like to start talking me through those options?",
+            "random": null
+        }
+    ],
+    "stopSynonyms": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": [
+                "Sorry I'm such a simple bot and I'm not understanding you very well, but are you saying you want to stop using this bot?"
+            ],
+            "qheavy_response": [
+                "Sorry I'm such a simple bot and I'm not understanding you very well, but are you saying you want to stop using this bot?"
+            ],
+            "qlight_nochar_response": [
+                "Sorry I'm such a simple bot and I'm not understanding you very well, but are you saying you want to stop using this bot? If so, would you mind clicking on the stop button on the side or typing 'stop' into the text field?",
+                "Thank you. I think you're telling me you want to stop this conversation (sorry if I misunderstood!) If so, could you please click the stop button or type 'stop' into the text field?",
+                "If I'm understanding you right, you're telling me you want to stop now. Please feel free to click the stop button or type 'stop' into the text field, or if you want to continue using this bot, just continue talking",
+                "Are you saying you want to stop using this bot? If so, would you mind clicking on the stop button on the side or type 'stop' into the text field? (or you can just keep talking, of course)",
+                "I think you're telling me you want to stop now (but I could be wrong because I'm a very simple bot). If that's right, could you click the stop button or type 'stop' into the text field?"
+            ],
+            "qlight_response": [
+                "Sorry I'm such a simple bot and I'm not understanding you very well, but are you saying you want to stop using this bot? If so, would you mind clicking on the stop button on the side or typing 'stop' into the text field?",
+                "Thank you. I think you're telling me you want to stop this conversation (sorry if I misunderstood!) If so, could you please click the stop button or type 'stop' into the text field?",
+                "If I'm understanding you right, you're telling me you want to stop now. Please feel free to click the stop button or type 'stop' into the text field, or if you want to continue using this bot, just continue talking",
+                "Are you saying you want to stop using this bot? If so, would you mind clicking on the stop button on the side or type 'stop' into the text field? (or you can just keep talking, of course)",
+                "I think you're telling me you want to stop now (but I could be wrong because I'm a very simple bot). If that's right, could you click the stop button or type 'stop' into the text field?"
+            ],
+            "random": "random"
+        }
+    ],
+    "suicidalThoughts": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                40
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear that. Could you tell me more about these suicidal thoughts?",
+            "qheavy_response": "I'm sorry to hear that. Could you tell me more about these suicidal thoughts?",
+            "qlight_nochar_response": "I'm sorry to hear that.",
+            "qlight_response": "I'm sorry to hear that.",
+            "random": null
+        },
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                40,
+                9999999
+            ],
+            "qheavy_nochar_response": "You just mentioned suicidal thoughts. If you have anything more to say about that, I'd be happy to hear?",
+            "qheavy_response": "You just mentioned suicidal thoughts. If you have anything more to say about that, I'd be happy to hear?",
+            "qlight_nochar_response": "You just mentioned suicidal thoughts. If you have anything more to say about that, I'd be happy to hear?",
+            "qlight_response": "You just mentioned suicidal thoughts. If you have anything more to say about that, I'd be happy to hear?",
+            "random": null
+        }
+    ],
+    "suicideIsOnlyOption": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "It's sad that you seem to think you have no option but to end your life. Is there something that would make you feel like your life is worth living?",
+            "qheavy_response": "It's sad that you seem to think you have no option but to end your life. Is there something that would make you feel like your life is worth living?",
+            "qlight_nochar_response": "It's sad that you seem to think you have no option but to end your life.",
+            "qlight_response": "It's sad that you seem to think you have no option but to end your life.",
+            "random": null
+        }
+    ],
+    "thankYou": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "You're welcome",
+            "qheavy_response": "You're welcome",
+            "qlight_nochar_response": "You're welcome",
+            "qlight_response": "You're welcome",
+            "random": null
+        }
+    ],
+    "theOnlyReasonIHaventKilledMyself": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sensing how close you are to being suicidal.",
+            "qheavy_response": "I'm sensing how close you are to being suicidal.",
+            "qlight_nochar_response": "I'm sensing how close you are to being suicidal.",
+            "qlight_response": "I'm sensing how close you are to being suicidal.",
+            "random": null
+        }
+    ],
+    "thisBotIsBadloose": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": [
+                "I'm sensing your frustration. I'm sorry you're not finding this to be helpful. If you have a better option than this bot, such as calling Samaritans (and you don't mind the queue), or talking to a therapist, please do that. ",
+                "But if that doesn't work for you, you're welcome to try to make this conversation work, by using this as a space to talk. And sorry I'm only a very simple bot. If you choose not to do this, please press the stop button or type 'stop' into the text field and provide feedback so we can make this better for others."
+            ],
+            "qheavy_response": [
+                "I'm sensing your frustration. I'm sorry you're not finding this to be helpful. If you have a better option than this bot, such as calling Samaritans (and you don't mind the queue), or talking to a therapist, please do that. ",
+                "But if that doesn't work for you, you're welcome to try to make this conversation work, by using this as a space to talk. And sorry I'm only a very simple bot. If you choose not to do this, please press the stop button or type 'stop' into the text field and provide feedback so we can make this better for others."
+            ],
+            "qlight_nochar_response": [
+                "I'm sensing your frustration. I'm sorry you're not finding this to be helpful. If you have a better option than this bot, such as calling Samaritans (and you don't mind the queue), or talking to a therapist, please do that. ",
+                "But if that doesn't work for you, you're welcome to try to make this conversation work, by using this as a space to talk. And sorry I'm only a very simple bot. If you choose not to do this, please press the stop button or type 'stop' into the text field and provide feedback so we can make this better for others."
+            ],
+            "qlight_response": [
+                "I'm sensing your frustration. I'm sorry you're not finding this to be helpful. If you have a better option than this bot, such as calling Samaritans (and you don't mind the queue), or talking to a therapist, please do that. ",
+                "But if that doesn't work for you, you're welcome to try to make this conversation work, by using this as a space to talk. And sorry I'm only a very simple bot. If you choose not to do this, please press the stop button or type 'stop' into the text field and provide feedback so we can make this better for others."
+            ],
+            "random": null
+        },
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": [
+                "I'm sorry you're not finding this to be helpful. If you have a better option than this bot, such as calling Samaritans (and you don't mind the queue), or talking to a therapist, please do that. ",
+                "But if that doesn't work for you, you're welcome to try to make this conversation work, by using this as a space to talk. And sorry I'm only a very simple bot. If you choose not to do this, please press the stop button or type 'stop' into the text field and provide feedback so we can make this better for others."
+            ],
+            "qheavy_response": [
+                "I'm sorry you're not finding this to be helpful. If you have a better option than this bot, such as calling Samaritans (and you don't mind the queue), or talking to a therapist, please do that. ",
+                "But if that doesn't work for you, you're welcome to try to make this conversation work, by using this as a space to talk. And sorry I'm only a very simple bot. If you choose not to do this, please press the stop button or type 'stop' into the text field and provide feedback so we can make this better for others."
+            ],
+            "qlight_nochar_response": [
+                "I'm sorry you're not finding this to be helpful. If you have a better option than this bot, such as calling Samaritans (and you don't mind the queue), or talking to a therapist, please do that. ",
+                "But if that doesn't work for you, you're welcome to try to make this conversation work, by using this as a space to talk. And sorry I'm only a very simple bot. If you choose not to do this, please press the stop button or type 'stop' into the text field and provide feedback so we can make this better for others."
+            ],
+            "qlight_response": [
+                "I'm sorry you're not finding this to be helpful. If you have a better option than this bot, such as calling Samaritans (and you don't mind the queue), or talking to a therapist, please do that. ",
+                "But if that doesn't work for you, you're welcome to try to make this conversation work, by using this as a space to talk. And sorry I'm only a very simple bot. If you choose not to do this, please press the stop button or type 'stop' into the text field and provide feedback so we can make this better for others."
+            ],
+            "random": null
+        }
+    ],
+    "thisBotIsBadtight": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": [
+                "I'm sensing your frustration. I'm sorry you're not finding this to be helpful. If you have a better option than this bot, such as calling Samaritans (and you don't mind the queue), or talking to a therapist, please do that. ",
+                "But if that doesn't work for you, you're welcome to try to make this conversation work, by using this as a space to talk. And sorry I'm only a very simple bot. If you choose not to do this, please press the stop button or type 'stop' into the text field and provide feedback so we can make this better for others."
+            ],
+            "qheavy_response": [
+                "I'm sensing your frustration. I'm sorry you're not finding this to be helpful. If you have a better option than this bot, such as calling Samaritans (and you don't mind the queue), or talking to a therapist, please do that. ",
+                "But if that doesn't work for you, you're welcome to try to make this conversation work, by using this as a space to talk. And sorry I'm only a very simple bot. If you choose not to do this, please press the stop button or type 'stop' into the text field and provide feedback so we can make this better for others."
+            ],
+            "qlight_nochar_response": [
+                "I'm sensing your frustration. I'm sorry you're not finding this to be helpful. If you have a better option than this bot, such as calling Samaritans (and you don't mind the queue), or talking to a therapist, please do that. ",
+                "But if that doesn't work for you, you're welcome to try to make this conversation work, by using this as a space to talk. And sorry I'm only a very simple bot. If you choose not to do this, please press the stop button or type 'stop' into the text field and provide feedback so we can make this better for others."
+            ],
+            "qlight_response": [
+                "I'm sensing your frustration. I'm sorry you're not finding this to be helpful. If you have a better option than this bot, such as calling Samaritans (and you don't mind the queue), or talking to a therapist, please do that. ",
+                "But if that doesn't work for you, you're welcome to try to make this conversation work, by using this as a space to talk. And sorry I'm only a very simple bot. If you choose not to do this, please press the stop button or type 'stop' into the text field and provide feedback so we can make this better for others."
+            ],
+            "random": null
+        },
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": [
+                "I'm sorry you're not finding this to be helpful. If you have a better option than this bot, such as calling Samaritans (and you don't mind the queue), or talking to a therapist, please do that. ",
+                "But if that doesn't work for you, you're welcome to try to make this conversation work, by using this as a space to talk. And sorry I'm only a very simple bot. If you choose not to do this, please press the stop button or type 'stop' into the text field and provide feedback so we can make this better for others."
+            ],
+            "qheavy_response": [
+                "I'm sorry you're not finding this to be helpful. If you have a better option than this bot, such as calling Samaritans (and you don't mind the queue), or talking to a therapist, please do that. ",
+                "But if that doesn't work for you, you're welcome to try to make this conversation work, by using this as a space to talk. And sorry I'm only a very simple bot. If you choose not to do this, please press the stop button or type 'stop' into the text field and provide feedback so we can make this better for others."
+            ],
+            "qlight_nochar_response": [
+                "I'm sorry you're not finding this to be helpful. If you have a better option than this bot, such as calling Samaritans (and you don't mind the queue), or talking to a therapist, please do that. ",
+                "But if that doesn't work for you, you're welcome to try to make this conversation work, by using this as a space to talk. And sorry I'm only a very simple bot. If you choose not to do this, please press the stop button or type 'stop' into the text field and provide feedback so we can make this better for others."
+            ],
+            "qlight_response": [
+                "I'm sorry you're not finding this to be helpful. If you have a better option than this bot, such as calling Samaritans (and you don't mind the queue), or talking to a therapist, please do that. ",
+                "But if that doesn't work for you, you're welcome to try to make this conversation work, by using this as a space to talk. And sorry I'm only a very simple bot. If you choose not to do this, please press the stop button or type 'stop' into the text field and provide feedback so we can make this better for others."
+            ],
+            "random": null
+        }
+    ],
+    "treatDepression": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "It sounds like you might be suffering from depression - sorry to hear that, I'm happy to hear about how you're feeling if you like?",
+            "qheavy_response": "It sounds like you might be suffering from depression - sorry to hear that, I'm happy to hear about how you're feeling if you like?",
+            "qlight_nochar_response": [
+                "It sounds like you might be suffering from depression - sorry to hear that, I'm happy to hear about how you're feeling if you like?",
+                "Before you go on I should mention that I'm a pretty simple bot -- don't expect me to be an expert on how to treat depression, but let's talk about it and maybe we can find a way forward together?"
+            ],
+            "qlight_response": [
+                "It sounds like you might be suffering from depression - sorry to hear that, I'm happy to hear about how you're feeling if you like?",
+                "Before you go on I should mention that I'm a pretty simple bot -- don't expect me to be an expert on how to treat depression, but let's talk about it and maybe we can find a way forward together?"
+            ],
+            "random": null
+        }
+    ],
+    "underAchieved": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Hmm. So you don't feel your achievements live up to the expectations you have of yourself?",
+            "qheavy_response": "Hmm. So you don't feel your achievements live up to the expectations you have of yourself?",
+            "qlight_nochar_response": "Hmm. So you don't feel your achievements live up to the expectations you have, that could be tough.",
+            "qlight_response": "Hmm. So you don't feel your achievements live up to the expectations you have, that could be tough.",
+            "random": null
+        }
+    ],
+    "waitingToSeeIfPoliceAreGoingToChargeMeWithAnOffence": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Sounds like a tough time for you.",
+            "qheavy_response": "Sounds like a tough time for you.",
+            "qlight_nochar_response": "Sounds like a tough time for you.",
+            "qlight_response": "Sounds like a tough time for you.",
+            "random": null
+        }
+    ],
+    "wantToBeHappy": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I would like you to feel happy again too. Can you share a bit about what would make you happy again?",
+            "qheavy_response": "I would like you to feel happy again too. Can you share a bit about what would make you happy again?",
+            "qlight_nochar_response": "I would like you to feel happy again too. ",
+            "qlight_response": "I would like you to feel happy again too. ",
+            "random": null
+        }
+    ],
+    "whatDoYouThink": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I am a little bot, to be honest, I don't really think in the way you are able to. I can give you space to explore how you are feeling without any judgement.",
+            "qheavy_response": "I am a little bot, to be honest, I don't really think in the way you are able to. I can give you space to explore how you are feeling without any judgement.",
+            "qlight_nochar_response": "I am a little bot, to be honest, I don't really think in the way you are able to. I can give you space to explore how you are feeling without any judgement.",
+            "qlight_response": "I am a little bot, to be honest, I don't really think in the way you are able to. I can give you space to explore how you are feeling without any judgement.",
+            "random": null
+        },
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I am a little bot, to be honest, I don't really think in the way you are able to. I can give you space to explore how you are feeling without any judgement.",
+            "qheavy_response": "I am a little bot, to be honest, I don't really think in the way you are able to. I can give you space to explore how you are feeling without any judgement.",
+            "qlight_nochar_response": "I am a little bot, to be honest, I don't really think in the way you are able to. I can give you space to explore how you are feeling without any judgement.",
+            "qlight_response": "I am a little bot, to be honest, I don't really think in the way you are able to. I can give you space to explore how you are feeling without any judgement.",
+            "random": null
+        }
+    ],
+    "whatToDoWithMyself": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "You don't know what to do with yourself? ",
+            "qheavy_response": "You don't know what to do with yourself? ",
+            "qlight_nochar_response": "You don't know what to do with yourself? Can you think of anything you would like to do?",
+            "qlight_response": "You don't know what to do with yourself? Can you think of anything you would like to do?",
+            "random": null
+        }
+    ],
+    "whoCanITalkTo": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "[\"You can talk to me if you like, I am Tio, a chatbot., \"You can talk to me if you would like - I am a bot though. That means I can'give you space and won't judge ( I don't know how to!). It also means I won't pick up every human nuance. I am still learning...\"]",
+            "qheavy_response": "[\"You can talk to me if you like, I am Tio, a chatbot., \"You can talk to me if you would like - I am a bot though. That means I can'give you space and won't judge ( I don't know how to!). It also means I won't pick up every human nuance. I am still learning...\"]",
+            "qlight_nochar_response": "[\"You can talk to me if you like, I am Tio, a chatbot., \"You can talk to me if you would like - I am a bot though. That means I can'give you space and won't judge ( I don't know how to!). It also means I won't pick up every human nuance. I am still learning...\"]",
+            "qlight_response": "[\"You can talk to me if you like, I am Tio, a chatbot., \"You can talk to me if you would like - I am a bot though. That means I can'give you space and won't judge ( I don't know how to!). It also means I won't pick up every human nuance. I am still learning...\"]",
+            "random": "random"
+        }
+    ],
+    "willYouConverseWithMe": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry if it doesn't feel like my conversational skills are good enough. Please feel free to keep talking to me and I'll try to listen as best I can. And sorry that I'm only a simple bot.",
+            "qheavy_response": "I'm sorry if it doesn't feel like my conversational skills are good enough. Please feel free to keep talking to me and I'll try to listen as best I can. And sorry that I'm only a simple bot.",
+            "qlight_nochar_response": "I'm sorry if it doesn't feel like my conversational skills are good enough. Please feel free to keep talking to me and I'll try to listen as best I can. And sorry that I'm only a simple bot.",
+            "qlight_response": "I'm sorry if it doesn't feel like my conversational skills are good enough. Please feel free to keep talking to me and I'll try to listen as best I can. And sorry that I'm only a simple bot.",
+            "random": null
+        }
+    ],
+    "yourNice": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Thanks :-) You're nice too",
+            "qheavy_response": "Thanks :-) You're nice too",
+            "qlight_nochar_response": "Thanks :-) You're nice too",
+            "qlight_response": "Thanks :-) You're nice too",
+            "random": null
+        }
+    ]
+}
