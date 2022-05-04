@@ -1,9 +1,14 @@
 #import files
-from flask import Flask, render_template, request, make_response, jsonify, redirect
+from flask import Flask, render_template, request, make_response, jsonify, redirect, session
 from json import dumps
 from datetime import datetime
 import json
 import time
+import os
+import ast
+import traceback
+
+from guse import SentenceEncoder
 #from textblob import TextBlob # was using this, but it doesn't seem to be working on Sanjay's machine
 #import nltk
 import random
@@ -13,178 +18,183 @@ app = Flask(__name__)
 # frontEnd = "pre2020m04" # can take the values "pre2020m04" or "2020m04"
 # At some point it would make sense to refactor out the frontEnd variable, because it's really a transitional thing
 # the below encouragingNoises are things the bot might say to the user
-encouragingNoises = ["I'm listening…", 
-"I'm listening to you…", 
-"I'm still listening…", 
-"I'm still listening to you…", 
-"I'm listening to what you are sharing…", 
-"I'm still listening to what you are sharing…", 
-"I'm listening. Thank you for sharing…", 
-"I'm listening. I hear you…", 
-"I'm listening. I still hear you…", 
-"I'm listening. I can hear you…", 
-"I'm listening. I’m here.", 
-"I'm listening. I’m with you in this conversation." , 
-"I'm listening. I’m with you in this dialogue." , 
-"I'm listening. I’m following what you’re sharing…", 
-"I'm listening. I’m following you as you talk…", 
-"I'm listening. I’m following you as you speak…", 
-"I'm listening. I’m following what you say…", 
-"Thank you. I'm listening…", 
-"Thank you. I'm listening to you…", 
-"Thank you. I'm still listening…", 
-"Thank you. I'm still listening to you…", 
-"Thank you. I'm listening to what you are sharing…", 
-"Thank you. I'm still listening to what you are sharing…", 
-"Thank you. I hear you…", 
-"Thank you. I still hear you…", 
-"Thank you. I can hear you…", 
-"Thank you. I’m here …", 
-"Thank you. I’m with you in this conversation." , 
-"Thank you. I’m with you in this dialogue…" , 
-"Thank you. I’m following what you’re sharing…", 
-"Thank you. I’m following you as you talk…", 
-"Thank you. I’m following you as you speak…", 
-"Thank you. I’m following what you say…", 
-"Thank you for sharing… " , 
-"Thank you for sharing. I'm listening…", 
-"Thank you for sharing. I'm listening to you…", 
-"Thank you for sharing. I'm still listening…", 
-"Thank you for sharing. I'm still listening to you…", 
-"Thank you for sharing. I'm listening to what you are sharing…", 
-"Thank you. I'm still listening to what you are sharing…", 
-"Thank you for sharing. I hear you…", 
-"Thank you for sharing. I still hear you…", 
-"Thank you for sharing. I can hear you…", 
-"Thank you for sharing. I’m here …", 
-"Thank you for sharing. I’m with you in this conversation." , 
-"Thank you for sharing. I’m with you in this dialogue." , 
-"Thank you for sharing. I’m following…", 
-"Thank you for sharing. I’m following you as you talk…", 
-"Thank you for sharing. I’m following you as you speak…", 
-"Thank you for sharing. I’m following what you say…", 
-"I hear you…", 
-"I hear you. I'm listening…", 
-"I hear you. I'm listening to you…", 
-"I hear you. I'm still listening…", 
-"I hear you. I'm still listening to you…", 
-"I hear you. I'm listening to what you are sharing…", 
-"I hear you. I'm still listening to what you are sharing…", 
-"I hear you. Thank you for sharing…", 
-"I hear you. I’m here …", 
-"I hear you. I’m with you in this conversation." , 
-"I hear you. I’m with you in this dialogue." , 
-"I hear you. I’m following what you’re sharing…", 
-"I hear you. I’m following you as you talk…", 
-"I hear you. I’m following you as you speak…", 
-"I hear you. I’m following what you say…", 
-"I can hear you…", 
-"I can hear you. I'm listening…", 
-"I can hear you. I'm listening to you…", 
-"I can hear you. I'm still listening…", 
-"I can hear you. I'm still listening to you…", 
-"I can hear you. I'm listening to what you are sharing…", 
-"I can hear you. I'm still listening to what you are sharing…", 
-"I can hear you. Thank you for sharing…", 
-"I can hear you. I’m here …", 
-"I can hear you. I’m with you in this conversation." , 
-"I can hear you. I’m with you in this dialogue." , 
-"I can hear you. I’m following what you’re sharing…", 
-"I can hear you. I’m following you as you talk…", 
-"I can hear you. I’m following you as you speak…", 
-"I can hear you. I’m following what you say…", 
-"I’m here…", 
-"I’m here. I'm listening…", 
-"I’m here. I'm listening to you…", 
-"I’m here. I'm still listening…", 
-"I’m here. I'm still listening to you…", 
-"I’m here. I'm listening to what you are sharing…", 
-"I’m here. I'm still listening to what you are sharing…", 
-"I’m here. Thank you for sharing…", 
-"I’m here. I’m with you in this conversation." , 
-"I’m here. I’m with you in this dialogue." , 
-"I’m here. I’m following what you’re sharing…", 
-"I’m here. I’m following you as you talk…", 
-"I’m here. I’m following you as you speak…", 
-"I’m here. I’m following what you say…", 
-"I’m still here…", 
-"I’m still here. I'm listening…", 
-"I’m still here. I'm listening to you…", 
-"I’m still here. I'm still listening…", 
-"I’m still here. I'm still listening to you…", 
-"I’m still here. I'm listening to what you are sharing…", 
-"I’m still here. I'm still listening to what you are sharing…", 
-"I’m still here. Thank you for sharing…", 
-"I’m still here. I’m with you in this conversation." , 
-"I’m still here. I’m with you in this dialogue." , 
-"I’m still here. I’m following what you’re sharing…", 
-"I’m still here. I’m following you as you talk…", 
-"I’m still here. I’m following you as you speak…", 
-"I’m still here. I’m following what you say…", 
-"I’m with you in this conversation…", 
-"I’m with you in this conversation. I’m still here…", 
-"I’m with you in this conversation. I'm listening…", 
-"I’m with you in this conversation. I'm listening to you…", 
-"I’m with you in this conversation. I'm still listening…", 
-"I’m with you in this conversation. I'm still listening to you…", 
-"I’m with you in this conversation. I'm listening to what you are sharing…", 
-"I’m with you in this conversation. I'm still listening to what you are sharing…", 
-"I’m with you in this conversation. Thank you for sharing…", 
-"I’m with you in this conversation. I’m following what you’re sharing…", 
-"I’m with you in this conversation. I’m following you as you talk…", 
-"I’m with you in this conversation. I’m following you as you speak…", 
-"I’m with you in this conversation. I’m following what you say…", 
-"I’m with you in this dialogue…", 
-"I’m with you in this dialogue. I’m still here…", 
-"I’m with you in this dialogue. I'm listening…", 
-"I’m with you in this dialogue. I'm listening to you…", 
-"I’m with you in this dialogue. I'm still listening…", 
-"I’m with you in this dialogue. I'm still listening to you…", 
-"I’m with you in this dialogue. I'm listening to what you are sharing…", 
-"I’m with you in this dialogue. I'm still listening to what you are sharing…", 
-"I’m with you in this dialogue. Thank you for sharing…", 
-"I’m with you in this dialogue. I’m following what you’re sharing…", 
-"I’m with you in this dialogue. I’m following you as you talk…", 
-"I’m with you in this dialogue. I’m following you as you speak…", 
-"I’m with you in this dialogue. I’m following what you say…", 
-"I’m following what you’re sharing…", 
-"I’m following what you’re sharing. I’m still here…", 
-"I’m following what you’re sharing. I'm listening…", 
-"I’m following what you’re sharing. I'm listening to you…", 
-"I’m following what you’re sharing. I'm still listening…", 
-"I’m following what you’re sharing. I'm still listening to you…", 
-"I’m following what you’re sharing. I'm listening to what you are sharing…", 
-"I’m following what you’re sharing. I'm still listening to what you are sharing…", 
-"I’m following what you’re sharing. Thank you for sharing…", 
-"I’m following what you’re sharing. I’m with you in this conversation." , 
-"I’m following you as you talk…", 
-"I’m following you as you talk. I’m still here…", 
-"I’m following you as you talk. I'm listening…", 
-"I’m following you as you talk. I'm listening to you…", 
-"I’m following you as you talk. I'm still listening…", 
-"I’m following you as you talk. I'm still listening to you…", 
-"I’m following you as you talk. I'm listening to what you are sharing…", 
-"I’m following you as you talk. I'm still listening to what you are sharing…", 
-"I’m following you as you talk. Thank you for sharing…", 
-"I’m following you as you talk. I’m with you in this conversation." , 
-"I’m following you as you talk. I’m following what you’re sharing…", 
-"I’m following you as you talk. I’m following you as you speak…", 
-"I’m following you as you talk. I’m following what you say…", 
-"I’m following you as you speak…", 
-"I’m following you as you speak. I’m still here…", 
-"I’m following you as you speak. I'm listening…", 
-"I’m following you as you speak. I'm listening to you…", 
-"I’m following you as you speak. I'm still listening…", 
-"I’m following you as you speak. I'm still listening to you…", 
-"I’m following you as you speak. I'm listening to what you are sharing…", 
-"I’m following you as you speak. I'm still listening to what you are sharing…", 
-"I’m following you as you speak. Thank you for sharing…", 
+
+se = SentenceEncoder()
+se.make_cat_embed()
+
+encouragingNoises = ["I'm listening…",
+"I'm listening to you…",
+"I'm still listening…",
+"I'm still listening to you…",
+"I'm listening to what you are sharing…",
+"I'm still listening to what you are sharing…",
+"I'm listening. Thank you for sharing…",
+"I'm listening. I hear you…",
+"I'm listening. I still hear you…",
+"I'm listening. I can hear you…",
+"I'm listening. I’m here.",
+"I'm listening. I’m with you in this conversation." ,
+"I'm listening. I’m with you in this dialogue." ,
+"I'm listening. I’m following what you’re sharing…",
+"I'm listening. I’m following you as you talk…",
+"I'm listening. I’m following you as you speak…",
+"I'm listening. I’m following what you say…",
+"Thank you. I'm listening…",
+"Thank you. I'm listening to you…",
+"Thank you. I'm still listening…",
+"Thank you. I'm still listening to you…",
+"Thank you. I'm listening to what you are sharing…",
+"Thank you. I'm still listening to what you are sharing…",
+"Thank you. I hear you…",
+"Thank you. I still hear you…",
+"Thank you. I can hear you…",
+"Thank you. I’m here …",
+"Thank you. I’m with you in this conversation." ,
+"Thank you. I’m with you in this dialogue…" ,
+"Thank you. I’m following what you’re sharing…",
+"Thank you. I’m following you as you talk…",
+"Thank you. I’m following you as you speak…",
+"Thank you. I’m following what you say…",
+"Thank you for sharing… " ,
+"Thank you for sharing. I'm listening…",
+"Thank you for sharing. I'm listening to you…",
+"Thank you for sharing. I'm still listening…",
+"Thank you for sharing. I'm still listening to you…",
+"Thank you for sharing. I'm listening to what you are sharing…",
+"Thank you. I'm still listening to what you are sharing…",
+"Thank you for sharing. I hear you…",
+"Thank you for sharing. I still hear you…",
+"Thank you for sharing. I can hear you…",
+"Thank you for sharing. I’m here …",
+"Thank you for sharing. I’m with you in this conversation." ,
+"Thank you for sharing. I’m with you in this dialogue." ,
+"Thank you for sharing. I’m following…",
+"Thank you for sharing. I’m following you as you talk…",
+"Thank you for sharing. I’m following you as you speak…",
+"Thank you for sharing. I’m following what you say…",
+"I hear you…",
+"I hear you. I'm listening…",
+"I hear you. I'm listening to you…",
+"I hear you. I'm still listening…",
+"I hear you. I'm still listening to you…",
+"I hear you. I'm listening to what you are sharing…",
+"I hear you. I'm still listening to what you are sharing…",
+"I hear you. Thank you for sharing…",
+"I hear you. I’m here …",
+"I hear you. I’m with you in this conversation." ,
+"I hear you. I’m with you in this dialogue." ,
+"I hear you. I’m following what you’re sharing…",
+"I hear you. I’m following you as you talk…",
+"I hear you. I’m following you as you speak…",
+"I hear you. I’m following what you say…",
+"I can hear you…",
+"I can hear you. I'm listening…",
+"I can hear you. I'm listening to you…",
+"I can hear you. I'm still listening…",
+"I can hear you. I'm still listening to you…",
+"I can hear you. I'm listening to what you are sharing…",
+"I can hear you. I'm still listening to what you are sharing…",
+"I can hear you. Thank you for sharing…",
+"I can hear you. I’m here …",
+"I can hear you. I’m with you in this conversation." ,
+"I can hear you. I’m with you in this dialogue." ,
+"I can hear you. I’m following what you’re sharing…",
+"I can hear you. I’m following you as you talk…",
+"I can hear you. I’m following you as you speak…",
+"I can hear you. I’m following what you say…",
+"I’m here…",
+"I’m here. I'm listening…",
+"I’m here. I'm listening to you…",
+"I’m here. I'm still listening…",
+"I’m here. I'm still listening to you…",
+"I’m here. I'm listening to what you are sharing…",
+"I’m here. I'm still listening to what you are sharing…",
+"I’m here. Thank you for sharing…",
+"I’m here. I’m with you in this conversation." ,
+"I’m here. I’m with you in this dialogue." ,
+"I’m here. I’m following what you’re sharing…",
+"I’m here. I’m following you as you talk…",
+"I’m here. I’m following you as you speak…",
+"I’m here. I’m following what you say…",
+"I’m still here…",
+"I’m still here. I'm listening…",
+"I’m still here. I'm listening to you…",
+"I’m still here. I'm still listening…",
+"I’m still here. I'm still listening to you…",
+"I’m still here. I'm listening to what you are sharing…",
+"I’m still here. I'm still listening to what you are sharing…",
+"I’m still here. Thank you for sharing…",
+"I’m still here. I’m with you in this conversation." ,
+"I’m still here. I’m with you in this dialogue." ,
+"I’m still here. I’m following what you’re sharing…",
+"I’m still here. I’m following you as you talk…",
+"I’m still here. I’m following you as you speak…",
+"I’m still here. I’m following what you say…",
+"I’m with you in this conversation…",
+"I’m with you in this conversation. I’m still here…",
+"I’m with you in this conversation. I'm listening…",
+"I’m with you in this conversation. I'm listening to you…",
+"I’m with you in this conversation. I'm still listening…",
+"I’m with you in this conversation. I'm still listening to you…",
+"I’m with you in this conversation. I'm listening to what you are sharing…",
+"I’m with you in this conversation. I'm still listening to what you are sharing…",
+"I’m with you in this conversation. Thank you for sharing…",
+"I’m with you in this conversation. I’m following what you’re sharing…",
+"I’m with you in this conversation. I’m following you as you talk…",
+"I’m with you in this conversation. I’m following you as you speak…",
+"I’m with you in this conversation. I’m following what you say…",
+"I’m with you in this dialogue…",
+"I’m with you in this dialogue. I’m still here…",
+"I’m with you in this dialogue. I'm listening…",
+"I’m with you in this dialogue. I'm listening to you…",
+"I’m with you in this dialogue. I'm still listening…",
+"I’m with you in this dialogue. I'm still listening to you…",
+"I’m with you in this dialogue. I'm listening to what you are sharing…",
+"I’m with you in this dialogue. I'm still listening to what you are sharing…",
+"I’m with you in this dialogue. Thank you for sharing…",
+"I’m with you in this dialogue. I’m following what you’re sharing…",
+"I’m with you in this dialogue. I’m following you as you talk…",
+"I’m with you in this dialogue. I’m following you as you speak…",
+"I’m with you in this dialogue. I’m following what you say…",
+"I’m following what you’re sharing…",
+"I’m following what you’re sharing. I’m still here…",
+"I’m following what you’re sharing. I'm listening…",
+"I’m following what you’re sharing. I'm listening to you…",
+"I’m following what you’re sharing. I'm still listening…",
+"I’m following what you’re sharing. I'm still listening to you…",
+"I’m following what you’re sharing. I'm listening to what you are sharing…",
+"I’m following what you’re sharing. I'm still listening to what you are sharing…",
+"I’m following what you’re sharing. Thank you for sharing…",
+"I’m following what you’re sharing. I’m with you in this conversation." ,
+"I’m following you as you talk…",
+"I’m following you as you talk. I’m still here…",
+"I’m following you as you talk. I'm listening…",
+"I’m following you as you talk. I'm listening to you…",
+"I’m following you as you talk. I'm still listening…",
+"I’m following you as you talk. I'm still listening to you…",
+"I’m following you as you talk. I'm listening to what you are sharing…",
+"I’m following you as you talk. I'm still listening to what you are sharing…",
+"I’m following you as you talk. Thank you for sharing…",
+"I’m following you as you talk. I’m with you in this conversation." ,
+"I’m following you as you talk. I’m following what you’re sharing…",
+"I’m following you as you talk. I’m following you as you speak…",
+"I’m following you as you talk. I’m following what you say…",
+"I’m following you as you speak…",
+"I’m following you as you speak. I’m still here…",
+"I’m following you as you speak. I'm listening…",
+"I’m following you as you speak. I'm listening to you…",
+"I’m following you as you speak. I'm still listening…",
+"I’m following you as you speak. I'm still listening to you…",
+"I’m following you as you speak. I'm listening to what you are sharing…",
+"I’m following you as you speak. I'm still listening to what you are sharing…",
+"I’m following you as you speak. Thank you for sharing…",
 "I’m following you as you speak. I’m with you in this conversation."]
 
 noOfEncouragingNoises = len(encouragingNoises)
 section = 0.0
 dataToStore = []
 USER_CHARACTER_COUNT = 0
+ai_repeat = []
 conversationId = str(datetime.now())
 iWantToKillMyselfResponseAlreadyUsed = [conversationId,False]
 imGoingToKillMyselfResponseAlreadyUsed = [conversationId,False]
@@ -374,171 +384,9 @@ def initialiseResponseAlreadyUsedVariables():
     ## note the structure of the variables: it includes the conversationId; this is to ensure that
     ## the app doesn't get confused when two users are using the bot concurrently (or, indeed, one after the other?)
     global conversationId
-    iWantToKillMyselfResponseAlreadyUsed = [conversationId,False]
-    imGoingToKillMyselfResponseAlreadyUsed = [conversationId,False]
-    iWillDieTodayResponseAlreadyUsed = [conversationId,False]
-    iWantToDieResponseAlreadyUsed = [conversationId,False]
-    imFeelingSuicidalResponseAlreadyUsed = [conversationId,False]
-    iveBecomeSuicidalResponseAlreadyUsed = [conversationId,False]
-    #feelingQuiteSuicidalResponseAlreadyUsed : this varirable isn't being used
-    suicidalThoughtsResponseAlreadyUsed = [conversationId,False]
-    contemplatedSuicideButResponseAlreadyUsed = [conversationId,False]
-    iWishIWasDeadResponseAlreadyUsed = [conversationId,False]
-    betterOffDeadResponseAlreadyUsed = [conversationId,False]
-    iDontWantToLiveResponseAlreadyUsed = [conversationId,False]
-    iHateBeingAliveResponseAlreadyUsed = [conversationId,False]
-    sleepForeverResponseAlreadyUsed = [conversationId,False]
-    shouldIEndItResponseAlreadyUsed = [conversationId,False]
-    shouldIKillMyselfResponseAlreadyUsed = [conversationId,False]
-    suicideIsOnlyOptionResponseAlreadyUsed = [conversationId,False]
-    feelLikeEndingItResponseAlreadyUsed = [conversationId,False]
-    iWasRapedResponseAlreadyUsed = [conversationId,False]
-    cryingResponseAlreadyUsed = [conversationId,False]
-    iWantToCryResponseAlreadyUsed = [conversationId,False]
-    nothingToLiveForResponseAlreadyUsed = [conversationId,False]
-    singleWordDepressionResponseAlreadyUsed = [conversationId,False]
-    feelingDepressedResponseAlreadyUsed = [conversationId,False]
-    treatDepressionResponseAlreadyUsed = [conversationId,False]
-    iHaveDepressionResponseAlreadyUsed = [conversationId,False]
-    iMightHaveDepressionResponseAlreadyUsed = [conversationId,False]
-    iHaveNoWayOutResponseAlreadyUsed = [conversationId,False]
-    hadEnoughOfLifeResponseAlreadyUsed = [conversationId,False]
-    iWantToGiveUpOnLifeResponseAlreadyUsed = [conversationId,False]
-    nothingToLookForwardToResponseAlreadyUsed = [conversationId,False]
-    imUselessResponseAlreadyUsed = [conversationId,False]
-    imWorthlessResponseAlreadyUsed = [conversationId,False]
-    imNotLovedResponseAlreadyUsed = [conversationId,False]
-    imNotSpecialToAnyoneResponseAlreadyUsed = [conversationId,False]
-    iWantSomeoneToLoveMeResponseAlreadyUsed = [conversationId,False]
-    feelingLonelyResponseAlreadyUsed = [conversationId,False]
-    nobodyUnderstandsMeResponseAlreadyUsed = [conversationId,False]
-    imSickOfLockdownResponseAlreadyUsed = [conversationId,False]
-    iDontSleepResponseAlreadyUsed = [conversationId,False]
-    dontHaveAnyoneICanTalkToResponseAlreadyUsed = [conversationId,False]
-    iHateHowILookResponseAlreadyUsed = [conversationId,False]
-    loseWeightResponseAlreadyUsed = [conversationId, False]
-    feelOverwhelmedResponseAlreadyUsed = [conversationId,False]
-    aLotOnMyMindResponseAlreadyUsed = [conversationId,False]
-    feelingAwfulResponseAlreadyUsed = [conversationId,False]
-    feelLikeCryingResponseAlreadyUsed = [conversationId,False]
-    imAFailureResponseAlreadyUsed = [conversationId,False]
-    imALetdownResponseAlreadyUsed = [conversationId,False]
-    letMyselfDownResponseAlreadyUsed = [conversationId,False]
-    hardLifeResponseAlreadyUsed = [conversationId,False]
-    iHaveRegretsResponseAlreadyUsed = [conversationId,False]
-    underAchievedResponseAlreadyUsed = [conversationId,False]
-    hurtsMyFeelingsResponseAlreadyUsed = [conversationId,False]
-    hurtsToKnowThatResponseAlreadyUsed = [conversationId,False]
-    feelOutOfControlResponseAlreadyUsed = [conversationId,False]
-    feelLostResponseAlreadyUsed = [conversationId,False]
-    feelEmptyResponseAlreadyUsed = [conversationId,False]
-    inABadPlaceResponseAlreadyUsed = [conversationId,False]
-    imTrappedResponseAlreadyUsed = [conversationId,False]
-    nobodyCaresResponseAlreadyUsed = [conversationId,False]
-    noOneCaresAboutMeResponseAlreadyUsed = [conversationId,False]
-    deserveResponseAlreadyUsed = [conversationId,False]
-    iHateHowIFeelResponseAlreadyUsed = [conversationId,False]
-    imSadResponseAlreadyUsed = [conversationId,False]
-    feelingLowDownTerribleResponseAlreadyUsed = [conversationId,False]
-    iWantThisFeelingToGoAwayResponseAlreadyUsed = [conversationId,False]
-    imUpsetResponseAlreadyUsed = [conversationId,False]
-    hurtFeelingsResponseAlreadyUsed = [conversationId,False]
-    beingBulliedResponseAlreadyUsed = [conversationId,False]
-    iFeelHelplessResponseAlreadyUsed = [conversationId,False]
-    imAddictedResponseAlreadyUsed = [conversationId,False]
-    iHateCoronavirusResponseAlreadyUsed = [conversationId,False]
-    feelingRubbishResponseAlreadyUsed = [conversationId,False]
-    panicAttacksResponseAlreadyUsed = [conversationId,False]
-    iHaveAnxietyResponseAlreadyUsed = [conversationId,False]
-    imAnxiousResponseAlreadyUsed = [conversationId,False]
-    initial_imWorriedResponseAlreadyUsed = [conversationId,False]
-    second_imWorriedResponseAlreadyUsed = [conversationId,False]
-    iDontKnowWhatToDoResponseAlreadyUsed = [conversationId,False]
-    whatToDoWithMyselfResponseAlreadyUsed = [conversationId,False]
-    initial_iDontKnowWhatToSayResponseAlreadyUsed = [conversationId, False]
-    second_iDontKnowWhatToSayResponseAlreadyUsed = [conversationId, False]
-    personalHygieneResponseAlreadyUsed = [conversationId, False]
-    iSmellResponseAlreadyUsed = [conversationId, False] # not being used -- we're using the personalHygieneResponseAlreadyUsed variable instead
-    wantToBeHappyResponseAlreadyUsed = [conversationId, False]
-    imNotHappyResponseAlreadyUsed = [conversationId,False]
-    iFeelNumbResponseAlreadyUsed = [conversationId,False]
-    iFeelStuckResponseAlreadyUsed = [conversationId, False]
-    imNotHappyResponseAlreadyUsed = [conversationId,False]
-    imNotSureWhereToTurnResponseAlreadyUsed = [conversationId,False]
-    iHateMyselfResponseAlreadyUsed = [conversationId,False]
-    abandonedMeResponseAlreadyUsed = [conversationId,False]
-    imStuckAtHomeResponseAlreadyUsed = [conversationId,False]
-    waitingToSeeIfPoliceAreGoingToChargeMeWithAnOffenceResponseAlreadyUsed = [conversationId,False]
-    imHomelessResponseAlreadyUsed = [conversationId,False]
-    iHaventSeenMyKidsResponseAlreadyUsed = [conversationId,False]
-    difficultDayResponseAlreadyUsed = [conversationId,False]
-    # stressingMeOutResponseAlreadyUsed = [conversationId,False]
-    familyProblemsResponseAlreadyUsed = [conversationId,False]
-    gotDumpedResponseAlreadyUsed = [conversationId,False]
-    brokeUpWithPartnerResponseAlreadyUsed = [conversationId,False]
-    canYouHelpResponseAlreadyUsed = [conversationId,False]
-    feelLostResponseAlreadyUsed = [conversationId,False]
-    iWantFreedomResponseAlreadyUsed = [conversationId,False]
-    whoCanITalkToResponseAlreadyUsed = [conversationId,False]
-    howAreYouResponseAlreadyUsed = [conversationId,False]
-    whatDoYouThinkResponseAlreadyUsed = [conversationId,False]
-    imPregnantResponseAlreadyUsed = [conversationId,False]
-    imBeingTakenForGrantedResponseAlreadyUsed = [conversationId,False]
-    itsStressingMeOutResponseAlreadyUsed = [conversationId,False]
-    familyProblemsResponseAlreadyUsed = [conversationId,False]
-    fallOutResponseAlreadyUsed = [conversationId,False]
-    abuseResponseAlreadyUsed = [conversationId,False]
-    heartBreakResponseAlreadyUsed = [conversationId,False]
-    iWantAFriendResponseAlreadyUsed = [conversationId,False]
-    iDontSeeManyPeopleResponseAlreadyUsed = [conversationId,False]
-    feelLostResponseAlreadyUsed = [conversationId,False]
-    helpResponseAlreadyUsed = [conversationId,False]
-    # iWantFreedomResponseAlreadyUsed = [conversationId,False]
-    # whoCanITalkToResponseAlreadyUsed = [conversationId,False]
-    howAreYouResponseAlreadyUsed = [conversationId,False]
-    doYouGiveAdviceResponseAlreadyUsed = [conversationId,False]
-    dontKnowResponseAlreadyUsed = [conversationId,False]
-    whatDoYouThinkResponseAlreadyUsed = [conversationId,False]
-    imGoingToGoNowResponseAlreadyUsed = [conversationId,False]
-    areYouReadingResponseAlreadyUsed = [conversationId,False]
-    lettingMeGetMyThoughtsOutOfMyHeadResponseAlreadyUsed = [conversationId,False]
-    idkWhatElseToSayToYouResponseAlreadyUsed = [conversationId,False]
-    thankYouResponseAlreadyUsed = [conversationId, False]
-    shortResponseAlreadyUsed = [conversationId,False]
-    areYouABotResponseAlreadyUsed = [conversationId,False]
-    willYouConverseWithMeResponseAlreadyUsed = [conversationId,False]
-    thisBotIsBadResponseAlreadyUsed = [conversationId,False]
-    parentsFightingResponseAlreadyUsed = [conversationId, False]
-    iWantSomeoneToTalkToResponseAlreadyUsed = [conversationId, False]
-    degradingMeResponseAlreadyUsed = [conversationId, False]
-    feelingPanickyResponseAlreadyUsed = [conversationId, False]
-    shouldIContactDoctorResponseAlreadyUsed = [conversationId, False]
-    strugglingWithSchoolResponseAlreadyUsed = [conversationId, False]
-    notFunctioningDueToDepressionResponseAlreadyUsed = [conversationId, False]
-    iDontTrustAnyoneResponseAlreadyUsed = [conversationId,False]
-    theOnlyReasonIHaventKilledMyselfResponseAlreadyUsed = [conversationId,False]
-    iFeelStupidForHavingTheseFeelingsResponseAlreadyUsed = [conversationId,False]
-    imFeelingFatResponseAlreadyUsed = [conversationId,False]
-    nooneHelpsMeFeelBetterResponseAlreadyUsed = [conversationId,False]
-    iHaveLostMyFriendsResponseAlreadyUsed = [conversationId,False]
-    makesMeWantToSelfHarmResponseAlreadyUsed = [conversationId,False]
-    iHaventSelfHarmedResponseAlreadyUsed = [conversationId,False]
-    iDontHaveMotivationResponseAlreadyUsed = [conversationId,False]
-    myLifeIsBoringResponseAlreadyUsed = [conversationId,False]
-    iStruggleToBeHappyResponseAlreadyUsed = [conversationId,False]
-    iStruggleToMakeConversationResponseAlreadyUsed = [conversationId,False]
-    iDontHaveGoodRelationshipsWithAnybodyResponseAlreadyUsed = [conversationId,False]
-    physicallyHurtMyselfResponseAlreadyUsed = [conversationId,False]
-    speakToAProfessionalResponseAlreadyUsed = [conversationId,False]
-    imTiredResponseAlreadyUsed = [conversationId,False]
-    iHaveBeenDepresedResponseAlreadyUsed = [conversationId,False]
-    boyfriendsLeftMeResponseAlreadyUsed = [conversationId,False]
-    iKeepGettingHorribleThoughtsResponseAlreadyUsed = [conversationId,False]
-    imMakingPeopleUpsetResponseAlreadyUsed = [conversationId,False]
-    iWantToDieButResponseAlreadyUsed = [conversationId,False]
 
 
-def write_data(anonymous, conversationId, message, response, section, clientId):
+def write_data(anonymous, conversationId, message, response, section, clientId, ai_data={}):
     """
     Stores the messages to file, if the user agrees, or if it's something inoffensive
     More precisely, if the anonymous variable is set to true (i.e. the user has given permission not to be totally confidential)...
@@ -554,7 +402,7 @@ def write_data(anonymous, conversationId, message, response, section, clientId):
         response = response.replace(",", "¬")
 
         with open('storedData.csv', 'a') as f:
-            dataToStore = [str(conversationId), "User says:", str(message), "Chatbot says:", str(response), clientId, "Campaign: " + str(campaign or ''), "Group: " + str(group or ''), "Geo: " + str(geo or ''), "Device: " + str(device or ''), "Timestamp: "+ str(datetime.now())]
+            dataToStore = [str(conversationId), "User says:", str(message), "Chatbot says:", str(response), clientId, "Campaign: " + str(campaign or ''), "Group: " + str(group or ''), "Geo: " + str(geo or ''), "Device: " + str(device or ''), "Timestamp: "+ str(datetime.now()),'Ai_data:',ai_data]
             f.write("\n" + str(dataToStore))
     return None
 
@@ -631,70 +479,6 @@ def choose_bot_wordy_response(message, clientId):
     There are specific bot responses to give for each keyword.
     If no keyword is found, a randomly generated encouraging phrase is chosen
     """
-
-    ## KEYWORDS
-
-    # iWantToKillMyself
-    # iWantToDie
-    # feelingSuicidal
-    # feelingQuiteSuicidal
-    # suicidalThoughts
-    # contemplatedSuicideBut
-    # crying
-    # nothingToLiveFor
-    # singleWordDepression
-    # feelingDepressed
-    # treatDepression
-    # iHaveNoWayOut
-    # hadEnoughOfLife
-    # nothingToLookForwardTo
-    # imUseless
-    # imWorthless
-    # feelingLonely
-    # nobodyUnderstandsMe
-    # dontHaveAnyoneICanTalkTo
-    # iHateHowILook
-    # loseWeight
-    # feelOverwhelmed
-    # aLotOnMyMind
-    # feelingAwful
-    # feelLikeCrying
-    # letMyselfDown
-    # feelOutOfControl
-    # feelLost
-    # inABadPlace
-    # imTrapped
-    # nobodyCares
-    # deserve
-    # imSad
-    # feelingLowDownTerrible
-    # imUpset
-    # hurtFeelings
-    # beingBullied
-    # imAddicted
-    # feelingRubbish
-    # panicAttacks
-    # iDontKnowWhatToSay
-    # personalHygiene
-    # iSmell
-    # WantToBeHappy
-    # imNotHappy
-    #iFeelNumb
-    # iHateMyself
-    # difficultDay
-    # stressingMeOut
-    # familyProblems
-    # gotDumped
-    # brokeUpWithPartner
-    # canYouHelp
-    # feelLost
-    # iWantFreedom
-    # whoCanITalkTo
-    # howAreYou
-    # whatDoYouThink
-    # doYouGiveAdvice
-
-
 
     global USER_CHARACTER_COUNT
 
@@ -1001,7 +785,7 @@ def choose_bot_wordy_response(message, clientId):
                             "i have family difficulties", "i'm having family difficulties", "im having family difficulties", "ive got family difficulties", "ive got difficulties with my family", \
                             "i have difficulties with my family", "i'm having difficulties with my family", "im having difficulties with my family", "ive got difficulties with my family", \
                             "i have family worries", "i'm having family worries", "im having family worries", "ive got family worries", "ive got worries with my family", \
-                            "i have worries with my family", "i'm having worries with my family", "im having worries with my family", "ive got worries with my family", 
+                            "i have worries with my family", "i'm having worries with my family", "im having worries with my family", "ive got worries with my family",
                             "i want to be in a different family", "the thing i want is to be in a different family", "my life would be easier if i were in a different family"]
     gotDumpedArray = ["my ex broke up with me", "my ex dumped me", "my exboyfriend broke up with me", "my exboyfriend dumped me", "my boyfriend broke up with me",\
                         "my boyfriend dumped me", "my exgirlfriend broke up with me", "my exgirlfriend dumped me", "my girlfriend broke up with me", "my girlfriend dumped me", \
@@ -1099,40 +883,40 @@ def choose_bot_wordy_response(message, clientId):
                         "you are useless", "you are worthless", "you are crap", "you are rubbish", "you are trash", "you are annoying", "you are pointless",
                         "youre useless", "youre worthless", "youre crap", "youre rubbish", "youre trash", "youre annoying", "youre pointless",
                         "your useless", "your worthless", "your crap", "your rubbish", "your trash", "your annoying", "your pointless",
-                        "what a waste of time", "what a pointless waste of time", "what a useless waste of time", "bye, you're useless", "bye, your useless", "bye, you are useless", 
+                        "what a waste of time", "what a pointless waste of time", "what a useless waste of time", "bye, you're useless", "bye, your useless", "bye, you are useless",
                         "fucking waste of time", "fuck off", "fuck you", "stick it up your ass", "stick it up your arse", "you fucking retard", "not helping"]
     parentsFightingArray = ["my parents keep fighting", "my parents fight", "my parents always fight"]
     iWantSomeoneToTalkToArray = ["i want someone who I can talk to", "i want someone to talk to", "i need someone to talk to"]
     degradingMeArray = ["keep degrading me", "degrade me", "demean me", "keep demeaning me", "denigrate me", "keep denigrating me"]
     feelingPanickyArray = ["i feel panicky", "im feeling panicky", "im panicking", "im having a panic attack", "i am having a panic attack"]
-    shouldIContactDoctorArray = ["should i call a doctor", "should i contact a doctor", "should i get in touch with a doctor", "should i call my doctor", "should i contact my doctor", 
-                            "should i get in touch with my doctor", "would it be a good idea for me to call a doctor", "would it be a good idea for me to call my doctor", "shall i call a doctor", 
+    shouldIContactDoctorArray = ["should i call a doctor", "should i contact a doctor", "should i get in touch with a doctor", "should i call my doctor", "should i contact my doctor",
+                            "should i get in touch with my doctor", "would it be a good idea for me to call a doctor", "would it be a good idea for me to call my doctor", "shall i call a doctor",
                             "shall i get in touch with a doctor", "shall i call my doctor", "shall i get in touch with my doctor"]
-    strugglingWithSchoolArray = ["im struggling with school", "im struggling at school", "im having a hard time with school", "i am struggling with school", "i am struggling at school", 
+    strugglingWithSchoolArray = ["im struggling with school", "im struggling at school", "im having a hard time with school", "i am struggling with school", "i am struggling at school",
         "i am having a hard time with school"]
-    notFunctioningDueToDepressionArray = ["im not functioning due to depression", "im not functioning because of depression", "i am not functioning due to depression", 
-        "i am not functioning because of depression", "depression is causing me not to function", "i cant function because of depression","i cant function due to depression", 
+    notFunctioningDueToDepressionArray = ["im not functioning due to depression", "im not functioning because of depression", "i am not functioning due to depression",
+        "i am not functioning because of depression", "depression is causing me not to function", "i cant function because of depression","i cant function due to depression",
         "depression means i cant function", "im a low-functioning depressive"]
     iDontTrustAnyoneArray = ["i dont trust anyone", "i cant trust anyone", "theres noone i can trust", "theres nobody i can trust", "i have noone i can trust", "i have nobody i can trust", "i trust noone", "i trust nobody"]
-    theOnlyReasonIHaventKilledMyselfArray = ["the only reason I havent killed myself", "the only reason I havent killed my self", "the only reason I havent committed suicide", 
+    theOnlyReasonIHaventKilledMyselfArray = ["the only reason I havent killed myself", "the only reason I havent killed my self", "the only reason I havent committed suicide",
                         "the only reason I havent ended my life", "the only reason I havent ended myself", "the only reason I havent finished myself off", ]
-    iFeelStupidForHavingTheseFeelingsArray = ["i feel stupid for having these feelings",  "i feel a bit stupid for having these feelings",  "i feel like its a bit stupid to have these feelings", "i feel like its stupid to have these feelings", 
-                        "having these feelings makes me feel stupid", "how stupid i am for feeling like this", "im stupid enough to have these feelings",  "i feel silly for having these feelings", "i feel a bit silly for having these feelings", 
-                        "i feel like its a bit silly to have these feelings", "i feel like its silly to have these feelings", "having these feelings makes me feel silly", "how silly i am for feeling like this", "im silly enough to have these feelings", 
-                        "i feel an idiot for having these feelings", "i feel a bit of an idiot for having these feelings", "it makes me a bit of an idiot to have these feelings", "it makes me an idiot to have these feelings", "having these feelings makes me feel like an idiot", 
+    iFeelStupidForHavingTheseFeelingsArray = ["i feel stupid for having these feelings",  "i feel a bit stupid for having these feelings",  "i feel like its a bit stupid to have these feelings", "i feel like its stupid to have these feelings",
+                        "having these feelings makes me feel stupid", "how stupid i am for feeling like this", "im stupid enough to have these feelings",  "i feel silly for having these feelings", "i feel a bit silly for having these feelings",
+                        "i feel like its a bit silly to have these feelings", "i feel like its silly to have these feelings", "having these feelings makes me feel silly", "how silly i am for feeling like this", "im silly enough to have these feelings",
+                        "i feel an idiot for having these feelings", "i feel a bit of an idiot for having these feelings", "it makes me a bit of an idiot to have these feelings", "it makes me an idiot to have these feelings", "having these feelings makes me feel like an idiot",
                         "im such an idiot for feeling like this", "im an idiot to have these feelings",]
     imFeelingFatArray = ["im feeling fat", "is making me feel fat", "makes me feel fat", "i feel fat"]
-    nooneHelpsMeFeelBetterArray = ["noone helps me feel better", "no one helps me feel better", "nobody helps me feel better", "there isnt anyone to help me feel better", "there is nobody to help me feel better", "there is noone to help me feel better", 
+    nooneHelpsMeFeelBetterArray = ["noone helps me feel better", "no one helps me feel better", "nobody helps me feel better", "there isnt anyone to help me feel better", "there is nobody to help me feel better", "there is noone to help me feel better",
                         "there is no one to help me feel better", "there isnt anyone who helps me feel better", "there is nobody who helps me feel better", "there is noone who helps me feel better", "there is no one who helps me feel better", ]
     iHaveLostMyFriendsArray = ["i have lost my friends", "ive lost my friends", "i have lost most of my friends", "ive lost most of my friends",             "i have managed to lose my friends", "ive managed to lose my friends", "i have managed to lose most of my friends",
-                         "ive managed to lose most of my friends", "i have scared off my friends", "ive scared off my friends", "i have scared off most of my friends", "ive scared off most of my friends",             "i have managed to scare off my friends", "ive managed to scare off my friends", 
+                         "ive managed to lose most of my friends", "i have scared off my friends", "ive scared off my friends", "i have scared off most of my friends", "ive scared off most of my friends",             "i have managed to scare off my friends", "ive managed to scare off my friends",
                          "i have managed to scare off most of my friends", "ive managed to scare off most of my friends", ]
-    makesMeWantToSelfHarmArray = ["makes me want to self harm", "makes me want to self-harm", "makes me want to selfharm",            "gives me urges to self harm", "gives me urges to self-harm", "gives me urges to selfharm",            "gives me desires to self harm", "gives me desires to self-harm", 
+    makesMeWantToSelfHarmArray = ["makes me want to self harm", "makes me want to self-harm", "makes me want to selfharm",            "gives me urges to self harm", "gives me urges to self-harm", "gives me urges to selfharm",            "gives me desires to self harm", "gives me desires to self-harm",
                         "gives me desires to selfharm", "makes me think i want to self harm", "makes me think i want to self-harm", "makes me think i want to selfharm",]
     iHaventSelfHarmedArray = ["i havent self-harmed", "i havent self harmed", "i havent selfharmed",               "ive managed not to self-harm", "ive managed not to self harm", "ive managed not to selfharm", "i have managed not to self-harm", "i have managed not to self harm", "i have managed not to selfharm", ]
     iDontHaveMotivationArray = ["i dont have motivation", "i dont have the motivation", "i dont have any motivation", "i dont have any of the motivation", "i dont have any kind of motivation", "i dont have enough motivation", "i do not have motivation", "i do not have the motivation", "i do not have any motivation",
-                         "i do not have any of the motivation", "i do not have any kind of motivation", "i do not have enough motivation", "im lacking in motivation", "im lacking in any motivation", "im lacking in any of the motivation", "im lacking in any kind of motivation", "i am lacking in motivation", 
-                         "i am lacking in any motivation", "i am lacking in any of the motivation", "i am lacking in any kind of motivation", "ive lost all motivation", "i no longer have any motivation", "ive no longer got any motivation", "i dont have drive", "i dont have the drive", "i dont have any drive", 
+                         "i do not have any of the motivation", "i do not have any kind of motivation", "i do not have enough motivation", "im lacking in motivation", "im lacking in any motivation", "im lacking in any of the motivation", "im lacking in any kind of motivation", "i am lacking in motivation",
+                         "i am lacking in any motivation", "i am lacking in any of the motivation", "i am lacking in any kind of motivation", "ive lost all motivation", "i no longer have any motivation", "ive no longer got any motivation", "i dont have drive", "i dont have the drive", "i dont have any drive",
                          "i dont have any of the drive", "i dont have any kind of drive", "i dont have enough drive", "i do not have drive", "i do not have the drive", "i do not have any drive", "i do not have any of the drive", "i do not have any kind of drive", "i do not have enough drive",  "im lacking in drive",
                          "im lacking in any drive", "im lacking in any of the drive", "im lacking in any kind of drive", "i am lacking in drive", "i am lacking in any drive", "i am lacking in any of the drive", "i am lacking in any kind of drive", "ive lost all drive", "i no longer have any drive", "ive no longer got any drive"]
     myLifeIsBoringArray = ["my life is boring", "my life is dull", " my life is tedious", "life is boring for me", "life is dull for me", " life is tedious for me", ]
@@ -1144,7 +928,7 @@ def choose_bot_wordy_response(message, clientId):
     imTiredArray = ["im tired", "i am tired", "im drained", "i am drained", "im exhausted", "i am exhausted",      "im worn out", "i am worn out",]
     iHaveBeenDepressedArray = ["i have been depressed"]
     boyfriendsLeftMeArray = ["boyfriends left me", "boyfriend has left me", "boyfriend left me",            "girlfriends left me", "girlfriend has left me", "girlfriend left me",            "wifes left me", "wife has left me", "wife left me", "husband has left me", "husbands left me", "husband left me"]
-    iKeepGettingHorribleThoughtsArray = ["i keep getting horrible thoughts", "i keep getting terrible thoughts", "i keep getting nasty thoughts", "i keep getting horrific thoughts", "i keep getting unpleasant thoughts", "i get horrible thoughts", 
+    iKeepGettingHorribleThoughtsArray = ["i keep getting horrible thoughts", "i keep getting terrible thoughts", "i keep getting nasty thoughts", "i keep getting horrific thoughts", "i keep getting unpleasant thoughts", "i get horrible thoughts",
                         "i get terrible thoughts", "i get nasty thoughts", "i get horrific thoughts", "i get unpleasant thoughts",]
     imMakingPeopleUpsetArray = ["im making people upset", "im upsetting people", "im causing people upset", "im causing upset for people", "people are getting upset and im the cause", "im making people hurt", "im hurting people", "im causing people hurt", "im causing hurt for people", "people are getting hurt and im the cause", "im harming people", "im causing people harm", "im causing harm for people", "people are getting harmed and im the cause"]
     iWantToDieButArray = ["i want to die, but", "i wanna die, but", "i would like to die, but"]
@@ -1582,8 +1366,6 @@ def choose_bot_wordy_response(message, clientId):
 
         return triggerHasBeenFound
 
-
-
     msgSaysIWantToKillMyself = CheckUserMessage(iWantToKillMyselfArray)
 
     msgSaysImGoingToKillMyself = CheckUserMessage(imGoingToKillMyselfArray)
@@ -1971,7 +1753,7 @@ def choose_bot_wordy_response(message, clientId):
 
 
     msgSaysParentsFighting = CheckUserMessage(parentsFightingArray)
-    
+
     msgSaysIWantSomeoneToTalkTo = CheckUserMessage(iWantSomeoneToTalkToArray)
 
     msgSaysDegradingMe = CheckUserMessage(degradingMeArray)
@@ -1988,7 +1770,7 @@ def choose_bot_wordy_response(message, clientId):
         #if the message ends in a question mark
         msgIsQuestion = True
 
-    
+
 
     msgSaysIDontTrustAnyone = CheckUserMessage(iDontTrustAnyoneArray)
     msgSaysTheOnlyReasonIHaventKilledMyself = CheckUserMessage(theOnlyReasonIHaventKilledMyselfArray)
@@ -2019,8 +1801,18 @@ def choose_bot_wordy_response(message, clientId):
         randomlyChosenIndex = random.randint(0,noOfEncouragingNoises-1)
         response = encouragingNoises[randomlyChosenIndex]
         return response
+    ai_data = {}
+    print('\nbefore trying ai\n')
+    try:
+        ai_data = se.get_cat_no_cut(message)
+        guse_cat = ai_data['max_over_thresh']
+        print(guse_cat)
+    except Exception as e:
+        print("\nai not working\n")
+        print(e)
 
-
+    print('\nafter trying ai\n')
+    print('convo id: ',conversationId)
     if msgSaysIWantToKillMyself == True and iWantToKillMyselfResponseAlreadyUsed != [conversationId,True]:
         # if the user's message contains some variant of "I want to kill myself"
         response = "Things must be pretty grim if you've got to the stage where you're talking about ending your life like this."
@@ -2048,7 +1840,7 @@ def choose_bot_wordy_response(message, clientId):
         iWillDieTodayResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysIWantToDieBut == True and iWantToDieButResponseAlreadyUsed != [conversationId,True]:
-        respone = "It's sad that you want to die, but I'm glad you're still staying alive"
+        response = "It's sad that you want to die, but I'm glad you're still staying alive"
         iWantToDieButResponseAlreadyUsed = [conversationId,True]
 
     elif msgSaysIWantToDie == True and iWantToDieResponseAlreadyUsed != [conversationId,True]:
@@ -2342,7 +2134,7 @@ def choose_bot_wordy_response(message, clientId):
     elif msgSaysIDontTrustAnyone == True and iDontTrustAnyoneResponseAlreadyUsed != [conversationId,True]:
         response = "Not being able to trust anyone sounds tough. And lonely..."
         iDontTrustAnyoneResponseAlreadyUsed = [conversationId,True]
-    
+
     elif msgSaysImUseless == True and imUselessResponseAlreadyUsed != [conversationId,True]:
         ### If the message includes a string roughly equivalent to saying "I'm useless", then...
         if USER_CHARACTER_COUNT < 1000:
@@ -3051,10 +2843,10 @@ def choose_bot_wordy_response(message, clientId):
 
     elif msgIsQuestion:
         #if the message ends in a question mark
-        msgIsQuestionResponses = ["I might not always do a good job of answering your questions, but I'm happy to be here to listen", 
-            "Sorry if I don't always know answers to things -- I'm a pretty simple bot. However if you want to keep on talking to me, please feel free.", 
-            "Thanks for posing your question, and sorry -- I'm terrible at coming up with good answers. I'm just here to listen, so feel free to use me as a space to explore your feelings.", 
-            "I'm here to listen, so feel free to continuing discussing things with me. Sorry I'm not great at answering questions.", 
+        msgIsQuestionResponses = ["I might not always do a good job of answering your questions, but I'm happy to be here to listen",
+            "Sorry if I don't always know answers to things -- I'm a pretty simple bot. However if you want to keep on talking to me, please feel free.",
+            "Thanks for posing your question, and sorry -- I'm terrible at coming up with good answers. I'm just here to listen, so feel free to use me as a space to explore your feelings.",
+            "I'm here to listen, so feel free to continuing discussing things with me. Sorry I'm not great at answering questions.",
             "I'm quite a simple little bot, so please forgive me if I don't always give clever answers to questions; I'm here to listen, so please keep talking to me if it helps"]
         randomlyChosenIndex = random.randint(0, len(msgIsQuestionResponses)-1)
         response = msgIsQuestionResponses[randomlyChosenIndex]
@@ -3066,18 +2858,33 @@ def choose_bot_wordy_response(message, clientId):
         response = "I see you've said something very short there, which is cool :-). But feel free to type full sentences if you want. Just write about whatever's on your mind -- I'm here to listen."
         shortResponseAlreadyUsed = [conversationId,True]
 
-
+    elif len(guse_cat) != 0: # just for test purposes
+        try:
+            out_cat, response = se.guse_response(guse_cat)
+            #if out_cat not in ai_repeat:
+            if out_cat == 'Abuse':
+                response = ast.literal_eval(response)
+                #ai_repeat.append(out_cat)
+            elif out_cat == None:
+                print('outcat == none')
+                response = selectRandomResponse()
+                print('got it!!!!!')
+        except Exception as e:
+            print(e)
+            traceback.print_exc()
+            response = selectRandomResponse()
     else:
         response = selectRandomResponse()
 
-    return response
+    return response, ai_data
 
 
 @app.route('/')
 def home():
-    homepage_name = random.choice(["home - bootstrap 2020m05.html", "home - original pre-2020m05.html"])
+    homepage_name = random.choice(["home - original pre-2020m05.html", "home - bootstrap 2020m05.html"])
     get_google_ads_data()
     return render_template(homepage_name)
+
 
 campaign = ""
 group = ""
@@ -3103,6 +2910,7 @@ def first_function_after_app_route():
     It then calls the function which does all the work
     And then it returns the outputs back to the front end
     """
+
 
     _input = json.loads(request.args.get('msg')) # perhaps don't need json.loads?
     message = _input[0]
@@ -3256,6 +3064,7 @@ def bot_processing(inputs_dict):
         abortConversation = False
         noOfResponseFragments = 0 # to assign the variable
 
+
         if initialHappinessScore > 7:
             response = ["Sounds like you're feeling OK! I'm designed for people who are feeling low \
             and have something on their mind. But you're feeling good, which is great! :-)", \
@@ -3309,7 +3118,7 @@ def bot_processing(inputs_dict):
             response = "I'd love to hear you say more about that. Before we do that, would you like me to explain about how this chatbot works?"
             nextUserOptions = ["Yes"] # this is the option that the user can select
             nextUserInput = next_user_input_one(nextUserOptions,clientId) # this puts a string of html around it
-            next_section = section + 2
+            next_section = section + 3
         else:
             response = "Do you feel this way often?"
             nextUserOptions = ["Yes", "No"] # this is the option that the user can select
@@ -3327,7 +3136,7 @@ def bot_processing(inputs_dict):
     elif section==3:
         if message.lower() == "yes":
             response = "Feeling this way often sounds pretty rubbish. I'm sorry about that. How long have been like this?"
-            next_section = 35
+            next_section = 4
             noOfResponseFragments = no_of_fragments_in_str_or_list(response)
             nextUserOptions = [""] # n/a because next user input type is not buttons
             nextUserInput = nextUserInputFreeText
@@ -3338,7 +3147,7 @@ def bot_processing(inputs_dict):
             nextUserOptions = ["Yes, tell me how this bot works"] # this is the option that the user can select
             nextUserInput = next_user_input_one(nextUserOptions,clientId) # this puts a string of html around it
             nextUserInputType = "userInputButton"
-            next_section = 4
+            next_section = 5
             if message.lower() != "no":
                 print("ERROR ERROR ERROR ERROR ERROR ERROR ERROR: in section==3, we're expecting the message to be yes or no, but it's coming through as something else")
 
@@ -3349,20 +3158,20 @@ def bot_processing(inputs_dict):
 
     # 35 might seem like an odd choice of section number
     # we were previously using 3.5, but using a non-integer-typed number caused errors in the guided track bot on the other side of the API
-    elif section==35:
+    elif section==4:
         response = "I'd like to hear more about that. Before we do that, I'd like to quickly explain how this chatbot works, if that's OK?"
         noOfResponseFragments = no_of_fragments_in_str_or_list(response)
         nextUserOptions = ["Yes, tell me how this bot works"] # this is the option that the user can select
         nextUserInput = next_user_input_one(nextUserOptions,clientId) # this puts a string of html around it
         nextUserInputType = "userInputButton"
-        next_section = 4
+        next_section = section+1
         responseForWriteData = ""
 
         for responseIndex in range(0,noOfResponseFragments):
             responseForWriteData = responseForWriteData + response[responseIndex]
         write_data(anonymous, conversationId, message, responseForWriteData, section, clientId)
 
-    elif section==4:
+    elif section==5:
         response = ["I'm actually a very simple little bot. So please feel free to talk to me, \
         and sorry in advance if I don't always do a good job of understanding you. ",
         "Instead think of this as being more like writing a journal, but as you keep writing, \
@@ -3379,7 +3188,7 @@ def bot_processing(inputs_dict):
             responseForWriteData = responseForWriteData + response[responseIndex]
         write_data(anonymous, conversationId, message, responseForWriteData, section, clientId)
 
-    elif section==5:
+    elif section==6:
 
         response = "So given that I can't track you down, and also because I'm a very simple bot, \
         if you told me about an emergency/crisis situation, I wouldn't \
@@ -3392,7 +3201,7 @@ def bot_processing(inputs_dict):
 
         write_data(anonymous, conversationId, message, response, section, clientId)
 
-    elif section==6:
+    elif section==7:
 
         response = "Next I'm going to give you the choice whether you want to use this on a confidential \
         or anonymous basis. When I say anonymous, I mean that our boffins may see your text to help \
@@ -3405,7 +3214,7 @@ def bot_processing(inputs_dict):
 
         write_data(anonymous, conversationId, message, response, section, clientId)
 
-    elif section==7:
+    elif section==8:
 
         response = "And when I say confidential, I mean that your text won't be \
         stored at all, and no human will see what you write."
@@ -3417,7 +3226,7 @@ def bot_processing(inputs_dict):
 
         write_data(anonymous, conversationId, message, response, section, clientId)
 
-    elif section==8:
+    elif section==9:
 
         response = "Would you like this service to be anonymous or confidential?"
         next_section = section + 1
@@ -3428,7 +3237,7 @@ def bot_processing(inputs_dict):
 
         write_data(anonymous, conversationId, message, response, section, clientId)
 
-    elif section==9:
+    elif section==10:
 
         anonymous = "true" if message.split()[0].lower()=="anonymous" else "false"
         response = "Thanks! One last thing: You remember saying how you felt on a scale from 1 to 10 \
@@ -3441,7 +3250,7 @@ def bot_processing(inputs_dict):
 
         write_data(anonymous, conversationId, message, response, section, clientId)
 
-    elif section==10:
+    elif section==11:
 
         if clientId == "originalJavascriptClient":
             response = ["When you're finished using the bot, please click the stop button on the right \
@@ -3472,7 +3281,7 @@ def bot_processing(inputs_dict):
         write_data(anonymous, conversationId, message, responseForWriteData, section, clientId)
 
 
-    elif section==11:
+    elif section==12:
 
         responseFragmentBasedOnScore =""
 
@@ -3495,14 +3304,14 @@ def bot_processing(inputs_dict):
         nextUserInputType = "freeText"
 
         write_data(anonymous, conversationId, message, response, section, clientId)
+        setattr(se,"repeat",[])
 
 
 
-
-    elif section > 11:
+    elif section > 12:
 
         USER_CHARACTER_COUNT += len(message)
-
+        all_data = {}
         if(message.lower()=="stop"):
             response = "Thank you for using this bot. Please rate how you feel on a scale \
             from 1 to 10, where 1 is terrible and 10 is great. As a reminder, the score you \
@@ -3513,7 +3322,7 @@ def bot_processing(inputs_dict):
             nextUserInput = nextUserInputFinalHappinessSurvey
             nextUserInputType = "finalHappinessSurvey"
         else:
-            response = choose_bot_wordy_response(message, clientId)
+            response, all_data = choose_bot_wordy_response(message, clientId)
             next_section = section + 1
             noOfResponseFragments = no_of_fragments_in_str_or_list(response)
             nextUserOptions = [""] # n/a because next user input type is not buttons
@@ -3529,7 +3338,7 @@ def bot_processing(inputs_dict):
         #     for responseIndex in range(0,noOfResponseFragments):
         #         responseForWriteData = responseForWriteData + response[responseIndex]
 
-        write_data(anonymous, conversationId, message, responseForWriteData, section, clientId)
+        write_data(anonymous, conversationId, message, responseForWriteData, section, clientId, all_data)
 
 
     elif section == -1: # this is the "end" (i.e. user has entered "stop") section
