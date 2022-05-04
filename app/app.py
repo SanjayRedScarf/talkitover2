@@ -28,8 +28,11 @@ def home():
     session['GOOGLE_ADS_DATA'] = _google_ads_service.get_google_ads_data_from_url()
 
     session['TRIGGERS_DICT'] = _triggers_repository.get_triggers_dictionary()
- 
-    session['version'] = 17 # make sure to change this number whenever changing versions
+
+    session['RESPONSE_DICT']= _triggers_repository.get_response_dictionary()
+
+    session['version'] = 18 # make sure to change this number whenever changing versions
+
 
 
 
@@ -39,10 +42,11 @@ def home():
     session['response_modifier'] = {'suicidal':False,'lonely':False,'hate_looks':False} # tracks if user is suicidal, upset, etc which can change response used
     session['short_msg_count'] = 0
     
-    session['heavy_q'] = random.choice([True,False])
     session['last_trigger'] = ""
+
+    session['qheavy']= random.choice([True,False])
     session['multi'] = random.choice([True,False])
-    
+    session['no_char_count'] = random.choice([True,False])
     return render_template(homepage_name)
 
 @app.route("/get")

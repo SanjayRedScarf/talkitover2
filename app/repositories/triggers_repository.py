@@ -1,4 +1,5 @@
 import os, json
+from urllib import response
 from flask import current_app, session
 import random
 
@@ -18,7 +19,20 @@ class TriggersRepository:
             triggers = json.load(json_file) 
 
         return triggers
-            
+    
+    def get_response_dictionary(self):
+        """
+        Creates a dictionary of triggers.
+        """
+        current_directory = os.path.dirname(os.path.realpath('__file__'))
+        filename = os.path.join(current_directory, 'app/response.json')
+
+        responses = ""
+
+        with open(filename) as json_file: 
+            responses = json.load(json_file) 
+
+        return responses
 
     def get_encouraging_noises_random_response(self):
         """
