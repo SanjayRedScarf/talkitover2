@@ -31,9 +31,7 @@ class MainConversationService:
                 ai_data = sentence_encoder.get_cat_no_cut(conversation_input_data.message)
                 in_cats = ai_data['max_over_thresh']
                 trigger, response = sentence_encoder.guse_response(in_cats,session['ai_repeat'])
-                if trigger == 'Abuse':
-                    response = ast.literal_eval(response)
-                elif trigger == None:
+                if trigger == None:
                     trigger = 'encouragingNoises'
                     #session['response_type'] = trigger
                     response = _trigger_response_service.get_response_for_trigger(cleaned_message, trigger, user_character_count)

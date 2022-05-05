@@ -8,7 +8,10 @@
             ],
             "threshold": 0.4,
             "already_used": "abuseResponseAlreadyUsed",
-            "response": "[\"Just a quick reminder -- if there's any kind of abuse situation going on, or if you or anyone else is unsafe, please remember that I can't get help for you, so you would need to get help for yourself if you need it.\", \"And I'm programmed to err on the side of caution (i.e. I might accidentally give this response when it's not a clearly abusive situation, sorry about that). I didn't mean to interrupt the flow of this conversation, so please feel free to keep talking.\"]",
+            "response": [
+                  "Just a quick reminder -- if there's any kind of abuse situation going on, or if you or anyone else is unsafe, please remember that I can't get help for you, so you would need to get help for yourself if you need it.",
+                  "And I'm programmed to err on the side of caution (i.e. I might accidentally give this response when it's not a clearly abusive situation, sorry about that). I didn't mean to interrupt the flow of this conversation, so please feel free to keep talking."
+            ],
             "priority": 3
       },
       "Addiction": {
