@@ -49,8 +49,13 @@ class TriggerResponseService:
 
             single_response_dict = list(filter(lambda x:(user_character_count in range(x['char_count'][0],x['char_count'][1])) and 
             (len(user_message) in range(x['msg_len'][0],x['msg_len'][1])) and
-            (flags.get(x['flag'],False) if any(x in trigger_flags for x in flags) else x['flag'] == None ),response_dict[trigger]))[0]
+            (flags.get(x['flag'],False) if any(x in trigger_flags for x in flags) else x['flag'] == None ),response_dict[trigger]))
             
+            if trigger[:12] == 'thisBotIsBad' and not user_message.isupper():
+                single_response_dict = single_response_dict[1]
+            else:
+                single_response_dict = single_response_dict[0]
+
             if session['qheavy']:
                 if session['no_char_count']:
                     response = single_response_dict['qheavy_nochar_response']
@@ -64,7 +69,8 @@ class TriggerResponseService:
 
             if single_response_dict['random'] == 'random':
                 response = random.choice(response)
-        
+
+
         elif (" i deserve" in user_message.lower() or user_message.lower()[:9] == "i deserve"):
             response = "I just want to take a moment to assert that you are a valuable human being in your right, no matter what"
 
