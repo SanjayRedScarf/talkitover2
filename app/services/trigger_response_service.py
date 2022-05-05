@@ -64,14 +64,17 @@ class TriggerResponseService:
 
             if single_response_dict['random'] == 'random':
                 response = random.choice(response)
+        
+        elif (" i deserve" in user_message.lower() or user_message.lower()[:9] == "i deserve"):
+            response = "I just want to take a moment to assert that you are a valuable human being in your right, no matter what"
 
+        elif " feeling " in user_message.lower():
+            response = "Thank you for sharing this. Could you tell me more about your feelings please?"
+        
         elif (" " not in user_message or len(user_message) < 10) and (user_character_count < 40 and session['short_msg_count'] < 2):
             ### If it's the user's first written response and they've given  (essentially) a one-word message, or maybe something without spaces (e.g. typing gibberish like usanvoiudvuvufdsiudsbca)
             ### When I say one-word message, I mean that either it is short, or something that might be longer but has no space characters (this includes someone typing gibberish)
             response = "I see you've said something very short there, which is cool :-). But feel free to type full sentences if you want. Just write about whatever's on your mind -- I'm here to listen."
-            
-            print ('user_character_count in trigger_response_service in elif:',user_character_count)
-            print('short_msg_count:',session['short_msg_count'])
             
             session['short_msg_count'] += 1
         
