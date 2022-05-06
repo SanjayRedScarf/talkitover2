@@ -23,7 +23,7 @@ Session(app)
 
 @app.route('/')
 def home():
-    homepage_name = random.choice(["home - bootstrap 2020m05.html"])#, "home - original pre-2020m05.html"]) only use bootstrap home for now
+    homepage_name = random.choice(["home - bootstrap 2020m05.html", "home - original pre-2020m05.html"])
 
     session['GOOGLE_ADS_DATA'] = _google_ads_service.get_google_ads_data_from_url()
 

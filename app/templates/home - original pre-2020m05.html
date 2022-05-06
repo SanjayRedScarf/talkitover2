@@ -258,7 +258,7 @@
 
           $.get("/get", { msg: JSON.stringify([userText, sectionNumber, output, initialHappinessValueSent, finalHappinessValueSent, anonymous, conversationId, clientId]) }).done(function(data) {          
           
-            if (async_elipsis != undefined){
+            if (async_elipsis != undefined & currentUserInputType !="finalHappinessSurvey" ){
             async_elipsis.parentNode.removeChild(async_elipsis);
             
           }
@@ -379,7 +379,7 @@
         //userText = "stop";
         currentUserInputType = "stopButton";
         console.log("currentUserInputType is "+currentUserInputType);
-        getBotResponse();
+        asyncBotResponse();
       }
 
       function addElipsis(){
