@@ -58,21 +58,26 @@ class TriggerResponseService:
             if trigger[:12] == 'thisBotIsBad' and not user_message.isupper():
                 single_response_dict = single_response_dict[1]
             else:
-                single_response_dict = single_response_dict[0]
+                try:
+                    single_response_dict = single_response_dict[0]
+                except:
+                    response = ""
 
-            if session['qheavy']:
-                if session['no_char_count']:
-                    response = single_response_dict['qheavy_nochar_response']
-                else:
-                    response = single_response_dict['qheavy_response']
-            else:
-                if session['no_char_count']:
-                    response = single_response_dict['qlight_nochar_response']
-                else:
-                    response = single_response_dict['qlight_response']
 
-            if single_response_dict['random'] == 'random':
-                response = random.choice(response)
+            if len(single_response_dict) > 0:
+                if session['qheavy']:
+                    if session['no_char_count']:
+                        response = single_response_dict['qheavy_nochar_response']
+                    else:
+                        response = single_response_dict['qheavy_response']
+                else:
+                    if session['no_char_count']:
+                        response = single_response_dict['qlight_nochar_response']
+                    else:
+                        response = single_response_dict['qlight_response']
+
+                if single_response_dict['random'] == 'random':
+                    response = random.choice(response)
 
 
         elif (" i deserve" in user_message.lower() or user_message.lower()[:9] == "i deserve"):
