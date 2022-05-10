@@ -1388,7 +1388,7 @@
     "iHaveDepression": [
         {
             "char_count": [
-                0,
+                1000,
                 9999999999
             ],
             "flag": null,
@@ -1405,6 +1405,22 @@
         {
             "char_count": [
                 0,
+                1000
+            ],
+            "flag": null,
+            "msg_len": [
+                200,
+                9999999
+            ],
+            "qheavy_nochar_response": "Sorry to hear that you have depression. Could you tell me more about that?",
+            "qheavy_response": "Sorry about all that's going on for you, and about your depression. How long have you been feeling this way?",
+            "qlight_nochar_response": "Sorry to hear that you have depression. Could you tell me more about that?",
+            "qlight_response": "Sorry about all that's going on for you, and about your depression. Could you tell me more about that?",
+            "random": null
+        },
+        {
+            "char_count": [
+                1000,
                 9999999999
             ],
             "flag": null,
