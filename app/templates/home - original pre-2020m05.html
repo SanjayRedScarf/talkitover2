@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <title>Talk It Over</title>
-<body>
+<body style="overflow:hidden;">
+
   <center>
     <h1>
       <img
@@ -11,7 +12,16 @@
       />TIO Your Personal ChatBot
     </h1>
   </center>
-<div class="box"></div>
+  <div id="popup">    
+    <p>It seems like you've finished speaking with the bot? This is just a friendly request for you to press 'stop' and leave your final happiness score before you leave.
+      By doing that, you can help us to improve the bot. Thank you! </p>
+      <p></p>
+      <p>(If this popup appeared by accident, you can click the close button or anywhere within the site and it will go away.)
+    </p>
+    <button style="color: black;" onclick="this.parentNode.parentNode.removeChild(this.parentNode);">Close</button>
+  </div>
+<div class="box">
+
   <div id="mainBox" class="boxed">
     <div>
       <div id="chatbox">
@@ -49,7 +59,9 @@
       </div>
     </div>
   </div>
-  <div id="stopButtonMarker"></div>
+  
+</div>
+<div id="stopButtonMarker"></div>
   <!--<div style="float: right;">
     <button id="stopButton" type="button" onclick="initiateStopSection();">Stop</button>
   </div>-->
@@ -80,10 +92,34 @@
       margin-top: 3px;
       text-align: center;
     }
-
+    #popup {
+      top:10px; 
+      left: 50px; 
+      right:50px; 
+      bottom:75px;
+      position: fixed;
+      height: 0px;
+      width: 0px;
+      visibility: hidden;
+      z-index: 10002;
+      opacity: 0;
+      transform: scale(0.5);
+      transition: transform 0.2s, opacity 0.2s, visibility 0s 0.2s;
+      margin: 0 auto;
+      text-align: center;
+      box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+      /*width: 60%;*/
+      background: #862a5c;
+      padding-bottom: 100px;
+      padding-top: 50px;
+      color: #fff;
+      font-size: 2rem;
+    }
 
     #stopButton {
-      float: right;
+      position: absolute;
+      bottom: 10px;
+      right: 50px;
       height: 50px;
       /*margin-top: 60px;*/
       font-size: 35px;
@@ -95,8 +131,10 @@
       margin-right: auto;
       width: 85%;
       margin-top: 60px;
+      position:relative;
     }
     #userInputDiv {
+      position:relative;
       margin-left: auto;
       margin-right: auto;
       width: 85%;
@@ -104,6 +142,7 @@
       margin-top: 60px;
     }
     #textInput {
+      position:relative;
       width: 85%;
       border: none;
       border-bottom: 3px solid black;
@@ -182,7 +221,13 @@
       /*border: 1px solid green;*/ /* removed by Sanjay in Sept 2020*/
     }
     .box {
-      border: 2px solid black;
+      overflow:auto;
+      position:absolute;
+      top:100px; 
+      left: 50px; 
+      right:50px; 
+      bottom:75px;
+      border-top: 2px solid black;
     }
   </style>
 </head>
@@ -218,7 +263,8 @@
         // This block of if statements sets the value of userText, which stores the text produced by the user
         console.log("currentUserInputType = "+currentUserInputType);
         if (currentUserInputType=="freeText") {
-          userText = $("#textInput").val();}
+          userText = $("#textInput").val();
+          if (userText == 'stop'){sectionNumber = 100}}
         else if (currentUserInputType == "initialHappinessSurvey"){
           initialHappinessValue = $("#initialHappinessSurvey").val();
           userText = String(initialHappinessValue);}
@@ -244,14 +290,15 @@
             .scrollIntoView({ block: "start", behavior: "smooth" });
 
           //if the stop button has been pressed, we want to take the stop button away
-          if(currentUserInputType=="stopButton"){$("#stopButton").remove();}
+          if(currentUserInputType=="stopButton" || sectionNumber == 100 ){$("#stopButton").remove();}
 
           if (initialHappinessValue>0){                         // if the initialHappinessValue has a value (i.e. if it's the first section)
             initialHappinessValueSent = initialHappinessValue;} // then the variable which sends the initialHappinessValue to the server (which we're calling initialHappinessValueSent) is set equal to that value
           else {initialHappinessValueSent = -1;}                // otherwise just give it a random value -- in this case -1 -- (otherwise it throws up an error about the int() function in python not accepting a nonetype)
 
           if (finalHappinessValue>0){                         // if the finalHappinessValue has a value (i.e. if it's the first section)
-            finalHappinessValueSent = finalHappinessValue;}   // then the variable which sends the finalHappinessValue to the server (which we're calling finalHappinessValueSent) is set equal to that value
+            finalHappinessValueSent = finalHappinessValue;
+            document.removeEventListener('mouseout', mouseEvent);}   // then the variable which sends the finalHappinessValue to the server (which we're calling finalHappinessValueSent) is set equal to that value
           else {finalHappinessValueSent = -1;}                // otherwise just give it a random value -- in this case -1 -- (otherwise it throws up an error about the int() function in python not accepting a nonetype)
 
           clientId = "originalJavascriptClient"
@@ -360,7 +407,7 @@
           else if (noOfResponseFragments>2){console.log("Error: this is set up for 1 or 2 response fragments only");}
 
           if (sectionNumber == 11){appendStopButton();}
-
+          if (sectionNumber == 3){document.addEventListener('mouseout', mouseEvent);}
           });
         }
       }
@@ -411,6 +458,55 @@
         catch{console.log('async catch')}
         finally{console.log('async finally')}
       }
+      let eventListener;
+
+      const show = () => {
+        const element = document.querySelector("#popup");
+        element.style.height = "300px"
+        element.style.width = "75%"
+        element.style.visibility = "visible";
+        element.style.opacity = "1";
+        element.style.transform = "scale(1)";
+        element.style.transition = "0.4s, opacity 0.4s";
+
+        eventListener = document.addEventListener("click", function (clickEvent) {
+          let el = clickEvent.target;
+          let inPopup = false;
+          if (el.id === "popup") {
+            inPopup = true;
+          }
+          while ((el = el.parentNode)) {
+            if (el.id == "popup") {
+              inPopup = true;
+            }
+          }
+          if (!inPopup) hide();
+        });
+      };
+      const hide = () => {
+      const element = document.querySelector("#popup");
+      element.style.visibility = "hidden";
+      element.style.opacity = "0";
+      element.style.transform = "scale(0.5)";
+      element.style.transition = "0.2s, opacity 0.2s, visibility 0s 0.2s";
+    
+      if (eventListener) {
+        document.removeEventListener(eventListener);
+      }
+    };
+    
+    const mouseEvent = e => {
+      const shouldShowExitIntent = 
+          !e.toElement && 
+          !e.relatedTarget &&
+          e.clientY < 10;
+
+      if (shouldShowExitIntent) {
+          document.removeEventListener('mouseout', mouseEvent);
+          show();
+      }
+  };
+
       $('body').on("keypress", '#textInput', function(e) {
           console.log("this is inside the keypress thingy");
         if (e.which == 13) {
