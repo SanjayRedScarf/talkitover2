@@ -31,7 +31,7 @@ def home():
 
     session['RESPONSE_DICT']= _triggers_repository.get_response_dictionary()
 
-    session['version'] = 18 # make sure to change this number whenever changing versions
+    session['version'] = 19 # make sure to change this number whenever changing versions
 
 
 

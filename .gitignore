@@ -2,3 +2,4 @@
 *.csv
 app/flask_session/*
 flask_session/*
+.env

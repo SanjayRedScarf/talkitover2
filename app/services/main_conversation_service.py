@@ -1,11 +1,13 @@
 from flask import session
-from services import string_cleansing_service, trigger_check_service, trigger_response_service
+from services import string_cleansing_service, trigger_check_service, trigger_response_service, gpt3_service
 from repositories import triggers_repository
 from threading import Thread
 from models import output_data
 import ast
+import openai
 
 triggers_that_can_be_repeated = ["msgIsQuestion"]
+gpt3 = gpt3_service.gpt()
 
 class MainConversationService:
 
@@ -54,6 +56,7 @@ class MainConversationService:
             trigger = 'specialCase'
         
         session['last_trigger'] = trigger
+        response = gpt3.get_response(cleaned_message)['choices'][0]["text"]
         return output_data.OutputData(response, conversation_input_data.section, [""], next_user_input, "freeText",ai_data,trigger)
 
         
