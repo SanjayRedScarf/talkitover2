@@ -56,7 +56,7 @@ class MainConversationService:
             trigger = 'specialCase'
         
         session['last_trigger'] = trigger
-        response = gpt3.get_response(cleaned_message)['choices'][0]["text"]
+        response = gpt3.get_response(cleaned_message)['choices'][0]["text"].lstrip()
         return output_data.OutputData(response, conversation_input_data.section, [""], next_user_input, "freeText",ai_data,trigger)
 
         
