@@ -55,8 +55,16 @@ class MainConversationService:
         if trigger == 'encouragingNoises' and response not in session['TRIGGERS_DICT']["encouragingNoises"]['triggers']:
             trigger = 'specialCase'
         
+        
+        if session['gpt3']:
+            try:
+                response = gpt3.get_response(cleaned_message)['choices'][0]["text"].lstrip()
+                trigger = 'gpt3'
+            except:
+                session['gpt3'] = False
+        
         session['last_trigger'] = trigger
-        response = gpt3.get_response(cleaned_message)['choices'][0]["text"].lstrip()
+
         return output_data.OutputData(response, conversation_input_data.section, [""], next_user_input, "freeText",ai_data,trigger)
 
         
