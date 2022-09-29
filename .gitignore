@@ -2,3 +2,5 @@
 *.csv
 app/flask_session/*
 flask_session/*
+.env
+.DS_Store
