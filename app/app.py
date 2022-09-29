@@ -31,22 +31,25 @@ def home():
 
     session['RESPONSE_DICT']= _triggers_repository.get_response_dictionary()
 
-    session['version'] = 18 # make sure to change this number whenever changing versions
+    session['version'] = 19 # make sure to change this number whenever changing versions
 
 
 
 
     session['uid'] = datetime.datetime.now().strftime('%Y%m%d%H%M%S%f') # unique user id, later used for data analysis
-    session['user_character_count'] = 0
+    session['user_character_count'] = 0 #total user characters throughout chat
     session['ai_repeat'] = [] # tracks which triggers have already been triggered by sentence encoder
     session['response_modifier'] = {'suicidal':False,'lonely':False,'hate_looks':False} # tracks if user is suicidal, upset, etc which can change response used
-    session['short_msg_count'] = 0
+    session['short_msg_count'] = 0 #counts the number of times the short msg trigger triggers
     
-    session['last_trigger'] = ""
+    session['last_trigger'] = "" # used for multi response triggers
 
+    #variables for a/b testing
     session['qheavy']= random.choice([True,False])
     session['multi'] = random.choice([True,False])
     session['no_char_count'] = random.choice([True,False])
+    session['gpt3'] = random.choice([True,False])
+    
     return render_template(homepage_name)
 
 @app.route("/get")
