@@ -1351,6 +1351,24 @@
             "random": null
         }
     ],
+    "iHaveAnxiety": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "Having anxiety sounds tough. Would you like to tell me more about what it's like for you?",
+            "qheavy_response": "Having anxiety sounds tough. Would you like to tell me more about what it's like for you?",
+            "qlight_nochar_response": "Having anxiety sounds tough. Would you like to tell me more about what it's like for you?",
+            "qlight_response": "Having anxiety sounds tough. Would you like to tell me more about what it's like for you?",
+            "random": null
+        }
+    ],
     "iHaveBeenDepressed": [
         {
             "char_count": [
@@ -1960,6 +1978,24 @@
             "qheavy_response": "Addictions can be really tough. Could you say more about what it means for you?",
             "qlight_nochar_response": "Addictions can be really tough. ",
             "qlight_response": "Addictions can be really tough. ",
+            "random": null
+        }
+    ],
+    "imAnxious": [
+        {
+            "char_count": [
+                0,
+                9999999999
+            ],
+            "flag": null,
+            "msg_len": [
+                0,
+                9999999
+            ],
+            "qheavy_nochar_response": "I'm sorry to hear you're feeling anxious. If it's helpful to talk about it, would you like to tell me more about it?",
+            "qheavy_response": "I'm sorry to hear you're feeling anxious. If it's helpful to talk about it, would you like to tell me more about it?",
+            "qlight_nochar_response": "I'm sorry to hear you're feeling anxious. If it's helpful to talk about it, would you like to tell me more about it?",
+            "qlight_response": "I'm sorry to hear you're feeling anxious. If it's helpful to talk about it, would you like to tell me more about it?",
             "random": null
         }
     ],
