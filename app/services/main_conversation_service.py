@@ -58,7 +58,7 @@ class MainConversationService:
         
         if session['gpt3']:
             try:
-                response = gpt3.get_response(cleaned_message)['choices'][0]["text"].lstrip()
+                response = gpt3.get_response(cleaned_message)['choices'][0]["text"].lstrip().split('\nHuman:')[0].lstrip("\"\'")
                 trigger = 'gpt3'
             except:
                 session['gpt3'] = False
