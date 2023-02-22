@@ -45,7 +45,7 @@ def home():
     session['last_trigger'] = "" # used for multi response triggers
 
     #variables for a/b testing
-    session['qheavy']= random.choice([True,False])
+    session['qheavy']= True # will remove the qheavy/qlight test later. For now force qheavy
     session['multi'] = random.choice([True,False])
     session['no_char_count'] = random.choice([True,False])
     session['gpt3'] = random.choice([True,False])
