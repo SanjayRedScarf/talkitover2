@@ -18,6 +18,8 @@ _sentence_encoder_service.make_cat_embed()
 
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
+app.config['SESSION_FILE_THRESHOLD'] = 100
+
 Session(app)
 
 
@@ -31,7 +33,7 @@ def home():
 
     session['RESPONSE_DICT']= _triggers_repository.get_response_dictionary()
 
-    session['version'] = 19 # make sure to change this number whenever changing versions
+    session['version'] = 20 # make sure to change this number whenever changing versions
 
 
 
@@ -48,8 +50,11 @@ def home():
     session['qheavy']= True # will remove the qheavy/qlight test later. For now force qheavy
     session['multi'] = random.choice([True,False])
     session['no_char_count'] = random.choice([True,False])
-    session['gpt3'] = random.choice([True,False])
+    session['gpt3'] = random.choice(['gpt','lookback','bot'])
     
+    #lookbacks for gpt3, include more context for response
+    session['lookback'] = {'user':'','bot':''}
+
     return render_template(homepage_name)
 
 @app.route("/get")
@@ -60,7 +65,9 @@ def main():
     print('this is the uid from app.py in main: {}'.format(session['uid']))
     print('this is the character count, in app.py in main: {}'.format(session['user_character_count']))
     print('this is the ai_repeat in app.py in main: {}'.format(session['ai_repeat']))
-
+    print('this is session gpt3 from main:{}'.format(session['gpt3']))
+    print('this is the lookback from main:{}'.format(session['lookback']))
+    
     conversation_input_data = _conversation_data_service.get_conversation_input_data_from_front_end()
 
     tio_outputs_data = _bot_processing_service.process_user_input(conversation_input_data,_sentence_encoder_service)

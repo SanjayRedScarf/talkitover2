@@ -15,8 +15,22 @@ class gpt:
 
     def get_response(self,msg):
         response = openai.Completion.create(
-        engine="text-davinci-002",
+        engine="text-davinci-003",
         prompt=self.prompt + msg + self.start_sequence,
+        temperature=0.9,
+        max_tokens=150,
+        top_p=1,
+        frequency_penalty=0,
+        presence_penalty=0.6,
+        stop=[" Human:", " AI:"]
+        )
+        return response
+
+    def lookback_response(self,current_msg,user_lookback,bot_lookback):
+        pass
+        response = openai.Completion.create(
+        engine="text-davinci-003",
+        prompt=self.prompt + user_lookback + self.start_sequence + bot_lookback + self.restart_sequence + current_msg + self.start_sequence,
         temperature=0.9,
         max_tokens=150,
         top_p=1,
