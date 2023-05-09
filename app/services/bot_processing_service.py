@@ -45,7 +45,8 @@ class BotProcessingService:
             # Specific logic to set anonymous boolean in section 9 of the introduction
             if conversation_input_data.section == 9:
                 conversation_input_data.anonymous = "true" if conversation_input_data.message.split()[0].lower()=="anonymous" else "false"
-
+                if conversation_input_data.anonymous == 'false':
+                    session['gpt3'] = 'bot'
             _conversation_data_repository.insert_data(user_inputs_data)
 
         elif conversation_input_data.section > 11:

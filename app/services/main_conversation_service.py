@@ -23,6 +23,8 @@ class MainConversationService:
 
         cleaned_message = _string_cleansing_service.clean_string(conversation_input_data.message)
 
+        session['lookback']['user'] = cleaned_message
+
         trigger = _trigger_check_service.get_trigger(cleaned_message, conversation_input_data.message)
         response = _trigger_response_service.get_response_for_trigger(cleaned_message, trigger, user_character_count)            
         #session['response_type'] = trigger
@@ -56,14 +58,22 @@ class MainConversationService:
             trigger = 'specialCase'
         
         
-        if session['gpt3']:
-            try:
-                response = gpt3.get_response(cleaned_message)['choices'][0]["text"].lstrip().split('\nHuman:')[0].lstrip("\"\'")
-                trigger = 'gpt3'
-            except:
-                session['gpt3'] = False
+        if (session['gpt3'] == 'gpt3') or (session['gpt3']=='lookback'):
+            if (session['gpt3'] == 'lookback') and (all(session['lookback'])):
+                try:
+                    response = gpt3.lookback_response(cleaned_message,session['lookback']['user'],session['lookback']['bot'])['choices'][0]["text"].lstrip().split('\nHuman:')[0].lstrip("\"\'")
+                    trigger = 'gpt3_lookback'
+                except:
+                    session['gpt3'] = 'bot'
+            else:
+                try:
+                    response = gpt3.get_response(cleaned_message)['choices'][0]["text"].lstrip().split('\nHuman:')[0].lstrip("\"\'")
+                    trigger = 'gpt3'
+                except:
+                    session['gpt3'] = 'bot'
         
         session['last_trigger'] = trigger
+        session['lookback']['bot'] = response
 
         return output_data.OutputData(response, conversation_input_data.section, [""], next_user_input, "freeText",ai_data,trigger)
 

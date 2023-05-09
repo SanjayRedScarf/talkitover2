@@ -191,7 +191,7 @@ class IntroductionService:
         Gets the output data for section seven of the introduction
         """
         response = "And when I say confidential, I mean that your text won't be \
-            stored at all, and no human will see what you write."
+            stored at all, and no human will see what you write. This does, however, mean that you will be using a more simplified bot."
 
         next_user_options = ["OK, I know what you mean by confidential."] # this is the option that the user can select
 
