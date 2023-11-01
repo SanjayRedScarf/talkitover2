@@ -63,10 +63,8 @@ def main():
     Processes the user's message.
     """
     print('this is the uid from app.py in main: {}'.format(session['uid']))
-    print('this is the character count, in app.py in main: {}'.format(session['user_character_count']))
-    print('this is the ai_repeat in app.py in main: {}'.format(session['ai_repeat']))
-    print('this is session gpt3 from main:{}'.format(session['gpt3']))
-    print('this is the lookback from main:{}'.format(session['lookback']))
+    print('this is session gpt3 (the bot type being used) from main:{}'.format(session['gpt3']))
+    print('this is the lookback (always being tracked, not always used) from main:{}'.format(session['lookback']))
     
     conversation_input_data = _conversation_data_service.get_conversation_input_data_from_front_end()
 

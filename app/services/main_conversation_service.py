@@ -75,6 +75,8 @@ class MainConversationService:
         session['last_trigger'] = trigger
         session['lookback']['bot'] = response
 
+        print('This is session gpt3 (the bot type being used) from main_conversation: {}'.format(session['gpt3']))
+
         return output_data.OutputData(response, conversation_input_data.section, [""], next_user_input, "freeText",ai_data,trigger)
 
         
